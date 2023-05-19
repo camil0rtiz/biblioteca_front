@@ -1,0 +1,6 @@
+.site-layout-content {
+    min-height: 600px;
+    padding: 24px;
+    margin: '16px 0';
+    background: rgba(255, 255, 255, 0.3);
+}

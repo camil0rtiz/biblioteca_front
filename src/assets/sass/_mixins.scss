@@ -1,0 +1,13 @@
+@mixin ltr-rtl($property, $value) {
+    padding-left: $value;
+    [dir="rtl"] & {
+        padding-right: $value;
+    }
+}
+
+@mixin transition($properties) {
+    transition: $properties;
+    -webkit-transition: $properties;
+    -moz-transition: $properties;
+    -o-transition: $properties;
+}
