@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { ProgressBar} from 'react-bootstrap'
+import { CCol, CContainer, CRow } from "@coreui/react"
 import { MembresiaRegisterForm } from "../components/MembresiaRegisterForm"
 import { ComprobanteRegisterForm } from "../components/ComprobanteRegisterForm"
 import { PersonalRegisterForm } from "../components/PersonalRegisterForm"
@@ -34,16 +34,16 @@ export const RegisterPages = () => {
     }
 
     return (
-        <>  
-            <div>
-                <div className="container">
-                    <div className="row d-flex justify-content-center">
-                        <div className="col-6 ">
-                            {getPagContent(page)}
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </>
+
+        <div className="bg-light min-vh-100 d-flex flex-row align-items-center">
+            <CContainer>
+                <CRow className="justify-content-center">
+                    <CCol xs={12} md={6}>
+                        {getPagContent(page)}
+                    </CCol>
+                </CRow>
+            </CContainer>
+        </div>
+    
     )
 }

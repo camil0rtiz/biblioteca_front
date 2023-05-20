@@ -3,14 +3,13 @@ import logo from '../../assets/img/bcnv.jpg'
 
 export const FooterComponent = () => {
     return (
-        <CFooter position='fixed'>
+        <CFooter className='bg-dark' position='fixed'>
             <div>
-                <CLink>Biblioteca Valle Noble</CLink>
-                <span>&copy; 2023 Camilo Ortiz.</span>
+                <strong className='text-light'>Biblioteca Valle Noble</strong>
+                <span className='text-light'> &copy; 2023 </span>
             </div>
             <div>
-                <span>Powered by</span>
-                <CLink href="https://coreui.io">CoreUI</CLink>
+                <span className='text-light'>Todos los derechos reservados</span>
             </div>
         </CFooter>
     )

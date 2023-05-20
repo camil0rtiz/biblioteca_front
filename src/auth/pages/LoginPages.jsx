@@ -1,8 +1,9 @@
 import { useDispatch, useSelector } from "react-redux"
+import { Link } from 'react-router-dom'
 import { useForm, Controller } from "react-hook-form"
-import { Button, Form, Alert, Spinner } from 'react-bootstrap'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCircleExclamation } from '@fortawesome/free-solid-svg-icons'
+import { CButton, CCard, CCardBody, CCardGroup, CCol, CContainer, CForm, CFormInput, CFormText, CInputGroup, CInputGroupText, CRow } from '@coreui/react'
+import CIcon from '@coreui/icons-react'
+import { cilLockLocked, cilUser } from '@coreui/icons'
 import { validaRut } from "../../helpers/validarRut"
 import { startLogin } from "../../store/auth/thunk"
 import { onCheckingLogin, onErrorMessage } from "../../store/auth/authSlice"
@@ -53,99 +54,116 @@ export const LoginPages = () => {
     }
 
     return (
-        <>
-            <div className="container">
-                <div className="row d-flex justify-content-center">
-                    <div className="p-4 col-xs-1 col-md-4 mt-5 border border-2 rounded rounded-2 shadow">
-                        <h3 className="mt-4 text-center">Inicia Sesión</h3>
-                        
-                        <Form onSubmit={handleSubmit(handleLogin)} onReset={reset}>
-                            <Form.Group className="mb-3" controlId="formBasicEmail">
-                                <Form.Label>Rut*</Form.Label>
-                                <Controller 
-                                    control={control} 
-                                    name="loginRut" 
-                                    defaultValue=""  
-                                    rules={{
-                                        onChange: e => formateoRut(e.target.value),
-                                        required:{
-                                            value: true,
-                                            message: "Rut es obligatorio"
-                                        },
-                                        minLength: { value: 2, message: 'El rut tiene que ser mas largo' },
-                                        validate: {positive: v => validaRut(v) == true || 'Rut tiene que ser válido'} 
-                                    }}
-                                    render={({ field: { onChange, value, ref } }) => (
-                                        <Form.Control
-                                            onChange={onChange} 
-                                            value={value} 
-                                            ref={ref}  
-                                            type="text" 
-                                            placeholder="Ingrega tu rut" 
-                                            maxLength={10} 
-                                        />
-                                    )}
-                                />
-                                {errors.loginRut && 
-                                    <Form.Text className="text-danger" variant='danger'>
-                                        <FontAwesomeIcon icon={faCircleExclamation} /> {errors.loginRut.message}
-                                    </Form.Text> 
-                                }                                            
-                            </Form.Group>
-                            <Form.Group className="mb-3" controlId="formBasicPassword">
-                                <Form.Label>Contraseña*</Form.Label>
-                                <Controller 
-                                    control={control} 
-                                    name="loginPassword"
-                                    defaultValue=""  
-                                    rules={{
-                                        required: {value: true, message: 'Contraseña es obligatoria'},
-                                    }}
-                                    render={({ field: { onChange, value, ref } }) => (
-                                        <Form.Control
-                                            onChange={onChange} 
-                                            value={value} 
-                                            ref={ref}  
-                                            type="password" 
-                                            placeholder="Ingrega tu contraseña" 
-                                        />
-                                    )}
-                                />
-                                {errors.loginPassword && 
-                                    <Form.Text className="text-danger" variant='danger'>
-                                        <FontAwesomeIcon icon={faCircleExclamation} /> {errors.loginPassword.message}
-                                    </Form.Text> 
-                                } 
-                            </Form.Group>
-                            {
-                                (errorMessage) && (
-                                    <Alert variant="danger" onClose={() => handleCloseAlert()} dismissible>
-                                        <p><FontAwesomeIcon icon={faCircleExclamation}/> Rut o Contraseña incorrectos</p>
-                                    </Alert>
-                                )
-                            }
-                            <div className="d-grid mt-3 mb-4">
-                                {
-                                    (status == 'checking') ? 
-                                    (   
-                                        <Button variant="dark" type="submit" disabled>
-                                            <Spinner
-                                                as="span"
-                                                animation="border"
-                                                size="sm"
-                                                role="status"
-                                                aria-hidden="true"
-                                            /> Autenticando
-                                        </Button>
-                                    ):(
-                                        <Button variant="dark" type="submit">Iniciar Sesión</Button>
-                                    )
-                                }
-                            </div>
-                        </Form>
-                    </div>
-                </div>
-            </div>
-        </>
+        <div className="bg-light min-vh-100 d-flex flex-row align-items-center">
+            <CContainer>
+                <CRow className="justify-content-center">
+                    <CCol md={8}>
+                        <CCardGroup>
+                            <CCard className="p-4">
+                                <CCardBody>
+                                    <CForm onSubmit={handleSubmit(handleLogin)} onReset={reset} validated={false}>
+                                        <h1>Login</h1>
+                                        <p className="text-medium-emphasis">Sign In to your account</p>
+                                        <CInputGroup className="mb-3">
+                                            <CInputGroupText>
+                                                <CIcon icon={cilUser} />
+                                            </CInputGroupText>
+                                            <Controller 
+                                                control={control} 
+                                                name="loginRut" 
+                                                defaultValue=""  
+                                                rules={{
+                                                    onChange: e => formateoRut(e.target.value),
+                                                    required:{
+                                                        value: true,
+                                                        message: "Rut es obligatorio"
+                                                    },
+                                                    minLength: { value: 2, message: 'El rut tiene que ser mas largo' },
+                                                    validate: {positive: v => validaRut(v) == true || 'Rut tiene que ser válido'} 
+                                                }}
+                                                render={({ field: { onChange, value, ref } }) => (
+                                                    <CFormInput
+                                                        onChange={onChange} 
+                                                        value={value} 
+                                                        ref={ref}  
+                                                        type="text"
+                                                        placeholder="Rut"  
+                                                        maxLength={10} 
+                                                    />
+                                                )}
+                                                
+                                            />
+                                            {/* {errors.loginRut && 
+                                                <CFormText className="text-danger">
+                                                    {errors.loginRut.message}
+                                                </CFormText > 
+                                            }   */}
+                                        </CInputGroup>
+                                        <CInputGroup className="mb-4">
+                                            <CInputGroupText>
+                                                <CIcon icon={cilLockLocked} />
+                                            </CInputGroupText>
+                                            <Controller 
+                                                control={control} 
+                                                name="loginPassword"
+                                                defaultValue=""  
+                                                rules={{
+                                                    required: {value: true, message: 'Contraseña es obligatoria'},
+                                                }}
+                                                render={({ field: { onChange, value, ref } }) => (
+                                                    <CFormInput
+                                                        onChange={onChange} 
+                                                        value={value} 
+                                                        ref={ref}  
+                                                        type="password"
+                                                        placeholder="Contraseña"
+                                                        feedbackInvalid="Please enter a message in the textarea."
+                                                    />
+                                                )}
+                                            />
+                                            {/* {errors.loginPassword &&
+                                                <div style={{ marginTop: '0.25rem' }}>
+                                                    <CFormText className="text-danger" variant='danger'>
+                                                        {errors.loginPassword.message}
+                                                    </CFormText> 
+                                                </div> 
+                                            }   */}
+                                        </CInputGroup>
+                                        <CRow>
+                                            <CCol xs={6}>
+                                                <CButton type="submit" color="primary" className="px-4">
+                                                    Ingresa
+                                                </CButton>
+                                            </CCol>
+                                            <CCol xs={6} className="text-right">
+                                                <CButton color="link" className="px-0">
+                                                    ¿Olvidaste tu contraseña?
+                                                </CButton>
+                                            </CCol>
+                                        </CRow>
+                                    </CForm>
+                                </CCardBody>
+                            </CCard>
+                            <CCard className="text-white bg-dark py-5">
+                                <CCardBody className="text-center">
+                                    <div>
+                                        <h2>Registrate Ahora</h2>
+                                        <p>
+                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                                            tempor incididunt ut labore et dolore magna aliqua.
+                                        </p>
+                                        <Link to="/auth/registro">
+                                        <CButton color="primary" className="mt-3" active tabIndex={-1}>
+                                            Registrate ahora
+                                        </CButton>
+                                        </Link>
+                                    </div>
+                                </CCardBody>
+                            </CCard>
+                        </CCardGroup>
+                    </CCol>
+                </CRow>
+            </CContainer>
+        </div>
     )
 }

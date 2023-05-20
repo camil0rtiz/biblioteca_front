@@ -11,17 +11,21 @@ import { CarritoComponent } from '../components/CarritoComponent'
 export const HomeRoutes = () => {
     return (
         <>
-            <NavbarComponent/>
-            <Routes>
-                <Route path='/' element={<HomePages/>}/>
-                <Route path='/eventos' element={<EventosPages/>}/>
-                <Route path='/libros' element={<LibrosPages/>}/>
-                <Route path='/reservas' element={<ReservaLibroPage/>}/>
-                <Route path='/libros/:id' element={<DetallesLibroPages/>}/>
-                <Route path="/*" element={<Navigate to='/'/>} />
-            </Routes>
-            <CarritoComponent/>
-            <FooterComponent/>
+            <div className="wrapper d-flex flex-column min-vh-100 bg-light">
+                <NavbarComponent/>
+                <div className="body flex-grow-1 px-3">
+                    <Routes>
+                        <Route path='/' element={<HomePages/>}/>
+                        <Route path='/eventos' element={<EventosPages/>}/>
+                        <Route path='/libros' element={<LibrosPages/>}/>
+                        <Route path='/reservas' element={<ReservaLibroPage/>}/>
+                        <Route path='/libros/:id' element={<DetallesLibroPages/>}/>
+                        <Route path="/*" element={<Navigate to='/'/>} />
+                    </Routes>
+                </div>
+                <CarritoComponent/>
+                <FooterComponent/>
+            </div>
         </>
     )
 }
