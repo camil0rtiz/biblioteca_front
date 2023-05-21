@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
-import { Container, Card, Col, Row, Button, ListGroup, Breadcrumb, Badge } from 'react-bootstrap'
+import { Card, Col, Row, Button, ListGroup, Breadcrumb, Badge } from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCartShopping, faFilter} from '@fortawesome/free-solid-svg-icons'
 import bibliotecaApi from "../../api/bibliotecaApi"
@@ -11,6 +11,7 @@ import { FiltrosComponent } from "../components/FiltrosComponent"
 import { onAgregarLibroCarrito } from "../../store/prestamos/carritoSlice"
 import '../../assets/css/navbar.css'
 import { PaginadorComponent } from "../components/PaginadorComponent"
+import { CBreadcrumb, CBreadcrumbItem, CButton, CContainer, CHeaderDivider } from "@coreui/react"
 
 export const LibrosPages = () => {
 
@@ -65,22 +66,21 @@ export const LibrosPages = () => {
 
     return (
         <>
-            <Container className="site-layout-content" fluid="lg">
-                <Row >
-                    <div className="d-flex justify-content-center">
-                        <Breadcrumb>
-                            <Breadcrumb.Item linkAs={Link} linkProps={{to:'/home'}} >Home</Breadcrumb.Item>
-                            <Breadcrumb.Item linkAs={Link} linkProps={{to:'/libros'}}>Libros</Breadcrumb.Item>
-                        </Breadcrumb>
-                    </div>
-                </Row>
+            <CHeaderDivider/>
+            <CContainer fluid >
+                <CBreadcrumb className='"m-0 ms-2 mt-3'>
+                    <CBreadcrumbItem to='home'>Home</CBreadcrumbItem>
+                    <CBreadcrumbItem active>Libros</CBreadcrumbItem>
+                </CBreadcrumb>
+            </CContainer>
+            <CContainer >
                 <Row>
                     <div className="d-flex justify-content-between align-items-center">
                         <div>
                             <h3>Libros</h3>
                         </div>
                         <div>
-                            <Button variant="warning" onClick={() => openFiltros()}><FontAwesomeIcon icon={faFilter}/> Filtros</Button>
+                            <CButton color="warning" onClick={() => openFiltros()}><FontAwesomeIcon icon={faFilter}/> Filtros</CButton>
                         </div>
                     </div>
                 </Row>
@@ -94,7 +94,7 @@ export const LibrosPages = () => {
                                     <Card.Subtitle className="text-muted text-center">{libro.autor.label[0]}</Card.Subtitle>
                                 </Card.Body>
                                 <ListGroup className="list-group-flush">
-                                    <ListGroup.Item className="text-center"><Button variant="dark" className="text-center" onClick={() => openCarrito(libro)}><FontAwesomeIcon icon={faCartShopping}/> Agregar</Button></ListGroup.Item>
+                                    <ListGroup.Item className="text-center"><CButton color="dark" className="text-center" onClick={() => openCarrito(libro)}><FontAwesomeIcon icon={faCartShopping}/> Agregar</CButton></ListGroup.Item>
                                 </ListGroup>     
                                 <Card.Footer className="text-center">
                                     {
@@ -119,7 +119,7 @@ export const LibrosPages = () => {
                     <PaginadorComponent cantPaginas={cantPaginas} setNumPagina={setNumPagina}/>
                 </Row>
                 <FiltrosComponent/>
-            </Container>
+            </CContainer>
         </>
     )
 }

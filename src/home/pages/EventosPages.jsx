@@ -1,13 +1,12 @@
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom'
-import { Breadcrumb, Container, Row, Col } from 'react-bootstrap'
+import { CBreadcrumb, CBreadcrumbItem, CCard, CCardBody, CCardImage, CCardText, CCardTitle, CCol, CContainer, CHeaderDivider, CRow } from '@coreui/react';
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Navigation, Pagination, Autoplay } from "swiper";
 import { startListarEventosHome } from '../../store/biblioteca/thunk';
 import '../../assets/css/navbar.css'
 import '../../assets/css/eventos.css'
-
 
 export const EventosPages = () => {
 
@@ -21,100 +20,104 @@ export const EventosPages = () => {
 
     }, [])
 
-    console.log(noticiasHome)
-
     return (
-
-        <Container className="site-layout-content" fluid="lg">
-            <Row>
-                <div className="d-flex justify-content-center">
-                    <Breadcrumb>
-                        <Breadcrumb.Item linkAs={Link} linkProps={{to:'/home'}} >Home</Breadcrumb.Item>
-                        <Breadcrumb.Item linkAs={Link} linkProps={{to:'/eventos'}}>Eventos</Breadcrumb.Item>
-                    </Breadcrumb>
-                </div>
-            </Row>
-            <Row>
-                <div className="d-flex justify-content-between align-items-center">
-                    <h3>Eventos</h3>
-                </div>
-            </Row>
-            <Row xs={1} sm={1} md={2} lg={2} xl={2} className="g-5">
-                {eventosHome.map((evento) => (
-                    <Col key={evento.id}>
-                        <Swiper
-                            modules={[Navigation, Pagination, Autoplay]}
-                            breakpoints={{
-                                1200: {
-                                    slidesPerView: 1,
-                                    spaceBetween: 30,
-                                }
-                            }}
-                            spaceBetween={50}
-                            navigation={true} 
-                            slidesPerView={1}
-                            autoplay={{
-                                delay: 2500,
-                                disableOnInteraction: false,
-                            }}
-                            pagination={{
-                                clickable: true,
-                            }}    
-                        >
-                            {evento.archivos.map((archivo) => (
-                                <SwiperSlide key={archivo.id}>
-                                    <img className='imagen-portada' src={`http://134.122.124.97/${archivo.url}`} alt={`Imagen ${archivo.id}`} />
-                                </SwiperSlide>
-                            ))}
-                        </Swiper>
-                        <div>
-                            <h4 className='text-center'>{evento.titulo_evento}</h4>
-                        </div>
-                        <div  dangerouslySetInnerHTML={{ __html: evento.descripcion_evento }}></div>
-                    </Col>
-                ))}
-            </Row>
-            <Row>
-                <div className="d-flex justify-content-between align-items-center mb-3">
-                    <h3>Noticias</h3>
-                </div>
-            </Row>
-            <Row xs={1} sm={1} md={2} lg={2} xl={2} className="g-5">
-                {noticiasHome.map((evento) => (
-                    <Col key={evento.id}>
-                        <Swiper
-                            modules={[Navigation, Pagination, Autoplay]}
-                            breakpoints={{
-                                1200: {
-                                    slidesPerView: 1,
-                                    spaceBetween: 30,
-                                }
-                            }}
-                            spaceBetween={50}
-                            navigation={true} 
-                            slidesPerView={1}
-                            autoplay={{
-                                delay: 2500,
-                                disableOnInteraction: false,
-                            }}
-                            pagination={{
-                                clickable: true,
-                            }}    
-                        >
-                            {evento.archivos.map((archivo) => (
-                                <SwiperSlide key={archivo.id}>
-                                    <img className='imagen-portada' src={`http://134.122.124.97/storage/${archivo.url}`} alt={`Imagen ${archivo.id}`} />
-                                </SwiperSlide>
-                            ))}
-                        </Swiper>
-                        <div>
-                            <h4 className='text-center'>{evento.titulo_evento}</h4>
-                        </div>
-                        <div  dangerouslySetInnerHTML={{ __html: evento.descripcion_evento }}></div>
-                    </Col>
-                ))}
-            </Row>
-        </Container>
-    
+        
+        <>
+            <CHeaderDivider/>
+            <CContainer fluid >
+                <CBreadcrumb className='"m-0 ms-2 mt-3'>
+                    <CBreadcrumbItem to='home'>Home</CBreadcrumbItem>
+                    <CBreadcrumbItem active>Libros</CBreadcrumbItem>
+                </CBreadcrumb>
+            </CContainer>
+            <CContainer lg>
+                <CRow>
+                    <CCol className="d-flex justify-content-center">
+                        <h3>Eventos</h3>
+                    </CCol>
+                </CRow>    
+                <CRow xl={2} className="g-5">
+                    {eventosHome.map((evento) => (
+                        <CCol xl={6} key={evento.id}>
+                            <CCard className="mb-4">
+                                <CCardBody>
+                                    <Swiper
+                                        modules={[Navigation, Pagination, Autoplay]}
+                                        breakpoints={{
+                                            1200: {
+                                                slidesPerView: 1,
+                                                spaceBetween: 30,
+                                            }
+                                        }}
+                                        spaceBetween={50}
+                                        navigation={true} 
+                                        slidesPerView={1}
+                                        autoplay={{
+                                            delay: 2500,
+                                            disableOnInteraction: false,
+                                        }}
+                                        pagination={{
+                                            clickable: true,
+                                        }}    
+                                    >
+                                        {evento.archivos.map((archivo) => (
+                                            <SwiperSlide key={archivo.id}>
+                                                <CCardImage className='imagen-portada' src={`http://134.122.124.97/storage/${archivo.url}`} alt={`Imagen ${archivo.id}`} />
+                                            </SwiperSlide>
+                                        ))}
+                                    </Swiper>
+                                    <CCardTitle className='text-center'>{evento.titulo_evento}</CCardTitle>
+                                    <CCardText dangerouslySetInnerHTML={{ __html: evento.descripcion_evento }}>
+                                    </CCardText>
+                                </CCardBody>
+                            </CCard>
+                        </CCol>
+                    ))}
+                </CRow>
+                <CRow>
+                    <CCol className="d-flex justify-content-center">
+                        <h3 className='mt-5'>Noticias</h3>
+                    </CCol>
+                </CRow> 
+                <CRow className="g-5 mb-5">
+                    {noticiasHome.map((evento) => (
+                        <CCol xl={6} key={evento.id}>
+                            <CCard className="mb-4">
+                                <CCardBody>
+                                    <Swiper
+                                        modules={[Navigation, Pagination, Autoplay]}
+                                        breakpoints={{
+                                            1200: {
+                                                slidesPerView: 1,
+                                                spaceBetween: 30,
+                                            }
+                                        }}
+                                        spaceBetween={50}
+                                        navigation={true} 
+                                        slidesPerView={1}
+                                        autoplay={{
+                                            delay: 2500,
+                                            disableOnInteraction: false,
+                                        }}
+                                        pagination={{
+                                            clickable: true,
+                                        }}    
+                                    >
+                                        {evento.archivos.map((archivo) => (
+                                            <SwiperSlide key={archivo.id}>
+                                                <CCardImage className='imagen-portada' src={`http://134.122.124.97/storage/${archivo.url}`} alt={`Imagen ${archivo.id}`} />
+                                            </SwiperSlide>
+                                        ))}
+                                    </Swiper>
+                                    <CCardTitle className='text-center'>{evento.titulo_evento}</CCardTitle>
+                                    <CCardText dangerouslySetInnerHTML={{ __html: evento.descripcion_evento }}>
+                                    </CCardText>
+                                </CCardBody>
+                            </CCard>
+                        </CCol>
+                    ))}
+                </CRow>
+            </CContainer>
+        </>
     )
 }

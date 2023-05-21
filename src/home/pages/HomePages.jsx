@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
-import { Card, Container, Row } from 'react-bootstrap'
+import { Card, Row } from 'react-bootstrap'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Navigation, Pagination, Autoplay } from "swiper";
 import 'swiper/css'
@@ -10,6 +10,7 @@ import 'swiper/css/scrollbar'
 import '../../assets/css/navbar.css'
 import '../../assets/css/home.css'
 import bibliotecaApi from '../../api/bibliotecaApi'
+import { CBreadcrumb, CBreadcrumbItem, CHeaderDivider, CContainer} from '@coreui/react';
 
 export const HomePages = () => {
     
@@ -35,7 +36,14 @@ export const HomePages = () => {
 
     return (
         <>
-            <Container className='site-layout-content'>
+            <CHeaderDivider/>
+            <CContainer fluid >
+                <CBreadcrumb className='"m-0 ms-2 mt-3'>
+                    <CBreadcrumbItem to='home'>Home</CBreadcrumbItem>
+                    <CBreadcrumbItem active>Libros</CBreadcrumbItem>
+                </CBreadcrumb>
+            </CContainer>
+            <CContainer className='site-layout-content'>
                 <Row className='d-flex justify-content-center swiper-container'>
                     <h3>Últimos agregados</h3>
                     <Swiper
@@ -136,7 +144,7 @@ export const HomePages = () => {
                         ))}
                     </Swiper>
                 </Row>
-            </Container>
+            </CContainer>
         </>
     )
 }

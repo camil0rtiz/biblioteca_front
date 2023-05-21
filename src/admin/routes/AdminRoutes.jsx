@@ -19,16 +19,16 @@ export const AdminRoutes = () => {
                 <div className="wrapper d-flex flex-column min-vh-100 bg-light">
                     <HeaderAdmin/>
                     <div className="body flex-grow-1 px-3">
-                    <Routes>
-                        <Route path='/reservas' element={<ReservasPages/>}/>
-                        <Route path='/eventos' element={<EventosPages/>}/>
-                        <Route path='/usuarios' element={<UsuariosPages/>}/>
-                        <Route path='/libros' element={<LibrosPages/>}/>
-                        <Route path='/autores' element={<AutoresPages/>}/>
-                        <Route path='/editoriales' element={<EditorialesPages/>}/>
-                        <Route path='/home' element={<HomePages/>}/>
-                        <Route path="/*" element={<Navigate to='home'/>} />
-                    </Routes>
+                        <Routes>
+                            <Route path='/reservas' element={<ReservasPages/>}/>
+                            <Route path='/eventos' element={<EventosPages/>}/>
+                            <Route path='/usuarios' element={<UsuariosPages/>}/>
+                            <Route path='/libros' element={<LibrosPages/>}/>
+                            <Route path='/autores' element={<AutoresPages/>}/>
+                            <Route path='/editoriales' element={<EditorialesPages/>}/>
+                            <Route path='/home' element={<HomePages/>}/>
+                            <Route path="/*" element={<Navigate to='home'/>} />
+                        </Routes>
                     </div>
                     <FooterAdmin/>
                 </div>
