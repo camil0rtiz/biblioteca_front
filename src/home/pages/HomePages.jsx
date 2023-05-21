@@ -43,7 +43,7 @@ export const HomePages = () => {
                     <CBreadcrumbItem active>Libros</CBreadcrumbItem>
                 </CBreadcrumb>
             </CContainer>
-            <CContainer className='site-layout-content'>
+            <CContainer>
                 <Row className='d-flex justify-content-center swiper-container'>
                     <h3>Últimos agregados</h3>
                     <Swiper
