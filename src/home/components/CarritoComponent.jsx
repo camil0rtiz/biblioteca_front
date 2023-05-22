@@ -1,7 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux'
-import { Offcanvas, ListGroup, Button } from 'react-bootstrap'
+import { CAlert, CButton, CCard, CCardBody, CCardImage, CCardText, CCardTitle, CCloseButton, CCol, COffcanvas, COffcanvasBody, COffcanvasHeader, COffcanvasTitle, CRow } from '@coreui/react'
 import { onCloseCarrito } from '../../store/ui/uiSlice'
-import { Image, Card, Alert } from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCartShopping, faBook, faTrash, faCircleInfo } from '@fortawesome/free-solid-svg-icons'
 import { useState } from 'react'
@@ -42,52 +41,51 @@ export const CarritoComponent = () => {
 
     return (
         <>
-            <Offcanvas show={carritoOpen} onHide={handleClose}>
-                <Offcanvas.Header closeButton>
-                <Offcanvas.Title><FontAwesomeIcon icon={faCartShopping}/> Carrito</Offcanvas.Title>
-                </Offcanvas.Header>
-                <Offcanvas.Body>
+            <COffcanvas className='bg-light' placement="start" visible={carritoOpen} onHide={handleClose}>
+                <COffcanvasHeader>
+                    <COffcanvasTitle>Carrito</COffcanvasTitle>
+                    <CCloseButton className="text-reset" onClick={handleClose} />
+                </COffcanvasHeader>
+                <COffcanvasBody>
                     {carrito.map((cart) => (
-                        <ListGroup key={cart.id} variant="flush">
-                            <ListGroup.Item>
-                                <div className="p-2 row shadow border-3">
-                                    <div className="col-sm-4 col-md-4">
-                                        <Image src={`http://134.122.124.97/storage/${cart.url}`} className="img-fluid rounded-start" alt="..."/>
-                                    </div>
-                                    <div className="col-sm-8 col-md-8">
-                                        <Card border="light"  className='h-100'>
-                                            <Card.Header  className="text-center">{cart.titulo_libro}</Card.Header>
-                                            <Card.Body className='d-flex justify-content-center align-items-center'>
-                                                <Button onClick={() => handleEliminarLibro(cart.id)} variant="danger">
-                                                    <FontAwesomeIcon icon={faTrash} />
-                                                </Button>
-                                            </Card.Body>
-                                        </Card>
-                                    </div>
-                                </div>
-                            </ListGroup.Item>
-                        </ListGroup>
+                        <CCard key={cart.id} className="mb-3">
+                            <CRow className="g-0">
+                                <CCol md={4}>
+                                    <CCardImage src={`http://134.122.124.97/storage/${cart.url}`} />
+                                </CCol>
+                                <CCol md={8}>
+                                    <CCardBody  className='d-flex justify-content-center align-items-center'>
+                                        <CCardTitle>{cart.titulo_libro}</CCardTitle>
+                                        <CCardText>
+                                            <CButton onClick={() => handleEliminarLibro(cart.id)} color="danger">
+                                                <FontAwesomeIcon icon={faTrash} />
+                                            </CButton>
+                                        </CCardText>
+                                    </CCardBody>
+                                </CCol>
+                            </CRow>
+                        </CCard>
                     ))}
         
                     {
                         (carrito.length > 0) ? (
                             <div className="d-grid mt-4">
-                                <Button variant="dark" size="lg" onClick={() => handleReserva()}><FontAwesomeIcon icon={faBook}/> Reservar</Button>
+                                <CButton color="dark" size="lg" onClick={() => handleReserva()}><FontAwesomeIcon icon={faBook}/> Reservar</CButton>
                             </div>
                         ): (<p>El carrito está vacio</p>)
                     }
                     
                     {
                         (show) && (
-                            <Alert className='mt-4' variant="info" onClose={() => setShow(false)} dismissible>
+                            <CAlert className='mt-4' color="info" onClose={() => setShow(false)} dismissible>
                                 <p>
                                     <FontAwesomeIcon icon={faCircleInfo} />Estimado vecino, recuerde que puede reservar una cantidad máxima de 2 libros.
                                 </p>
-                            </Alert>
+                            </CAlert>
                         )
                     }
-                </Offcanvas.Body>
-            </Offcanvas>
+                </COffcanvasBody>
+            </COffcanvas>
         </>
     )
 }

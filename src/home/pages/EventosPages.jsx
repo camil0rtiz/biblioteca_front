@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom'
-import { CBreadcrumb, CBreadcrumbItem, CCard, CCardBody, CCardImage, CCardText, CCardTitle, CCol, CContainer, CHeaderDivider, CRow } from '@coreui/react';
+import { CBreadcrumb, CBreadcrumbItem, CCard, CCardBody, CCardImage, CCardText, CCardTitle, CCol, CContainer, CHeaderDivider, CRow } from '@coreui/react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Navigation, Pagination, Autoplay } from "swiper";
 import { startListarEventosHome } from '../../store/biblioteca/thunk';

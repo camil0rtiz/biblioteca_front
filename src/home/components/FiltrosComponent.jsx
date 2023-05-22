@@ -18,7 +18,7 @@ export const FiltrosComponent = () => {
 
     return (
             
-        <COffcanvas placement="end" visible={filtrosOpen} onHide={handleClose}>
+        <COffcanvas className='bg-light' placement="end" visible={filtrosOpen} onHide={handleClose}>
             <COffcanvasHeader>
                 <COffcanvasTitle>Filtros</COffcanvasTitle>
                 <CCloseButton className="text-reset" onClick={handleClose} />

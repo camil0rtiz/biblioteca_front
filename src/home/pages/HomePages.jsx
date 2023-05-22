@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
-import { Card, Row } from 'react-bootstrap'
+import { CBreadcrumb, CBreadcrumbItem, CHeaderDivider, CContainer, CRow, CCard, CCardImage, CCardBody, CCardTitle, CCardSubtitle} from '@coreui/react'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import { Navigation, Pagination, Autoplay } from "swiper";
+import { Navigation, Pagination, Autoplay } from "swiper"
 import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
@@ -10,7 +10,6 @@ import 'swiper/css/scrollbar'
 import '../../assets/css/navbar.css'
 import '../../assets/css/home.css'
 import bibliotecaApi from '../../api/bibliotecaApi'
-import { CBreadcrumb, CBreadcrumbItem, CHeaderDivider, CContainer} from '@coreui/react';
 
 export const HomePages = () => {
     
@@ -44,7 +43,7 @@ export const HomePages = () => {
                 </CBreadcrumb>
             </CContainer>
             <CContainer>
-                <Row className='d-flex justify-content-center swiper-container'>
+                <CRow>
                     <h3>Últimos agregados</h3>
                     <Swiper
                         modules={[Navigation, Pagination, Autoplay]}
@@ -82,19 +81,19 @@ export const HomePages = () => {
                         >
                         {libros.map((libro) => (
                             <SwiperSlide key={libro.id}>
-                                <Card border="light" className="shadow">
-                                    <Card.Img style={{height: 360}} variant="top" src={`http://134.122.124.97/storage/${libro.url}`} />
-                                    <Card.Body>
-                                        <Card.Title className="text-center"><Link to={`/libros/${libro.id}`}>{libro.titulo_libro}</Link></Card.Title>
-                                        <Card.Subtitle className="text-muted text-center">{libro.autor.label[0]}</Card.Subtitle>
-                                    </Card.Body>
-                                </Card>
+                                <CCard border="light">
+                                    <CCardImage style={{height: 360}} variant="top" src={`http://134.122.124.97/storage/${libro.url}`} />
+                                    <CCardBody>
+                                        <CCardTitle className="text-center"><Link to={`/libros/${libro.id}`}>{libro.titulo_libro}</Link></CCardTitle>
+                                        <CCardSubtitle className="text-muted text-center">{libro.autor.label[0]}</CCardSubtitle>
+                                    </CCardBody>
+                                </CCard>
                             </SwiperSlide>
                             
                         ))}
                     </Swiper>
-                </Row>
-                <Row className='d-flex justify-content-center mb-5'>
+                </CRow>
+                <CRow className='d-flex justify-content-center mb-5'>
                     <h3 className='mt-3'>Más Reservados</h3>
                     <Swiper
                         modules={[Navigation, Pagination, Autoplay]}
@@ -132,18 +131,18 @@ export const HomePages = () => {
                         >
                         {libros.map((libro) => (
                             <SwiperSlide key={libro.id}>
-                                <Card border="light" className="shadow">
-                                    <Card.Img style={{height: 360}} variant="top" src={`http://134.122.124.97/storage/${libro.url}`} />
-                                    <Card.Body>
-                                        <Card.Title className="text-center"><Link to={`/libros/${libro.id}`}>{libro.titulo_libro}</Link></Card.Title>
-                                        <Card.Subtitle className="text-muted text-center">{libro.autor.label[0]}</Card.Subtitle>
-                                    </Card.Body>
-                                </Card>
+                                <CCard border="light">
+                                    <CCardImage style={{height: 360}} variant="top" src={`http://134.122.124.97/storage/${libro.url}`} />
+                                    <CCardBody>
+                                        <CCardTitle className="text-center"><Link to={`/libros/${libro.id}`}>{libro.titulo_libro}</Link></CCardTitle>
+                                        <CCardSubtitle className="text-muted text-center">{libro.autor.label[0]}</CCardSubtitle>
+                                    </CCardBody>
+                                </CCard>
                             </SwiperSlide>
                             
                         ))}
                     </Swiper>
-                </Row>
+                </CRow>
             </CContainer>
         </>
     )

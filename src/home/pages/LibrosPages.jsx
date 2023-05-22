@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
-import { Card, Col, Row, Button, ListGroup, Breadcrumb, Badge } from 'react-bootstrap'
+import { CBadge, CBreadcrumb, CBreadcrumbItem, CButton, CCard, CCardBody, CCardFooter, CCardImage, CCardSubtitle, CCardTitle, CCol, CContainer, CHeaderDivider, CListGroup, CListGroupItem, CRow } from "@coreui/react"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCartShopping, faFilter} from '@fortawesome/free-solid-svg-icons'
 import bibliotecaApi from "../../api/bibliotecaApi"
@@ -11,7 +11,6 @@ import { FiltrosComponent } from "../components/FiltrosComponent"
 import { onAgregarLibroCarrito } from "../../store/prestamos/carritoSlice"
 import '../../assets/css/navbar.css'
 import { PaginadorComponent } from "../components/PaginadorComponent"
-import { CBreadcrumb, CBreadcrumbItem, CButton, CContainer, CHeaderDivider } from "@coreui/react"
 
 export const LibrosPages = () => {
 
@@ -74,7 +73,7 @@ export const LibrosPages = () => {
                 </CBreadcrumb>
             </CContainer>
             <CContainer >
-                <Row>
+                <CRow>
                     <div className="d-flex justify-content-between align-items-center">
                         <div>
                             <h3>Libros</h3>
@@ -83,20 +82,20 @@ export const LibrosPages = () => {
                             <CButton color="warning" onClick={() => openFiltros()}><FontAwesomeIcon icon={faFilter}/> Filtros</CButton>
                         </div>
                     </div>
-                </Row>
-                <Row xs={2} sm={3} md={4} lg={4} xl={5} className="mt-1 g-4">
+                </CRow>
+                <CRow className="mt-1 g-4">
                     {libros.map((libro) => (
-                        <Col key={libro.id}>
-                            <Card border="light" className="shadow">
-                                <Card.Img style={{height: 360}} variant="top" src={`http://134.122.124.97/storage/${libro.url}`} />
-                                <Card.Body>
-                                    <Card.Title className="text-center"><Link to={`/libros/${libro.id}`}>{libro.titulo_libro}</Link></Card.Title>
-                                    <Card.Subtitle className="text-muted text-center">{libro.autor.label[0]}</Card.Subtitle>
-                                </Card.Body>
-                                <ListGroup className="list-group-flush">
-                                    <ListGroup.Item className="text-center"><CButton color="dark" className="text-center" onClick={() => openCarrito(libro)}><FontAwesomeIcon icon={faCartShopping}/> Agregar</CButton></ListGroup.Item>
-                                </ListGroup>     
-                                <Card.Footer className="text-center">
+                        <CCol xs={6} xl={3} key={libro.id}>
+                            <CCard border="light">
+                                <CCardImage style={{height: 360}} variant="top" src={`http://134.122.124.97/storage/${libro.url}`} />
+                                <CCardBody>
+                                    <CCardTitle className="text-center"><Link to={`/libros/${libro.id}`}>{libro.titulo_libro}</Link></CCardTitle>
+                                    <CCardSubtitle className="text-muted text-center">{libro.autor.label[0]}</CCardSubtitle>
+                                </CCardBody>
+                                <CListGroup className="list-group-flush">
+                                    <CListGroupItem className="text-center"><CButton color="dark" className="text-center" onClick={() => openCarrito(libro)}><FontAwesomeIcon icon={faCartShopping}/> Agregar</CButton></CListGroupItem>
+                                </CListGroup>     
+                                <CCardFooter className="text-center">
                                     {
                                         (libro.cantidad_ejemplares != 0) ? 
                                         (
@@ -106,18 +105,18 @@ export const LibrosPages = () => {
                                         ):
                                         (
                                             <small>
-                                                <Badge bg="danger">Agotado</Badge>
+                                                <CBadge bg="danger">Agotado</CBadge>
                                             </small>
                                         )
                                     }
-                                </Card.Footer>
-                            </Card>
-                        </Col>
+                                </CCardFooter>
+                            </CCard>
+                        </CCol>
                     ))}
-                </Row>
-                <Row>
+                </CRow>
+                <CRow>
                     <PaginadorComponent cantPaginas={cantPaginas} setNumPagina={setNumPagina}/>
-                </Row>
+                </CRow>
                 <FiltrosComponent/>
             </CContainer>
         </>

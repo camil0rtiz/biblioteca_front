@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux"
-import { Container, Row, Col, ListGroup, Figure, Button } from "react-bootstrap"
+import { CBreadcrumb, CBreadcrumbItem, CButton, CCard, CCardBody, CCardImage, CCardText, CCardTitle, CCol, CContainer, CHeaderDivider, CImage, CListGroup, CListGroupItem, CRow } from "@coreui/react"
 import '../../assets/css/navbar.css'
 import { startReservarLibro } from "../../store/prestamos/thunk"
 
@@ -25,38 +25,40 @@ export const ReservaLibroPage = () => {
 
     return (
         <>
-            <Container className="site-layout-content">
-                <Row>
-                    <Col>
-                        <ListGroup>
-                            {carrito.map((cart) => (
-                                <ListGroup.Item key={cart.id}>
-                                    <Row>
-                                        <Col>
-                                            <Figure>
-                                                <Figure.Image
-                                                    width={171}
-                                                    height={180}
-                                                    alt="171x180"
-                                                    src={`http://134.122.124.97/storage/${cart.url}`}
-                                                />
-                                            </Figure>
-                                        </Col>
-                                        <Col>
-                                            <h1>{cart.titulo_libro}</h1>
-                                        </Col>
-                                    </Row>
-                                </ListGroup.Item>
-                            ))}
-                        </ListGroup>
-                    </Col>
-                    <Col lg="3">
+            <CHeaderDivider/>
+            <CContainer fluid >
+                <CBreadcrumb className='"m-0 ms-2 mt-3'>
+                    <CBreadcrumbItem to='home'>Home</CBreadcrumbItem>
+                    <CBreadcrumbItem active>Libros</CBreadcrumbItem>
+                </CBreadcrumb>
+            </CContainer>
+            <CContainer>
+                <CRow>
+                    <CCol>
+                        {carrito.map((cart) => (
+                            <CCard key={cart.id}>
+                                <CRow className="g-0">
+                                    <CCol md={4}>
+                                        <CCardImage src={`http://134.122.124.97/storage/${cart.url}`}/>
+                                    </CCol>
+                                    <CCol md={8}>
+                                        <CCardBody className='d-flex justify-content-center align-items-center'>
+                                            <CCardTitle>{cart.titulo_libro}</CCardTitle>
+                                            <CCardText>
+                                            </CCardText>
+                                        </CCardBody>
+                                    </CCol>
+                                </CRow>
+                            </CCard>            
+                        ))}
+                    </CCol>
+                    <CCol lg="3">
                         <div className="d-grid mt-4">
-                            <Button onClick={() => handleReserva()} variant="dark" size="lg" >Reservar </Button>
+                            <CButton onClick={() => handleReserva()} color="dark" size="lg" >Reservar </CButton>
                         </div>
-                    </Col>
-                </Row>
-            </Container>
+                    </CCol>
+                </CRow>
+            </CContainer>
         
         </>
     )
