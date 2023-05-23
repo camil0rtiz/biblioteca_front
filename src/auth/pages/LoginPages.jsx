@@ -93,11 +93,6 @@ export const LoginPages = () => {
                                                 )}
                                                 
                                             />
-                                            {/* {errors.loginRut && 
-                                                <CFormText className="text-danger">
-                                                    {errors.loginRut.message}
-                                                </CFormText > 
-                                            }   */}
                                         </CInputGroup>
                                         <CInputGroup className="mb-4">
                                             <CInputGroupText>
@@ -121,13 +116,6 @@ export const LoginPages = () => {
                                                     />
                                                 )}
                                             />
-                                            {/* {errors.loginPassword &&
-                                                <div style={{ marginTop: '0.25rem' }}>
-                                                    <CFormText className="text-danger" variant='danger'>
-                                                        {errors.loginPassword.message}
-                                                    </CFormText> 
-                                                </div> 
-                                            }   */}
                                         </CInputGroup>
                                         <CRow>
                                             <CCol xs={6}>

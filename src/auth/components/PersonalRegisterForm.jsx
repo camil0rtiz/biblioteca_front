@@ -2,8 +2,6 @@ import { useDispatch, useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
 import { useForm, Controller } from "react-hook-form"
 import { Button, Form, Row, Col, InputGroup } from 'react-bootstrap'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCircleExclamation, faHouse, faCircleRight } from '@fortawesome/free-solid-svg-icons'
 import { validaRut } from "../../helpers/validarRut"
 import { onAgregarUser } from "../../store/auth/userSlice"
 import { formateoRut } from "../../helpers/formateoRut"
@@ -68,7 +66,7 @@ export const PersonalRegisterForm = ({goNextPage}) => {
                             />
                             {errors.registroRut && 
                                 <Form.Text className="text-danger" variant='danger'>
-                                    <FontAwesomeIcon icon={faCircleExclamation} /> {errors.registroRut.message}
+                                    {errors.registroRut.message}
                                 </Form.Text> 
                             }                                            
                         </Form.Group>
@@ -93,7 +91,7 @@ export const PersonalRegisterForm = ({goNextPage}) => {
                             />
                             {errors.registroNombre && 
                                 <Form.Text className="text-danger" variant='danger'>
-                                    <FontAwesomeIcon icon={faCircleExclamation} /> {errors.registroNombre.message}
+                                    {errors.registroNombre.message}
                                 </Form.Text> 
                             } 
                         </Form.Group>
@@ -120,7 +118,7 @@ export const PersonalRegisterForm = ({goNextPage}) => {
                             />
                             {errors.registroNumeroCelular && 
                                 <Form.Text className="text-danger" variant='danger'>
-                                    <FontAwesomeIcon icon={faCircleExclamation} /> {errors.registroNumeroCelular.message}
+                                    {errors.registroNumeroCelular.message}
                                 </Form.Text> 
                             } 
                         </Form.Group>
@@ -147,7 +145,7 @@ export const PersonalRegisterForm = ({goNextPage}) => {
                                 />
                                 {errors.registroApellidoPaterno && 
                                     <Form.Text className="text-danger" variant='danger'>
-                                        <FontAwesomeIcon icon={faCircleExclamation} /> {errors.registroApellidoPaterno.message}
+                                        {errors.registroApellidoPaterno.message}
                                     </Form.Text> 
                                 } 
                             </Form.Group>
@@ -173,7 +171,7 @@ export const PersonalRegisterForm = ({goNextPage}) => {
                                 />
                                 {errors.registroApellidoMaterno && 
                                     <Form.Text className="text-danger" variant='danger'>
-                                        <FontAwesomeIcon icon={faCircleExclamation} /> {errors.registroApellidoMaterno.message}
+                                        {errors.registroApellidoMaterno.message}
                                     </Form.Text> 
                                 } 
                             </Form.Group>
@@ -200,7 +198,7 @@ export const PersonalRegisterForm = ({goNextPage}) => {
                                 />
                                 {errors.registroFechaNacimiento && 
                                     <Form.Text className="text-danger" variant='danger'>
-                                        <FontAwesomeIcon icon={faCircleExclamation} /> {errors.registroFechaNacimiento.message}
+                                        {errors.registroFechaNacimiento.message}
                                     </Form.Text> 
                                 } 
                             </Form.Group>
@@ -227,7 +225,7 @@ export const PersonalRegisterForm = ({goNextPage}) => {
                                 />
                                 {errors.registroCorreo && 
                                     <Form.Text className="text-danger" variant='danger'>
-                                        <FontAwesomeIcon icon={faCircleExclamation} /> {errors.registroCorreo.message}
+                                        {errors.registroCorreo.message}
                                     </Form.Text> 
                                 } 
                             </Form.Group>
@@ -255,7 +253,7 @@ export const PersonalRegisterForm = ({goNextPage}) => {
                                 />
                                 {errors.registroDireccion && 
                                     <Form.Text className="text-danger" variant='danger'>
-                                        <FontAwesomeIcon icon={faCircleExclamation} /> {errors.registroDireccion.message}
+                                        {errors.registroDireccion.message}
                                     </Form.Text> 
                                 } 
                             </Form.Group>
@@ -281,7 +279,7 @@ export const PersonalRegisterForm = ({goNextPage}) => {
                                 />
                                 {errors.registroNumCasa && 
                                     <Form.Text className="text-danger" variant='danger'>
-                                        <FontAwesomeIcon icon={faCircleExclamation} /> {errors.registroNumCasa.message}
+                                        {errors.registroNumCasa.message}
                                     </Form.Text> 
                                 } 
                             </Form.Group>
@@ -309,7 +307,7 @@ export const PersonalRegisterForm = ({goNextPage}) => {
                                 />
                                 {errors.registroPassword && 
                                     <Form.Text className="text-danger" variant='danger'>
-                                        <FontAwesomeIcon icon={faCircleExclamation} /> {errors.registroPassword.message}
+                                        {errors.registroPassword.message}
                                     </Form.Text> 
                                 } 
                             </Form.Group>
@@ -339,14 +337,14 @@ export const PersonalRegisterForm = ({goNextPage}) => {
                                 />
                                 {errors.registroConfirPassword && 
                                     <Form.Text className="text-danger" variant='danger'>
-                                        <FontAwesomeIcon icon={faCircleExclamation} /> {errors.registroConfirPassword.message}
+                                        {errors.registroConfirPassword.message}
                                     </Form.Text> 
                                 } 
                             </Form.Group>
                         </Row>
                         <div className="d-flex justify-content-between">
-                            <Button variant="primary" onClick={() => handleHome()}><FontAwesomeIcon icon={faHouse} /> Home</Button>
-                            <Button variant="dark" type="submit"><FontAwesomeIcon icon={faCircleRight} /> Siguiente</Button>
+                            <Button variant="primary" onClick={() => handleHome()}>Home</Button>
+                            <Button variant="dark" type="submit">Siguiente</Button>
                         </div>
                     </Form> 
                 </CCardBody>

@@ -2,8 +2,6 @@ import { useDispatch, useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
 import { useForm, Controller } from "react-hook-form"
 import { Form, Button, ProgressBar, Alert } from 'react-bootstrap'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCircleCheck, faCircleLeft, faCircleExclamation } from '@fortawesome/free-solid-svg-icons'
 import { startAgregarUsuario } from "../../store/auth/thunk"
 import { CCard, CCardBody, CCardGroup } from "@coreui/react"
 
@@ -75,7 +73,7 @@ export const ComprobanteRegisterForm = ({ goBackPage }) => {
                                 />
                                 {errors.registroComproTransferencia && 
                                     <Form.Text className="text-danger" variant='danger'>
-                                        <FontAwesomeIcon icon={faCircleExclamation} /> {errors.registroComproTransferencia.message}
+                                        {errors.registroComproTransferencia.message}
                                     </Form.Text> 
                                 }
                             </Form.Group>
@@ -101,14 +99,14 @@ export const ComprobanteRegisterForm = ({ goBackPage }) => {
                                 />
                                 {errors.registroComproDomicilio && 
                                     <Form.Text className="text-danger" variant='danger'>
-                                        <FontAwesomeIcon icon={faCircleExclamation} /> {errors.registroComproDomicilio.message}
+                                        {errors.registroComproDomicilio.message}
                                     </Form.Text> 
                                 }
                             </Form.Group>
                         </div>
                         <div className="d-flex justify-content-between">
-                            <Button variant="danger" onClick={goBackPage}><FontAwesomeIcon icon={faCircleLeft} /> Atrás</Button>
-                            <Button variant="success" type="submit"><FontAwesomeIcon icon={faCircleCheck} /> Confirmar</Button>
+                            <Button variant="danger" onClick={goBackPage}>Atrás</Button>
+                            <Button variant="success" type="submit">Confirmar</Button>
                         </div>
                     </Form>
                 </CCardBody>

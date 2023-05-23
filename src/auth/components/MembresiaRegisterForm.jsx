@@ -1,8 +1,6 @@
 import { useForm } from "react-hook-form"
 import { useDispatch, useSelector } from "react-redux"
-import { Form, Button, Alert, ProgressBar, Card, Container, Row } from "react-bootstrap"
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCircleExclamation, faCircleLeft, faCircleRight } from '@fortawesome/free-solid-svg-icons'
+import { Form, Button, Alert, ProgressBar, Card } from "react-bootstrap"
 import { onAgregarUser } from "../../store/auth/userSlice"
 import { CCard, CCardBody, CCardGroup } from "@coreui/react"
 
@@ -78,15 +76,15 @@ export const MembresiaRegisterForm = ({ goNextPage, goBackPage }) => {
                             </div>
                             {errors.idMembresia && (
                                 <Alert key={'danger'} variant={'danger'}>
-                                    <FontAwesomeIcon icon={faCircleExclamation} /> {errors.idMembresia.message}
+                                    {errors.idMembresia.message}
                                 </Alert>
                             )}
                             <div className="d-flex justify-content-between">
                                 <Button variant="danger" onClick={goBackPage}>
-                                    <FontAwesomeIcon icon={faCircleLeft} /> Atrás
+                                    Atrás
                                 </Button>
                                 <Button variant="dark" type="submit">
-                                    <FontAwesomeIcon icon={faCircleRight} /> Siguiente
+                                    Siguiente
                                 </Button>
                             </div>
                         </div>
