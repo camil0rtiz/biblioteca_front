@@ -1,8 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { useForm, Controller } from 'react-hook-form'
 import { Modal, Button, Form } from 'react-bootstrap'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCircleExclamation } from '@fortawesome/free-solid-svg-icons'
 import { startActualizarAutor, startAgregarAutor } from '../../store/biblioteca/thunk'
 import { onCloseModal } from '../../store/ui/uiSlice'
 import { onClearAutores } from '../../store/biblioteca/autorSlice'
@@ -81,12 +79,12 @@ export const AutoresModal = () => {
                     />
                     {errors.autorNombre && 
                         <Form.Text className="text-danger" variant='danger'>
-                            <FontAwesomeIcon icon={faCircleExclamation} /> {errors.autorNombre.message}
+                            {errors.autorNombre.message}
                         </Form.Text> 
                     } 
                 </Form.Group>                
-            </CModalBody>
-            <CModalFooter>
+            </Modal.Body>
+            <Modal.Footer>
                 <Button variant="secondary" onClick={handleClose}>
                     Cerrar
                 </Button>

@@ -22,8 +22,8 @@ export const AccionesTable = ({ onExport, onNombreBoton }) => {
     return (
         
         <>
-            <CButton color='success' onClick={() => handleExcel('data.csv', onExport.data)}> <FontAwesomeIcon/> Exportar</CButton>
-            <CButton color="primary" onClick={handleShow}> <FontAwesomeIcon /> {onNombreBoton}</CButton>
+            <CButton color='success' onClick={() => handleExcel('data.csv', onExport.data)}>Exportar</CButton>
+            <CButton color="primary" onClick={handleShow}>{onNombreBoton}</CButton>
         </>
 
     )

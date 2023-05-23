@@ -4,8 +4,6 @@ import { useForm, Controller, useController } from 'react-hook-form'
 import { Modal, Button, Form } from 'react-bootstrap'
 import ReactSelect from "react-select"
 import ReactQuill from 'react-quill'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCircleExclamation } from '@fortawesome/free-solid-svg-icons'
 import { onCloseModal } from '../../store/ui/uiSlice'
 import 'react-quill/dist/quill.snow.css'
 import bibliotecaApi from '../../api/bibliotecaApi'
@@ -80,8 +78,6 @@ export const EventosModal = () => {
 
     const onSubmit = ({id,eventoTitulo,eventoTipo,eventoImagen,eventoDescripcion}) => {
 
-        console.log(eventoImagen);
-
         const id_usuario = user.id
         const id_categoria = eventoTipo.value
         const estado_evento = 1
@@ -143,7 +139,7 @@ export const EventosModal = () => {
                         />
                         {errors.eventoTitulo && 
                             <Form.Text className="text-danger" variant='danger'>
-                                <FontAwesomeIcon icon={faCircleExclamation} /> {errors.eventoTitulo.message}
+                                {errors.eventoTitulo.message}
                             </Form.Text> 
                         } 
                     </Form.Group>
@@ -170,7 +166,7 @@ export const EventosModal = () => {
                         />
                         {errors.eventoImagen && 
                             <Form.Text className="text-danger" variant='danger'>
-                                <FontAwesomeIcon icon={faCircleExclamation} /> {errors.eventoImagen.message}
+                                {errors.eventoImagen.message}
                             </Form.Text> 
                         } 
                     </Form.Group>
@@ -197,7 +193,7 @@ export const EventosModal = () => {
                         />
                         {errors.eventoTipo && 
                             <Form.Text className="text-danger" variant='danger'>
-                                <FontAwesomeIcon icon={faCircleExclamation} /> {errors.eventoTipo.message}
+                                {errors.eventoTipo.message}
                             </Form.Text> 
                         } 
                     </Form.Group>
@@ -210,7 +206,7 @@ export const EventosModal = () => {
                         />
                         {errors.eventoDescripcion && 
                             <Form.Text className="text-danger" variant='danger'>
-                                <FontAwesomeIcon icon={faCircleExclamation} /> {errors.eventoDescripcion.message}
+                                {errors.eventoDescripcion.message}
                             </Form.Text> 
                         } 
                     </Form.Group>

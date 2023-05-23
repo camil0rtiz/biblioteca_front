@@ -425,24 +425,6 @@ export const UsuariosModal = () => {
                                         </Form.Text> 
                                     } 
                                 </Form.Group>
-                                {/* <div className="form-group mb-1">
-                                    <label>Membresia:</label>
-                                    <select 
-                                        className="form-select" 
-                                        aria-label="Default select example"
-                                        name="registroTipoMembresia"
-                                        // {...register("registroTipoMembresia", {
-                                        //     required: {value: true, message:'Seleccione un plan de membresia'}
-                                        // })}
-                                    >
-                                        <option value="">Seleccione tipo de membresia</option>
-                                            {membresia.map((membre) =>(
-            
-                                                <option key={membre.id} value={membre.id}>{membre.tipo_membresia}</option>
-            
-                                            ))}    
-                                    </select>
-                                </div>  */}
                             </>
                         )
                     }

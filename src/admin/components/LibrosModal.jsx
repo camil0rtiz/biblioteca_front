@@ -12,7 +12,6 @@ import { onClearLibros } from '../../store/biblioteca/libroSlice'
 import { onCloseModal } from '../../store/ui/uiSlice'
 import { startActualizarLibro, startAgregarAutor, startAgregarLibro } from '../../store/biblioteca/thunk'
 import { customStyles } from '../../helpers/customStyles.js'
-import { validaIsbn } from '../../helpers/validarIsbn.js'
 import { onLoadingTrue } from '../../store/biblioteca/autorSlice'
 
 export const LibrosModal = () => {
@@ -45,6 +44,20 @@ export const LibrosModal = () => {
         getAutores()
 
     }, [autorSave])
+
+    useEffect(() => {
+        
+        setValue("id", initialLibro.id || "")
+        setValue("tituloLibro", initialLibro.tituloLibro || "")
+        setValue("isbnLibro", initialLibro.isbnLibro || "")
+        setValue("deweyLibro", initialLibro.deweyLibro || "")
+        setValue("numPagLibro", initialLibro.numPagLibro || "")
+        setValue("anioPublicacionLibro", initialLibro.anioPublicacionLibro || "")
+        setValue("autorLibro", initialLibro.autorLibro || "")
+        setValue("resenaLibro", initialLibro.resenaLibro || "")
+
+    }, [initialLibro, setValue])
+
 
     initialLibro.autorLibro.forEach((item) => {
 

@@ -2,8 +2,6 @@ import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { CButton, CCard, CCardBody, CCardHeader, CCol, CContainer, CRow } from '@coreui/react'
 import DataTable from 'react-data-table-component'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPenToSquare, faTrash } from '@fortawesome/free-solid-svg-icons'
 import { EventosModal } from '../components/EventosModal'
 import { onOpenModal } from '../../store/ui/uiSlice'
 import { AccionesTable } from '../components/AccionesTable'
@@ -56,12 +54,12 @@ export const EventosPages = () => {
             cell: (data) => <div className='d-flex justify-content-between'>
                                 <div className='mx-2'>
                                     <CButton color="warning" onClick={() => handleShow(data)}>
-                                        <FontAwesomeIcon icon={faPenToSquare} /> Editar
+                                        Editar
                                     </CButton>
                                 </div>
                                 <div>
                                     <CButton color="danger">
-                                        <FontAwesomeIcon icon={faTrash} /> Eliminar
+                                        Eliminar
                                     </CButton> 
                                 </div>
                             </div>,
