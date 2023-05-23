@@ -3,8 +3,6 @@ import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
 import { CBadge, CBreadcrumb, CBreadcrumbItem, CButton, CCard, CCardBody, CCardFooter, CCardImage, CCardSubtitle, CCardTitle, CCol, CContainer, CHeaderDivider, CListGroup, CListGroupItem, CRow } from "@coreui/react"
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCartShopping, faFilter} from '@fortawesome/free-solid-svg-icons'
 import bibliotecaApi from "../../api/bibliotecaApi"
 import { onOpenCarrito, onOpenFiltros } from "../../store/ui/uiSlice"
 import { FiltrosComponent } from "../components/FiltrosComponent"
@@ -79,7 +77,7 @@ export const LibrosPages = () => {
                             <h3>Libros</h3>
                         </div>
                         <div>
-                            <CButton color="warning" onClick={() => openFiltros()}><FontAwesomeIcon icon={faFilter}/> Filtros</CButton>
+                            <CButton color="warning" onClick={() => openFiltros()}>Filtros</CButton>
                         </div>
                     </div>
                 </CRow>
@@ -93,7 +91,7 @@ export const LibrosPages = () => {
                                     <CCardSubtitle className="text-muted text-center">{libro.autor.label[0]}</CCardSubtitle>
                                 </CCardBody>
                                 <CListGroup className="list-group-flush">
-                                    <CListGroupItem className="text-center"><CButton color="dark" className="text-center" onClick={() => openCarrito(libro)}><FontAwesomeIcon icon={faCartShopping}/> Agregar</CButton></CListGroupItem>
+                                    <CListGroupItem className="text-center"><CButton color="dark" className="text-center" onClick={() => openCarrito(libro)}>Agregar</CButton></CListGroupItem>
                                 </CListGroup>     
                                 <CCardFooter className="text-center">
                                     {

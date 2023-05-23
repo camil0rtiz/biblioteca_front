@@ -2,8 +2,6 @@ import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { CBreadcrumb, CBreadcrumbItem, CButton, CCard, CCardImage, CCol, CContainer, CHeaderDivider, CListGroup, CListGroupItem, CRow, CSpinner } from '@coreui/react'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCartShopping } from '@fortawesome/free-solid-svg-icons'
 import bibliotecaApi from '../../api/bibliotecaApi'
 import { onAgregarLibroCarrito } from '../../store/prestamos/carritoSlice'
 import { onOpenCarrito } from '../../store/ui/uiSlice'
@@ -80,7 +78,7 @@ export const DetallesLibroPages = () => {
                                         <CCol className='border p-3 mt-3 text-center' lg={3}>
                                             <h6>Quedan 6 unidades</h6>
                                             <CListGroup>
-                                                <CListGroupItem><CButton color="danger" onClick={() => handleOpenCarrito(libro)}>Agregar <FontAwesomeIcon icon={faCartShopping}/></CButton></CListGroupItem>
+                                                <CListGroupItem><CButton color="danger" onClick={() => handleOpenCarrito(libro)}>Agregar</CButton></CListGroupItem>
                                             </CListGroup>
                                         </CCol>
                                     </CRow>

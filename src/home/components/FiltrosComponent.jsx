@@ -1,8 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { CCloseButton, COffcanvas, COffcanvasBody, COffcanvasHeader, COffcanvasTitle } from '@coreui/react'
 import { onCloseFiltros } from '../../store/ui/uiSlice'
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-// import { faFilter } from '@fortawesome/free-solid-svg-icons'
 
 export const FiltrosComponent = () => {
 
