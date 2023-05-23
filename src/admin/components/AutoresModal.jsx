@@ -85,8 +85,8 @@ export const AutoresModal = () => {
                         </Form.Text> 
                     } 
                 </Form.Group>                
-            </Modal.Body>
-            <Modal.Footer>
+            </CModalBody>
+            <CModalFooter>
                 <Button variant="secondary" onClick={handleClose}>
                     Cerrar
                 </Button>
