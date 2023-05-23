@@ -66,7 +66,6 @@ export const CarritoComponent = () => {
                             </CRow>
                         </CCard>
                     ))}
-        
                     {
                         (carrito.length > 0) ? (
                             <div className="d-grid mt-4">
@@ -74,7 +73,6 @@ export const CarritoComponent = () => {
                             </div>
                         ): (<p>El carrito está vacio</p>)
                     }
-                    
                     {
                         (show) && (
                             <CAlert className='mt-4' color="info" onClose={() => setShow(false)} dismissible>

@@ -83,9 +83,9 @@ export const LibrosPages = () => {
                         </div>
                     </div>
                 </CRow>
-                <CRow className="mt-1 g-4">
+                <CRow xs={{ cols: 1 }} sm={{ cols: 2 } } md={{ cols: 4 } } lg={{ cols: 4 }} xl={{ cols: 5 }} className="mt-1 g-4">
                     {libros.map((libro) => (
-                        <CCol xs={6} xl={3} key={libro.id}>
+                        <CCol key={libro.id}>
                             <CCard border="light">
                                 <CCardImage style={{height: 360}} variant="top" src={`http://134.122.124.97/storage/${libro.url}`} />
                                 <CCardBody>
@@ -105,7 +105,7 @@ export const LibrosPages = () => {
                                         ):
                                         (
                                             <small>
-                                                <CBadge bg="danger">Agotado</CBadge>
+                                                <CBadge color="danger">Agotado</CBadge>
                                             </small>
                                         )
                                     }

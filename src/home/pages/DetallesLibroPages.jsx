@@ -77,9 +77,12 @@ export const DetallesLibroPages = () => {
                                         <h1>{libro.titulo_libro} - {libro.autor.label[0]}</h1>
                                     </CRow>
                                     <CRow>
-                                        <CListGroup>
-                                            <CListGroupItem><CButton color="danger" onClick={() => handleOpenCarrito(libro)}>Agregar <FontAwesomeIcon icon={faCartShopping}/></CButton></CListGroupItem>
-                                        </CListGroup>
+                                        <CCol className='border p-3 mt-3 text-center' lg={3}>
+                                            <h6>Quedan 6 unidades</h6>
+                                            <CListGroup>
+                                                <CListGroupItem><CButton color="danger" onClick={() => handleOpenCarrito(libro)}>Agregar <FontAwesomeIcon icon={faCartShopping}/></CButton></CListGroupItem>
+                                            </CListGroup>
+                                        </CCol>
                                     </CRow>
                                     <CRow>
                                         <h3 className='mt-3'>Reseña "{libro.titulo_libro}": </h3>

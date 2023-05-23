@@ -8,7 +8,7 @@ export const PaginadorComponent = ({cantPaginas, setNumPagina}) => {
             className='pagination justify-content-center gap-2 my-4' 
             pageCount={cantPaginas}
             nextClassName="btn" 
-            previousClassName='btn '
+            previousClassName='btn'
             pageClassName='page-item'
             pageLinkClassName='page-link'
             activeClassName='active'         
