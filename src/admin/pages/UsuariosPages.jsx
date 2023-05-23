@@ -2,8 +2,6 @@ import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import DataTable from 'react-data-table-component'
 import { CButton, CCard, CCardBody, CCardHeader, CCol, CContainer, CRow } from '@coreui/react'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPenToSquare, faTrash } from '@fortawesome/free-solid-svg-icons'
 import { UsuariosModal } from '../components/UsuariosModal'
 import { onOpenModal  } from '../../store/ui/uiSlice'
 import { startListarUsuarios } from '../../store/auth/thunk'
@@ -71,12 +69,12 @@ export const UsuariosPages = () => {
             cell: (data) => <div className='d-flex justify-content-between'>
                                 <div className="mx-2">
                                     <CButton color="warning" onClick={() => handleShow(data)} disabled={(data.id_rol == 1 ? true : false)}>
-                                        <FontAwesomeIcon icon={faPenToSquare} /> Editar
+                                        Editar
                                     </CButton>
                                 </div>
                                 <div>
                                     <CButton color="danger" disabled={(data.id_rol == 1 ? true : false)}>
-                                        <FontAwesomeIcon icon={faTrash} /> Eliminar
+                                        Eliminar
                                     </CButton>  
                                 </div>
                             </div>,

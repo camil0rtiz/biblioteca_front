@@ -2,15 +2,13 @@ import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useForm, Controller, useController } from 'react-hook-form'
 import { Modal, Button, Form } from 'react-bootstrap'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCircleExclamation } from '@fortawesome/free-solid-svg-icons'
 import CreatableSelect from 'react-select/creatable'
 import ReactQuill from 'react-quill'
-import 'react-quill/dist/quill.snow.css'
 import bibliotecaApi from '../../api/bibliotecaApi'
 import { onClearLibros } from '../../store/biblioteca/libroSlice'
 import { onCloseModal } from '../../store/ui/uiSlice'
 import { startActualizarLibro, startAgregarAutor, startAgregarLibro } from '../../store/biblioteca/thunk'
+import 'react-quill/dist/quill.snow.css'
 import { customStyles } from '../../helpers/customStyles.js'
 import { onLoadingTrue } from '../../store/biblioteca/autorSlice'
 
@@ -44,20 +42,6 @@ export const LibrosModal = () => {
         getAutores()
 
     }, [autorSave])
-
-    useEffect(() => {
-        
-        setValue("id", initialLibro.id || "")
-        setValue("tituloLibro", initialLibro.tituloLibro || "")
-        setValue("isbnLibro", initialLibro.isbnLibro || "")
-        setValue("deweyLibro", initialLibro.deweyLibro || "")
-        setValue("numPagLibro", initialLibro.numPagLibro || "")
-        setValue("anioPublicacionLibro", initialLibro.anioPublicacionLibro || "")
-        setValue("autorLibro", initialLibro.autorLibro || "")
-        setValue("resenaLibro", initialLibro.resenaLibro || "")
-
-    }, [initialLibro, setValue])
-
 
     initialLibro.autorLibro.forEach((item) => {
 
@@ -183,7 +167,7 @@ export const LibrosModal = () => {
                     />
                     {errors.tituloLibro && 
                         <Form.Text className="text-danger" variant='danger'>
-                            <FontAwesomeIcon icon={faCircleExclamation} /> {errors.tituloLibro.message}
+                            {errors.tituloLibro.message}
                         </Form.Text> 
                     } 
                 </Form.Group>
@@ -214,7 +198,7 @@ export const LibrosModal = () => {
                     />
                     {errors.isbnLibro && 
                         <Form.Text className="text-danger" variant='danger'>
-                            <FontAwesomeIcon icon={faCircleExclamation} /> {errors.isbnLibro.message}
+                            {errors.isbnLibro.message}
                         </Form.Text> 
                     } 
                 </Form.Group>
@@ -242,7 +226,7 @@ export const LibrosModal = () => {
                     />
                     {errors.deweyLibro && 
                         <Form.Text className="text-danger" variant='danger'>
-                            <FontAwesomeIcon icon={faCircleExclamation} /> {errors.deweyLibro.message}
+                            {errors.deweyLibro.message}
                         </Form.Text> 
                     } 
                 </Form.Group>
@@ -273,7 +257,7 @@ export const LibrosModal = () => {
                     />
                     {errors.numPagLibro && 
                         <Form.Text className="text-danger" variant='danger'>
-                            <FontAwesomeIcon icon={faCircleExclamation} /> {errors.numPagLibro.message}
+                            {errors.numPagLibro.message}
                         </Form.Text> 
                     } 
                 </Form.Group>
@@ -304,7 +288,7 @@ export const LibrosModal = () => {
                     />
                     {errors.anioPublicacionLibro && 
                         <Form.Text className="text-danger" variant='danger'>
-                            <FontAwesomeIcon icon={faCircleExclamation} /> {errors.anioPublicacionLibro.message}
+                            {errors.anioPublicacionLibro.message}
                         </Form.Text> 
                     } 
                 </Form.Group>
@@ -330,7 +314,7 @@ export const LibrosModal = () => {
                     />
                     {errors.portadaLibro && 
                         <Form.Text className="text-danger" variant='danger'>
-                            <FontAwesomeIcon icon={faCircleExclamation} /> {errors.portadaLibro.message}
+                            {errors.portadaLibro.message}
                         </Form.Text> 
                     } 
                 </Form.Group>
@@ -363,7 +347,7 @@ export const LibrosModal = () => {
                     />
                     {errors.autorLibro && 
                         <Form.Text className="text-danger" variant='danger'>
-                            <FontAwesomeIcon icon={faCircleExclamation} /> {errors.autorLibro.message}
+                            {errors.autorLibro.message}
                         </Form.Text> 
                     } 
                 </Form.Group>
@@ -376,7 +360,7 @@ export const LibrosModal = () => {
                     />
                     {errors.resenaLibro && 
                         <Form.Text className="text-danger" variant='danger'>
-                            <FontAwesomeIcon icon={faCircleExclamation} /> {errors.resenaLibro.message}
+                            {errors.resenaLibro.message}
                         </Form.Text> 
                     } 
                 </Form.Group>                                  

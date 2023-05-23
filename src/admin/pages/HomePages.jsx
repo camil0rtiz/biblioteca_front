@@ -4,7 +4,6 @@ import DataTable from "react-data-table-component"
 import { startDescargarComprobante, startHabilitarUsuario, startListarUsuarios } from "../../store/auth/thunk"
 import { CButton, CCard, CCardBody, CCardHeader, CCol, CContainer, CRow } from '@coreui/react'
 import { FiltroComponent } from "../components/FiltroComponent"
-import { AccionesTable } from "../components/AccionesTable"
 
 const paginacionOpciones = {
     rowsPerPageText: 'Filas por página',

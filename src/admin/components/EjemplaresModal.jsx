@@ -3,8 +3,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useForm, Controller } from 'react-hook-form'
 import CreatableSelect from 'react-select/creatable'
 import { Modal, Button, Form } from 'react-bootstrap'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCircleExclamation } from '@fortawesome/free-solid-svg-icons'
 import { onCloseModalEjemplar } from '../../store/ui/uiSlice'
 import bibliotecaApi from '../../api/bibliotecaApi'
 import { startAgregarEditorial, startAgregarEjemplar } from '../../store/biblioteca/thunk'
@@ -120,7 +118,7 @@ export const EjemplaresModal = () => {
                     />
                     {errors.numResgisEjemplar && 
                         <Form.Text className="text-danger" variant='danger'>
-                            <FontAwesomeIcon icon={faCircleExclamation} /> {errors.numResgisEjemplar.message}
+                            {errors.numResgisEjemplar.message}
                         </Form.Text> 
                     } 
                 </Form.Group>
@@ -151,7 +149,7 @@ export const EjemplaresModal = () => {
                     />
                     {errors.ejemplarEditorial && 
                         <Form.Text className="text-danger" variant='danger'>
-                            <FontAwesomeIcon icon={faCircleExclamation} /> {errors.ejemplarEditorial.message}
+                            {errors.ejemplarEditorial.message}
                         </Form.Text> 
                     }     
                 </Form.Group>
@@ -182,7 +180,7 @@ export const EjemplaresModal = () => {
                     />
                     {errors.anioEdiEjemplar && 
                         <Form.Text className="text-danger" variant='danger'>
-                            <FontAwesomeIcon icon={faCircleExclamation} /> {errors.anioEdiEjemplar.message}
+                            {errors.anioEdiEjemplar.message}
                         </Form.Text> 
                     } 
                 </Form.Group>

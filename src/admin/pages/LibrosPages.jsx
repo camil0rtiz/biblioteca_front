@@ -2,8 +2,6 @@ import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import DataTable from "react-data-table-component"
 import { CButton, CCard, CCardBody, CCardHeader, CCol, CContainer, CRow } from '@coreui/react'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSwatchbook, faPenToSquare, faTrash } from '@fortawesome/free-solid-svg-icons'
 import { startListarLibros } from "../../store/biblioteca/thunk";
 import { onOpenModal, onOpenModalEjemplar } from "../../store/ui/uiSlice"
 import { LibrosModal } from '../components/LibrosModal'
@@ -94,17 +92,17 @@ export const LibrosPages = () => {
             cell: (data) => <div className='d-flex justify-content-between'>
                                 <div className="mx-2">
                                     <CButton color="info" onClick={() => handleShowEjemplar(data)}>
-                                        <FontAwesomeIcon icon={faSwatchbook} /> Agregar Ejemplar
+                                        Agregar Ejemplar
                                     </CButton>
                                 </div>
                                 <div className="mx-2">
                                     <CButton color="warning" onClick={() => handleShow(data)}>
-                                        <FontAwesomeIcon icon={faPenToSquare} /> Editar
+                                        Editar
                                     </CButton>
                                 </div>
                                 <div>
                                     <CButton color="danger">
-                                        <FontAwesomeIcon icon={faTrash} /> Eliminar
+                                        Eliminar
                                     </CButton>
                                 </div>
                             </div>,

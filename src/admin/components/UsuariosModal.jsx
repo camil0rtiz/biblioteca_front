@@ -3,8 +3,6 @@ import { useDispatch, useSelector } from "react-redux"
 import { useForm, Controller } from 'react-hook-form'
 import ReactSelect from "react-select"
 import { Modal ,Button, Form, InputGroup } from 'react-bootstrap'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCircleExclamation } from '@fortawesome/free-solid-svg-icons'
 import { onCloseModal } from "../../store/ui/uiSlice"
 import { validaRut } from "../../helpers/validarRut"
 import { startActualizarUsuario, startAgregarUsuario } from "../../store/auth/thunk"
@@ -165,7 +163,7 @@ export const UsuariosModal = () => {
                     />
                     {errors.registroRut && 
                         <Form.Text className="text-danger" variant='danger'>
-                            <FontAwesomeIcon icon={faCircleExclamation} /> {errors.registroRut.message}
+                            {errors.registroRut.message}
                         </Form.Text> 
                     }                                            
                 </Form.Group>
@@ -191,7 +189,7 @@ export const UsuariosModal = () => {
                     />
                     {errors.registroNombre && 
                         <Form.Text className="text-danger" variant='danger'>
-                            <FontAwesomeIcon icon={faCircleExclamation} /> {errors.registroNombre.message}
+                            {errors.registroNombre.message}
                         </Form.Text> 
                     } 
                 </Form.Group>
@@ -217,7 +215,7 @@ export const UsuariosModal = () => {
                     />
                     {errors.registroApellidoPaterno && 
                         <Form.Text className="text-danger" variant='danger'>
-                            <FontAwesomeIcon icon={faCircleExclamation} /> {errors.registroApellidoPaterno.message}
+                            {errors.registroApellidoPaterno.message}
                         </Form.Text> 
                     } 
                 </Form.Group>
@@ -243,7 +241,7 @@ export const UsuariosModal = () => {
                     />
                     {errors.registroApellidoMaterno && 
                         <Form.Text className="text-danger" variant='danger'>
-                            <FontAwesomeIcon icon={faCircleExclamation} /> {errors.registroApellidoMaterno.message}
+                            {errors.registroApellidoMaterno.message}
                         </Form.Text> 
                     } 
                 </Form.Group>
@@ -267,7 +265,7 @@ export const UsuariosModal = () => {
                     />
                     {errors.registroNumeroCelular && 
                         <Form.Text className="text-danger" variant='danger'>
-                            <FontAwesomeIcon icon={faCircleExclamation} /> {errors.registroNumeroCelular.message}
+                            {errors.registroNumeroCelular.message}
                         </Form.Text> 
                     } 
                 </Form.Group>
@@ -294,7 +292,7 @@ export const UsuariosModal = () => {
                     />
                     {errors.registroCorreo && 
                         <Form.Text className="text-danger" variant='danger'>
-                            <FontAwesomeIcon icon={faCircleExclamation} /> {errors.registroCorreo.message}
+                            {errors.registroCorreo.message}
                         </Form.Text> 
                     } 
                 </Form.Group>
@@ -319,7 +317,7 @@ export const UsuariosModal = () => {
                     />
                     {errors.registroFechaNacimiento && 
                         <Form.Text className="text-danger" variant='danger'>
-                            <FontAwesomeIcon icon={faCircleExclamation} /> {errors.registroFechaNacimiento.message}
+                            {errors.registroFechaNacimiento.message}
                         </Form.Text> 
                     } 
                 </Form.Group>
@@ -345,7 +343,7 @@ export const UsuariosModal = () => {
                     />
                     {errors.registroDireccion && 
                         <Form.Text className="text-danger" variant='danger'>
-                            <FontAwesomeIcon icon={faCircleExclamation} /> {errors.registroDireccion.message}
+                            {errors.registroDireccion.message}
                         </Form.Text> 
                     } 
                 </Form.Group>
@@ -371,7 +369,7 @@ export const UsuariosModal = () => {
                     />
                     {errors.registroNumCasa && 
                         <Form.Text className="text-danger" variant='danger'>
-                            <FontAwesomeIcon icon={faCircleExclamation} /> {errors.registroNumCasa.message}
+                            {errors.registroNumCasa.message}
                         </Form.Text> 
                     } 
                 </Form.Group>                                         
@@ -399,7 +397,7 @@ export const UsuariosModal = () => {
                                     />
                                     {errors.registroPassword && 
                                         <Form.Text className="text-danger" variant='danger'>
-                                            <FontAwesomeIcon icon={faCircleExclamation} /> {errors.registroPassword.message}
+                                            {errors.registroPassword.message}
                                         </Form.Text> 
                                     } 
                                 </Form.Group>
@@ -421,7 +419,7 @@ export const UsuariosModal = () => {
                                     />
                                     {errors.registroTipoMembresia && 
                                         <Form.Text className="text-danger" variant='danger'>
-                                            <FontAwesomeIcon icon={faCircleExclamation} /> {errors.registroTipoMembresia.message}
+                                            {errors.registroTipoMembresia.message}
                                         </Form.Text> 
                                     } 
                                 </Form.Group>
@@ -446,7 +444,7 @@ export const UsuariosModal = () => {
                         />
                         {errors.registroTipoRol && 
                             <Form.Text className="text-danger" variant='danger'>
-                                <FontAwesomeIcon icon={faCircleExclamation} /> {errors.registroTipoRol.message}
+                                {errors.registroTipoRol.message}
                             </Form.Text> 
                         } 
                     </Form.Group>

@@ -2,8 +2,6 @@ import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { startBuscarEditorial } from '../../store/biblioteca/thunk'
 import DataTable from "react-data-table-component"
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPenToSquare, faTrash } from '@fortawesome/free-solid-svg-icons'
 import { onOpenModal } from '../../store/ui/uiSlice'
 import { EditorialesModal } from '../components/EditorialesModal'
 import { onAgregarEditorial } from '../../store/biblioteca/editorialSlice'
@@ -50,12 +48,12 @@ export const EditorialesPages = () => {
             cell: (data) => <div className='d-flex justify-content-between'>
                                 <div className='mx-2'>
                                     <CButton color="warning" onClick={() => handleShow(data)}>
-                                        <FontAwesomeIcon icon={faPenToSquare} /> Editar
+                                        Editar
                                     </CButton>
                                 </div>
                                 <div>
                                     <CButton color="danger">
-                                        <FontAwesomeIcon icon={faTrash} /> Eliminar
+                                        Eliminar
                                     </CButton> 
                                 </div>
                             </div>,
