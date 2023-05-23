@@ -1,9 +1,9 @@
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, NavLink } from 'react-router-dom'
-import { CContainer, CCollapse, CNavbar, CNavbarToggler, CNavbarNav, CImage, CDropdownDivider, CNavbarBrand, CNavItem, CNavLink, CDropdown, CDropdownToggle, CAvatar, CDropdownMenu, CDropdownHeader, CDropdownItem } from '@coreui/react'
+import { CContainer, CCollapse, CNavbar, CNavbarToggler, CNavbarNav, CImage, CDropdownDivider, CNavbarBrand, CNavItem, CNavLink, CDropdown, CDropdownToggle, CAvatar, CDropdownMenu, CDropdownHeader, CDropdownItem, CBadge } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
-import { cilBell, cilLockLocked } from '@coreui/icons'
+import { cilCart, cilLockLocked, cilShare } from '@coreui/icons'
 import { startLogout } from '../../store/auth/thunk'
 import { onOpenCarrito } from '../../store/ui/uiSlice'
 import logo from '../../assets/img/bcnv.jpg'
@@ -56,7 +56,10 @@ export const NavbarComponent = () => {
                             </CNavItem>
                             <CNavItem>
                                 <CNavLink to="#" component={NavLink}>
-                                    <CIcon onClick={() => openCarrito()} icon={cilBell} size="lg" />
+                                    <CIcon onClick={() => openCarrito()} icon={cilCart} size="lg" />
+                                    <CBadge color="danger" shape="rounded-pill">
+                                        {carrito.length}
+                                    </CBadge>
                                 </CNavLink>
                             </CNavItem>
                         </CNavbarNav>
@@ -83,25 +86,31 @@ export const NavbarComponent = () => {
                                     <CNavbarNav className="me-auto mb-2 mb-lg-0">
                                         
                                     </CNavbarNav>
-                                    <CDropdown variant="btn-group" direction="center">
+                                    <CDropdown variant="btn-group" direction="dropstart">
                                         <CDropdownToggle color='dark' placement="bottom-end" className="py-0" caret={false}>
-                                            <CAvatar src={usuario} size="md"/> Camilo Ortiz
+                                            <CAvatar src={usuario} size="md"/> {user.nombre_usuario} {user.apellido_pate_usuario}
                                         </CDropdownToggle>
                                         <CDropdownMenu className="pt-0" placement="bottom-end">
-                                            <CDropdownHeader className="bg-light fw-semibold py-2">Cuenta</CDropdownHeader>
-                                            <NavLink className="dropdown-item" to="/admin"><CIcon customClassName="icon me-2" icon={cilBell} className="me-2" />
+                                            <CDropdownHeader className="bg-light fw-semibold py-2">Configuración</CDropdownHeader>
+                                            <NavLink className="dropdown-item" to="/admin"><CIcon size='xl' customClassName="icon me-2" icon={cilShare} className="me-2" />
                                                 Ir a Admin
                                             </NavLink>
+                                            <NavLink className="dropdown-item" to="#"><CIcon size='xl' customClassName="icon me-2" icon={cilShare} className="me-2" />
+                                                Cambiar 
+                                                contraseña
+                                            </NavLink>
+                                            <NavLink className="dropdown-item" to="#"><CIcon size='xl' customClassName="icon me-2" icon={cilShare} className="me-2" />
+                                                Renovar 
+                                                membresía
+                                            </NavLink>
                                             <CDropdownDivider />
-                                            <CDropdownItem href="#" onClick={() => handleLogout()}>
+                                            <CDropdownItem href="#" onClick={() => handleLogout(() => onClickLogout())}>
                                                 <CIcon icon={cilLockLocked} className="me-2" />
                                                     Cerrar Sesión
                                             </CDropdownItem>
                                         </CDropdownMenu>
                                     </CDropdown>
                                 </div>
-                                
-                                // <CButton onClick={onClickLogout} color="danger">Cerrar Sesión</CButton>
                             )
                         }
                     </CCollapse>

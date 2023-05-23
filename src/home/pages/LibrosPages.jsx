@@ -91,7 +91,7 @@ export const LibrosPages = () => {
                                     <CCardSubtitle className="text-muted text-center">{libro.autor.label[0]}</CCardSubtitle>
                                 </CCardBody>
                                 <CListGroup className="list-group-flush">
-                                    <CListGroupItem className="text-center"><CButton color="dark" className="text-center" onClick={() => openCarrito(libro)}>Agregar</CButton></CListGroupItem>
+                                    <CListGroupItem className="text-center"><CButton color="dark" className="text-center" onClick={() => openCarrito(libro)} disabled={(libro.cantidad_ejemplares !== 0) ? 'true' : 'false'}>Agregar</CButton></CListGroupItem>
                                 </CListGroup>     
                                 <CCardFooter className="text-center">
                                     {

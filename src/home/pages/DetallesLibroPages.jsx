@@ -84,7 +84,7 @@ export const DetallesLibroPages = () => {
                                     </CRow>
                                     <CRow>
                                         <h3 className='mt-3'>Reseña "{libro.titulo_libro}": </h3>
-                                        <h5 className='mt-2 text-secondary'>{libro.resena_libro}: </h5>
+                                        <h5 dangerouslySetInnerHTML={{ __html: libro.resena_libro }}></h5>
                                     </CRow>
                                 </CCol>
                             </>

@@ -6,10 +6,10 @@ export const FooterComponent = () => {
         <CFooter className='bg-dark' position='fixed'>
             <div>
                 <strong className='text-light'>Biblioteca Valle Noble</strong>
-                <span className='text-light'> &copy; 2023 </span>
             </div>
             <div>
                 <span className='text-light'>Todos los derechos reservados</span>
+                <span className='text-light'> &copy; 2023 </span>
             </div>
         </CFooter>
     )

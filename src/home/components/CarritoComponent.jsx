@@ -1,13 +1,11 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { CAlert, CButton, CCard, CCardBody, CCardImage, CCardText, CCardTitle, CCloseButton, CCol, COffcanvas, COffcanvasBody, COffcanvasHeader, COffcanvasTitle, CRow } from '@coreui/react'
 import { onCloseCarrito } from '../../store/ui/uiSlice'
-import { useState } from 'react'
 import { onEliminarLibroCarrito } from '../../store/prestamos/carritoSlice'
 import { useNavigate } from 'react-router-dom'
+import '../../assets/css/libros.css'
 
 export const CarritoComponent = () => {
-
-    const [ show, setShow ] = useState(true);
 
     const { carritoOpen } = useSelector(state => state.ui)
 
@@ -65,22 +63,26 @@ export const CarritoComponent = () => {
                         </CCard>
                     ))}
                     {
-                        (carrito.length > 0) ? (
-                            <div className="d-grid mt-4">
-                                <CButton color="dark" size="lg" onClick={() => handleReserva()}>Reservar</CButton>
-                            </div>
-                        ): (<p>El carrito está vacio</p>)
-                    }
-                    {
-                        (show) && (
-                            <CAlert className='mt-4' color="info" onClose={() => setShow(false)} dismissible>
+                        (carrito.length == 0) && (
+
+                            <CAlert color="info">
                                 <p>
-                                    Estimado vecino, recuerde que puede reservar una cantidad máxima de 2 libros.
+                                    Estimado lector, recuerde que puede reservar una cantidad máxima de 2 libros.
                                 </p>
                             </CAlert>
+
                         )
                     }
                 </COffcanvasBody>
+                    {
+                        (carrito.length > 0) && (
+                            <div className="reservar-button border-top" >
+                                <div className="d-grid p-3">
+                                    <CButton color="dark" size="lg" shape="rounded-pill" onClick={() => handleReserva()}>Reservar</CButton>
+                                </div>
+                            </div> 
+                        ) 
+                    }
             </COffcanvas>
         </>
     )

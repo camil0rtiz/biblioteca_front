@@ -1,11 +1,12 @@
 import { NavLink, useNavigate } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { CContainer, CHeader, CDropdownDivider ,CHeaderDivider, CHeaderNav, CHeaderToggler, CNavLink, CNavItem, CBreadcrumb, CBreadcrumbItem, CDropdown, CDropdownToggle, CAvatar, CDropdownMenu, CDropdownHeader, CDropdownItem, CBadge } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
 import {
     cilBell,
     cilList, 
     cilMenu,
+    cilShare,
     cilCommentSquare,
     cilEnvelopeOpen,
     cilLockLocked,
@@ -16,6 +17,8 @@ import { startLogout } from '../../store/auth/thunk'
 import usuario from './../../assets/img/2.jpg'
 
 export const HeaderAdmin = () => {
+    
+    const { user } = useSelector(state => state.auth)
 
     const dispatch = useDispatch()
 
@@ -81,11 +84,11 @@ export const HeaderAdmin = () => {
             <CHeaderNav className="ms-3">
                 <CDropdown variant="nav-item">
                     <CDropdownToggle placement="bottom-end" className="py-0" caret={false}>
-                        <CAvatar src={usuario} size="md"/> Camilo Ortiz
+                        <CAvatar src={usuario} size="md"/> {user.nombre_usuario} {user.apellido_pate_usuario}
                     </CDropdownToggle>
                     <CDropdownMenu className="pt-0" placement="bottom-end">
                         <CDropdownHeader className="bg-light fw-semibold py-2">Account</CDropdownHeader>
-                        <NavLink className="dropdown-item" to="/"><CIcon customClassName="icon me-2" icon={cilBell} className="me-2" />
+                        <NavLink className="dropdown-item" to="/"><CIcon customClassName="icon me-2" icon={cilShare} className="me-2" />
                             Ir a menú
                         </NavLink>
                         <NavLink className="dropdown-item" to="/"><CIcon customClassName="icon me-2" icon={cilEnvelopeOpen} className="me-2" />

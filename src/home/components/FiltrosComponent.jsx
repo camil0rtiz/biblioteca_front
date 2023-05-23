@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux'
-import { CCloseButton, COffcanvas, COffcanvasBody, COffcanvasHeader, COffcanvasTitle } from '@coreui/react'
+import { CButton, CCloseButton, COffcanvas, COffcanvasBody, COffcanvasHeader, COffcanvasTitle } from '@coreui/react'
 import { onCloseFiltros } from '../../store/ui/uiSlice'
 
 export const FiltrosComponent = () => {
@@ -25,6 +25,11 @@ export const FiltrosComponent = () => {
                 Content for the offcanvas goes here. You can place just about any Bootstrap component or
                 custom elements here.
             </COffcanvasBody>
+            <div className="reservar-button border-top" >
+                <div className="d-grid p-3">
+                    <CButton color="dark" size="lg" shape="rounded-pill" >Filtrar</CButton>
+                </div>
+            </div>
         </COffcanvas>
         
     )

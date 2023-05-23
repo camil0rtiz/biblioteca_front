@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux"
-import { CBreadcrumb, CBreadcrumbItem, CButton, CCard, CCardBody, CCardImage, CCardText, CCardTitle, CCol, CContainer, CHeaderDivider, CImage, CListGroup, CListGroupItem, CRow } from "@coreui/react"
+import { CAlert, CBreadcrumb, CBreadcrumbItem, CButton, CCard, CCardBody, CCardImage, CCardText, CCardTitle, CCol, CContainer, CHeaderDivider, CImage, CListGroup, CListGroupItem, CRow } from "@coreui/react"
 import '../../assets/css/navbar.css'
 import { startReservarLibro } from "../../store/prestamos/thunk"
 
@@ -51,6 +51,18 @@ export const ReservaLibroPage = () => {
                                 </CRow>
                             </CCard>            
                         ))}
+
+                        {
+                            (carrito.length == 0) && (
+
+                                <CAlert color="info">
+                                    <p>
+                                        Estimado lector, recuerde que puede reservar una cantidad máxima de 2 libros.
+                                    </p>
+                                </CAlert>
+
+                            )
+                        }
                     </CCol>
                     <CCol lg="3">
                         <div className="d-grid mt-4">
