@@ -13,7 +13,7 @@ export const HomeRoutes = () => {
         <>
             <div className="wrapper d-flex flex-column min-vh-100 bg-light">
                 <NavbarComponent/>
-                <div className="body flex-grow-1 px-3">
+                <div className="body flex-grow-1">
                     <Routes>
                         <Route path='/' element={<HomePages/>}/>
                         <Route path='/eventos' element={<EventosPages/>}/>

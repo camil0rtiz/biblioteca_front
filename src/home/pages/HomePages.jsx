@@ -1,14 +1,14 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
-import { CBreadcrumb, CBreadcrumbItem, CHeaderDivider, CContainer, CRow, CCard, CCardImage, CCardBody, CCardTitle, CCardSubtitle} from '@coreui/react'
+import { CBreadcrumb, CBreadcrumbItem, CHeaderDivider, CContainer, CRow, CCard, CCardImage, CCardBody, CCardTitle, CCardSubtitle, CCarousel, CCarouselItem, CImage} from '@coreui/react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Navigation, Pagination, Autoplay } from "swiper"
 import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
 import 'swiper/css/scrollbar'
-import '../../assets/css/navbar.css'
 import '../../assets/css/home.css'
+import Biblio from '../../assets/img/libros.jpg'
 import bibliotecaApi from '../../api/bibliotecaApi'
 
 export const HomePages = () => {
@@ -35,16 +35,22 @@ export const HomePages = () => {
 
     return (
         <>
-            <CHeaderDivider/>
-            <CContainer fluid >
-                <CBreadcrumb className='"m-0 ms-2 mt-3'>
-                    <CBreadcrumbItem to='home'>Home</CBreadcrumbItem>
-                    <CBreadcrumbItem active>Libros</CBreadcrumbItem>
-                </CBreadcrumb>
-            </CContainer>
+            <div>
+                <CCarousel controls indicators>
+                    <CCarouselItem>
+                        <CImage className="d-block w-100 carousel-image" src={Biblio} alt="slide 1" />
+                    </CCarouselItem>
+                    <CCarouselItem>
+                        <CImage className="d-block w-100 carousel-image" src={Biblio} alt="slide 2" />
+                    </CCarouselItem>
+                    <CCarouselItem>
+                        <CImage className="d-block w-100 carousel-image" src={Biblio} alt="slide 3" />
+                    </CCarouselItem>
+                </CCarousel>
+            </div>
             <CContainer>
                 <CRow>
-                    <h3>Últimos agregados</h3>
+                    <h3 className='mt-3'>Últimos agregados</h3>
                     <Swiper
                         modules={[Navigation, Pagination, Autoplay]}
                         breakpoints={{
@@ -93,7 +99,7 @@ export const HomePages = () => {
                         ))}
                     </Swiper>
                 </CRow>
-                <CRow className='d-flex justify-content-center mb-5'>
+                <CRow className='d-flex justify-content-center mb-3'>
                     <h3 className='mt-3'>Más Reservados</h3>
                     <Swiper
                         modules={[Navigation, Pagination, Autoplay]}

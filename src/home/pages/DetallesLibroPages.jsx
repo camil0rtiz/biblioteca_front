@@ -5,7 +5,6 @@ import { CBreadcrumb, CBreadcrumbItem, CButton, CCard, CCardImage, CCol, CContai
 import bibliotecaApi from '../../api/bibliotecaApi'
 import { onAgregarLibroCarrito } from '../../store/prestamos/carritoSlice'
 import { onOpenCarrito } from '../../store/ui/uiSlice'
-import '../../assets/css/navbar.css'
 
 export const DetallesLibroPages = () => {
     

@@ -7,7 +7,6 @@ import bibliotecaApi from "../../api/bibliotecaApi"
 import { onOpenCarrito, onOpenFiltros } from "../../store/ui/uiSlice"
 import { FiltrosComponent } from "../components/FiltrosComponent"
 import { onAgregarLibroCarrito } from "../../store/prestamos/carritoSlice"
-import '../../assets/css/navbar.css'
 import { PaginadorComponent } from "../components/PaginadorComponent"
 
 export const LibrosPages = () => {

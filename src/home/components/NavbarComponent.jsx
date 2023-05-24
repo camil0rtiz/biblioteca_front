@@ -34,7 +34,7 @@ export const NavbarComponent = () => {
     return (
 
         <>
-            <CNavbar expand="lg" colorScheme="dark" className="bg-dark">
+            <CNavbar expand="lg" colorScheme="dark" className="bg-dark bg-black" placement="sticky-top">
                 <CContainer fluid>
                     <CNavbarBrand to="/home" component={NavLink}><CImage style={{ width: 50, height: 50}} src={logo}/> Biblioteca VN</CNavbarBrand>
                     <CNavbarToggler
@@ -83,11 +83,8 @@ export const NavbarComponent = () => {
                             ) : 
                             (
                                 <div>
-                                    <CNavbarNav className="me-auto mb-2 mb-lg-0">
-                                        
-                                    </CNavbarNav>
                                     <CDropdown variant="btn-group" direction="dropstart">
-                                        <CDropdownToggle color='dark' placement="bottom-end" className="py-0" caret={false}>
+                                        <CDropdownToggle color='black' placement="bottom-end" className="py-0" caret={false}>
                                             <CAvatar src={usuario} size="md"/> {user.nombre_usuario} {user.apellido_pate_usuario}
                                         </CDropdownToggle>
                                         <CDropdownMenu className="pt-0" placement="bottom-end">

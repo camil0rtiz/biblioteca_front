@@ -1,9 +1,10 @@
 import { useSelector, useDispatch } from 'react-redux'
 import { NavLink } from 'react-router-dom'
-import { CNavGroup, CNavItem, CNavTitle, CSidebar, CSidebarBrand, CSidebarNav, CSidebarToggler } from '@coreui/react'
+import { CAvatar, CNavGroup, CNavItem, CNavTitle, CSidebar, CSidebarBrand, CSidebarNav, CSidebarToggler } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
 import { cilPuzzle, cilSpeedometer } from '@coreui/icons'
 import { onCloseSidebar } from '../../store/ui/uiSlice'
+import logo from './../../assets/img/bcnv.jpg'
 
 export const SidebarAdmin = () => {
 
@@ -23,7 +24,7 @@ export const SidebarAdmin = () => {
             position="fixed"
             visible={sidebarAdmin}
         >
-            <CSidebarBrand>Biblioteca VN</CSidebarBrand>
+            <CSidebarBrand><CAvatar className='mx-2' src={logo} size="md"/>Biblioteca VN</CSidebarBrand>
             <CSidebarNav>
                 <CNavTitle>Panel de control</CNavTitle>
                 <CNavItem to='home' component={NavLink}>

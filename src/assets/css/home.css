@@ -1,5 +1,20 @@
-
 .swiper-horizontal {
     padding: 10px 0px 50px 0px;
 } 
 
+.site-layout-content {
+    min-height: 600px;
+    padding: 24px;
+    margin: '16px 0';
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.carousel-container {
+    width: 100%;
+}
+
+.carousel-image {
+    display: block;
+    height: 350px;
+    image-rendering: auto;
+}

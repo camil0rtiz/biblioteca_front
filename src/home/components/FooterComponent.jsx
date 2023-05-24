@@ -3,7 +3,7 @@ import logo from '../../assets/img/bcnv.jpg'
 
 export const FooterComponent = () => {
     return (
-        <CFooter className='bg-dark' position='fixed'>
+        <CFooter className='bg-dark'>
             <div>
                 <strong className='text-light'>Biblioteca Valle Noble</strong>
             </div>

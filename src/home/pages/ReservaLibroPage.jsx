@@ -1,6 +1,5 @@
 import { useDispatch, useSelector } from "react-redux"
 import { CAlert, CBreadcrumb, CBreadcrumbItem, CButton, CCard, CCardBody, CCardImage, CCardText, CCardTitle, CCol, CContainer, CHeaderDivider, CImage, CListGroup, CListGroupItem, CRow } from "@coreui/react"
-import '../../assets/css/navbar.css'
 import { startReservarLibro } from "../../store/prestamos/thunk"
 
 export const ReservaLibroPage = () => {
@@ -34,26 +33,8 @@ export const ReservaLibroPage = () => {
             </CContainer>
             <CContainer>
                 <CRow>
-                    <CCol>
-                        {carrito.map((cart) => (
-                            <CCard key={cart.id}>
-                                <CRow className="g-0">
-                                    <CCol md={4}>
-                                        <CCardImage src={`http://134.122.124.97/storage/${cart.url}`}/>
-                                    </CCol>
-                                    <CCol md={8}>
-                                        <CCardBody className='d-flex justify-content-center align-items-center'>
-                                            <CCardTitle>{cart.titulo_libro}</CCardTitle>
-                                            <CCardText>
-                                            </CCardText>
-                                        </CCardBody>
-                                    </CCol>
-                                </CRow>
-                            </CCard>            
-                        ))}
-
                         {
-                            (carrito.length == 0) && (
+                            (carrito.length == 0) ? (
 
                                 <CAlert color="info">
                                     <p>
@@ -61,14 +42,35 @@ export const ReservaLibroPage = () => {
                                     </p>
                                 </CAlert>
 
+                            ):(
+                                <> 
+                                    <CCol>
+                                        {carrito.map((cart) => (
+                                            <CCard key={cart.id}>
+                                                <CRow className="g-0">
+                                                    <CCol md={4}>
+                                                        <CCardImage src={`http://134.122.124.97/storage/${cart.url}`}/>
+                                                    </CCol>
+                                                    <CCol md={8}>
+                                                        <CCardBody className='d-flex justify-content-center align-items-center'>
+                                                            <CCardTitle>{cart.titulo_libro}</CCardTitle>
+                                                            <CCardText>
+                                                            </CCardText>
+                                                        </CCardBody>
+                                                    </CCol>
+                                                </CRow>
+                                            </CCard>            
+                                        ))}
+                                    </CCol>
+                                    <CCol lg="3">
+                                        <div className="d-grid mt-4">
+                                            <CButton onClick={() => handleReserva()} color="dark" size="lg" >Reservar </CButton>
+                                        </div>
+                                    </CCol>
+                                </>
+
                             )
                         }
-                    </CCol>
-                    <CCol lg="3">
-                        <div className="d-grid mt-4">
-                            <CButton onClick={() => handleReserva()} color="dark" size="lg" >Reservar </CButton>
-                        </div>
-                    </CCol>
                 </CRow>
             </CContainer>
         

@@ -5,7 +5,6 @@ import { CBreadcrumb, CBreadcrumbItem, CCard, CCardBody, CCardImage, CCardText, 
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Navigation, Pagination, Autoplay } from "swiper";
 import { startListarEventosHome } from '../../store/biblioteca/thunk';
-import '../../assets/css/navbar.css'
 import '../../assets/css/eventos.css'
 
 export const EventosPages = () => {
