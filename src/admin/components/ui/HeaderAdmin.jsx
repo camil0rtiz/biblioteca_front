@@ -12,9 +12,9 @@ import {
     cilLockLocked,
     cilTask,
 } from '@coreui/icons'
-import { onCloseSidebar } from '../../store/ui/uiSlice'
-import { startLogout } from '../../store/auth/thunk'
-import usuario from './../../assets/img/2.jpg'
+import { onCloseSidebar } from '../../../store/ui/uiSlice'
+import { startLogout } from '../../../store/auth/thunk'
+import usuario from './../../../assets/img/2.jpg'
 
 export const HeaderAdmin = () => {
     

@@ -3,10 +3,12 @@ import { NavLink } from 'react-router-dom'
 import { CAvatar, CNavGroup, CNavItem, CNavTitle, CSidebar, CSidebarBrand, CSidebarNav, CSidebarToggler } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
 import { cilPuzzle, cilSpeedometer } from '@coreui/icons'
-import { onCloseSidebar } from '../../store/ui/uiSlice'
-import logo from './../../assets/img/bcnv.jpg'
+import { onCloseSidebar } from '../../../store/ui/uiSlice'
+import logo from './../../../assets/img/bcnv.jpg'
 
 export const SidebarAdmin = () => {
+
+    const { status, user } = useSelector(state => state.auth)
 
     const { sidebarAdmin } = useSelector(state => state.ui)
 
@@ -26,13 +28,11 @@ export const SidebarAdmin = () => {
         >
             <CSidebarBrand><CAvatar className='mx-2' src={logo} size="md"/>Biblioteca VN</CSidebarBrand>
             <CSidebarNav>
-                <CNavTitle>Panel de control</CNavTitle>
+                <CNavTitle>Perfil : {user.tipo_rol} </CNavTitle>
                 <CNavItem to='home' component={NavLink}>
                     <CIcon customClassName="nav-icon" icon={cilSpeedometer} />
                     Inicio
                 </CNavItem>
-                            
-                {/* <NavLink className="nav-item" to="inicio"><CIcon customClassName="nav-icon" icon={cilPuzzle} />Inicio</NavLink> */}
                 <CNavGroup toggler="Usuarios">
                     <NavLink className="nav-link" to="usuarios"><CIcon customClassName="nav-icon" icon={cilPuzzle} />Usuarios Habilitados </NavLink>
                 </CNavGroup>

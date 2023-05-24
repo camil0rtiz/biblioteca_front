@@ -101,7 +101,7 @@ export const NavbarComponent = () => {
                                                 membresía
                                             </NavLink>
                                             <CDropdownDivider />
-                                            <CDropdownItem href="#" onClick={() => handleLogout(() => onClickLogout())}>
+                                            <CDropdownItem href="#" onClick={() => onClickLogout()}>
                                                 <CIcon icon={cilLockLocked} className="me-2" />
                                                     Cerrar Sesión
                                             </CDropdownItem>
