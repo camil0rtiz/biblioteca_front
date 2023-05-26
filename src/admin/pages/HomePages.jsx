@@ -24,8 +24,6 @@ export const HomePages = () => {
         dispatch(startListarUsuariosPendientes())
     },[userSave])
 
-    console.log(userSave);
-
     const handleHabilitar = (id) => {
 
         let estadoUsuario = 1

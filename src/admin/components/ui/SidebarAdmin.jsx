@@ -2,7 +2,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import { CAvatar, CNavGroup, CNavItem, CNavTitle, CSidebar, CSidebarBrand, CSidebarNav, CSidebarToggler } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
-import { cilPuzzle, cilSpeedometer } from '@coreui/icons'
+import { cilPuzzle, cilHome, cilUser, cilBook, cilCart, cilWindowMaximize } from '@coreui/icons'
 import { onCloseSidebar } from '../../../store/ui/uiSlice'
 import logo from './../../../assets/img/bcnv.jpg'
 
@@ -30,21 +30,21 @@ export const SidebarAdmin = () => {
             <CSidebarNav>
                 <CNavTitle>Perfil : {user.tipo_rol} </CNavTitle>
                 <CNavItem to='home' component={NavLink}>
-                    <CIcon customClassName="nav-icon" icon={cilSpeedometer} />
+                    <CIcon customClassName="nav-icon" icon={cilHome} />
                     Inicio
                 </CNavItem>
-                <CNavGroup toggler="Usuarios">
+                <CNavGroup toggler={<><CIcon customClassName="nav-icon" icon={cilUser} /> Usuarios</>}>
                     <NavLink className="nav-link" to="usuarios"><CIcon customClassName="nav-icon" icon={cilPuzzle} />Usuarios Habilitados </NavLink>
                 </CNavGroup>
-                <CNavGroup toggler="Libros">
+                <CNavGroup toggler={<><CIcon customClassName="nav-icon" icon={cilBook} /> Libros</>}>
                     <NavLink className="nav-link" to="libros"><CIcon customClassName="nav-icon" icon={cilPuzzle} />Libros</NavLink>
                     <NavLink className="nav-link" to="editoriales"><CIcon customClassName="nav-icon" icon={cilPuzzle} />Editoriales</NavLink>
                     <NavLink className="nav-link" to="autores"><CIcon customClassName="nav-icon" icon={cilPuzzle} />Autores</NavLink>
                 </CNavGroup>
-                <CNavGroup toggler="Eventos">
+                <CNavGroup toggler={<><CIcon customClassName="nav-icon" icon={cilWindowMaximize} /> Eventos y noticias</>}>
                     <NavLink className="nav-link" to="eventos"><CIcon customClassName="nav-icon" icon={cilPuzzle} />Eventos</NavLink>
                 </CNavGroup>
-                <CNavGroup toggler="Reservas">
+                <CNavGroup toggler={<><CIcon customClassName="nav-icon" icon={cilCart} /> Reservas</>}>
                     <NavLink className="nav-link" to="reservas"><CIcon customClassName="nav-icon" icon={cilPuzzle} />Reservas</NavLink>
                 </CNavGroup>
             </CSidebarNav>
