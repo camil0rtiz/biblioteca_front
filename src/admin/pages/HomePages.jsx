@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import DataTable from "react-data-table-component"
-import { startDescargarComprobante, startHabilitarUsuario, startListarUsuarios } from "../../store/auth/thunk"
+import { startDescargarComprobante, startHabilitarUsuario, startListarUsuariosPendientes } from "../../store/auth/thunk"
 import { CButton, CCard, CCardBody, CCardHeader, CCol, CContainer, CRow } from '@coreui/react'
 import { FiltroComponent } from "../components/FiltroComponent"
 
@@ -21,8 +21,10 @@ export const HomePages = () => {
     const dispatch = useDispatch()
 
     useEffect(() => {
-        dispatch(startListarUsuarios(2))
+        dispatch(startListarUsuariosPendientes())
     },[userSave])
+
+    console.log(userSave);
 
     const handleHabilitar = (id) => {
 

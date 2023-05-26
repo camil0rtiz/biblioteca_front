@@ -4,7 +4,7 @@ import DataTable from 'react-data-table-component'
 import { CButton, CCard, CCardBody, CCardHeader, CCol, CContainer, CRow } from '@coreui/react'
 import { UsuariosModal } from '../components/UsuariosModal'
 import { onOpenModal  } from '../../store/ui/uiSlice'
-import { startListarUsuarios } from '../../store/auth/thunk'
+import { startListarUsuariosHabilitados } from '../../store/auth/thunk'
 import { onAgregarUser } from '../../store/auth/userSlice'
 import { FiltroComponent } from "../components/FiltroComponent"
 import { AccionesTable } from '../components/AccionesTable'
@@ -27,7 +27,7 @@ export const UsuariosPages = () => {
     const dispatch = useDispatch()
 
     useEffect(() => {
-        dispatch(startListarUsuarios(1))
+        dispatch(startListarUsuariosHabilitados())
     }, [userSave])
     
     const columns = [
@@ -55,7 +55,7 @@ export const UsuariosPages = () => {
         {
             name: 'Rol',
             selector: row => (
-                <span className="badge text-bg-primary">
+                <span className="text-primary">
                     {
                         (row.tipo_rol) ? row.tipo_rol : 'Vecino'
                     }

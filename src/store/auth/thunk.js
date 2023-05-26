@@ -1,6 +1,6 @@
 import bibliotecaApi from "../../api/bibliotecaApi"
 import { login, logout, onErrorMessage, onNotAuthenticatedLogin } from "./authSlice"
-import { onClearUser, onListarUsers, onSave } from "./userSlice"
+import { onClearUser, onListarUsersHabilitados, onListarUsersPendientes, onSave } from "./userSlice"
 import { onCloseModal } from "../ui/uiSlice"
 
 export const startLogin = (loginRut, loginPassword, reset) => {
@@ -126,15 +126,34 @@ export const startAgregarUsuario = ({
     }
 }
 
-export const startListarUsuarios = (estado) => {
+export const startListarUsuariosHabilitados = () => {
 
     return async( dispatch ) => {
 
         try {
 
-            const response = await bibliotecaApi.get(`usuarios/listar?estado=${estado}`)
+            const response = await bibliotecaApi.get('usuarios/listarHabilitados')
 
-            dispatch(onListarUsers(response.data))
+            dispatch(onListarUsersHabilitados(response.data))
+
+        } catch (error) {
+        
+            console.log(error.response)
+            
+        }
+
+    }
+}
+
+export const startListarUsuariosPendientes = () => {
+
+    return async( dispatch ) => {
+
+        try {
+
+            const response = await bibliotecaApi.get('usuarios/listarPendientes')
+
+            dispatch(onListarUsersPendientes(response.data))
         
         } catch (error) {
         

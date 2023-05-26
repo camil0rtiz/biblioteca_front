@@ -2,16 +2,7 @@ import { NavLink, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { CContainer, CHeader, CDropdownDivider ,CHeaderDivider, CHeaderNav, CHeaderToggler, CNavLink, CNavItem, CBreadcrumb, CBreadcrumbItem, CDropdown, CDropdownToggle, CAvatar, CDropdownMenu, CDropdownHeader, CDropdownItem, CBadge } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
-import {
-    cilBell,
-    cilList, 
-    cilMenu,
-    cilShare,
-    cilCommentSquare,
-    cilEnvelopeOpen,
-    cilLockLocked,
-    cilTask,
-} from '@coreui/icons'
+import { cilBell, cilList, cilMenu, cilShare, cilCommentSquare, cilEnvelopeOpen, cilLockLocked, cilTask} from '@coreui/icons'
 import { onCloseSidebar } from '../../../store/ui/uiSlice'
 import { startLogout } from '../../../store/auth/thunk'
 import usuario from './../../../assets/img/2.jpg'
@@ -54,7 +45,7 @@ export const HeaderAdmin = () => {
             <CHeaderNav className="d-none d-md-flex me-auto">
                 <CNavItem>
                 <CNavLink to="home" component={NavLink}>
-                    Dashboard
+                    Inicio
                 </CNavLink>
                 </CNavItem>
                 <CNavItem>

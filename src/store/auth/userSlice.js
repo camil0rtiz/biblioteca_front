@@ -50,22 +50,16 @@ export const userSlice = createSlice({
                 registroTipoRol: []
             }
         },
-        onListarUsers: (state, {payload}) => {
+        onListarUsersHabilitados: (state, {payload}) => {
 
-            payload.data.forEach(usuario => {
+            state.usersHabilitados = payload
 
-                    if(usuario.estado_usuario == 1){
+        },
 
-                        state.usersHabilitados = payload
+        onListarUsersPendientes: (state, {payload}) => {
 
-                    }
-                    else if(usuario.estado_usuario == 2){
+            state.usersPendientes = payload
 
-                        state.usersPendientes = payload
-
-                    }
-
-            })
         },
 
         onSave: (state) => {
@@ -76,4 +70,4 @@ export const userSlice = createSlice({
 
 }) 
 
-export const {onAgregarUser, onClearUser, onListarUsers, onSave} = userSlice.actions
+export const {onAgregarUser, onClearUser, onListarUsersHabilitados, onListarUsersPendientes, onSave} = userSlice.actions
