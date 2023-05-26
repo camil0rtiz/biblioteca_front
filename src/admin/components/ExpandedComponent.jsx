@@ -1,16 +1,18 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { CListGroup, CListGroupItem } from '@coreui/react';
 
 export const ExpandedComponent = ({ data }) => {
 
-    const { ejemplares } = useSelector(state => state.ejemplar)
-
-    const dispatch = useDispatch()
-
     return (
         
-        <>
-        </>
-        
+        <CListGroup as="ol">
+            <CListGroupItem>     
+                <div className="ms-2 me-auto">
+                    <div className="fw-bold">Reseña {data.titulo_libro}</div>
+                    <p dangerouslySetInnerHTML={{ __html: data.resena_libro}}></p>
+                </div>
+            </CListGroupItem>
+        </CListGroup>
+
     )
 
 };
