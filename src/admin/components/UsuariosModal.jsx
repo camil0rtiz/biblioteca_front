@@ -45,8 +45,25 @@ export const UsuariosModal = () => {
         
         let idMembresia 
 
-        registroTipoRol ? (idRol = registroTipoRol.value) : (idRol = '')
+        
+        if(registroTipoRol){
+            
+            if(registroTipoRol[0]){
 
+                idRol = registroTipoRol[0].value
+                
+            }else{
+                
+                idRol = registroTipoRol.value
+
+            }
+
+        }else{
+            
+            (idRol = '')
+
+        } 
+        
         registroTipoMembresia ? (idMembresia = registroTipoMembresia.value) : (idMembresia = '')
 
         if(id){

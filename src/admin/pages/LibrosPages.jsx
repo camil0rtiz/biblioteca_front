@@ -23,6 +23,10 @@ export const LibrosPages = () => {
 
     const [filterText, setFilterText] = useState('')
 
+    const [totalRows, setTotalRows] = useState(0)
+
+	const [perPage, setPerPage] = useState(10)
+
     const { libros, libroSave } = useSelector(state => state.libro)
 
     const { modalOpen, modalOpenEjemplar } = useSelector(state => state.ui)
@@ -133,11 +137,9 @@ export const LibrosPages = () => {
                                 <DataTable
                                     title='Tabla Libros'
                                     responsive
-                                    pagination
                                     columns={columns}
                                     data={data}
                                     highlightOnHover={true}
-                                    paginationComponentOptions={paginacionOpciones}
                                     noDataComponent={<span className='mt-4'>No se encontro ningún elemento</span>}
                                     fixedHeader
                                     fixedHeaderScrollHeight="600px"
@@ -150,6 +152,12 @@ export const LibrosPages = () => {
                                     subHeader
                                     subHeaderComponent={<FiltroComponent onFilter={e => setFilterText(e.target.value)} filterText={filterText} onPlaceholder={'Filtra por nombre, ISBN, dewey'} />}
                                     actions={ <AccionesTable onExport={libros} onNombreBoton={'Agregar Libro'} />}
+                                    pagination
+                                    paginationComponentOptions={paginacionOpciones}
+                                    paginationServer
+                                    // paginationTotalRows={totalRows}
+                                    // onChangeRowsPerPage={handlePerRowsChange}
+                                    // onChangePage={handlePageChange}
                                 />
                             </CCardBody>
                         </CCard>

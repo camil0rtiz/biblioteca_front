@@ -51,6 +51,8 @@ export const startListarLibros = () => {
 
             const response = await bibliotecaApi.get('libros/listar')
 
+            console.log(response);
+
             dispatch(onListarLibros(response.data))
                     
         } catch (error) {
