@@ -4,7 +4,7 @@ import { onClearAutores, onListarAutores, onSaveAutor, onLoadingFalse } from "./
 import { onClearEditoriales, onListarEditoriales, onSaveEditorial } from "./editorialSlice";
 import { onListarEjemplares, onLoadingFalseE, onSaveEjemplar } from "./ejemplarSlice";
 import { onListarEventos, onListarEventosHome, onSaveEvento } from "./eventoSlice";
-import { onClearLibros, onListarLibros, onSaveLibro } from "./libroSlice";
+import { onCantidadPaginado, onCantidadPaginas, onClearLibros, onListarLibros, onSaveLibro } from "./libroSlice";
 
 export const startAgregarLibro = ({tituloLibro, isbnLibro, deweyLibro, categoriaLibro, numPagLibro, anioPublicacionLibro, resenaLibro, estadoLibro, idAutor, portada }) => {
 
@@ -43,17 +43,17 @@ export const startAgregarLibro = ({tituloLibro, isbnLibro, deweyLibro, categoria
     }
 }
 
-export const startListarLibros = () => {
+export const startListarLibros = (page, perPage) => {
 
     return async( dispatch ) => {
 
         try {
 
-            const response = await bibliotecaApi.get('libros/listar')
+            const { data } = await bibliotecaApi.get(`libros/listar?page=${page}&per_page=${perPage}}`)
 
-            console.log(response);
-
-            dispatch(onListarLibros(response.data))
+            dispatch(onCantidadPaginas(data.data2.total))
+            dispatch(onCantidadPaginado(data.data2.last_page))
+            dispatch(onListarLibros(data.data))
                     
         } catch (error) {
         

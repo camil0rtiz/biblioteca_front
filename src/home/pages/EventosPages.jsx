@@ -35,7 +35,7 @@ export const EventosPages = () => {
                         <h3>Eventos</h3>
                     </CCol>
                 </CRow>    
-                <CRow xl={2} className="g-5">
+                <CRow className="g-5">
                     {eventosHome.map((evento) => (
                         <CCol xl={6} key={evento.id}>
                             <CCard className="mb-4">

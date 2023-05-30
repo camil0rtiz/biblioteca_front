@@ -3,43 +3,29 @@ import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
 import { CBadge, CBreadcrumb, CBreadcrumbItem, CButton, CCard, CCardBody, CCardFooter, CCardImage, CCardSubtitle, CCardTitle, CCol, CContainer, CHeaderDivider, CListGroup, CListGroupItem, CRow } from "@coreui/react"
-import bibliotecaApi from "../../api/bibliotecaApi"
 import { onOpenCarrito, onOpenFiltros } from "../../store/ui/uiSlice"
 import { FiltrosComponent } from "../components/FiltrosComponent"
 import { onAgregarLibroCarrito } from "../../store/prestamos/carritoSlice"
 import { PaginadorComponent } from "../components/PaginadorComponent"
+import { startListarLibros } from "../../store/biblioteca/thunk"
 
 export const LibrosPages = () => {
 
-    const [ libros, setLibros ] = useState([])
+    const [ page, setPage ] = useState(0)
 
-    const [cantPaginas, setCantPaginas] = useState(0)
-
-    const [numPagina, setNumPagina] = useState(0)
+    const { libros, cantidadPaginado } = useSelector(state => state.libro)
 
     const { carrito } = useSelector(state => state.carrito)
 
     const dispatch = useDispatch()
 
     useEffect(() => {
-        listarLibros()
-    }, [numPagina])
 
-    const listarLibros = async() => {
-        try {
+        let perPage = 10
 
-            const {data} = await bibliotecaApi.get(`libros/listar?page=${numPagina}`)
+        dispatch(startListarLibros(page, perPage))
 
-            setLibros(data.data)
-        
-            setCantPaginas(data.data2.last_page)
-        
-        } catch (error) {
-        
-            console.error(error)
-            
-        }
-    }
+    }, [page])
 
     const openCarrito = (libro) => {
 
@@ -90,7 +76,7 @@ export const LibrosPages = () => {
                                     <CCardSubtitle className="text-muted text-center">{libro.autor.label[0]}</CCardSubtitle>
                                 </CCardBody>
                                 <CListGroup className="list-group-flush">
-                                    <CListGroupItem className="text-center"><CButton color="dark" className="text-center" onClick={() => openCarrito(libro)} disabled={(libro.cantidad_ejemplares !== 0) ? 'true' : 'false'}>Agregar</CButton></CListGroupItem>
+                                    <CListGroupItem className="text-center"><CButton color="dark" className="text-center" onClick={() => openCarrito(libro)} disabled={(libro.cantidad_ejemplares == 0) ? true : false}>Agregar</CButton></CListGroupItem>
                                 </CListGroup>     
                                 <CCardFooter className="text-center">
                                     {
@@ -112,7 +98,7 @@ export const LibrosPages = () => {
                     ))}
                 </CRow>
                 <CRow>
-                    <PaginadorComponent cantPaginas={cantPaginas} setNumPagina={setNumPagina}/>
+                    <PaginadorComponent cantPaginas={cantidadPaginado} setNumPagina={setPage}/>
                 </CRow>
                 <FiltrosComponent/>
             </CContainer>

@@ -23,19 +23,21 @@ export const LibrosPages = () => {
 
     const [filterText, setFilterText] = useState('')
 
-    const [totalRows, setTotalRows] = useState(0)
+	const [ perPage, setPerPage ] = useState(10)
 
-	const [perPage, setPerPage] = useState(10)
+    const [ page, setPage ] = useState(1)
 
-    const { libros, libroSave } = useSelector(state => state.libro)
+    const { libros, cantidadPaginas, libroSave } = useSelector(state => state.libro)
 
     const { modalOpen, modalOpenEjemplar } = useSelector(state => state.ui)
     
     const dispatch = useDispatch()
 
     useEffect(() => {
-        dispatch(startListarLibros())
-    }, [libroSave])
+
+        dispatch(startListarLibros(page, perPage))
+        
+    }, [libroSave, page, perPage])
 
     const handleShow = ({id, titulo_libro, isbn_libro, dewey_libro, categoria_libro, numero_pagi_libro, anio_publi_libro, resena_libro, autor}) => {
 
@@ -122,7 +124,17 @@ export const LibrosPages = () => {
         
     }
 
-    const data = libros.data //los datos que van a estar en la datatable
+    const handlePageChange = (page) => {
+
+		setPage(page)
+
+	}
+
+    const handlePerRowsChange = (newPerPage) => {
+
+        setPerPage(newPerPage)
+
+	}
 
     return (
         <>
@@ -138,14 +150,14 @@ export const LibrosPages = () => {
                                     title='Tabla Libros'
                                     responsive
                                     columns={columns}
-                                    data={data}
+                                    data={libros}
                                     highlightOnHover={true}
                                     noDataComponent={<span className='mt-4'>No se encontro ningún elemento</span>}
                                     fixedHeader
                                     fixedHeaderScrollHeight="600px"
                                     persistTableHead
                                     striped
-                                    // progressPending={pending}
+                                    progressPending={false}
                                     // progressComponent={<CustomLoader />}
                                     expandableRows
                                     expandableRowsComponent={ExpandedComponent}
@@ -153,11 +165,11 @@ export const LibrosPages = () => {
                                     subHeaderComponent={<FiltroComponent onFilter={e => setFilterText(e.target.value)} filterText={filterText} onPlaceholder={'Filtra por nombre, ISBN, dewey'} />}
                                     actions={ <AccionesTable onExport={libros} onNombreBoton={'Agregar Libro'} />}
                                     pagination
-                                    paginationComponentOptions={paginacionOpciones}
                                     paginationServer
-                                    // paginationTotalRows={totalRows}
-                                    // onChangeRowsPerPage={handlePerRowsChange}
-                                    // onChangePage={handlePageChange}
+                                    paginationTotalRows={cantidadPaginas}
+                                    paginationComponentOptions={paginacionOpciones}
+                                    onChangeRowsPerPage={handlePerRowsChange}
+                                    onChangePage={handlePageChange}
                                 />
                             </CCardBody>
                         </CCard>

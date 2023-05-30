@@ -16,6 +16,8 @@ export const libroSlice = createSlice({
             autorLibro: []
         },
         libros: [],
+        cantidadPaginas: 0,
+        cantidadPaginado: 0,
         libroSave: false 
     },
         
@@ -45,6 +47,19 @@ export const libroSlice = createSlice({
             }
         },
 
+        onCantidadPaginas: (state, {payload})  => {
+
+            state.cantidadPaginas = payload
+            
+        },
+
+        
+        onCantidadPaginado: (state, {payload})  => {
+
+            state.cantidadPaginado = payload
+            
+        },
+        
         onSaveLibro: (state) => {
 
             (state.libroSave == true) ? state.libroSave = false : state.libroSave = true 
@@ -55,4 +70,4 @@ export const libroSlice = createSlice({
 
 })
 
-export const {onAgregarLibro, onListarLibros, onClearLibros, onSaveLibro } = libroSlice.actions
+export const {onAgregarLibro, onListarLibros, onClearLibros, onCantidadPaginas, onCantidadPaginado, onSaveLibro } = libroSlice.actions
