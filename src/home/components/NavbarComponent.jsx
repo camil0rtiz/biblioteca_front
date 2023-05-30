@@ -84,9 +84,12 @@ export const NavbarComponent = () => {
                             (
                                 <div>
                                     <CDropdown variant="btn-group" direction="dropstart">
-                                        <CDropdownToggle color='black' placement="bottom-end" className="py-0" caret={false}>
-                                            <CAvatar src={usuario} size="md"/> {user.nombre_usuario} {user.apellido_pate_usuario}
-                                        </CDropdownToggle>
+                                    <CDropdownToggle color="black" placement="bottom-end" className="py-0" caret={false}>
+                                        <div className="d-flex align-items-center">
+                                            <CAvatar src={usuario} size="md" className="me-2" />
+                                            <p className="text-white m-0">{user.nombre_usuario} {user.apellido_pate_usuario}</p>
+                                        </div>
+                                    </CDropdownToggle>
                                         <CDropdownMenu className="pt-0" placement="bottom-end">
                                             <CDropdownHeader className="bg-light fw-semibold py-2">Configuración</CDropdownHeader>
                                             {
