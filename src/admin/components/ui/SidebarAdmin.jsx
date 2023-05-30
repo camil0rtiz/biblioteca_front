@@ -8,7 +8,7 @@ import logo from './../../../assets/img/bcnv.jpg'
 
 export const SidebarAdmin = () => {
 
-    const { status, user } = useSelector(state => state.auth)
+    const { user } = useSelector(state => state.auth)
 
     const { sidebarAdmin } = useSelector(state => state.ui)
 
@@ -33,17 +33,23 @@ export const SidebarAdmin = () => {
                     <CIcon customClassName="nav-icon" icon={cilHome} />
                     Inicio
                 </CNavItem>
-                <CNavGroup toggler={<><CIcon customClassName="nav-icon" icon={cilUser} /> Usuarios</>}>
-                    <NavLink className="nav-link" to="usuarios"><CIcon customClassName="nav-icon" icon={cilPuzzle} />Usuarios Habilitados </NavLink>
-                </CNavGroup>
-                <CNavGroup toggler={<><CIcon customClassName="nav-icon" icon={cilBook} /> Libros</>}>
-                    <NavLink className="nav-link" to="libros"><CIcon customClassName="nav-icon" icon={cilPuzzle} />Libros</NavLink>
-                    <NavLink className="nav-link" to="editoriales"><CIcon customClassName="nav-icon" icon={cilPuzzle} />Editoriales</NavLink>
-                    <NavLink className="nav-link" to="autores"><CIcon customClassName="nav-icon" icon={cilPuzzle} />Autores</NavLink>
-                </CNavGroup>
-                <CNavGroup toggler={<><CIcon customClassName="nav-icon" icon={cilWindowMaximize} /> Eventos y noticias</>}>
-                    <NavLink className="nav-link" to="eventos"><CIcon customClassName="nav-icon" icon={cilPuzzle} />Eventos</NavLink>
-                </CNavGroup>
+                {
+                    (user.tipo_rol == 'Bibliotecario') && (
+                        <>             
+                            <CNavGroup toggler={<><CIcon customClassName="nav-icon" icon={cilUser} /> Usuarios</>}>
+                                <NavLink className="nav-link" to="usuarios"><CIcon customClassName="nav-icon" icon={cilPuzzle} />Usuarios Habilitados </NavLink>
+                            </CNavGroup>
+                            <CNavGroup toggler={<><CIcon customClassName="nav-icon" icon={cilBook} /> Libros</>}>
+                                <NavLink className="nav-link" to="libros"><CIcon customClassName="nav-icon" icon={cilPuzzle} />Libros</NavLink>
+                                <NavLink className="nav-link" to="editoriales"><CIcon customClassName="nav-icon" icon={cilPuzzle} />Editoriales</NavLink>
+                                <NavLink className="nav-link" to="autores"><CIcon customClassName="nav-icon" icon={cilPuzzle} />Autores</NavLink>
+                            </CNavGroup>
+                            <CNavGroup toggler={<><CIcon customClassName="nav-icon" icon={cilWindowMaximize} /> Eventos y noticias</>}>
+                                <NavLink className="nav-link" to="eventos"><CIcon customClassName="nav-icon" icon={cilPuzzle} />Eventos</NavLink>
+                            </CNavGroup>
+                        </>
+                    )
+                }
                 <CNavGroup toggler={<><CIcon customClassName="nav-icon" icon={cilCart} /> Reservas</>}>
                     <NavLink className="nav-link" to="reservas"><CIcon customClassName="nav-icon" icon={cilPuzzle} />Reservas</NavLink>
                 </CNavGroup>

@@ -89,16 +89,18 @@ export const NavbarComponent = () => {
                                         </CDropdownToggle>
                                         <CDropdownMenu className="pt-0" placement="bottom-end">
                                             <CDropdownHeader className="bg-light fw-semibold py-2">Configuración</CDropdownHeader>
-                                            <NavLink className="dropdown-item" to="/admin"><CIcon size='xl' customClassName="icon me-2" icon={cilShare} className="me-2" />
-                                                Ir a Admin
+                                            {
+                                                (user.tipo_rol) && (
+                                                    <NavLink className="dropdown-item" to="/admin"><CIcon size='xl' customClassName="icon me-2" icon={cilShare} className="me-2" />
+                                                        Ir a Admin
+                                                    </NavLink>
+                                                )
+                                            }
+                                            <NavLink className="dropdown-item" to="#"><CIcon size='xl' customClassName="icon me-2" icon={cilShare} className="me-2" />
+                                                Cambiar contraseña
                                             </NavLink>
                                             <NavLink className="dropdown-item" to="#"><CIcon size='xl' customClassName="icon me-2" icon={cilShare} className="me-2" />
-                                                Cambiar 
-                                                contraseña
-                                            </NavLink>
-                                            <NavLink className="dropdown-item" to="#"><CIcon size='xl' customClassName="icon me-2" icon={cilShare} className="me-2" />
-                                                Renovar 
-                                                membresía
+                                                Renovar membresía
                                             </NavLink>
                                             <CDropdownDivider />
                                             <CDropdownItem href="#" onClick={() => onClickLogout()}>
