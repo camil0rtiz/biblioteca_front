@@ -8,6 +8,7 @@ import { AccionesTable } from '../components/AccionesTable'
 import { FiltroComponent } from '../components/FiltroComponent'
 import { startListarEventos } from '../../store/biblioteca/thunk'
 import { onAgregarEvento } from '../../store/biblioteca/eventoSlice'
+import { ExpandedEventos } from '../components/ExpandedEventos'
 
 const paginacionOpciones = {
     rowsPerPageText: 'Filas por página',
@@ -41,11 +42,6 @@ export const EventosPages = () => {
         {
             name: 'Tipo',
             selector: row => row.tipo_categoria,
-            sortable: true,
-        },
-        {
-            name: 'Descripción',
-            selector: row => row.descripcion_evento,
             sortable: true,
         },
         {
@@ -110,6 +106,8 @@ export const EventosPages = () => {
                                 fixedHeaderScrollHeight="600px"
                                 persistTableHead
                                 striped
+                                expandableRows
+                                expandableRowsComponent={ExpandedEventos}
                                 subHeader
                                 subHeaderComponent={ <FiltroComponent onFilter={e => setFilterText(e.target.value)} filterText={filterText} onPlaceholder={'Filtra por titulo'} />}
                                 actions={<AccionesTable onExport={eventos} onNombreBoton={'Agregar Evento'}/>}

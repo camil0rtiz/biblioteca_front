@@ -5,7 +5,7 @@ import { CButton, CCard, CCardBody, CCardHeader, CCol, CContainer, CRow } from '
 import { startListarLibros } from "../../store/biblioteca/thunk";
 import { onOpenModal, onOpenModalEjemplar } from "../../store/ui/uiSlice"
 import { LibrosModal } from '../components/modal/LibrosModal'
-import { ExpandedComponent } from '../components/ExpandedComponent'
+import { ExpandedLibros } from '../components/ExpandedLibros'
 import { onAgregarLibro } from "../../store/biblioteca/libroSlice"
 import { EjemplaresModal } from "../components/modal/EjemplaresModal"
 import { onAgregarEjemplar } from "../../store/biblioteca/ejemplarSlice"
@@ -160,7 +160,7 @@ export const LibrosPages = () => {
                                     progressPending={false}
                                     // progressComponent={<CustomLoader />}
                                     expandableRows
-                                    expandableRowsComponent={ExpandedComponent}
+                                    expandableRowsComponent={ExpandedLibros}
                                     subHeader
                                     subHeaderComponent={<FiltroComponent onFilter={e => setFilterText(e.target.value)} filterText={filterText} onPlaceholder={'Filtra por nombre, ISBN, dewey'} />}
                                     actions={ <AccionesTable onExport={libros} onNombreBoton={'Agregar Libro'} />}

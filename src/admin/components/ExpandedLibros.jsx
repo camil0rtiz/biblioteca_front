@@ -1,6 +1,6 @@
 import { CListGroup, CListGroupItem } from '@coreui/react';
 
-export const ExpandedComponent = ({ data }) => {
+export const ExpandedLibros = ({ data }) => {
 
     return (
         
