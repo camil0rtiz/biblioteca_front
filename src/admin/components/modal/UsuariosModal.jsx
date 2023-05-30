@@ -3,13 +3,13 @@ import { useDispatch, useSelector } from "react-redux"
 import { useForm, Controller } from 'react-hook-form'
 import ReactSelect from "react-select"
 import { Modal ,Button, Form, InputGroup } from 'react-bootstrap'
-import { onCloseModal } from "../../store/ui/uiSlice"
-import { validaRut } from "../../helpers/validarRut"
-import { startActualizarUsuario, startAgregarUsuario } from "../../store/auth/thunk"
-import { onClearUser } from "../../store/auth/userSlice"
-import bibliotecaApi from "../../api/bibliotecaApi"
-import { formateoRut } from "../../helpers/formateoRut"
-import { customStyles } from '../../helpers/customStyles.js'
+import { onCloseModal } from "../../../store/ui/uiSlice"
+import { validaRut } from "../../../helpers/validarRut"
+import { startActualizarUsuario, startAgregarUsuario } from "../../../store/auth/thunk"
+import { onClearUser } from "../../../store/auth/userSlice"
+import bibliotecaApi from "../../../api/bibliotecaApi"
+import { formateoRut } from "../../../helpers/formateoRut"
+import { customStyles } from '../../../helpers/customStyles.js'
 
 export const UsuariosModal = () => {
 

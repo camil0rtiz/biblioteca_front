@@ -4,10 +4,10 @@ import DataTable from "react-data-table-component"
 import { CButton, CCard, CCardBody, CCardHeader, CCol, CContainer, CRow } from '@coreui/react'
 import { startListarLibros } from "../../store/biblioteca/thunk";
 import { onOpenModal, onOpenModalEjemplar } from "../../store/ui/uiSlice"
-import { LibrosModal } from '../components/LibrosModal'
+import { LibrosModal } from '../components/modal/LibrosModal'
 import { ExpandedComponent } from '../components/ExpandedComponent'
 import { onAgregarLibro } from "../../store/biblioteca/libroSlice"
-import { EjemplaresModal } from "../components/EjemplaresModal"
+import { EjemplaresModal } from "../components/modal/EjemplaresModal"
 import { onAgregarEjemplar } from "../../store/biblioteca/ejemplarSlice"
 import { FiltroComponent } from "../components/FiltroComponent"
 import { AccionesTable } from "../components/AccionesTable"

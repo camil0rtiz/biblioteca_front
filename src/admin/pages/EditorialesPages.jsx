@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { startBuscarEditorial } from '../../store/biblioteca/thunk'
 import DataTable from "react-data-table-component"
 import { onOpenModal } from '../../store/ui/uiSlice'
-import { EditorialesModal } from '../components/EditorialesModal'
+import { EditorialesModal } from '../components/modal/EditorialesModal'
 import { onAgregarEditorial } from '../../store/biblioteca/editorialSlice'
 import { AccionesTable } from '../components/AccionesTable'
 import { FiltroComponent } from '../components/FiltroComponent'

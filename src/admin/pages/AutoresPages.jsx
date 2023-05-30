@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { CButton, CCard, CCardBody, CCardHeader, CCol, CContainer, CRow } from '@coreui/react'
 import DataTable from "react-data-table-component"
 import { startListarAutores } from '../../store/biblioteca/thunk'
-import { AutoresModal } from '../components/AutoresModal'
+import { AutoresModal } from '../components/modal/AutoresModal'
 import { onOpenModal } from '../../store/ui/uiSlice'
 import { onAgregarAutor } from '../../store/biblioteca/autorSlice'
 import { FiltroComponent } from '../components/FiltroComponent'
@@ -90,7 +90,7 @@ export const AutoresPages = () => {
                                     data={data}
                                     highlightOnHover={true}
                                     paginationComponentOptions={paginacionOpciones}
-                                    noDataComponent={<span>No se encontro ningún elemento</span>}
+                                    noDataComponent={<span className='mt-4'>No se encontro ningún elemento</span>}
                                     fixedHeader
                                     fixedHeaderScrollHeight="600px"
                                     persistTableHead

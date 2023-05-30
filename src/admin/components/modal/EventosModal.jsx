@@ -4,13 +4,13 @@ import { useForm, Controller, useController } from 'react-hook-form'
 import { Modal, Button, Form } from 'react-bootstrap'
 import ReactSelect from "react-select"
 import ReactQuill from 'react-quill'
-import { onCloseModal } from '../../store/ui/uiSlice'
+import { onCloseModal } from '../../../store/ui/uiSlice'
 import 'react-quill/dist/quill.snow.css'
-import bibliotecaApi from '../../api/bibliotecaApi'
-import { startActualizarEvento, startAgregarEvento } from '../../store/biblioteca/thunk'
-import { onClearEventos } from '../../store/biblioteca/eventoSlice'
-import '../../assets/css/eventos.css'
-import { customStyles } from '../../helpers/customStyles.js'
+import bibliotecaApi from '../../../api/bibliotecaApi'
+import { startActualizarEvento, startAgregarEvento } from '../../../store/biblioteca/thunk'
+import { onClearEventos } from '../../../store/biblioteca/eventoSlice'
+import '../../../assets/css/eventos.css'
+import { customStyles } from '../../../helpers/customStyles.js'
 
 export const EventosModal = () => {
 

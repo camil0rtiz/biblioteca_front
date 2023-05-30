@@ -1,9 +1,9 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { useForm, Controller } from 'react-hook-form'
 import { Modal, Button, Form } from 'react-bootstrap'
-import { startActualizarAutor, startAgregarAutor } from '../../store/biblioteca/thunk'
-import { onCloseModal } from '../../store/ui/uiSlice'
-import { onClearAutores } from '../../store/biblioteca/autorSlice'
+import { startActualizarAutor, startAgregarAutor } from '../../../store/biblioteca/thunk'
+import { onCloseModal } from '../../../store/ui/uiSlice'
+import { onClearAutores } from '../../../store/biblioteca/autorSlice'
 
 export const AutoresModal = () => {
 

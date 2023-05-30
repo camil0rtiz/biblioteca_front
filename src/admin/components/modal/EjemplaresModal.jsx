@@ -3,11 +3,11 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useForm, Controller } from 'react-hook-form'
 import CreatableSelect from 'react-select/creatable'
 import { Modal, Button, Form } from 'react-bootstrap'
-import { onCloseModalEjemplar } from '../../store/ui/uiSlice'
-import bibliotecaApi from '../../api/bibliotecaApi'
-import { startAgregarEditorial, startAgregarEjemplar } from '../../store/biblioteca/thunk'
-import { customStyles } from '../../helpers/customStyles.js'
-import { onLoadingTrue } from '../../store/biblioteca/ejemplarSlice'
+import { onCloseModalEjemplar } from '../../../store/ui/uiSlice'
+import bibliotecaApi from '../../../api/bibliotecaApi'
+import { startAgregarEditorial, startAgregarEjemplar } from '../../../store/biblioteca/thunk'
+import { customStyles } from '../../../helpers/customStyles.js'
+import { onLoadingTrue } from '../../../store/biblioteca/ejemplarSlice'
 
 export const EjemplaresModal = () => {
 

@@ -1,9 +1,9 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { useForm, Controller } from 'react-hook-form'
-import { onCloseModal } from '../../store/ui/uiSlice'
+import { onCloseModal } from '../../../store/ui/uiSlice'
 import { Modal, Button, Form } from 'react-bootstrap'
-import { startActualizarEditorial, startAgregarEditorial } from '../../store/biblioteca/thunk'
-import { onClearEditoriales } from '../../store/biblioteca/editorialSlice'
+import { startActualizarEditorial, startAgregarEditorial } from '../../../store/biblioteca/thunk'
+import { onClearEditoriales } from '../../../store/biblioteca/editorialSlice'
 
 export const EditorialesModal = () => {
 
