@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
 import { CAlert, CBreadcrumb, CBreadcrumbItem, CButton, CCard, CCardBody, CCardImage, CCardText, CCardTitle, CCol, CContainer, CHeaderDivider, CImage, CListGroup, CListGroupItem, CRow } from "@coreui/react"
 import { startReservarLibro } from "../../store/prestamos/thunk"
@@ -55,6 +56,7 @@ export const ReservaLibroPage = () => {
                                                         <CCardBody className='d-flex justify-content-center align-items-center'>
                                                             <CCardTitle>{cart.titulo_libro}</CCardTitle>
                                                             <CCardText>
+                                                                <CButton color="danger">Eliminar</CButton>
                                                             </CCardText>
                                                         </CCardBody>
                                                     </CCol>
@@ -63,8 +65,11 @@ export const ReservaLibroPage = () => {
                                         ))}
                                     </CCol>
                                     <CCol lg="3">
-                                        <div className="d-grid mt-4">
+                                        <div className="d-grid mt-2">
                                             <CButton onClick={() => handleReserva()} color="dark" size="lg" >Reservar </CButton>
+                                        </div>
+                                        <div className="d-grid mt-2">
+                                            <CButton color="primary" size="lg" to="/" component={NavLink} >Volver a inicio</CButton>
                                         </div>
                                     </CCol>
                                 </>

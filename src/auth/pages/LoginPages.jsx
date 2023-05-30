@@ -62,8 +62,8 @@ export const LoginPages = () => {
                             <CCard className="p-4">
                                 <CCardBody>
                                     <CForm onSubmit={handleSubmit(handleLogin)} onReset={reset} validated={false}>
-                                        <h1>Login</h1>
-                                        <p className="text-medium-emphasis">Sign In to your account</p>
+                                        <h1>Accede</h1>
+                                        <p className="text-medium-emphasis">Inicia sesión con tu cuenta</p>
                                         <CInputGroup className="mb-3">
                                             <CInputGroupText>
                                                 <CIcon icon={cilUser} />
@@ -137,8 +137,7 @@ export const LoginPages = () => {
                                     <div>
                                         <h2>Registrate Ahora</h2>
                                         <p>
-                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                            tempor incididunt ut labore et dolore magna aliqua.
+                                            Si no estas subcrito aun, pulsa el botón resgitrate ahora
                                         </p>
                                         <Link to="/auth/registro">
                                         <CButton color="primary" className="mt-3" active tabIndex={-1}>

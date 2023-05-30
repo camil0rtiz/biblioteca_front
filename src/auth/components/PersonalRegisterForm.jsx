@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
 import { useForm, Controller } from "react-hook-form"
-import { Button, Form, Row, Col, InputGroup } from 'react-bootstrap'
+import { Button, Form, Row, Col, InputGroup, ProgressBar } from 'react-bootstrap'
 import { validaRut } from "../../helpers/validarRut"
 import { onAgregarUser } from "../../store/auth/userSlice"
 import { formateoRut } from "../../helpers/formateoRut"
@@ -36,6 +36,7 @@ export const PersonalRegisterForm = ({goNextPage}) => {
         <CCardGroup>
             <CCard className="p-4">
                 <CCardBody>
+                    <ProgressBar className="mb-3" animated variant="primary" now={33.3} label={'Paso 1'} />
                     <h3>Datos Personales</h3>
                     <Form onSubmit={handleSubmit(onSubmit)}>
                         <Form.Group className="mb-3">
