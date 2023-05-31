@@ -6,6 +6,7 @@ export const uiSlice = createSlice({
         modalOpen: false,
         modalOpenEjemplar: false,
         carritoOpen: false,
+        carritoAdminOpen: false,
         filtrosOpen: false,
         sidebarAdmin: true
     },
@@ -13,6 +14,10 @@ export const uiSlice = createSlice({
 
         onOpenCarrito: (state) => {
             state.carritoOpen = true
+        },
+
+        onOpenCarritoAdmin: (state) => {
+            state.carritoAdminOpen = true
         },
 
         onOpenFiltros: (state) => {
@@ -29,6 +34,10 @@ export const uiSlice = createSlice({
 
         onCloseCarrito: (state) => {
             state.carritoOpen = false
+        },
+
+        onCloseCarritoAdmin: (state) => {
+            state.carritoAdminOpen = false
         },
 
         onCloseFiltros: (state) => {
@@ -53,8 +62,10 @@ export const uiSlice = createSlice({
 })
 
 export const {
-    onOpenCarrito, 
-    onCloseCarrito, 
+    onOpenCarrito,
+    onOpenCarritoAdmin, 
+    onCloseCarrito,
+    onCloseCarritoAdmin, 
     onOpenModal, 
     onCloseModal, 
     onOpenModalEjemplar, 

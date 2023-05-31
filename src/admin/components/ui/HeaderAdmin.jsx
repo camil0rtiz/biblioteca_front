@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { CContainer, CHeader, CDropdownDivider ,CHeaderDivider, CHeaderNav, CHeaderToggler, CNavLink, CNavItem, CBreadcrumb, CBreadcrumbItem, CDropdown, CDropdownToggle, CAvatar, CDropdownMenu, CDropdownHeader, CDropdownItem, CBadge } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
 import { cilCart, cilMenu, cilShare, cilCommentSquare, cilEnvelopeOpen, cilLockLocked, cilTask} from '@coreui/icons'
-import { onCloseSidebar } from '../../../store/ui/uiSlice'
+import { onCloseSidebar, onOpenCarritoAdmin } from '../../../store/ui/uiSlice'
 import { startLogout } from '../../../store/auth/thunk'
 import usuario from './../../../assets/img/2.jpg'
 
@@ -18,6 +18,12 @@ export const HeaderAdmin = () => {
     const handleSidebar = () => {
 
         dispatch(onCloseSidebar())
+
+    }
+
+    const handleOpenCarrito = () => {
+
+        dispatch(onOpenCarritoAdmin())
 
     }
 
@@ -61,7 +67,7 @@ export const HeaderAdmin = () => {
                 </CHeaderNav>
                 <CHeaderNav>
                     <CNavItem>
-                        <CNavLink href="#"><CIcon icon={cilCart} size="lg" /></CNavLink>
+                        <CNavLink href="#"  onClick={() => handleOpenCarrito()}><CIcon icon={cilCart} size="lg" /></CNavLink>
                     </CNavItem>
                     {/* <CNavItem>
                         <CNavLink href="#"><CIcon icon={cilList} size="lg" /></CNavLink>
