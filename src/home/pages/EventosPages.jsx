@@ -25,7 +25,7 @@ export const EventosPages = () => {
             <CContainer fluid >
                 <CBreadcrumb className='"m-0 ms-2 mt-3'>
                     <CBreadcrumbItem to='home'>Home</CBreadcrumbItem>
-                    <CBreadcrumbItem active>Libros</CBreadcrumbItem>
+                    <CBreadcrumbItem active>Eventos</CBreadcrumbItem>
                 </CBreadcrumb>
             </CContainer>
             <CContainer lg>

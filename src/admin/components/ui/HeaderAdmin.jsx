@@ -1,4 +1,4 @@
-import { NavLink, useNavigate } from 'react-router-dom'
+import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { CContainer, CHeader, CDropdownDivider ,CHeaderDivider, CHeaderNav, CHeaderToggler, CNavLink, CNavItem, CBreadcrumb, CBreadcrumbItem, CDropdown, CDropdownToggle, CAvatar, CDropdownMenu, CDropdownHeader, CDropdownItem, CBadge } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
@@ -13,7 +13,13 @@ export const HeaderAdmin = () => {
 
     const dispatch = useDispatch()
 
-    const navigate = useNavigate();
+    const navigate = useNavigate()
+
+    const location = useLocation()
+
+    const rutaActual = location.pathname.split('/')
+
+    const ruta = rutaActual[2].charAt(0).toUpperCase() + rutaActual[2].slice(1);
 
     const handleSidebar = () => {
 
@@ -107,8 +113,13 @@ export const HeaderAdmin = () => {
             <CHeaderDivider />
             <CContainer fluid>
                 <CBreadcrumb className='"m-0 ms-2 mt-3'>
-                    <CBreadcrumbItem to='home' component={NavLink}>Home</CBreadcrumbItem>
-                    <CBreadcrumbItem active>Libros</CBreadcrumbItem>
+                    <CBreadcrumbItem to='home' component={Link}>Home</CBreadcrumbItem>
+                    {
+                        (ruta != 'Home')&&
+                        (
+                            <CBreadcrumbItem active>{ruta}</CBreadcrumbItem>
+                        )
+                    }
                 </CBreadcrumb>
             </CContainer>
         </CHeader>
