@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux"
 import { Link } from 'react-router-dom'
 import { useForm, Controller } from "react-hook-form"
-import { CButton, CCard, CCardBody, CCardGroup, CCol, CContainer, CForm, CFormInput, CFormText, CInputGroup, CInputGroupText, CRow } from '@coreui/react'
+import { CAlert, CButton, CCard, CCardBody, CCardGroup, CCol, CContainer, CForm, CFormInput, CFormText, CInputGroup, CInputGroupText, CRow } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
 import { cilLockLocked, cilUser } from '@coreui/icons'
 import { validaRut } from "../../helpers/validarRut"
@@ -118,6 +118,15 @@ export const LoginPages = () => {
                                             />
                                         </CInputGroup>
                                         <CRow>
+                                            <CCol xs={12}>
+                                                {
+                                                    (errorMessage) && (
+                                                        <CAlert color="danger">
+                                                            Rut o contraseña incorrectos
+                                                        </CAlert>
+                                                    )
+                                                }
+                                            </CCol>
                                             <CCol xs={6}>
                                                 <CButton type="submit" color="primary" className="px-4">
                                                     Ingresa
