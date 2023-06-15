@@ -19,7 +19,7 @@ export const HeaderAdmin = () => {
 
     const rutaActual = location.pathname.split('/')
 
-    const ruta = rutaActual[2].charAt(0).toUpperCase() + rutaActual[2].slice(1);
+    // const ruta = rutaActual[2].charAt(0).toUpperCase() + rutaActual[2].slice(1);
 
     const handleSidebar = () => {
 
@@ -114,12 +114,12 @@ export const HeaderAdmin = () => {
             <CContainer fluid>
                 <CBreadcrumb className='"m-0 ms-2 mt-3'>
                     <CBreadcrumbItem to='home' component={Link}>Home</CBreadcrumbItem>
-                    {
+                    {/* {
                         (ruta != 'Home')&&
                         (
                             <CBreadcrumbItem active>{ruta}</CBreadcrumbItem>
                         )
-                    }
+                    } */}
                 </CBreadcrumb>
             </CContainer>
         </CHeader>

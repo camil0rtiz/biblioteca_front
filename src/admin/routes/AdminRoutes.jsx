@@ -10,6 +10,7 @@ import { LibrosPages } from '../pages/LibrosPages'
 import { ReservasPages } from '../pages/ReservasPages'
 import { UsuariosPages } from '../pages/UsuariosPages'
 import { CarritoAdmin } from '../components/CarritoAdmin'
+import { PrivateRouter } from './PrivateRouter'
 
 export const AdminRoutes = () => {
     return (
@@ -20,13 +21,13 @@ export const AdminRoutes = () => {
                     <HeaderAdmin/>
                     <div className="body flex-grow-1 px-3">
                         <Routes>
-                            <Route path='/reservas' element={<ReservasPages/>}/>
-                            <Route path='/eventos' element={<EventosPages/>}/>
-                            <Route path='/usuarios' element={<UsuariosPages/>}/>
-                            <Route path='/libros' element={<LibrosPages/>}/>
-                            <Route path='/autores' element={<AutoresPages/>}/>
-                            <Route path='/editoriales' element={<EditorialesPages/>}/>
+                            <Route path='/eventos' element={<PrivateRouter><EventosPages/></PrivateRouter>}/>
+                            <Route path='/usuarios' element={<PrivateRouter><UsuariosPages/></PrivateRouter>}/>
+                            <Route path='/libros' element={<PrivateRouter><LibrosPages/></PrivateRouter>}/>
+                            <Route path='/autores' element={<PrivateRouter><AutoresPages/></PrivateRouter>}/>
+                            <Route path='/editoriales' element={<PrivateRouter><EditorialesPages/></PrivateRouter>}/>
                             <Route path='/home' element={<HomePages/>}/>
+                            <Route path='/reservas' element={<ReservasPages/>}/>
                             <Route path="/*" element={<Navigate to='home'/>} />
                         </Routes>
                     </div>
