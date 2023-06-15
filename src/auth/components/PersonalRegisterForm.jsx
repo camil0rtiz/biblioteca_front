@@ -39,92 +39,67 @@ export const PersonalRegisterForm = ({goNextPage}) => {
                     <ProgressBar className="mb-3" animated variant="primary" now={33.3} label={'Paso 1'} />
                     <h3>Datos Personales</h3>
                     <Form onSubmit={handleSubmit(onSubmit)}>
-                        <Form.Group className="mb-3">
-                            <Form.Label>Rut*</Form.Label>
-                            <Controller 
-                                control={control} 
-                                name="registroRut" 
-                                defaultValue=""  
-                                rules={{
-                                    onChange: e => formateoRut(e.target.value, setValue),
-                                    required:{
-                                        value: true,
-                                        message: "Rut es obligatorio"
-                                    },
-                                    minLength: { value: 2, message: 'El rut tiene que ser mas largo' },
-                                    validate: {positive: v => validaRut(v) == true || 'Rut tiene que ser válido'} 
-                                }}
-                                render={({ field: { onChange, value, ref } }) => (
-                                    <Form.Control
-                                        onChange={onChange} 
-                                        value={value} 
-                                        ref={ref}  
-                                        type="text" 
-                                        placeholder="Ingrega tu rut" 
-                                        maxLength={10} 
-                                    />
-                                )}
-                            />
-                            {errors.registroRut && 
-                                <Form.Text className="text-danger" variant='danger'>
-                                    {errors.registroRut.message}
-                                </Form.Text> 
-                            }                                            
-                        </Form.Group>
-                        <Form.Group className="mb-3">
-                            <Form.Label>Nombre*</Form.Label>
-                            <Controller 
-                                control={control} 
-                                name="registroNombre"
-                                defaultValue=""  
-                                rules={{
-                                    required: {value: true, message: 'Nombre es obligatorio'},
-                                }}
-                                render={({ field: { onChange, value, ref } }) => (
-                                    <Form.Control
-                                        onChange={onChange} 
-                                        value={value} 
-                                        ref={ref}  
-                                        type="text" 
-                                        placeholder="Ingresa tu nombre" 
-                                    />
-                                )}
-                            />
-                            {errors.registroNombre && 
-                                <Form.Text className="text-danger" variant='danger'>
-                                    {errors.registroNombre.message}
-                                </Form.Text> 
-                            } 
-                        </Form.Group>
-                        <Form.Group className="mb-3">
-                            <Form.Label >Número celular</Form.Label>
-                            <Controller 
-                                control={control} 
-                                name="registroNumeroCelular"
-                                defaultValue=""  
-                                    // rules={{
-                                    //     required: {value: true, message: 'Nombre es obligatorio'},
-                                    // }}
-                                render={({ field: { onChange, value, ref } }) => (
-                                    <InputGroup>
-                                        <InputGroup.Text>+56</InputGroup.Text>
+                        <Row className="mb-md-3">
+                            <Form.Group as={Col} md={6}>
+                                <Form.Label>Rut*</Form.Label>
+                                <Controller 
+                                    control={control} 
+                                    name="registroRut" 
+                                    defaultValue=""  
+                                    rules={{
+                                        onChange: e => formateoRut(e.target.value, setValue),
+                                        required:{
+                                            value: true,
+                                            message: "Rut es obligatorio"
+                                        },
+                                        minLength: { value: 2, message: 'El rut tiene que ser mas largo' },
+                                        validate: {positive: v => validaRut(v) == true || 'Rut tiene que ser válido'} 
+                                    }}
+                                    render={({ field: { onChange, value, ref } }) => (
                                         <Form.Control
                                             onChange={onChange} 
                                             value={value} 
                                             ref={ref}  
-                                            placeholder="Ingresa tu número de célular"
+                                            type="text" 
+                                            placeholder="Ingrega tu rut" 
+                                            maxLength={10} 
                                         />
-                                    </InputGroup>
-                                )}
-                            />
-                            {errors.registroNumeroCelular && 
-                                <Form.Text className="text-danger" variant='danger'>
-                                    {errors.registroNumeroCelular.message}
-                                </Form.Text> 
-                            } 
-                        </Form.Group>
-                        <Row className="mb-3">
-                            <Form.Group as={Col}>
+                                    )}
+                                />
+                                {errors.registroRut && 
+                                    <Form.Text className="text-danger" variant='danger'>
+                                        {errors.registroRut.message}
+                                    </Form.Text> 
+                                }                                            
+                            </Form.Group>
+                            <Form.Group as={Col} md={6}>
+                                <Form.Label>Nombre*</Form.Label>
+                                <Controller 
+                                    control={control} 
+                                    name="registroNombre"
+                                    defaultValue=""  
+                                    rules={{
+                                        required: {value: true, message: 'Nombre es obligatorio'},
+                                    }}
+                                    render={({ field: { onChange, value, ref } }) => (
+                                        <Form.Control
+                                            onChange={onChange} 
+                                            value={value} 
+                                            ref={ref}  
+                                            type="text" 
+                                            placeholder="Ingresa tu nombre" 
+                                        />
+                                    )}
+                                />
+                                {errors.registroNombre && 
+                                    <Form.Text className="text-danger" variant='danger'>
+                                        {errors.registroNombre.message}
+                                    </Form.Text> 
+                                } 
+                            </Form.Group>
+                        </Row>
+                        <Row className="mb-md-3">
+                            <Form.Group as={Col} md={6}>
                                 <Form.Label>Apellido Paterno*</Form.Label>
                                 <Controller 
                                     control={control} 
@@ -150,7 +125,7 @@ export const PersonalRegisterForm = ({goNextPage}) => {
                                     </Form.Text> 
                                 } 
                             </Form.Group>
-                            <Form.Group as={Col}>
+                            <Form.Group as={Col} md={6}>
                                 <Form.Label>Apellido Materno*</Form.Label>
                                 <Controller 
                                     control={control} 
@@ -177,8 +152,8 @@ export const PersonalRegisterForm = ({goNextPage}) => {
                                 } 
                             </Form.Group>
                         </Row>
-                        <Row className="mb-3">
-                            <Form.Group as={Col}>
+                        <Row className="mb-md-3">
+                            <Form.Group as={Col} md={6}>
                                 <Form.Label>Fecha de nacimiento*</Form.Label>
                                 <Controller 
                                     control={control} 
@@ -203,7 +178,90 @@ export const PersonalRegisterForm = ({goNextPage}) => {
                                     </Form.Text> 
                                 } 
                             </Form.Group>
-                            <Form.Group as={Col}>
+                            <Form.Group as={Col} md={6}>
+                                <Form.Label >Número celular</Form.Label>
+                                <Controller 
+                                    control={control} 
+                                    name="registroNumeroCelular"
+                                    defaultValue=""  
+                                        // rules={{
+                                        //     required: {value: true, message: 'Nombre es obligatorio'},
+                                        // }}
+                                    render={({ field: { onChange, value, ref } }) => (
+                                        <InputGroup>
+                                            <InputGroup.Text>+56</InputGroup.Text>
+                                            <Form.Control
+                                                onChange={onChange} 
+                                                value={value} 
+                                                ref={ref}  
+                                                placeholder="Ingresa tu número de célular"
+                                            />
+                                        </InputGroup>
+                                    )}
+                                />
+                                {errors.registroNumeroCelular && 
+                                    <Form.Text className="text-danger" variant='danger'>
+                                        {errors.registroNumeroCelular.message}
+                                    </Form.Text> 
+                                } 
+                            </Form.Group>
+                        </Row>
+                        <Row className="mb-md-3">
+                            <Form.Group as={Col} md={6}>
+                                <Form.Label>Dirección</Form.Label>
+                                <Controller 
+                                    control={control} 
+                                    name="registroDireccion"
+                                    defaultValue=""  
+                                    rules={{
+                                        required: {value: true, message: 'La dirección de domicilio es obligatorio'},
+                                        minLength: { value: 2, message: 'La direccion tiene que ser mas larga' }
+                                    }}
+                                    render={({ field: { onChange, value, ref } }) => (
+                                        <Form.Control
+                                            onChange={onChange} 
+                                            value={value} 
+                                            ref={ref}  
+                                            type="text"  
+                                            placeholder="Ingresa tu dirección de domicilio" 
+                                        />
+                                    )}
+                                />
+                                {errors.registroDireccion && 
+                                    <Form.Text className="text-danger" variant='danger'>
+                                        {errors.registroDireccion.message}
+                                    </Form.Text> 
+                                } 
+                            </Form.Group>
+                            <Form.Group as={Col} md={6}>
+                                <Form.Label>Número de domicilio</Form.Label>
+                                <Controller 
+                                    control={control} 
+                                    name="registroNumCasa"
+                                    defaultValue=""  
+                                    rules={{
+                                        required: {value: true, message: 'Número de domicilio es obligatorio'},
+                                        minLength: { value: 2, message: 'El número tiene que ser mas largo' },
+                                    }}
+                                    render={({ field: { onChange, value, ref } }) => (
+                                        <Form.Control
+                                            onChange={onChange} 
+                                            value={value} 
+                                            ref={ref}  
+                                            type="text" 
+                                            placeholder="Ingresa tu número de domicilio"
+                                        />
+                                    )}
+                                />
+                                {errors.registroNumCasa && 
+                                    <Form.Text className="text-danger" variant='danger'>
+                                        {errors.registroNumCasa.message}
+                                    </Form.Text> 
+                                } 
+                            </Form.Group> 
+                        </Row>
+                        <Row className="mb-md-3">
+                            <Form.Group as={Col} md={6}>
                                 <Form.Label>Correo*</Form.Label>
                                 <Controller 
                                     control={control} 
@@ -230,64 +288,41 @@ export const PersonalRegisterForm = ({goNextPage}) => {
                                     </Form.Text> 
                                 } 
                             </Form.Group>
-                        </Row>
-                        <Row className="mb-3">
-                            <Form.Group as={Col}>
-                                <Form.Label>Dirección</Form.Label>
+                            <Form.Group as={Col} md={6}>
+                                <Form.Label>Confirmar correo*</Form.Label>
                                 <Controller 
                                     control={control} 
-                                    name="registroDireccion"
+                                    name="registroConfirCorreo"
                                     defaultValue=""  
                                     rules={{
-                                        required: {value: true, message: 'La dirección de domicilio es obligatorio'},
-                                        minLength: { value: 2, message: 'La direccion tiene que ser mas larga' }
+                                        required: {value: true, message: 'Correo es obligatorio'},
+                                        pattern: '^\S+@\S+$',
+                                        minLength: { value: 2, message: 'El correo tiene que ser mas largo' },
+                                        validate: (val) => {
+                                            if (watch('registroCorreo') != val) {
+                                                return "Los correos no coinciden";
+                                            }
+                                        }
                                     }}
                                     render={({ field: { onChange, value, ref } }) => (
                                         <Form.Control
                                             onChange={onChange} 
                                             value={value} 
                                             ref={ref}  
-                                            type="text"  
-                                            placeholder="Ingresa tu dirección de domicilio" 
+                                            type="email" 
+                                            placeholder="Ingresa tu correo electronico" 
                                         />
                                     )}
                                 />
-                                {errors.registroDireccion && 
+                                {errors.registroConfirCorreo && 
                                     <Form.Text className="text-danger" variant='danger'>
-                                        {errors.registroDireccion.message}
+                                        {errors.registroConfirCorreo.message}
                                     </Form.Text> 
                                 } 
                             </Form.Group>
-                            <Form.Group as={Col}>
-                                <Form.Label>Número de domicilio</Form.Label>
-                                <Controller 
-                                    control={control} 
-                                    name="registroNumCasa"
-                                    defaultValue=""  
-                                    rules={{
-                                        required: {value: true, message: 'Número de domicilio es obligatorio'},
-                                        minLength: { value: 2, message: 'El número tiene que ser mas largo' },
-                                    }}
-                                    render={({ field: { onChange, value, ref } }) => (
-                                        <Form.Control
-                                            onChange={onChange} 
-                                            value={value} 
-                                            ref={ref}  
-                                            type="text" 
-                                            placeholder="Ingresa tu número de domicilio"
-                                        />
-                                    )}
-                                />
-                                {errors.registroNumCasa && 
-                                    <Form.Text className="text-danger" variant='danger'>
-                                        {errors.registroNumCasa.message}
-                                    </Form.Text> 
-                                } 
-                            </Form.Group>
-                            
                         </Row>
-                        <Row className="mb-3">
-                            <Form.Group  as={Col}>
+                        <Row className="mb-md-3">
+                            <Form.Group  as={Col} md={6}>
                                 <Form.Label>Contraseña*</Form.Label>
                                 <Controller 
                                     control={control} 
@@ -312,7 +347,7 @@ export const PersonalRegisterForm = ({goNextPage}) => {
                                     </Form.Text> 
                                 } 
                             </Form.Group>
-                            <Form.Group  as={Col}>
+                            <Form.Group as={Col} md={6}>
                                 <Form.Label>Confirmar contraseña*</Form.Label>
                                 <Controller 
                                     control={control} 
@@ -343,8 +378,8 @@ export const PersonalRegisterForm = ({goNextPage}) => {
                                 } 
                             </Form.Group>
                         </Row>
-                        <div className="d-flex justify-content-between">
-                            <Button variant="primary" onClick={() => handleHome()}>Home</Button>
+                        <div className="d-flex justify-content-between mt-xs-5">
+                            <Button variant="primary" onClick={() => handleHome()}>Volver a inicio</Button>
                             <Button variant="dark" type="submit">Siguiente</Button>
                         </div>
                     </Form> 

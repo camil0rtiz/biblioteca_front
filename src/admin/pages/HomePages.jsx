@@ -93,8 +93,8 @@ export const HomePages = () => {
                     className="mb-3"
                     icon={<CIcon width={24} icon={cilSettings} size="xl" />}
                     padding={false}
-                    title="income"
-                    value="$1.999,50"
+                    title="Libros reservados"
+                    value="5"
                     color="primary"
                 />
                 </CCol>
@@ -103,8 +103,8 @@ export const HomePages = () => {
                     className="mb-3"
                     icon={<CIcon width={24} icon={cilUser} size="xl" />}
                     padding={false}
-                    title="income"
-                    value="$1.999,50"
+                    title="Entregas vencidas"
+                    value="4"
                     color="info"
                 />
                 </CCol>
@@ -113,8 +113,8 @@ export const HomePages = () => {
                     className="mb-3"
                     icon={<CIcon width={24} icon={cilMoon} size="xl" />}
                     padding={false}
-                    title="income"
-                    value="$1.999,50"
+                    title="Reservas pendientes"
+                    value="4"
                     color="warning"
                 />
                 </CCol>
@@ -123,8 +123,8 @@ export const HomePages = () => {
                     className="mb-3"
                     icon={<CIcon width={24} icon={cilBell} size="xl" />}
                     padding={false}
-                    title="income"
-                    value="$1.999,50"
+                    title="Usuarios pendientes"
+                    value="2"
                     color="danger"
                 />
             </CCol>
