@@ -8,6 +8,7 @@ import { startListarUsuariosHabilitados } from '../../store/auth/thunk'
 import { onAgregarUser } from '../../store/auth/userSlice'
 import { FiltroComponent } from "../components/FiltroComponent"
 import { AccionesTable } from '../components/AccionesTable'
+import Swal from 'sweetalert2'
 
 const paginacionOpciones = {
     rowsPerPageText: 'Filas por página',
@@ -73,7 +74,7 @@ export const UsuariosPages = () => {
                                     </CButton>
                                 </div>
                                 <div>
-                                    <CButton color="danger" disabled={(data.id_rol == 1 ? true : false)}>
+                                    <CButton color="danger" disabled={(data.id_rol == 1 ? true : false)} onClick={() => handleEliminarUsuario(data)}>
                                         Eliminar
                                     </CButton>  
                                 </div>
@@ -119,6 +120,29 @@ export const UsuariosPages = () => {
             }))
 
         }
+
+    }
+
+    const handleEliminarUsuario = ({id}) => {
+
+        Swal.fire({
+            title: '¿Estás seguro de querer habilitar a usuario?',
+            text: "¡Asegurate de haber revisado los comprobantes!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Si, deseo habilitar',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire(
+                    'Habilitado!',
+                    'El usuario ha sido habilitado correctamente correctamente.',
+                    'success'
+                )
+            }
+        })
 
     }
 

@@ -2,6 +2,7 @@ import { NavLink } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
 import { CAlert, CBreadcrumb, CBreadcrumbItem, CButton, CCard, CCardBody, CCardImage, CCardText, CCardTitle, CCol, CContainer, CHeaderDivider, CImage, CListGroup, CListGroupItem, CRow } from "@coreui/react"
 import { startReservarLibro } from "../../store/prestamos/thunk"
+import Swal from 'sweetalert2'
 
 export const ReservaLibroPage = () => {
 

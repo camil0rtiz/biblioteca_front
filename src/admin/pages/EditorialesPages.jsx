@@ -8,6 +8,7 @@ import { onAgregarEditorial } from '../../store/biblioteca/editorialSlice'
 import { AccionesTable } from '../components/AccionesTable'
 import { FiltroComponent } from '../components/FiltroComponent'
 import { CButton, CCard, CCardBody, CCardHeader, CCol, CContainer, CRow } from '@coreui/react'
+import Swal from 'sweetalert2'
 
 const paginacionOpciones = {
     rowsPerPageText: 'Filas por página',
@@ -52,7 +53,7 @@ export const EditorialesPages = () => {
                                     </CButton>
                                 </div>
                                 <div>
-                                    <CButton color="danger">
+                                    <CButton color="danger" onClick={() => handleEliminarEditorial(data)}>
                                         Eliminar
                                     </CButton> 
                                 </div>
@@ -66,6 +67,29 @@ export const EditorialesPages = () => {
         dispatch(onOpenModal())
 
         id && dispatch(onAgregarEditorial({id, editorialNombre: nombre_editorial}))
+
+    }
+
+    const handleEliminarEditorial = () => {
+
+        Swal.fire({
+            title: '¿Estás seguro de querer eliminar un autor?',
+            text: "¡No podrás revertir esto!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Si, deseo eliminar',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire(
+                    '¡Eliminado!',
+                    'El autor ha sido eliminado correctamente.',
+                    'success'
+                )
+            }
+        })
 
     }
 

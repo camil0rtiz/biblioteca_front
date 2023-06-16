@@ -4,6 +4,7 @@ import { useForm, Controller } from "react-hook-form"
 import { Form, Button, ProgressBar, Alert } from 'react-bootstrap'
 import { startAgregarUsuario } from "../../store/auth/thunk"
 import { CCard, CCardBody, CCardGroup } from "@coreui/react"
+import Swal from 'sweetalert2'
 
 export const ComprobanteRegisterForm = ({ goBackPage }) => {
     

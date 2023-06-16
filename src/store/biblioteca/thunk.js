@@ -166,6 +166,29 @@ export const startActualizarAutor = ({id, autorNombre}) => {
     }
 }
 
+export const startEliminarAutor = ({id, estado_autor}) => {
+
+    return async( dispatch ) => {
+
+        try {
+
+            const {data} = await bibliotecaApi.put(`autores/eliminar/${id}`, {
+                'estado_autor': estado_autor,
+            })
+
+            console.log('hola camilo');
+
+            dispatch(onSaveAutor())
+    
+        } catch (error) {
+
+            console.error(error);
+
+        }
+
+    }
+}
+
 export const startAgregarEditorial = ({editorialNombre}) => {
 
     return async( dispatch ) => {

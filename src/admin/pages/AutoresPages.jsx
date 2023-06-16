@@ -8,6 +8,7 @@ import { onOpenModal } from '../../store/ui/uiSlice'
 import { onAgregarAutor } from '../../store/biblioteca/autorSlice'
 import { FiltroComponent } from '../components/FiltroComponent'
 import { AccionesTable } from '../components/AccionesTable'
+import Swal from 'sweetalert2'
 
 const paginacionOpciones = {
     rowsPerPageText: 'Filas por página',
@@ -53,7 +54,7 @@ export const AutoresPages = () => {
                                     </CButton>
                                 </div>
                                 <div>
-                                    <CButton color="danger">
+                                    <CButton color="danger" onClick={() => handleEliminarAutor(data)}>
                                         Eliminar
                                     </CButton>
                                 </div>
@@ -68,6 +69,29 @@ export const AutoresPages = () => {
 
         id && dispatch(onAgregarAutor({id, autorNombre: nombre_autor}))
     
+    }
+
+    const handleEliminarAutor = ({id}) => {
+
+        Swal.fire({
+            title: '¿Estás seguro de querer eliminar un autor?',
+            text: "¡No podrás revertir esto!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Si, deseo eliminar',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire(
+                    '¡Eliminado!',
+                    'El autor ha sido eliminado correctamente.',
+                    'success'
+                )
+            }
+        })
+
     }
 
     const data = autores.data

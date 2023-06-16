@@ -6,6 +6,7 @@ import { CButton, CCard, CCardBody, CCardHeader, CCol, CContainer, CRow, CWidget
 import { FiltroComponent } from "../components/FiltroComponent"
 import CIcon from "@coreui/icons-react"
 import { cilBell, cilMoon, cilSettings, cilUser } from "@coreui/icons"
+import Swal from "sweetalert2"
 
 const paginacionOpciones = {
     rowsPerPageText: 'Filas por página',
@@ -30,7 +31,25 @@ export const HomePages = () => {
 
         let estadoUsuario = 1
 
-        dispatch(startHabilitarUsuario(id,estadoUsuario))
+        Swal.fire({
+            title: '¿Estás seguro de querer habilitar a usuario?',
+            text: "¡Asegurate de haber revisado los comprobantes!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Si, deseo habilitar',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                dispatch(startHabilitarUsuario(id,estadoUsuario))
+                Swal.fire(
+                    'Habilitado!',
+                    'El usuario ha sido habilitado correctamente correctamente.',
+                    'success'
+                )
+            }
+        })
 
     }
 

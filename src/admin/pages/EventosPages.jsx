@@ -55,7 +55,7 @@ export const EventosPages = () => {
                                     </CButton>
                                 </div>
                                 <div>
-                                    <CButton color="danger" onClick={() => handleEliminar(data)}>
+                                    <CButton color="danger" onClick={() => handleEliminarEvento(data)}>
                                         Eliminar
                                     </CButton> 
                                 </div>
@@ -83,7 +83,7 @@ export const EventosPages = () => {
 
     }
 
-    const handleEliminar = ({id}) => {
+    const handleEliminarEvento = ({id}) => {
 
         const estado_evento = 2
 
