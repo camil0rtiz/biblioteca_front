@@ -382,26 +382,46 @@ export const startAgregarEvento = ({eventoTitulo,eventoImagen,eventoDescripcion,
 
 export const startActualizarEvento = ({id,eventoTitulo,eventoImagen,eventoDescripcion,id_categoria}) => {
 
-    return async( dispatch ) => {
+    return async(dispatch) => {
 
-        // try {
+        try {
 
-        //     const { data } = await bibliotecaApi.post('eventos/agregar', {
-        //         id_categoria,
-        //         id_usuario,
-        //         estado_evento,
-        //         'titulo_evento': eventoTitulo,
-        //         'descripcion_evento': eventoDescripcion,
-        //     })
+            const { data } = await bibliotecaApi.put('eventos/actualizar', {
+                id_categoria,
+                id_usuario,
+                'titulo_evento': eventoTitulo,
+                'descripcion_evento': eventoDescripcion,
+            })
             
-        //     dispatch(onCloseModal())
-        //     dispatch(onSaveEvento())
+            dispatch(onCloseModal())
+            dispatch(onSaveEvento())
             
-        // } catch (error) {
+        } catch (error) {
         
-        //     console.error(error)
+            console.error(error)
             
-        // }
+        }
+
+    }
+}
+
+export const startEliminarEvento = ({id, estado_evento}) => {
+
+    return async(dispatch) => {
+
+        try {
+    
+            const { data } = await bibliotecaApi.put(`eventos/eliminar/${id}`, {
+                'estado_evento': estado_evento,
+            })
+
+            dispatch(onSaveEvento())
+                    
+        } catch (error) {
+        
+            console.error(error)
+            
+        }
 
     }
 }

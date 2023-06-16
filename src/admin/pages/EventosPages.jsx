@@ -6,9 +6,10 @@ import { EventosModal } from '../components/modal/EventosModal'
 import { onOpenModal } from '../../store/ui/uiSlice'
 import { AccionesTable } from '../components/AccionesTable'
 import { FiltroComponent } from '../components/FiltroComponent'
-import { startListarEventos } from '../../store/biblioteca/thunk'
+import { startEliminarEvento, startListarEventos } from '../../store/biblioteca/thunk'
 import { onAgregarEvento } from '../../store/biblioteca/eventoSlice'
 import { ExpandedEventos } from '../components/ExpandedEventos'
+import Swal from 'sweetalert2'
 
 const paginacionOpciones = {
     rowsPerPageText: 'Filas por página',
@@ -54,7 +55,7 @@ export const EventosPages = () => {
                                     </CButton>
                                 </div>
                                 <div>
-                                    <CButton color="danger">
+                                    <CButton color="danger" onClick={() => handleEliminar(data)}>
                                         Eliminar
                                     </CButton> 
                                 </div>
@@ -80,6 +81,32 @@ export const EventosPages = () => {
         
         }
 
+    }
+
+    const handleEliminar = ({id}) => {
+
+        const estado_evento = 2
+
+        Swal.fire({
+            title: '¿Estás seguro de querer eliminar un evento?',
+            text: "¡No podrás revertir esto!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Si, deseo eliminar',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                dispatch(startEliminarEvento({id, estado_evento}))
+                Swal.fire(
+                    '¡Eliminado!',
+                    'El evento ha sido eliminado correctamente.',
+                    'success'
+                )
+            }
+        })
+        
     }
 
     const data = eventos.data
