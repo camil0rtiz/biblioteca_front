@@ -17,6 +17,8 @@ export const EditorialesModal = () => {
 
     const onSubmit = ({id, editorialNombre}) => {
 
+        const estadoEditorial = 1
+
         if(id){
             
             dispatch(startActualizarEditorial({id, editorialNombre})) 
@@ -25,7 +27,7 @@ export const EditorialesModal = () => {
             
         }
 
-        dispatch(startAgregarEditorial({editorialNombre}))
+        dispatch(startAgregarEditorial({editorialNombre, estadoEditorial}))
 
     }
 

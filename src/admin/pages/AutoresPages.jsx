@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { CButton, CCard, CCardBody, CCardHeader, CCol, CContainer, CRow } from '@coreui/react'
 import DataTable from "react-data-table-component"
-import { startListarAutores } from '../../store/biblioteca/thunk'
+import { startEliminarAutor, startListarAutores } from '../../store/biblioteca/thunk'
 import { AutoresModal } from '../components/modal/AutoresModal'
 import { onOpenModal } from '../../store/ui/uiSlice'
 import { onAgregarAutor } from '../../store/biblioteca/autorSlice'
@@ -73,6 +73,8 @@ export const AutoresPages = () => {
 
     const handleEliminarAutor = ({id}) => {
 
+        let estado_autor = 2
+
         Swal.fire({
             title: '¿Estás seguro de querer eliminar un autor?',
             text: "¡No podrás revertir esto!",
@@ -84,6 +86,7 @@ export const AutoresPages = () => {
             cancelButtonText: 'Cancelar'
         }).then((result) => {
             if (result.isConfirmed) {
+                dispatch(startEliminarAutor({id, estado_autor}))
                 Swal.fire(
                     '¡Eliminado!',
                     'El autor ha sido eliminado correctamente.',

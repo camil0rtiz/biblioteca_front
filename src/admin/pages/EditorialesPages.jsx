@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { startBuscarEditorial } from '../../store/biblioteca/thunk'
+import { startBuscarEditorial, startEliminarEditorial } from '../../store/biblioteca/thunk'
 import DataTable from "react-data-table-component"
 import { onOpenModal } from '../../store/ui/uiSlice'
 import { EditorialesModal } from '../components/modal/EditorialesModal'
@@ -70,7 +70,9 @@ export const EditorialesPages = () => {
 
     }
 
-    const handleEliminarEditorial = () => {
+    const handleEliminarEditorial = ({id}) => {
+
+        let estado_editorial = 2
 
         Swal.fire({
             title: '¿Estás seguro de querer eliminar un autor?',
@@ -83,6 +85,7 @@ export const EditorialesPages = () => {
             cancelButtonText: 'Cancelar'
         }).then((result) => {
             if (result.isConfirmed) {
+                dispatch(startEliminarEditorial({id, estado_editorial}))
                 Swal.fire(
                     '¡Eliminado!',
                     'El autor ha sido eliminado correctamente.',

@@ -17,6 +17,8 @@ export const AutoresModal = () => {
 
     const onSubmit = ({id,autorNombre}) => {
 
+        const estadoAutor = 1
+
         if(id){
             
             dispatch(startActualizarAutor({id,autorNombre}))  
@@ -24,7 +26,7 @@ export const AutoresModal = () => {
             return          
         }
 
-        dispatch(startAgregarAutor({autorNombre}))
+        dispatch(startAgregarAutor({autorNombre, estadoAutor}))
 
     }
     

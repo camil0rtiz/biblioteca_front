@@ -93,11 +93,18 @@ export const HomePages = () => {
         {
             name: 'Acciones',
             button: true,
-            cell: (data) => <div>
-                                <CButton onClick={() => handleHabilitar(data.id)} color="primary" >
-                                    Habilitar
-                                </CButton>
-                            </div> 
+            cell: (data) => <>
+                                <div>
+                                    <CButton onClick={() => handleHabilitar(data.id)} color="primary" >
+                                        Habilitar
+                                    </CButton>
+                                </div> 
+                                <div>
+                                    <CButton onClick={() => handleHabilitar(data.id)} color="primary" >
+                                        Rechazar
+                                    </CButton>
+                                </div>
+                            </> 
         }, 
     ];
 

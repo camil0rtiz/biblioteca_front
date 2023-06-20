@@ -94,7 +94,28 @@ export const startActualizarLibro = ({id, tituloLibro, isbnLibro, deweyLibro, ca
     }
 }
 
-export const startAgregarAutor = ({autorNombre, agregarAutorSelect}) => {
+export const startEliminarLibro = ({id, estado_libro}) => {
+
+    return async( dispatch ) => {
+
+        try {
+
+            const {data} = await bibliotecaApi.put(`libros/eliminar/${id}`, {
+                'estado_libro': estado_libro,
+            });
+
+            dispatch(onSaveLibro())
+            
+        } catch (error) {
+        
+            console.error(error)
+            
+        }
+
+    }
+}
+
+export const startAgregarAutor = ({autorNombre, agregarAutorSelect, estadoAutor}) => {
 
     return async( dispatch ) => {
 
@@ -102,6 +123,7 @@ export const startAgregarAutor = ({autorNombre, agregarAutorSelect}) => {
 
             const { data } = await bibliotecaApi.post('autores/agregar', {
                 'nombre_autor': autorNombre,
+                'estado_autor': estadoAutor 
             })
             
             if(!agregarAutorSelect){
@@ -176,8 +198,6 @@ export const startEliminarAutor = ({id, estado_autor}) => {
                 'estado_autor': estado_autor,
             })
 
-            console.log('hola camilo');
-
             dispatch(onSaveAutor())
     
         } catch (error) {
@@ -189,7 +209,7 @@ export const startEliminarAutor = ({id, estado_autor}) => {
     }
 }
 
-export const startAgregarEditorial = ({editorialNombre}) => {
+export const startAgregarEditorial = ({editorialNombre, estadoEditorial}) => {
 
     return async( dispatch ) => {
 
@@ -197,6 +217,7 @@ export const startAgregarEditorial = ({editorialNombre}) => {
 
             const { data } = await bibliotecaApi.post('editoriales/agregar', {
                 'nombre_editorial': editorialNombre,
+                'estado_editorial': estadoEditorial
             })
 
             dispatch(onLoadingFalseE())
@@ -265,6 +286,27 @@ export const startActualizarEditorial = ({id, editorialNombre}) => {
 
             dispatch(onClearEditoriales())
             dispatch(onCloseModal())
+            dispatch(onSaveEditorial())
+    
+        } catch (error) {
+
+            console.error(error);
+
+        }
+
+    }
+}
+
+export const startEliminarEditorial = ({id, estado_editorial}) => {
+
+    return async( dispatch ) => {
+
+        try {
+
+            const {data} = await bibliotecaApi.put(`editoriales/eliminar/${id}`, {
+                'estado_editorial': estado_editorial,
+            })
+
             dispatch(onSaveEditorial())
     
         } catch (error) {

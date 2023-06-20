@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import DataTable from "react-data-table-component"
 import { CButton, CCard, CCardBody, CCardHeader, CCol, CContainer, CRow } from '@coreui/react'
-import { startListarLibros } from "../../store/biblioteca/thunk";
+import { startEliminarLibro, startListarLibros } from "../../store/biblioteca/thunk";
 import { onOpenModal, onOpenModalEjemplar } from "../../store/ui/uiSlice"
 import { LibrosModal } from '../components/modal/LibrosModal'
 import { ExpandedLibros } from '../components/ExpandedLibros'
@@ -127,6 +127,8 @@ export const LibrosPages = () => {
 
     const handleEliminarLibro = ({id}) => {
 
+        let estado_libro = 2
+
         Swal.fire({
             title: '¿Estás seguro de querer eliminar un libro?',
             text: "¡No podrás revertir esto!",
@@ -138,6 +140,7 @@ export const LibrosPages = () => {
             cancelButtonText: 'Cancelar'
         }).then((result) => {
             if (result.isConfirmed) {
+                dispatch(startEliminarLibro({id, estado_libro}))
                 Swal.fire(
                     '¡Eliminado!',
                     'El libro ha sido eliminado correctamente.',
