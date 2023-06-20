@@ -20,9 +20,26 @@ export const ComprobanteRegisterForm = ({ goBackPage }) => {
 
         const estadoUsuario = 2
 
-        dispatch(startAgregarUsuario({...initialUsuario, estadoUsuario, registroComproTransferencia, registroComproDomicilio}))
-
-        navigate('/')
+        Swal.fire({
+            title: '¿Estás seguro de querer registrarte?',
+            text: "¡No podrás revertir esto!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Si, deseo registrarme',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                dispatch(startAgregarUsuario({...initialUsuario, estadoUsuario, registroComproTransferencia, registroComproDomicilio}))
+                navigate('/')
+                Swal.fire(
+                    '¡Felicidades!',
+                    'Has sido registrado correctamente.',
+                    'success'
+                )
+            }
+        })
 
     };
 

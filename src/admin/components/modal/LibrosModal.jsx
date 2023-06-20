@@ -116,9 +116,11 @@ export const LibrosModal = () => {
 
         const autorNombre = autor
 
+        let estadoAutor = 1
+
         dispatch(onLoadingTrue())
 
-        dispatch(startAgregarAutor({autorNombre, agregarAutorSelect}))
+        dispatch(startAgregarAutor({autorNombre, agregarAutorSelect, estadoAutor}))
 
     }
 

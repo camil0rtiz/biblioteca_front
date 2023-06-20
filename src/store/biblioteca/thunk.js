@@ -49,14 +49,12 @@ export const startListarLibros = (page, perPage, filterText) => {
 
         try {
 
-            const { data } = await bibliotecaApi.get(`libros/listar?page=${page}&per_page=${perPage}&id_libro=${filterText}`)
+            const { data } = await bibliotecaApi.get(`libros/listar?page=${page}&per_page=${perPage}&nombre=${filterText}`)
 
             dispatch(onCantidadPaginas(data.data2.total))
             dispatch(onCantidadPaginado(data.data2.last_page))
             dispatch(onListarLibros(data.data))
-
-            console.log(data.data2);
-                    
+            
         } catch (error) {
         
             console.error(error)
