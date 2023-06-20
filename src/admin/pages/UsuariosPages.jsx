@@ -28,8 +28,8 @@ export const UsuariosPages = () => {
     const dispatch = useDispatch()
 
     useEffect(() => {
-        dispatch(startListarUsuariosHabilitados())
-    }, [userSave])
+        dispatch(startListarUsuariosHabilitados(filterText))
+    }, [userSave,filterText])
     
     const columns = [
 

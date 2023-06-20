@@ -126,13 +126,13 @@ export const startAgregarUsuario = ({
     }
 }
 
-export const startListarUsuariosHabilitados = () => {
+export const startListarUsuariosHabilitados = (nombre) => {
 
     return async( dispatch ) => {
 
         try {
 
-            const response = await bibliotecaApi.get('usuarios/listarHabilitados')
+            const response = await bibliotecaApi.get(`usuarios/listarHabilitados?nombre=${nombre}`)
 
             dispatch(onListarUsersHabilitados(response.data))
 

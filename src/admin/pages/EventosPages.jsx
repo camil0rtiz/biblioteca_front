@@ -30,9 +30,9 @@ export const EventosPages = () => {
 
     useEffect(() => {
 
-        dispatch(startListarEventos())
+        dispatch(startListarEventos(filterText))
         
-    }, [eventoSave])
+    }, [eventoSave, filterText])
 
     const columns = [
         {

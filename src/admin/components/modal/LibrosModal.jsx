@@ -143,7 +143,7 @@ export const LibrosModal = () => {
                             />
                         )}
                     />
-                    <Form.Label>Titulo evento</Form.Label> 
+                    <Form.Label>Titulo libro</Form.Label> 
                     <Controller 
                         control={control} 
                         name="tituloLibro" 

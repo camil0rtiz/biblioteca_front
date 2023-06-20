@@ -61,7 +61,8 @@ export const DetallesLibroPages = () => {
                             <>
                                 <CCol md={6} lg={3}>
                                     <CCard border="light">
-                                        <CCardImage variant="top" src={`http://134.122.124.97/storage/${libro.url}`} />
+                                        <CCardImage variant="top" src={`http://localhost/biblioteca_vn_backend/storage/app/public/${libro.url}`} />
+                                        {/* <CCardImage variant="top" src={`http://134.122.124.97/storage/${libro.url}`} /> */}
                                         <CListGroup className="list-group-flush">
                                             <CListGroupItem>Categoría: {libro.categoria_libro}</CListGroupItem>
                                             <CListGroupItem>Páginas:</CListGroupItem>
@@ -73,14 +74,14 @@ export const DetallesLibroPages = () => {
                                     <CRow>
                                         <h1>{libro.titulo_libro} - {libro.autor.label[0]}</h1>
                                     </CRow>
-                                    <CRow>
+                                    {/* <CRow>
                                         <CCol className='border p-3 mt-3 text-center' lg={3}>
                                             <h6>Quedan 6 unidades</h6>
                                             <CListGroup>
                                                 <CListGroupItem><CButton color="danger" onClick={() => handleOpenCarrito(libro)}>Agregar</CButton></CListGroupItem>
                                             </CListGroup>
                                         </CCol>
-                                    </CRow>
+                                    </CRow> */}
                                     <CRow>
                                         <h3 className='mt-3'>Reseña "{libro.titulo_libro}": </h3>
                                         <h5 dangerouslySetInnerHTML={{ __html: libro.resena_libro }}></h5>

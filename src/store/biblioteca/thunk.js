@@ -43,17 +43,19 @@ export const startAgregarLibro = ({tituloLibro, isbnLibro, deweyLibro, categoria
     }
 }
 
-export const startListarLibros = (page, perPage) => {
+export const startListarLibros = (page, perPage, filterText) => {
 
     return async( dispatch ) => {
 
         try {
 
-            const { data } = await bibliotecaApi.get(`libros/listar?page=${page}&per_page=${perPage}}`)
+            const { data } = await bibliotecaApi.get(`libros/listar?page=${page}&per_page=${perPage}&id_libro=${filterText}`)
 
             dispatch(onCantidadPaginas(data.data2.total))
             dispatch(onCantidadPaginado(data.data2.last_page))
             dispatch(onListarLibros(data.data))
+
+            console.log(data.data2);
                     
         } catch (error) {
         
@@ -155,6 +157,25 @@ export const startListarAutores = () => {
             const response = await bibliotecaApi.get('autores/listar')
 
             dispatch(onListarAutores(response.data))
+                    
+        } catch (error) {
+        
+            console.error(error)
+            
+        }
+
+    }
+}
+
+export const startBuscarAutor = (autor) => {
+
+    return async( dispatch ) => {
+
+        try {
+
+            const { data } = await bibliotecaApi.get(`autores/buscar?nombre=${autor}`)
+
+            dispatch(onListarAutores(data))
                     
         } catch (error) {
         
@@ -368,13 +389,13 @@ export const startAgregarEjemplar = ({id_editorial, id_libro, anioEdiEjemplar, n
     }
 }
 
-export const startListarEventos = () => {
+export const startListarEventos = (titulo) => {
 
     return async( dispatch ) => {
 
         try {
-
-            const response = await bibliotecaApi.get('eventos/listar')
+    
+            const response = await bibliotecaApi.get(`eventos/listar?nombre=${titulo}`)
 
             dispatch(onListarEventos(response.data))
                     

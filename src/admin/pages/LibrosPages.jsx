@@ -22,7 +22,7 @@ const paginacionOpciones = {
 
 export const LibrosPages = () => {
 
-    const [filterText, setFilterText] = useState('')
+    const [ filterText, setFilterText] = useState('')
 
 	const [ perPage, setPerPage ] = useState(10)
 
@@ -36,9 +36,9 @@ export const LibrosPages = () => {
 
     useEffect(() => {
 
-        dispatch(startListarLibros(page, perPage))
+        dispatch(startListarLibros(page, perPage, filterText))
         
-    }, [libroSave, page, perPage])
+    }, [libroSave, page, perPage, filterText])
 
     const handleShow = ({id, titulo_libro, isbn_libro, dewey_libro, categoria_libro, numero_pagi_libro, anio_publi_libro, resena_libro, autor}) => {
 
@@ -90,7 +90,9 @@ export const LibrosPages = () => {
         {
             name: 'Portada',
             grow: 0,
-		    cell: (data) => <img height="100px" width="80px" src={`http://134.122.124.97/storage/${data.url}`}/>,
+            
+            cell: (data) => <img height="100px" width="80px" src={`http://localhost/biblioteca_vn_backend/storage/app/public/${data.url}`}/>,
+		    // cell: (data) => <img height="100px" width="80px" src={`http://134.122.124.97/storage/${data.url}`}/>,
             sortable: true,
         },
         {

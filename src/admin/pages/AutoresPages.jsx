@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { CButton, CCard, CCardBody, CCardHeader, CCol, CContainer, CRow } from '@coreui/react'
 import DataTable from "react-data-table-component"
-import { startEliminarAutor, startListarAutores } from '../../store/biblioteca/thunk'
+import { startBuscarAutor, startEliminarAutor } from '../../store/biblioteca/thunk'
 import { AutoresModal } from '../components/modal/AutoresModal'
 import { onOpenModal } from '../../store/ui/uiSlice'
 import { onAgregarAutor } from '../../store/biblioteca/autorSlice'
@@ -29,9 +29,9 @@ export const AutoresPages = () => {
 
     useEffect(() => {
 
-        dispatch(startListarAutores())
+        dispatch(startBuscarAutor(filterText))
         
-    }, [autorSave])
+    }, [autorSave, filterText])
 
     const columns = [
         {
