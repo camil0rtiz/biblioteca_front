@@ -27,6 +27,7 @@ export const ReservasPages = () => {
     }, [])
 
     const columns = [
+        
         {
             name: 'Rut usuario',
             selector: row => row.rut_usuario,

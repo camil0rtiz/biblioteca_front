@@ -99,17 +99,17 @@ export const LibrosPages = () => {
             name: 'Acciones',
             button: true,
             cell: (data) => <div className='d-flex justify-content-between'>
-                                <div className="mx-2">
+                                <div className="mx-1">
                                     <CButton color="info" onClick={() => handleShowEjemplar(data)}>
                                         Agregar Ejemplar
                                     </CButton>
                                 </div>
-                                <div className="mx-2">
+                                <div className="mx-1">
                                     <CButton color="warning" onClick={() => handleShow(data)}>
                                         Editar
                                     </CButton>
                                 </div>
-                                <div>
+                                <div className="mx-1">
                                     <CButton color="danger" onClick={() => handleEliminarLibro(data)}>
                                         Eliminar
                                     </CButton>

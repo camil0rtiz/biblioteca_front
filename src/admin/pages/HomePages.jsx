@@ -82,29 +82,27 @@ export const HomePages = () => {
             sortable: true,
         },
         {
-            name: 'Comprobante',
-            button: true,
-            cell: (data) => <div>
-                                <CButton onClick={() => handleDescargarComprobante(data.id)} color="info" >
-                                    Descargar 
-                                </CButton>
-                            </div> 
-        }, 
-        {
             name: 'Acciones',
             button: true,
-            cell: (data) => <>
-                                <div>
-                                    <CButton onClick={() => handleHabilitar(data.id)} color="primary" >
+            cell: (data) => 
+                            <div className='d-flex justify-content-between'>
+                                <div className="mx-1">
+                                    <CButton onClick={() => handleDescargarComprobante(data.id)} color="info">
+                                        Descargar
+                                    </CButton>
+                                </div>
+                                <div className="mx-1">
+                                    <CButton onClick={() => handleHabilitar(data.id)} color="primary">
                                         Habilitar
                                     </CButton>
-                                </div> 
-                                <div>
-                                    <CButton onClick={() => handleHabilitar(data.id)} color="primary" >
+                                </div>
+                                <div className="mx-1">
+                                    <CButton onClick={() => handleHabilitar(data.id)} color="danger">
                                         Rechazar
                                     </CButton>
                                 </div>
-                            </> 
+                            </div>,
+            width: "400px" 
         }, 
     ];
 
