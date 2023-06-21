@@ -37,9 +37,15 @@ export const carritoSlice = createSlice({
 
             state.carrito.splice( index, 1 )
 
+        },
+
+        onClearCarrito: ( state ) => {
+
+            state.carrito = []
+
         }
     }
 
 }) 
 
-export const { onAgregarLibroCarrito, onEliminarLibroCarrito } = carritoSlice.actions
+export const { onAgregarLibroCarrito, onEliminarLibroCarrito, onClearCarrito } = carritoSlice.actions

@@ -1,8 +1,10 @@
-import { NavLink } from "react-router-dom"
+import { NavLink, useNavigate } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
 import { CAlert, CBreadcrumb, CBreadcrumbItem, CButton, CCard, CCardBody, CCardImage, CCardText, CCardTitle, CCol, CContainer, CHeaderDivider, CImage, CListGroup, CListGroupItem, CRow } from "@coreui/react"
 import { startReservarLibro } from "../../store/prestamos/thunk"
 import Swal from 'sweetalert2'
+import '../../assets/css/reservas.css'
+import { onEliminarLibroCarrito } from "../../store/prestamos/carritoSlice"
 
 export const ReservaLibroPage = () => {
 
@@ -12,7 +14,11 @@ export const ReservaLibroPage = () => {
 
     const dispatch = useDispatch()
 
+    const navigate = useNavigate()
+
     const handleReserva = () => {
+
+        let estadoReserva = 1
 
         let librosReservados = []
 
@@ -20,9 +26,35 @@ export const ReservaLibroPage = () => {
             librosReservados.push(cart.id)
         })
 
-        dispatch(startReservarLibro(librosReservados, user.id))
+        Swal.fire({
+            title: '¿Estás seguro de querer reservar los libros?',
+            text: "¡No podrás revertir esto!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Si, deseo reservar',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                dispatch(startReservarLibro(librosReservados, user.id, estadoReserva))
+                navigate('/')
+                Swal.fire(
+                    '¡Felicidades!',
+                    'Los libros han sido reservados correctamente.',
+                    'success'
+                )
+            }
+        })
 
     }
+
+    const handleEliminarLibro = (id) => {
+
+        dispatch(onEliminarLibroCarrito(id))
+
+    }
+
 
     return (
         <>
@@ -46,19 +78,19 @@ export const ReservaLibroPage = () => {
 
                             ):(
                                 <> 
-                                    <CCol>
+                                    <CCol className="mb-3">
                                         {carrito.map((cart) => (
                                             <CCard key={cart.id}>
                                                 <CRow className="g-0">
-                                                    <CCol md={4}>
+                                                    <CCol className="card_imagen_reserva" xs={4}>
                                                         <CCardImage src={` http://localhost/biblioteca_vn_backend/storage/app/public/${cart.url}`}/>
                                                         {/* <CCardImage src={`http://134.122.124.97/storage/${cart.url}`}/> */}
                                                     </CCol>
-                                                    <CCol md={8}>
+                                                    <CCol xs={8}>
                                                         <CCardBody className='d-flex justify-content-center align-items-center'>
                                                             <CCardTitle>{cart.titulo_libro}</CCardTitle>
                                                             <CCardText>
-                                                                <CButton color="danger">Eliminar</CButton>
+                                                                <CButton onClick={() => handleEliminarLibro(cart.id)} color="danger">Eliminar</CButton>
                                                             </CCardText>
                                                         </CCardBody>
                                                     </CCol>

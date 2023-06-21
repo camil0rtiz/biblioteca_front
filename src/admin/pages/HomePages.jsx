@@ -183,34 +183,6 @@ export const HomePages = () => {
                     </CCard>
                 </CCol>
             </CRow>
-            <CRow>
-                <CCol xs={12}>
-                    <CCard className="mb-4">
-                        <CCardHeader>
-                            <strong>Libros reservados</strong> 
-                        </CCardHeader>
-                        <CCardBody>
-                            <DataTable
-                                title="Tabla Vecinos Pendientes"
-                                responsive
-                                pagination
-                                columns={columns}
-                                data={data}
-                                highlightOnHover={true}
-                                paginationComponentOptions={paginacionOpciones}
-                                noDataComponent={<span className='mt-4'>No se encontro ningún elemento</span>}
-                                fixedHeader
-                                fixedHeaderScrollHeight="600px"
-                                persistTableHead
-                                striped
-                                subHeader
-                                subHeaderComponent={<FiltroComponent onFilter={e => setFilterText(e.target.value)} filterText={filterText} onPlaceholder={'Filtra por nombre'} />}
-                                // actions={ <AccionesTable onExport={usersPendientes} onNombreBoton={'Agregar Autor'} />}
-                            />
-                        </CCardBody>
-                    </CCard>
-                </CCol>
-            </CRow>
         </CContainer>
         
     )
