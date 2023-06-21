@@ -23,7 +23,7 @@ export const LibrosPages = () => {
 
         let perPage = 10
 
-        dispatch(startListarLibros(page, perPage))
+        dispatch(startListarLibros(page, perPage, ''))
 
     }, [page])
 
@@ -70,7 +70,7 @@ export const LibrosPages = () => {
                     {libros.map((libro) => (
                         <CCol key={libro.id}>
                             <CCard border="light">
-                                <CCardImage style={{height: 360}} variant="top" src={`http://localhost/biblioteca_vn_backend/storage/app/public//${libro.url}`} />
+                                <CCardImage style={{height: 360}} variant="top" src={`http://localhost/biblioteca_vn_backend/storage/app/public/${libro.url}`} />
                                 {/* <CCardImage style={{height: 360}} variant="top" src={`http://134.122.124.97/storage/${libro.url}`} /> */}
                                 <CCardBody>
                                     <CCardTitle className="text-center"><Link to={`/libros/${libro.id}`}>{libro.titulo_libro}</Link></CCardTitle>

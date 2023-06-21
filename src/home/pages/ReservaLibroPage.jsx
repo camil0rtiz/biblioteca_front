@@ -51,7 +51,8 @@ export const ReservaLibroPage = () => {
                                             <CCard key={cart.id}>
                                                 <CRow className="g-0">
                                                     <CCol md={4}>
-                                                        <CCardImage src={`http://134.122.124.97/storage/${cart.url}`}/>
+                                                        <CCardImage src={` http://localhost/biblioteca_vn_backend/storage/app/public/${cart.url}`}/>
+                                                        {/* <CCardImage src={`http://134.122.124.97/storage/${cart.url}`}/> */}
                                                     </CCol>
                                                     <CCol md={8}>
                                                         <CCardBody className='d-flex justify-content-center align-items-center'>
