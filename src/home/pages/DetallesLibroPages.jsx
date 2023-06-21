@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
-import { CBreadcrumb, CBreadcrumbItem, CButton, CCard, CCardImage, CCol, CContainer, CHeaderDivider, CListGroup, CListGroupItem, CRow, CSpinner } from '@coreui/react'
+import { CBreadcrumb, CBreadcrumbItem, CButton, CCard, CCardFooter, CCardImage, CCol, CContainer, CHeaderDivider, CListGroup, CListGroupItem, CRow, CSpinner } from '@coreui/react'
 import bibliotecaApi from '../../api/bibliotecaApi'
 import { onAgregarLibroCarrito } from '../../store/prestamos/carritoSlice'
 import { onOpenCarrito } from '../../store/ui/uiSlice'
@@ -55,7 +55,7 @@ export const DetallesLibroPages = () => {
                     </CBreadcrumb>
                 </CContainer>
             <CContainer>
-                <CRow>
+                <CRow className='mb-3'>
                     {
                         (libro) ? (
                             <>
@@ -64,24 +64,19 @@ export const DetallesLibroPages = () => {
                                         <CCardImage variant="top" src={`http://localhost/biblioteca_vn_backend/storage/app/public/${libro.url}`} />
                                         {/* <CCardImage variant="top" src={`http://134.122.124.97/storage/${libro.url}`} /> */}
                                         <CListGroup className="list-group-flush">
-                                            <CListGroupItem>Categoría: {libro.categoria_libro}</CListGroupItem>
-                                            <CListGroupItem>Páginas:</CListGroupItem>
-                                            <CListGroupItem>Año:</CListGroupItem> 
-                                        </CListGroup>
+                                            <CListGroupItem className="text-center"><CButton color="dark" className="text-center"onClick={() => handleOpenCarrito(libro)} disabled={(libro.cantidad_ejemplares == 0) ? true : false}>Agregar</CButton></CListGroupItem>
+                                        </CListGroup>     
+                                        <CCardFooter className="text-center">
+                                            <small className="text-muted">
+                                                Disponibles: {libro.cantidad_ejemplares}
+                                            </small>
+                                        </CCardFooter>
                                     </CCard>
                                 </CCol>
                                 <CCol md={6} lg={9}>
                                     <CRow>
                                         <h1>{libro.titulo_libro} - {libro.autor.label[0]}</h1>
                                     </CRow>
-                                    {/* <CRow>
-                                        <CCol className='border p-3 mt-3 text-center' lg={3}>
-                                            <h6>Quedan 6 unidades</h6>
-                                            <CListGroup>
-                                                <CListGroupItem><CButton color="danger" onClick={() => handleOpenCarrito(libro)}>Agregar</CButton></CListGroupItem>
-                                            </CListGroup>
-                                        </CCol>
-                                    </CRow> */}
                                     <CRow>
                                         <h3 className='mt-3'>Reseña "{libro.titulo_libro}": </h3>
                                         <h5 dangerouslySetInnerHTML={{ __html: libro.resena_libro }}></h5>

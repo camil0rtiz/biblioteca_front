@@ -82,16 +82,19 @@ export const ReservaLibroPage = () => {
                                         {carrito.map((cart) => (
                                             <CCard key={cart.id}>
                                                 <CRow className="g-0">
-                                                    <CCol className="card_imagen_reserva" xs={4}>
-                                                        <CCardImage src={` http://localhost/biblioteca_vn_backend/storage/app/public/${cart.url}`}/>
-                                                        {/* <CCardImage src={`http://134.122.124.97/storage/${cart.url}`}/> */}
+                                                    <CCol md={4} className="d-flex align-items-center justify-content-center">
+                                                        <CCardImage src={`http://localhost/biblioteca_vn_backend/storage/app/public/${cart.url}`} />
                                                     </CCol>
-                                                    <CCol xs={8}>
-                                                        <CCardBody className='d-flex justify-content-center align-items-center'>
-                                                            <CCardTitle>{cart.titulo_libro}</CCardTitle>
-                                                            <CCardText>
-                                                                <CButton onClick={() => handleEliminarLibro(cart.id)} color="danger">Eliminar</CButton>
-                                                            </CCardText>
+                                                    <CCol md={8}>
+                                                        <CCardBody className="d-flex flex-column align-items-center">
+                                                            <div className="text-center">
+                                                                <CCardTitle>{cart.titulo_libro}</CCardTitle>
+                                                            </div>
+                                                            <div className="mt-4 d-flex justify-content-center">
+                                                                <CButton onClick={() => handleEliminarLibro(cart.id)} color="danger">
+                                                                    Eliminar
+                                                                </CButton>
+                                                            </div>
                                                         </CCardBody>
                                                     </CCol>
                                                 </CRow>

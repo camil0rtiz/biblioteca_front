@@ -46,19 +46,19 @@ export const CarritoComponent = () => {
                     {carrito.map((cart) => (
                         <CCard key={cart.id} className="mb-3">
                             <CRow className="g-0">
-                                <CCol md={4}>
-                               
-                                    <CCardImage src={` http://localhost/biblioteca_vn_backend/storage/app/public/${cart.url}`} />
-                                    {/* <CCardImage src={`http://134.122.124.97/storage/${cart.url}`} /> */}
+                                <CCol xs={4} className="d-flex align-items-center justify-content-center">
+                                    <CCardImage src={`http://localhost/biblioteca_vn_backend/storage/app/public/${cart.url}`} />
                                 </CCol>
-                                <CCol md={8}>
-                                    <CCardBody  className='d-flex justify-content-center align-items-center'>
-                                        <CCardTitle>{cart.titulo_libro}</CCardTitle>
-                                        <CCardText>
+                                <CCol xs={8}>
+                                    <CCardBody className="d-flex flex-column align-items-center">
+                                        <div className="text-center">
+                                            <CCardTitle>{cart.titulo_libro}</CCardTitle>
+                                        </div>
+                                        <div className="mt-4 d-flex justify-content-center">
                                             <CButton onClick={() => handleEliminarLibro(cart.id)} color="danger">
                                                 Eliminar
                                             </CButton>
-                                        </CCardText>
+                                        </div>
                                     </CCardBody>
                                 </CCol>
                             </CRow>
