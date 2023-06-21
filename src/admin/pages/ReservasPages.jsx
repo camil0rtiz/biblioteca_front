@@ -1,5 +1,8 @@
-import { CCard, CCardHeader, CCol, CContainer, CRow, CCardBody } from '@coreui/react'
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { CCard, CCardHeader, CCol, CContainer, CRow, CCardBody, CButton } from '@coreui/react'
 import DataTable from 'react-data-table-component';
+import { startListarReservas } from '../../store/prestamos/thunk';
 import { FiltroComponent } from '../components/FiltroComponent';
 
 const paginacionOpciones = {
@@ -11,10 +14,21 @@ const paginacionOpciones = {
 
 export const ReservasPages = () => {
 
+    const [ filterText, setFilterText ] = useState('')
+
+    const { reservas } = useSelector(state => state.reserva)
+
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+
+        dispatch(startListarReservas())
+        
+    }, [])
+
     const columns = [
-    
         {
-            name: 'Rut',
+            name: 'Rut usuario',
             selector: row => row.rut_usuario,
             sortable: true,
         },
@@ -24,33 +38,42 @@ export const ReservasPages = () => {
             sortable: true,
         },
         {
-            name: 'Apellido Paterno',
+            name: 'Apellido paterno',
             selector: row => row.apellido_pate_usuario,
             sortable: true,
         },
         {
-            name: 'Correo',
-            selector: row => row.email,
+            name: 'Libro reservado',
+            selector: row => row.titulo_libro,
             sortable: true,
         },
-        // {
-        //     name: 'Comprobante',
-        //     button: true,
-        //     cell: (data) => <div>
-        //                         <CButton onClick={() => handleDescargarComprobante(data.id)} color="info" >
-        //                             Descargar 
-        //                         </CButton>
-        //                     </div> 
-        // }, 
-        // {
-        //     name: 'Acciones',
-        //     button: true,
-        //     cell: (data) => <div>
-        //                         <CButton onClick={() => handleHabilitar(data.id)} color="primary" >
-        //                             Habilitar
-        //                         </CButton>
-        //                     </div> 
-        // }, 
+        {
+            name: 'Fecha reserva',
+            selector: row => row.fecha_reserva,
+            sortable: true,
+        },
+        {
+            name: 'Estado reserva',
+            selector: row => row.estado_reserva,
+            sortable: true,
+        },
+        {
+            name: 'Acciones',
+            button: true,
+            cell: (data) => <div className='d-flex justify-content-between'>
+                                <div className="mx-2">
+                                    <CButton color="primary">
+                                        Prestar
+                                    </CButton>
+                                </div>
+                                <div>
+                                    <CButton color="danger">
+                                        Eliminar
+                                    </CButton>  
+                                </div>
+                            </div>,
+            width: "250px" 
+        }, 
     ];
 
     return (
@@ -67,7 +90,7 @@ export const ReservasPages = () => {
                                 responsive
                                 pagination
                                 columns={columns}
-                                // data={data}
+                                data={reservas}
                                 highlightOnHover={true}
                                 paginationComponentOptions={paginacionOpciones}
                                 noDataComponent={<span className='mt-4'>No se encontro ningún elemento</span>}
@@ -76,7 +99,7 @@ export const ReservasPages = () => {
                                 persistTableHead
                                 striped
                                 subHeader
-                                // subHeaderComponent={<FiltroComponent onFilter={e => setFilterText(e.target.value)} filterText={filterText} onPlaceholder={'Filtra por nombre'} />}
+                                subHeaderComponent={<FiltroComponent onFilter={e => setFilterText(e.target.value)} filterText={filterText} onPlaceholder={'Filtra por nombre'} />}
                                 // actions={ <AccionesTable onExport={usersPendientes} onNombreBoton={'Agregar Autor'} />}
                             />
                         </CCardBody>

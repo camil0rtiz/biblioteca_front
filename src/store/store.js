@@ -8,6 +8,7 @@ import { editorialSlice } from './biblioteca/editorialSlice'
 import { ejemplarSlice } from './biblioteca/ejemplarSlice'
 import { carritoSlice } from './prestamos/carritoSlice'
 import { eventoSlice } from './biblioteca/eventoSlice'
+import { reservaSlice } from './prestamos/reservaSlice'
 
 export const store = configureStore({
     reducer: {
@@ -20,6 +21,7 @@ export const store = configureStore({
         ejemplar: ejemplarSlice.reducer,
         evento: eventoSlice.reducer,
         carrito: carritoSlice.reducer,
+        reserva: reservaSlice.reducer
     },
 })
 

@@ -1,29 +1,6 @@
 import bibliotecaApi from "../../api/bibliotecaApi";
 import { onClearCarrito } from "./carritoSlice";
-
-// export const startPrestamoLibro = (librosReservados, idVecino) => {
-
-//     return async( dispatch ) => {
-
-//         try {
-
-//             const { data } = await bibliotecaApi.post('prestamos/reservar', { 
-//                 id_vecino: idVecino,
-//                 id_ejemplar: librosReservados,
-//                 estado_prestamo: 'pendiente'
-//             })
-
-//             console.log(data);
-
-//         } catch (error) {
-
-//             console.log(error);
-            
-//         }
-
-//     }
-
-// }
+import { onListarReservas } from "./reservaSlice";
 
 export const startReservarLibro = (librosReservados, idVecino, estadoReserva) => {
 
@@ -48,3 +25,23 @@ export const startReservarLibro = (librosReservados, idVecino, estadoReserva) =>
     }
 
 } 
+
+export const startListarReservas = () => {
+
+    return async( dispatch ) => {
+
+        try {
+
+            const {data} = await bibliotecaApi.get('reservas/listar')
+
+            dispatch(onListarReservas(data.data))
+                    
+        } catch (error) {
+        
+            console.error(error)
+            
+        }
+
+    }
+
+}
