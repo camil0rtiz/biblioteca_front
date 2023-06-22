@@ -337,6 +337,7 @@ export const startEliminarEditorial = ({id, estado_editorial}) => {
     }
 }
 
+//no usado
 export const startListarEjemplares = (id) => {
 
     return async( dispatch ) => {
@@ -357,8 +358,6 @@ export const startListarEjemplares = (id) => {
 }
 
 export const startAgregarEjemplar = ({id_editorial, id_libro, anioEdiEjemplar, numResgisEjemplar, deweyEjemplar ,estado_ejemplar}) => {
-
-    console.log({id_editorial, id_libro, anioEdiEjemplar, numResgisEjemplar,deweyEjemplar ,estado_ejemplar});
 
     return async( dispatch ) => {
 

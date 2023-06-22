@@ -6,6 +6,7 @@ export const reservaSlice = createSlice({
     initialState:{
 
         reservas: [],
+        reservaSave: false 
 
     },
         
@@ -15,8 +16,14 @@ export const reservaSlice = createSlice({
             state.reservas = payload
         },
 
+        onSaveReserva: (state) => {
+
+            (state.reservaSave == true) ? state.reservaSave = false : state.reservaSave = true 
+
+        }
+
     }
 
 }) 
 
-export const { onListarReservas } = reservaSlice.actions
+export const { onListarReservas, onSaveReserva } = reservaSlice.actions

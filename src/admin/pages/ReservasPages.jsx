@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { CCard, CCardHeader, CCol, CContainer, CRow, CCardBody, CButton } from '@coreui/react'
 import DataTable from 'react-data-table-component';
-import { startListarReservas } from '../../store/prestamos/thunk';
+import { startEliminarReserva, startListarReservas } from '../../store/prestamos/thunk';
 import { FiltroComponent } from '../components/FiltroComponent';
 
 const paginacionOpciones = {
@@ -16,7 +16,7 @@ export const ReservasPages = () => {
 
     const [ filterText, setFilterText ] = useState('')
 
-    const { reservas } = useSelector(state => state.reserva)
+    const { reservas, reservaSave } = useSelector(state => state.reserva)
 
     const dispatch = useDispatch()
 
@@ -24,7 +24,15 @@ export const ReservasPages = () => {
 
         dispatch(startListarReservas())
         
-    }, [])
+    }, [reservaSave])
+
+    const handleEliminarReserva = ({id}) => {
+
+        let estadoReserva = 4
+
+        dispatch(startEliminarReserva({id, estadoReserva}))
+
+    }
 
     const columns = [
         
@@ -68,7 +76,7 @@ export const ReservasPages = () => {
                                     </CButton>
                                 </div>
                                 <div>
-                                    <CButton color="danger">
+                                    <CButton color="danger" onClick={() => handleEliminarReserva(data)}>
                                         Eliminar
                                     </CButton>  
                                 </div>

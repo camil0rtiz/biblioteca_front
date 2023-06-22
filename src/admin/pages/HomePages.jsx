@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import DataTable from "react-data-table-component"
-import { startDescargarComprobante, startHabilitarUsuario, startListarUsuariosPendientes } from "../../store/auth/thunk"
+import { startHabilitarUsuario, startListarUsuariosPendientes } from "../../store/auth/thunk"
 import { CButton, CCard, CCardBody, CCardHeader, CCol, CContainer, CRow, CWidgetStatsF } from '@coreui/react'
 import { FiltroComponent } from "../components/FiltroComponent"
 import CIcon from "@coreui/icons-react"
 import { cilBell, cilMoon, cilSettings, cilUser } from "@coreui/icons"
 import Swal from "sweetalert2"
+import { ComprobantesModal } from "../components/modal/ComprobantesModal"
+import { onOpenModal } from "../../store/ui/uiSlice"
 
 const paginacionOpciones = {
     rowsPerPageText: 'Filas por página',
@@ -18,6 +20,8 @@ const paginacionOpciones = {
 export const HomePages = () => {
 
     const [filterText, setFilterText] = useState('')
+
+    const { modalOpen } = useSelector(state => state.ui)
 
     const { usersPendientes, userSave } = useSelector(state => state.user)
 
@@ -53,9 +57,9 @@ export const HomePages = () => {
 
     }
 
-    const handleDescargarComprobante = (id) => {
+    const handleShow = () => {
 
-        dispatch(startDescargarComprobante(id))
+        dispatch(onOpenModal())
 
     }
 
@@ -87,8 +91,8 @@ export const HomePages = () => {
             cell: (data) => 
                             <div className='d-flex justify-content-between'>
                                 <div className="mx-1">
-                                    <CButton onClick={() => handleDescargarComprobante(data.id)} color="info">
-                                        Descargar
+                                    <CButton onClick={() => handleShow()} color="info">
+                                        Comprobantes
                                     </CButton>
                                 </div>
                                 <div className="mx-1">
@@ -181,6 +185,9 @@ export const HomePages = () => {
                     </CCard>
                 </CCol>
             </CRow>
+            {
+                (modalOpen) && <ComprobantesModal/>
+            }
         </CContainer>
         
     )
