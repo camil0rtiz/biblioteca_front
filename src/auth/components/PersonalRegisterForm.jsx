@@ -184,9 +184,13 @@ export const PersonalRegisterForm = ({goNextPage}) => {
                                     control={control} 
                                     name="registroNumeroCelular"
                                     defaultValue=""  
-                                        // rules={{
-                                        //     required: {value: true, message: 'Nombre es obligatorio'},
-                                        // }}
+                                    rules={{
+                                        required: {value: true, message: 'Número de celular es obligatorio'},
+                                        pattern: {
+                                            value: /^(\+?56)?(\s?)(0?9)(\s?)[9876543]\d{7}$/,
+                                            message: 'Número de celular inválido',
+                                        },
+                                    }} 
                                     render={({ field: { onChange, value, ref } }) => (
                                         <InputGroup>
                                             <InputGroup.Text>+56</InputGroup.Text>
