@@ -145,13 +145,13 @@ export const startListarUsuariosHabilitados = (nombre) => {
     }
 }
 
-export const startListarUsuariosPendientes = () => {
+export const startListarUsuariosPendientes = (nombre) => {
 
     return async( dispatch ) => {
 
         try {
 
-            const response = await bibliotecaApi.get('usuarios/listarPendientes')
+            const response = await bibliotecaApi.get(`usuarios/listarPendientes?nombre=${nombre}`)
 
             dispatch(onListarUsersPendientes(response.data))
         

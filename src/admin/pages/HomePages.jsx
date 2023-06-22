@@ -9,6 +9,7 @@ import { cilBell, cilMoon, cilSettings, cilUser } from "@coreui/icons"
 import Swal from "sweetalert2"
 import { ComprobantesModal } from "../components/modal/ComprobantesModal"
 import { onOpenModal } from "../../store/ui/uiSlice"
+import { onIdUserComprobante } from "../../store/auth/userSlice"
 
 const paginacionOpciones = {
     rowsPerPageText: 'Filas por página',
@@ -28,8 +29,8 @@ export const HomePages = () => {
     const dispatch = useDispatch()
 
     useEffect(() => {
-        dispatch(startListarUsuariosPendientes())
-    },[userSave])
+        dispatch(startListarUsuariosPendientes(filterText))
+    },[userSave, filterText])
 
     const handleHabilitar = (id) => {
 
@@ -57,9 +58,10 @@ export const HomePages = () => {
 
     }
 
-    const handleShow = () => {
+    const handleShow = (id) => {
 
         dispatch(onOpenModal())
+        dispatch(onIdUserComprobante(id))
 
     }
 
@@ -91,7 +93,7 @@ export const HomePages = () => {
             cell: (data) => 
                             <div className='d-flex justify-content-between'>
                                 <div className="mx-1">
-                                    <CButton onClick={() => handleShow()} color="info">
+                                    <CButton onClick={() => handleShow(data.id)} color="info">
                                         Comprobantes
                                     </CButton>
                                 </div>

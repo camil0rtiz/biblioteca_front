@@ -2,16 +2,20 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Modal, Button } from 'react-bootstrap'
 import { onCloseModal } from '../../../store/ui/uiSlice'
 import { startDescargarComprobante } from '../../../store/auth/thunk'
+import { onClearIdUserComprobante } from '../../../store/auth/userSlice'
 
 export const ComprobantesModal = () => {
 
     const { modalOpen } = useSelector(state => state.ui)
+
+    const { userIdComprobante } = useSelector(state => state.user)
 
     const dispatch = useDispatch()
 
     const handleClose = () => {
 
         dispatch(onCloseModal())
+        dispatch(onClearIdUserComprobante())
     
     }
 
@@ -29,7 +33,7 @@ export const ComprobantesModal = () => {
             </Modal.Header>
             <Modal.Body>
                 <div className="d-grid">
-                    <Button variant="primary" className="btn-block">
+                    <Button variant="primary" className="btn-block" onClick={() => handleDescargarComprobante(userIdComprobante)}>
                         Comprobante de pago
                     </Button>
                 </div>

@@ -22,9 +22,9 @@ export const ReservasPages = () => {
 
     useEffect(() => {
 
-        dispatch(startListarReservas())
+        dispatch(startListarReservas(filterText))
         
-    }, [reservaSave])
+    }, [reservaSave, filterText])
 
     const handleEliminarReserva = ({id}) => {
 

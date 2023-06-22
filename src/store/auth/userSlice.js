@@ -20,6 +20,7 @@ export const userSlice = createSlice({
             idMembresia: '',
             registroTipoRol: []
         },
+        userIdComprobante: null,
         usersPendientes: [],
         usersHabilitados: [],
         userSave: false,
@@ -62,12 +63,26 @@ export const userSlice = createSlice({
 
         },
 
+        onIdUserComprobante: (state, {payload}) => {
+
+            state.userIdComprobante = payload
+
+        },
+
+        onClearIdUserComprobante: (state) => {
+
+            state.userIdComprobante = null
+
+        },
+
         onSave: (state) => {
+
             (state.userSave == true) ? state.userSave = false : state.userSave = true 
+
         }
         
     }
 
 }) 
 
-export const {onAgregarUser, onClearUser, onListarUsersHabilitados, onListarUsersPendientes, onSave} = userSlice.actions
+export const {onAgregarUser, onClearUser, onListarUsersHabilitados, onListarUsersPendientes, onIdUserComprobante, onClearIdUserComprobante, onSave} = userSlice.actions
