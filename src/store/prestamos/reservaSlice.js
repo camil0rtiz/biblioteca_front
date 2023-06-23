@@ -6,7 +6,8 @@ export const reservaSlice = createSlice({
     initialState:{
 
         reservas: [],
-        reservaSave: false 
+        reservaSave: false,
+        libroId: null
 
     },
         
@@ -20,10 +21,20 @@ export const reservaSlice = createSlice({
 
             (state.reservaSave == true) ? state.reservaSave = false : state.reservaSave = true 
 
-        }
+        },
 
+        onIdLibroReserva: (state, {payload}) => {
+
+            state.libroId = payload
+        },
+
+        onClearLibroReserva: (state, {payload}) => {
+
+            state.libroId = null
+        } 
+        
     }
 
 }) 
 
-export const { onListarReservas, onSaveReserva } = reservaSlice.actions
+export const { onListarReservas, onSaveReserva, onIdLibroReserva, onClearLibroReserva } = reservaSlice.actions

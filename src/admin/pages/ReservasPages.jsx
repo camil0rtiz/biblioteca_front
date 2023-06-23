@@ -4,6 +4,9 @@ import { CCard, CCardHeader, CCol, CContainer, CRow, CCardBody, CButton } from '
 import DataTable from 'react-data-table-component';
 import { startEliminarReserva, startListarReservas } from '../../store/prestamos/thunk';
 import { FiltroComponent } from '../components/FiltroComponent';
+import { ReservasModal } from '../components/modal/ReservasModal';
+import { onOpenModal } from '../../store/ui/uiSlice';
+import { onIdLibroReserva } from '../../store/prestamos/reservaSlice';
 
 const paginacionOpciones = {
     rowsPerPageText: 'Filas por página',
@@ -17,6 +20,8 @@ export const ReservasPages = () => {
     const [ filterText, setFilterText ] = useState('')
 
     const { reservas, reservaSave } = useSelector(state => state.reserva)
+
+    const { modalOpen } = useSelector(state => state.ui)
 
     const dispatch = useDispatch()
 
@@ -32,6 +37,13 @@ export const ReservasPages = () => {
 
         dispatch(startEliminarReserva({id, estadoReserva}))
 
+    }
+
+    const handleShow = ({id_libro}) => {
+
+        dispatch(onOpenModal())
+        dispatch(onIdLibroReserva(id_libro))
+        
     }
 
     const columns = [
@@ -71,7 +83,7 @@ export const ReservasPages = () => {
             button: true,
             cell: (data) => <div className='d-flex justify-content-between'>
                                 <div className="mx-2">
-                                    <CButton color="primary">
+                                    <CButton color="primary" onClick={() => handleShow(data)}>
                                         Prestar
                                     </CButton>
                                 </div>
@@ -115,6 +127,9 @@ export const ReservasPages = () => {
                     </CCard>
                 </CCol>
             </CRow>
+            {
+                (modalOpen) && <ReservasModal/>
+            }
         </CContainer>
     )
 }

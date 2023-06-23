@@ -337,7 +337,6 @@ export const startEliminarEditorial = ({id, estado_editorial}) => {
     }
 }
 
-//no usado
 export const startListarEjemplares = (id) => {
 
     return async( dispatch ) => {
