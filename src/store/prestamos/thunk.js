@@ -55,7 +55,7 @@ export const startEliminarReserva = ({id, estadoReserva}) => {
             const { data } = await bibliotecaApi.put(`reservas/eliminar/${id}`, {
                 'estado_reserva': estadoReserva,
             })
-
+            
             dispatch(onSaveReserva())
                     
         } catch (error) {

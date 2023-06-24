@@ -55,7 +55,6 @@ export const ReservaLibroPage = () => {
 
     }
 
-
     return (
         <>
             <CHeaderDivider/>
@@ -110,7 +109,6 @@ export const ReservaLibroPage = () => {
                                         </div>
                                     </CCol>
                                 </>
-
                             )
                         }
                 </CRow>

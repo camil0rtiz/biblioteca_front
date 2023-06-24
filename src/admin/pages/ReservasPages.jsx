@@ -7,6 +7,7 @@ import { FiltroComponent } from '../components/FiltroComponent';
 import { ReservasModal } from '../components/modal/ReservasModal';
 import { onOpenModal } from '../../store/ui/uiSlice';
 import { onIdLibroReserva } from '../../store/prestamos/reservaSlice';
+import Swal from 'sweetalert2';
 
 const paginacionOpciones = {
     rowsPerPageText: 'Filas por página',
@@ -35,7 +36,25 @@ export const ReservasPages = () => {
 
         let estadoReserva = 4
 
-        dispatch(startEliminarReserva({id, estadoReserva}))
+        Swal.fire({
+            title: '¿Estás seguro que deseas cancelar la reserva?',
+            text: "¡No podrás revertir esto!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Si, deseo cancelar reserva',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                dispatch(startEliminarReserva({id, estadoReserva}))
+                Swal.fire(
+                    '¡Felicidades!',
+                    'La reserva ha sido cancelada',
+                    'success'
+                )
+            }
+        })
 
     }
 
@@ -89,7 +108,7 @@ export const ReservasPages = () => {
                                 </div>
                                 <div>
                                     <CButton color="danger" onClick={() => handleEliminarReserva(data)}>
-                                        Eliminar
+                                        Cancelar
                                     </CButton>  
                                 </div>
                             </div>,
