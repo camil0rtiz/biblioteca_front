@@ -19,8 +19,6 @@ export const EjemplaresModal = () => {
 
     const dispatch = useDispatch()
 
-    console.log(ejemplarSave);
-
     const {formState: { errors }, handleSubmit, control} = useForm({defaultValues: initialEjemplar})
 
     useEffect(() => {

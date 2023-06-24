@@ -80,19 +80,9 @@ export const LibrosPages = () => {
                                     <CListGroupItem className="text-center"><CButton color="dark" className="text-center" onClick={() => openCarrito(libro)} disabled={(libro.cantidad_ejemplares == 0) ? true : false}>Agregar</CButton></CListGroupItem>
                                 </CListGroup>     
                                 <CCardFooter className="text-center">
-                                    {
-                                        (libro.cantidad_ejemplares != 0) ? 
-                                        (
-                                            <small className="text-muted">
-                                                Disponibles: {libro.cantidad_ejemplares}
-                                            </small>
-                                        ):
-                                        (
-                                            <small>
-                                                <CBadge color="danger">Agotado</CBadge>
-                                            </small>
-                                        )
-                                    }
+                                    <small className="text-muted">
+                                        Disponibles: {libro.stock_libro}
+                                    </small>
                                 </CCardFooter>
                             </CCard>
                         </CCol>

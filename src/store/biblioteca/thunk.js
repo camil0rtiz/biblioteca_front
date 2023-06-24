@@ -54,7 +54,7 @@ export const startListarLibros = (page, perPage, filterText) => {
             dispatch(onCantidadPaginas(data.data2.total))
             dispatch(onCantidadPaginado(data.data2.last_page))
             dispatch(onListarLibros(data.data))
-            
+
         } catch (error) {
         
             console.error(error)

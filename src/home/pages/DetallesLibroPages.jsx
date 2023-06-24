@@ -68,7 +68,7 @@ export const DetallesLibroPages = () => {
                                         </CListGroup>     
                                         <CCardFooter className="text-center">
                                             <small className="text-muted">
-                                                Disponibles: {libro.cantidad_ejemplares}
+                                                Disponibles: {libro.stock_libro}
                                             </small>
                                         </CCardFooter>
                                     </CCard>

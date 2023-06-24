@@ -83,7 +83,7 @@ export const LibrosPages = () => {
         },
         {
             name: 'Cantidad',
-            selector: row => row.cantidad_ejemplares,
+            selector: row => row.stock_libro,
             sortable: true,
             width: "200px"  
         },
