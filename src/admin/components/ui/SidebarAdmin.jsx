@@ -50,8 +50,9 @@ export const SidebarAdmin = () => {
                         </>
                     )
                 }
-                <CNavGroup toggler={<><CIcon customClassName="nav-icon" icon={cilCart} /> Reservas</>}>
+                <CNavGroup toggler={<><CIcon customClassName="nav-icon" icon={cilCart} /> Prestamos y Reservas</>}>
                     <NavLink className="nav-link" to="reservas"><CIcon customClassName="nav-icon" icon={cilPuzzle} />Reservas</NavLink>
+                    <NavLink className="nav-link" to="prestamos"><CIcon customClassName="nav-icon" icon={cilPuzzle} />Prestamos</NavLink>
                 </CNavGroup>
             </CSidebarNav>
             <CSidebarToggler

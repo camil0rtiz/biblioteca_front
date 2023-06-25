@@ -37,6 +37,10 @@ export const ReservasModal = () => {
 
     }
 
+    const handlePrestarLibro = (data) => {
+        console.log(data);
+    }
+
     const columns = [
         
         {
@@ -59,15 +63,14 @@ export const ReservasModal = () => {
             button: true,
             cell: (data) => <div className='d-flex justify-content-between'>
                                 <div>
-                                    <CButton color="primary">
-                                        Prestar
+                                    <CButton color="primary" onClick={() => handlePrestarLibro(data)}>
+                                        Agregar
                                     </CButton>
                                 </div>
                             </div>,
             width: "250px" 
         }, 
     ];
-
 
     return (
         <Modal size="xl" show={modalOpen} onHide={handleClose} animation={false}>

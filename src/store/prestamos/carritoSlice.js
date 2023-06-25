@@ -6,12 +6,33 @@ export const carritoSlice = createSlice({
     initialState:{
 
         carrito: [],
+        carritoReserva: [],
 
     },
         
     reducers:{
 
         onAgregarLibroCarrito: (state, { payload }) => {
+
+            if(state.carrito.length != 0){
+
+                state.carrito.forEach((libro) => {
+                    
+                    if(libro.id != payload.id){
+                        state.carrito.push(payload)
+                    }
+            
+                })
+            }else{
+
+                state.carrito.push(payload)
+            
+            }
+
+            
+        },
+
+        onAgregarEjemplarCarrito: (state, { payload }) => {
 
             if(state.carrito.length != 0){
 

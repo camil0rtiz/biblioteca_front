@@ -1,13 +1,7 @@
-import { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useState } from 'react'
 import { CCard, CCardHeader, CCol, CContainer, CRow, CCardBody, CButton } from '@coreui/react'
-import DataTable from 'react-data-table-component'
-import { startEliminarReserva, startListarReservas } from '../../store/prestamos/thunk'
 import { FiltroComponent } from '../components/FiltroComponent'
-import { ReservasModal } from '../components/modal/ReservasModal'
-import { onOpenModal } from '../../store/ui/uiSlice'
-import { onIdLibroReserva } from '../../store/prestamos/reservaSlice'
-import Swal from 'sweetalert2'
+import DataTable from 'react-data-table-component'
 
 const paginacionOpciones = {
     rowsPerPageText: 'Filas por página',
@@ -16,85 +10,40 @@ const paginacionOpciones = {
     selectAllRowsItemText: 'Todos',
 }
 
-export const ReservasPages = () => {
+export const PrestamosPages = () => {
 
     const [ filterText, setFilterText ] = useState('')
-
-    const { reservas, reservaSave } = useSelector(state => state.reserva)
-
-    const { modalOpen } = useSelector(state => state.ui)
-
-    const dispatch = useDispatch()
-
-    useEffect(() => {
-
-        dispatch(startListarReservas(filterText))
-        
-    }, [reservaSave, filterText])
-
-    const handleEliminarReserva = ({id}) => {
-
-        let estadoReserva = 4
-
-        Swal.fire({
-            title: '¿Estás seguro que deseas cancelar la reserva?',
-            text: "¡No podrás revertir esto!",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Si, deseo cancelar reserva',
-            cancelButtonText: 'Cancelar'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                dispatch(startEliminarReserva({id, estadoReserva}))
-                Swal.fire(
-                    '¡Felicidades!',
-                    'La reserva ha sido cancelada',
-                    'success'
-                )
-            }
-        })
-
-    }
-
-    const handleShow = ({id_libro}) => {
-
-        dispatch(onOpenModal())
-        dispatch(onIdLibroReserva(id_libro))
-        
-    }
 
     const columns = [
         
         {
             name: 'Rut usuario',
-            selector: row => row.rut_usuario,
+            // selector: row => row.rut_usuario,
             sortable: true,
         },
         {
             name: 'Nombre',
-            selector: row => row.nombre_usuario,
+            // selector: row => row.nombre_usuario,
             sortable: true,
         },
         {
             name: 'Apellido paterno',
-            selector: row => row.apellido_pate_usuario,
+            // selector: row => row.apellido_pate_usuario,
             sortable: true,
         },
         {
             name: 'Libro reservado',
-            selector: row => row.titulo_libro,
+            // selector: row => row.titulo_libro,
             sortable: true,
         },
         {
             name: 'Fecha reserva',
-            selector: row => row.fecha_reserva,
+            // selector: row => row.fecha_reserva,
             sortable: true,
         },
         {
             name: 'Estado reserva',
-            selector: row => row.estado_reserva,
+            // selector: row => row.estado_reserva,
             sortable: true,
         },
         {
@@ -102,12 +51,12 @@ export const ReservasPages = () => {
             button: true,
             cell: (data) => <div className='d-flex justify-content-between'>
                                 <div className="mx-2">
-                                    <CButton color="primary" onClick={() => handleShow(data)}>
+                                    <CButton color="primary">
                                         Prestar
                                     </CButton>
                                 </div>
                                 <div>
-                                    <CButton color="danger" onClick={() => handleEliminarReserva(data)}>
+                                    <CButton color="danger">
                                         Cancelar
                                     </CButton>  
                                 </div>
@@ -122,15 +71,15 @@ export const ReservasPages = () => {
                 <CCol xs={12}>
                     <CCard className="mb-4">
                         <CCardHeader>
-                            <strong>Reservas</strong> 
+                            <strong>Prestamos</strong> 
                         </CCardHeader>
                         <CCardBody>
                             <DataTable
-                                title="Tabla libros reservados"
+                                title="Tabla libros prestados"
                                 responsive
                                 pagination
                                 columns={columns}
-                                data={reservas}
+                                // data={reservas}
                                 highlightOnHover={true}
                                 paginationComponentOptions={paginacionOpciones}
                                 noDataComponent={<span className='mt-4'>No se encontro ningún elemento</span>}
@@ -146,9 +95,6 @@ export const ReservasPages = () => {
                     </CCard>
                 </CCol>
             </CRow>
-            {
-                (modalOpen) && <ReservasModal/>
-            }
         </CContainer>
     )
 }

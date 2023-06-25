@@ -11,6 +11,7 @@ import { ReservasPages } from '../pages/ReservasPages'
 import { UsuariosPages } from '../pages/UsuariosPages'
 import { CarritoAdmin } from '../components/CarritoAdmin'
 import { PrivateRouter } from './PrivateRouter'
+import { PrestamosPages } from '../pages/PrestamosPages'
 
 export const AdminRoutes = () => {
     return (
@@ -28,6 +29,7 @@ export const AdminRoutes = () => {
                             <Route path='/editoriales' element={<PrivateRouter><EditorialesPages/></PrivateRouter>}/>
                             <Route path='/home' element={<HomePages/>}/>
                             <Route path='/reservas' element={<ReservasPages/>}/>
+                            <Route path='/prestamos' element={<PrestamosPages/>}/>
                             <Route path="/*" element={<Navigate to='home'/>} />
                         </Routes>
                     </div>
