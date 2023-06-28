@@ -67,3 +67,25 @@ export const startEliminarReserva = ({id, estadoReserva}) => {
     }
 
 }
+
+export const startPrestarLibro = (ejemplaresPrestados, idVecino, estadoPrestamo) => {
+
+    return async( dispatch ) => {
+
+        try {
+
+            const {data} = await bibliotecaApi.post('prestamos/prestar', { 
+                id_vecino: idVecino,
+                id_ejemplar: ejemplaresPrestados,
+                estado_prestamo: estadoPrestamo
+            })
+
+        } catch (error) {
+
+            console.log(error);
+            
+        }
+
+    }
+
+} 

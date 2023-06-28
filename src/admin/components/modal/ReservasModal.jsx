@@ -23,6 +23,8 @@ export const ReservasModal = () => {
 
     const { ejemplares } = useSelector(state => state.ejemplar)
 
+    const { carritoReserva } = useSelector(state => state.carrito)
+
     const dispatch = useDispatch()
 
     useEffect(() => {
@@ -40,8 +42,13 @@ export const ReservasModal = () => {
 
     const handleCarritoReserva = (data) => {
 
+        if(carritoReserva.length < 2){
+            
+            dispatch(onAgregarEjemplarCarrito(data))
+
+        }
+
         dispatch(onOpenCarritoAdmin())
-        dispatch(onAgregarEjemplarCarrito(data))
         
     }
 

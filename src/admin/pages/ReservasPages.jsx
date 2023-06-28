@@ -6,7 +6,7 @@ import { startEliminarReserva, startListarReservas } from '../../store/prestamos
 import { FiltroComponent } from '../components/FiltroComponent'
 import { ReservasModal } from '../components/modal/ReservasModal'
 import { onOpenModal } from '../../store/ui/uiSlice'
-import { onIdLibroReserva } from '../../store/prestamos/reservaSlice'
+import { onIdsReserva } from '../../store/prestamos/reservaSlice'
 import Swal from 'sweetalert2'
 import { CarritoButton } from '../components/CarritoButton'
 import { CarritoAdmin } from '../components/CarritoAdmin'
@@ -60,10 +60,10 @@ export const ReservasPages = () => {
 
     }
 
-    const handleShow = ({id_libro}) => {
+    const handleShow = ({id_libro,id_usuario}) => {
 
         dispatch(onOpenModal())
-        dispatch(onIdLibroReserva(id_libro))
+        dispatch(onIdsReserva({id_libro, id_usuario}))
         
     }
 

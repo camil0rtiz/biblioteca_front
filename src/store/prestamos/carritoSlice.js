@@ -36,7 +36,20 @@ export const carritoSlice = createSlice({
 
             //evita que 2 ejemplares con el mismo id se vuelva a repetir
 
-            state.carritoReserva.push(payload)
+            if(state.carritoReserva.length != 0){
+
+                state.carritoReserva.forEach((ejemplar) => {
+                    
+                    if(ejemplar.id != payload.id){
+                        state.carritoReserva.push(payload)
+                    }
+            
+                })
+            }else{
+
+                state.carritoReserva.push(payload)
+            
+            }
 
         },
         

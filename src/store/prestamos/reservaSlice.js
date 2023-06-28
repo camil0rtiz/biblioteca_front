@@ -7,7 +7,8 @@ export const reservaSlice = createSlice({
 
         reservas: [],
         reservaSave: false,
-        libroId: null
+        libroId: null,
+        usuarioId: null
 
     },
         
@@ -23,18 +24,21 @@ export const reservaSlice = createSlice({
 
         },
 
-        onIdLibroReserva: (state, {payload}) => {
+        onIdsReserva: (state, {payload}) => {
 
-            state.libroId = payload
+            state.libroId = payload.id_libro
+            state.usuarioId = payload.id_usuario
+            
         },
 
-        onClearLibroReserva: (state, {payload}) => {
+        onClearLibroReserva: (state) => {//cambiar despues
 
             state.libroId = null
+
         } 
         
     }
 
 }) 
 
-export const { onListarReservas, onSaveReserva, onIdLibroReserva, onClearLibroReserva } = reservaSlice.actions
+export const { onListarReservas, onSaveReserva, onIdsReserva, onClearLibroReserva } = reservaSlice.actions
