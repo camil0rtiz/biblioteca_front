@@ -8,6 +8,8 @@ import { ReservasModal } from '../components/modal/ReservasModal'
 import { onOpenModal } from '../../store/ui/uiSlice'
 import { onIdLibroReserva } from '../../store/prestamos/reservaSlice'
 import Swal from 'sweetalert2'
+import { CarritoButton } from '../components/CarritoButton'
+import { CarritoAdmin } from '../components/CarritoAdmin'
 
 const paginacionOpciones = {
     rowsPerPageText: 'Filas por página',
@@ -140,7 +142,7 @@ export const ReservasPages = () => {
                                 striped
                                 subHeader
                                 subHeaderComponent={<FiltroComponent onFilter={e => setFilterText(e.target.value)} filterText={filterText} onPlaceholder={'Filtra por nombre'} />}
-                                // actions={ <AccionesTable onExport={usersPendientes} onNombreBoton={'Agregar Autor'} />}
+                                actions={ <CarritoButton onExport={reservas} onNombreBoton={'Carrito'} />}
                             />
                         </CCardBody>
                     </CCard>
@@ -149,6 +151,7 @@ export const ReservasPages = () => {
             {
                 (modalOpen) && <ReservasModal/>
             }
+            <CarritoAdmin/>
         </CContainer>
     )
 }

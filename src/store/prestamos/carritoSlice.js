@@ -34,22 +34,10 @@ export const carritoSlice = createSlice({
 
         onAgregarEjemplarCarrito: (state, { payload }) => {
 
-            if(state.carrito.length != 0){
+            //evita que 2 ejemplares con el mismo id se vuelva a repetir
 
-                state.carrito.forEach((libro) => {
-                    
-                    if(libro.id != payload.id){
-                        state.carrito.push(payload)
-                    }
-            
-                })
-            }else{
+            state.carritoReserva.push(payload)
 
-                state.carrito.push(payload)
-            
-            }
-
-            
         },
         
         onEliminarLibroCarrito: ( state, { payload } ) => {
@@ -69,4 +57,4 @@ export const carritoSlice = createSlice({
 
 }) 
 
-export const { onAgregarLibroCarrito, onEliminarLibroCarrito, onClearCarrito } = carritoSlice.actions
+export const { onAgregarLibroCarrito, onAgregarEjemplarCarrito, onEliminarLibroCarrito, onClearCarrito } = carritoSlice.actions

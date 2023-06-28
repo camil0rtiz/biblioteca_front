@@ -1,10 +1,12 @@
 import { useDispatch, useSelector } from 'react-redux'
-import { CAlert, CButton, CCloseButton, COffcanvas, COffcanvasBody, COffcanvasHeader, COffcanvasTitle } from '@coreui/react'
+import { CAlert, CButton, CCloseButton, CListGroup, CListGroupItem, COffcanvas, COffcanvasBody, COffcanvasHeader, COffcanvasTitle } from '@coreui/react'
 import { onCloseCarritoAdmin } from '../../store/ui/uiSlice'
 
 export const CarritoAdmin = () => {
 
     const { carritoAdminOpen } = useSelector(state => state.ui)
+
+    const { carritoReserva } = useSelector(state => state.carrito)
 
     const dispatch = useDispatch()
 
@@ -21,11 +23,22 @@ export const CarritoAdmin = () => {
                 <CCloseButton className="text-reset" onClick={handleClose} />
             </COffcanvasHeader>
             <COffcanvasBody>
-                <CAlert color="info">
-                    <p>
-                        Carrito esta vacío
-                    </p>
-                </CAlert>
+                <CListGroup>
+                    {carritoReserva.map((cart) => (
+                        
+                        <CListGroupItem key={cart.id} className='mb-2'>{cart.dewey_unic_ejemplar}</CListGroupItem>
+                    
+                    ))}
+                </CListGroup>
+                {
+                    (carritoReserva.length == 0) && (
+                        <CAlert color="info">
+                            <p>
+                                Estimado lector, recuerde que puede reservar una cantidad máxima de 2 libros.
+                            </p>
+                        </CAlert>
+                    )
+                }
             </COffcanvasBody>
             <div className="reservar-button border-top" >
                 <div className="d-grid p-3">

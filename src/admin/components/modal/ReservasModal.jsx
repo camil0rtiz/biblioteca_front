@@ -4,8 +4,9 @@ import { Modal, Button } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { startListarEjemplares } from '../../../store/biblioteca/thunk'
 import { onClearLibroReserva } from '../../../store/prestamos/reservaSlice'
-import { onCloseModal } from '../../../store/ui/uiSlice'
+import { onCloseModal, onOpenCarritoAdmin } from '../../../store/ui/uiSlice'
 import DataTable from 'react-data-table-component'
+import { onAgregarEjemplarCarrito } from '../../../store/prestamos/carritoSlice'
 
 const paginacionOpciones = {
     rowsPerPageText: 'Filas por página',
@@ -37,8 +38,11 @@ export const ReservasModal = () => {
 
     }
 
-    const handlePrestarLibro = (data) => {
-        console.log(data);
+    const handleCarritoReserva = (data) => {
+
+        dispatch(onOpenCarritoAdmin())
+        dispatch(onAgregarEjemplarCarrito(data))
+        
     }
 
     const columns = [
@@ -63,7 +67,7 @@ export const ReservasModal = () => {
             button: true,
             cell: (data) => <div className='d-flex justify-content-between'>
                                 <div>
-                                    <CButton color="primary" onClick={() => handlePrestarLibro(data)}>
+                                    <CButton color="primary" onClick={() => handleCarritoReserva(data)}>
                                         Agregar
                                     </CButton>
                                 </div>

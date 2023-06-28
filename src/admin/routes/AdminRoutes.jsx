@@ -9,7 +9,6 @@ import { HomePages } from '../pages/HomePages'
 import { LibrosPages } from '../pages/LibrosPages'
 import { ReservasPages } from '../pages/ReservasPages'
 import { UsuariosPages } from '../pages/UsuariosPages'
-import { CarritoAdmin } from '../components/CarritoAdmin'
 import { PrivateRouter } from './PrivateRouter'
 import { PrestamosPages } from '../pages/PrestamosPages'
 
@@ -33,7 +32,6 @@ export const AdminRoutes = () => {
                             <Route path="/*" element={<Navigate to='home'/>} />
                         </Routes>
                     </div>
-                    <CarritoAdmin/>
                     <FooterAdmin/>
                 </div>
             </div>
