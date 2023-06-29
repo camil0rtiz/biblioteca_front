@@ -228,7 +228,7 @@ export const startEliminarAutor = ({id, estado_autor}) => {
     }
 }
 
-export const startAgregarEditorial = ({editorialNombre, estadoEditorial}) => {
+export const startAgregarEditorial = ({editorialNombre, agregarEditorialSelect, estadoEditorial}) => {
 
     return async( dispatch ) => {
 
@@ -239,12 +239,17 @@ export const startAgregarEditorial = ({editorialNombre, estadoEditorial}) => {
                 'estado_editorial': estadoEditorial
             })
 
+            if(!agregarEditorialSelect){
+        
+                dispatch(onCloseModal())
+
+            }
+
             dispatch(onLoadingFalseE())
             dispatch(onClearEditoriales())
-            dispatch(onCloseModal())
             dispatch(onSaveEjemplar())
             dispatch(onSaveEditorial())
-            
+        
         } catch (error) {
         
             console.error(error)

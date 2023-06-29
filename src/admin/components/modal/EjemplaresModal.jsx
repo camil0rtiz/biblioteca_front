@@ -66,9 +66,15 @@ export const EjemplaresModal = () => {
 
     const handleAgregarEditorial = (editorial) => {
 
+        const agregarEditorialSelect = 1
+
+        let estadoEditorial = 1
+
+        let editorialNombre  = editorial
+
         dispatch(onLoadingTrue())
 
-        dispatch(startAgregarEditorial({editorialNombre:editorial}))
+        dispatch(startAgregarEditorial({editorialNombre, agregarEditorialSelect, estadoEditorial}))
 
     }
 
