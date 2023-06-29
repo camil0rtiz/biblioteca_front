@@ -61,7 +61,7 @@ export const PrestamosPages = () => {
         },
         {
             name: 'Fecha devolución',
-            selector: row => row.fecha_entrega_prestamo,
+            selector: row => row.fecha_entre_prestamo,
             sortable: true,
         },
         {

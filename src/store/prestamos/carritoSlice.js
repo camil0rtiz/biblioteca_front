@@ -61,6 +61,14 @@ export const carritoSlice = createSlice({
 
         },
 
+        onEliminarEjemplarCarrito: ( state, { payload } ) => {
+
+            const index = state.carritoReserva.findIndex( ejemplar => ejemplar.id === payload );
+
+            state.carritoReserva.splice( index, 1 )
+
+        },
+
         onClearCarrito: ( state ) => {
 
             state.carrito = []
@@ -70,4 +78,4 @@ export const carritoSlice = createSlice({
 
 }) 
 
-export const { onAgregarLibroCarrito, onAgregarEjemplarCarrito, onEliminarLibroCarrito, onClearCarrito } = carritoSlice.actions
+export const { onAgregarLibroCarrito, onAgregarEjemplarCarrito, onEliminarLibroCarrito, onEliminarEjemplarCarrito, onClearCarrito } = carritoSlice.actions

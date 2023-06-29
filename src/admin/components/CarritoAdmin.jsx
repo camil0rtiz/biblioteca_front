@@ -2,8 +2,11 @@ import { useDispatch, useSelector } from 'react-redux'
 import { CAlert, CButton, CCloseButton, CListGroup, CListGroupItem, COffcanvas, COffcanvasBody, COffcanvasHeader, COffcanvasTitle } from '@coreui/react'
 import { onCloseCarritoAdmin } from '../../store/ui/uiSlice'
 import { startPrestarLibro } from '../../store/prestamos/thunk'
+import { onEliminarEjemplarCarrito } from '../../store/prestamos/carritoSlice'
 
 export const CarritoAdmin = () => {
+
+    const { user } = useSelector(state => state.auth)
 
     const { carritoAdminOpen } = useSelector(state => state.ui)
 
@@ -23,13 +26,21 @@ export const CarritoAdmin = () => {
 
         let estadoPrestamo = 1
 
+        let idBibliotecario = user.id
+
         let ejemplaresPrestados = []
 
         carritoReserva.map((cart)=> {
             ejemplaresPrestados.push(cart.id)
         })
 
-        dispatch(startPrestarLibro(ejemplaresPrestados,usuarioId,estadoPrestamo))
+        dispatch(startPrestarLibro(ejemplaresPrestados, usuarioId, estadoPrestamo, idBibliotecario))
+
+    }
+
+    const handleEliminarEjemplar = (id) => {
+
+        dispatch(onEliminarEjemplarCarrito(id))
 
     }
 
@@ -53,7 +64,7 @@ export const CarritoAdmin = () => {
                                 </div>
                             </div>
                             <div>
-                                <CButton color="danger" shape="rounded-pill">Eliminar</CButton>
+                                <CButton color="danger" shape="rounded-pill" onClick={() => handleEliminarEjemplar(cart.id)}>Eliminar</CButton>
                             </div>
                         </CListGroupItem>
                     
