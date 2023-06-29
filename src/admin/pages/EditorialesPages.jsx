@@ -1,21 +1,15 @@
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { startBuscarEditorial, startEliminarEditorial } from '../../store/biblioteca/thunk'
 import DataTable from "react-data-table-component"
+import { CButton, CCard, CCardBody, CCardHeader, CCol, CContainer, CRow } from '@coreui/react'
+import Swal from 'sweetalert2'
+import { startBuscarEditorial, startEliminarEditorial } from '../../store/biblioteca/thunk'
 import { onOpenModal } from '../../store/ui/uiSlice'
 import { EditorialesModal } from '../components/modal/EditorialesModal'
 import { onAgregarEditorial } from '../../store/biblioteca/editorialSlice'
 import { AccionesTable } from '../components/AccionesTable'
 import { FiltroComponent } from '../components/FiltroComponent'
-import { CButton, CCard, CCardBody, CCardHeader, CCol, CContainer, CRow } from '@coreui/react'
-import Swal from 'sweetalert2'
-
-const paginacionOpciones = {
-    rowsPerPageText: 'Filas por página',
-    rangeSeparatorText: 'de',
-    selectAllRowsItem: true,
-    selectAllRowsItemText: 'Todos',
-}
+import { paginacionOpciones } from "../../helpers/paginacionOpciones"
 
 export const EditorialesPages = () => {
 

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import DataTable from "react-data-table-component"
 import { CButton, CCard, CCardBody, CCardHeader, CCol, CContainer, CRow } from '@coreui/react'
+import Swal from "sweetalert2";
 import { startEliminarLibro, startListarLibros } from "../../store/biblioteca/thunk";
 import { onOpenModal, onOpenModalEjemplar } from "../../store/ui/uiSlice"
 import { LibrosModal } from '../components/modal/LibrosModal'
@@ -11,14 +12,7 @@ import { EjemplaresModal } from "../components/modal/EjemplaresModal"
 import { onAgregarEjemplar } from "../../store/biblioteca/ejemplarSlice"
 import { FiltroComponent } from "../components/FiltroComponent"
 import { AccionesTable } from "../components/AccionesTable"
-import Swal from "sweetalert2";
-
-const paginacionOpciones = {
-    rowsPerPageText: 'Filas por página',
-    rangeSeparatorText: 'de',
-    selectAllRowsItem: true,
-    selectAllRowsItemText: 'Todos',
-}
+import { paginacionOpciones } from "../../helpers/paginacionOpciones"
 
 export const LibrosPages = () => {
 

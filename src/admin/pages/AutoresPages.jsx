@@ -8,14 +8,8 @@ import { onOpenModal } from '../../store/ui/uiSlice'
 import { onAgregarAutor } from '../../store/biblioteca/autorSlice'
 import { FiltroComponent } from '../components/FiltroComponent'
 import { AccionesTable } from '../components/AccionesTable'
+import { paginacionOpciones } from "../../helpers/paginacionOpciones"
 import Swal from 'sweetalert2'
-
-const paginacionOpciones = {
-    rowsPerPageText: 'Filas por página',
-    rangeSeparatorText: 'de',
-    selectAllRowsItem: true,
-    selectAllRowsItemText: 'Todos',
-}
 
 export const AutoresPages = () => {
 

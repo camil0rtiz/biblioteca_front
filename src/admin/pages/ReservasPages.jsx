@@ -10,13 +10,7 @@ import { onIdsReserva } from '../../store/prestamos/reservaSlice'
 import Swal from 'sweetalert2'
 import { CarritoButton } from '../components/CarritoButton'
 import { CarritoAdmin } from '../components/CarritoAdmin'
-
-const paginacionOpciones = {
-    rowsPerPageText: 'Filas por página',
-    rangeSeparatorText: 'de',
-    selectAllRowsItem: true,
-    selectAllRowsItemText: 'Todos',
-}
+import { paginacionOpciones } from "../../helpers/paginacionOpciones"
 
 export const ReservasPages = () => {
 

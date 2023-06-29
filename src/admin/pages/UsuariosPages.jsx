@@ -1,21 +1,15 @@
 import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import DataTable from 'react-data-table-component'
 import { CButton, CCard, CCardBody, CCardHeader, CCol, CContainer, CRow } from '@coreui/react'
+import DataTable from 'react-data-table-component'
+import Swal from 'sweetalert2'
 import { UsuariosModal } from '../components/modal/UsuariosModal'
 import { onOpenModal  } from '../../store/ui/uiSlice'
 import { startListarUsuariosHabilitados } from '../../store/auth/thunk'
 import { onAgregarUser } from '../../store/auth/userSlice'
 import { FiltroComponent } from "../components/FiltroComponent"
 import { AccionesTable } from '../components/AccionesTable'
-import Swal from 'sweetalert2'
-
-const paginacionOpciones = {
-    rowsPerPageText: 'Filas por página',
-    rangeSeparatorText: 'de',
-    selectAllRowsItem: true,
-    selectAllRowsItemText: 'Todos',
-}
+import { paginacionOpciones } from "../../helpers/paginacionOpciones"
 
 export const UsuariosPages = () => {
     

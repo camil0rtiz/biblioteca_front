@@ -4,13 +4,7 @@ import { CCard, CCardHeader, CCol, CContainer, CRow, CCardBody, CButton } from '
 import { FiltroComponent } from '../components/FiltroComponent'
 import DataTable from 'react-data-table-component'
 import { startDevolucionPrestamo, startListarPrestamos } from '../../store/prestamos/thunk'
-
-const paginacionOpciones = {
-    rowsPerPageText: 'Filas por página',
-    rangeSeparatorText: 'de',
-    selectAllRowsItem: true,
-    selectAllRowsItemText: 'Todos',
-}
+import { paginacionOpciones } from "../../helpers/paginacionOpciones"
 
 export const PrestamosPages = () => {
     

@@ -10,13 +10,7 @@ import Swal from "sweetalert2"
 import { ComprobantesModal } from "../components/modal/ComprobantesModal"
 import { onOpenModal } from "../../store/ui/uiSlice"
 import { onIdUserComprobante } from "../../store/auth/userSlice"
-
-const paginacionOpciones = {
-    rowsPerPageText: 'Filas por página',
-    rangeSeparatorText: 'de',
-    selectAllRowsItem: true,
-    selectAllRowsItemText: 'Todos',
-}
+import { paginacionOpciones } from "../../helpers/paginacionOpciones"
 
 export const HomePages = () => {
 

@@ -7,13 +7,7 @@ import { onClearLibroReserva } from '../../../store/prestamos/reservaSlice'
 import { onCloseModal, onOpenCarritoAdmin } from '../../../store/ui/uiSlice'
 import DataTable from 'react-data-table-component'
 import { onAgregarEjemplarCarrito } from '../../../store/prestamos/carritoSlice'
-
-const paginacionOpciones = {
-    rowsPerPageText: 'Filas por página',
-    rangeSeparatorText: 'de',
-    selectAllRowsItem: true,
-    selectAllRowsItemText: 'Todos',
-}
+import { paginacionOpciones } from "../../../helpers/paginacionOpciones"
 
 export const ReservasModal = () => {
 

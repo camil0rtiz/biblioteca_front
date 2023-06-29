@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { CButton, CCard, CCardBody, CCardHeader, CCol, CContainer, CRow } from '@coreui/react'
 import DataTable from 'react-data-table-component'
+import Swal from 'sweetalert2'
 import { EventosModal } from '../components/modal/EventosModal'
 import { onOpenModal } from '../../store/ui/uiSlice'
 import { AccionesTable } from '../components/AccionesTable'
@@ -9,14 +10,7 @@ import { FiltroComponent } from '../components/FiltroComponent'
 import { startEliminarEvento, startListarEventos } from '../../store/biblioteca/thunk'
 import { onAgregarEvento } from '../../store/biblioteca/eventoSlice'
 import { ExpandedEventos } from '../components/ExpandedEventos'
-import Swal from 'sweetalert2'
-
-const paginacionOpciones = {
-    rowsPerPageText: 'Filas por página',
-    rangeSeparatorText: 'de',
-    selectAllRowsItem: true,
-    selectAllRowsItemText: 'Todos',
-}
+import { paginacionOpciones } from "../../helpers/paginacionOpciones"
 
 export const EventosPages = () => {
 
