@@ -112,3 +112,24 @@ export const startListarPrestamos = () => {
 
 } 
 
+export const startDevolucionPrestamo = ({id, id_ejemplar, id_libro}) => {
+
+    return async( dispatch ) => {
+
+        try {
+
+            const {data} = await bibliotecaApi.put(`prestamos/devolver/${id}`, {
+                'id_ejemplar': id_ejemplar,
+                'id_libro': id_libro,
+            });
+
+        } catch (error) {
+
+            console.log(error);
+            
+        }
+
+    }
+
+} 
+

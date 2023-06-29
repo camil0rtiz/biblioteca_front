@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { CCard, CCardHeader, CCol, CContainer, CRow, CCardBody, CButton } from '@coreui/react'
 import { FiltroComponent } from '../components/FiltroComponent'
 import DataTable from 'react-data-table-component'
-import { startListarPrestamos } from '../../store/prestamos/thunk'
+import { startDevolucionPrestamo, startListarPrestamos } from '../../store/prestamos/thunk'
 
 const paginacionOpciones = {
     rowsPerPageText: 'Filas por página',
@@ -20,15 +20,15 @@ export const PrestamosPages = () => {
 
     const dispatch = useDispatch()
 
-    console.log(prestamos);
-
     useEffect(() => {
 
         dispatch(startListarPrestamos())
         
     }, [])
 
-    const handleDevolucionLibro = () => {
+    const handleDevolucionLibro = ({id, id_ejemplar, id_libro}) => {
+
+        dispatch(startDevolucionPrestamo({id, id_ejemplar, id_libro}))
 
     }
 
@@ -74,7 +74,7 @@ export const PrestamosPages = () => {
             button: true,
             cell: (data) => <div className='d-flex justify-content-between'>
                                 <div className="mx-2">
-                                    <CButton color="primary" onClick={() => handleDevolucionLibro()}>
+                                    <CButton color="primary" onClick={() => handleDevolucionLibro(data)}>
                                         Devolución
                                     </CButton>
                                 </div>
