@@ -1,7 +1,9 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { CCard, CCardHeader, CCol, CContainer, CRow, CCardBody, CButton } from '@coreui/react'
 import { FiltroComponent } from '../components/FiltroComponent'
 import DataTable from 'react-data-table-component'
+import { startListarPrestamos } from '../../store/prestamos/thunk'
 
 const paginacionOpciones = {
     rowsPerPageText: 'Filas por página',
@@ -11,39 +13,60 @@ const paginacionOpciones = {
 }
 
 export const PrestamosPages = () => {
-
+    
     const [ filterText, setFilterText ] = useState('')
+
+    const { prestamos } = useSelector(state => state.prestamo)
+
+    const dispatch = useDispatch()
+
+    console.log(prestamos);
+
+    useEffect(() => {
+
+        dispatch(startListarPrestamos())
+        
+    }, [])
+
+    const handleDevolucionLibro = () => {
+
+    }
 
     const columns = [
         
         {
             name: 'Rut usuario',
-            // selector: row => row.rut_usuario,
+            selector: row => row.rut_usuario,
             sortable: true,
         },
         {
             name: 'Nombre',
-            // selector: row => row.nombre_usuario,
+            selector: row => row.nombre_usuario,
             sortable: true,
         },
         {
-            name: 'Apellido paterno',
-            // selector: row => row.apellido_pate_usuario,
+            name: 'Título libro',
+            selector: row => row.titulo_libro,
             sortable: true,
         },
         {
-            name: 'Libro reservado',
-            // selector: row => row.titulo_libro,
+            name: 'Dewey',
+            selector: row => row.dewey_unic_ejemplar,
             sortable: true,
         },
         {
-            name: 'Fecha reserva',
-            // selector: row => row.fecha_reserva,
+            name: 'Fecha prestamo',
+            selector: row => row.fecha_prestamo,
             sortable: true,
         },
         {
-            name: 'Estado reserva',
-            // selector: row => row.estado_reserva,
+            name: 'Fecha devolución',
+            selector: row => row.fecha_entrega_prestamo,
+            sortable: true,
+        },
+        {
+            name: 'Estado prestamo',
+            selector: row => row.estado_prestamo,
             sortable: true,
         },
         {
@@ -51,14 +74,9 @@ export const PrestamosPages = () => {
             button: true,
             cell: (data) => <div className='d-flex justify-content-between'>
                                 <div className="mx-2">
-                                    <CButton color="primary">
-                                        Prestar
+                                    <CButton color="primary" onClick={() => handleDevolucionLibro()}>
+                                        Devolución
                                     </CButton>
-                                </div>
-                                <div>
-                                    <CButton color="danger">
-                                        Cancelar
-                                    </CButton>  
                                 </div>
                             </div>,
             width: "250px" 
@@ -79,7 +97,7 @@ export const PrestamosPages = () => {
                                 responsive
                                 pagination
                                 columns={columns}
-                                // data={reservas}
+                                data={prestamos}
                                 highlightOnHover={true}
                                 paginationComponentOptions={paginacionOpciones}
                                 noDataComponent={<span className='mt-4'>No se encontro ningún elemento</span>}
