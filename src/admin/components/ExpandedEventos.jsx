@@ -2,8 +2,6 @@ import { CListGroup, CListGroupItem } from '@coreui/react'
 
 export const ExpandedEventos = ({data}) => {
 
-    console.log(data);
-
     return (
         <CListGroup as="ol">
             <CListGroupItem>     

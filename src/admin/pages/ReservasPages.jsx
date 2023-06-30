@@ -9,7 +9,7 @@ import { onOpenModal } from '../../store/ui/uiSlice'
 import { onIdsReserva } from '../../store/prestamos/reservaSlice'
 import Swal from 'sweetalert2'
 import { CarritoButton } from '../components/CarritoButton'
-import { CarritoAdmin } from '../components/CarritoAdmin'
+import { CarritoReserva } from '../components/CarritoReserva'
 import { paginacionOpciones } from "../../helpers/paginacionOpciones"
 
 export const ReservasPages = () => {
@@ -145,7 +145,7 @@ export const ReservasPages = () => {
             {
                 (modalOpen) && <ReservasModal/>
             }
-            <CarritoAdmin/>
+            <CarritoReserva/>
         </CContainer>
     )
 }

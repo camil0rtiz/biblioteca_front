@@ -4,7 +4,7 @@ import { onCloseCarritoAdmin } from '../../store/ui/uiSlice'
 import { startPrestarLibro } from '../../store/prestamos/thunk'
 import { onEliminarEjemplarCarrito } from '../../store/prestamos/carritoSlice'
 
-export const CarritoAdmin = () => {
+export const CarritoReserva = () => {
 
     const { user } = useSelector(state => state.auth)
 
