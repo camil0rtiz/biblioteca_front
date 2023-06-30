@@ -11,6 +11,7 @@ import { startActualizarEvento, startAgregarEvento } from '../../../store/biblio
 import { onClearEventos } from '../../../store/biblioteca/eventoSlice'
 import '../../../assets/css/eventos.css'
 import { customStyles } from '../../../helpers/customStyles.js'
+import { formateoMayusculas } from '../../../helpers/formateoMayusculas'
 
 export const EventosModal = () => {
 
@@ -129,7 +130,7 @@ export const EventosModal = () => {
                             }}
                             render={({ field: { onChange, value, ref } }) => (
                                 <Form.Control 
-                                    onChange={onChange} 
+                                    onChange={e => onChange(formateoMayusculas(e.target.value))}  
                                     value={value} 
                                     ref={ref}  
                                     type="text" 

@@ -11,6 +11,8 @@ import { startActualizarLibro, startAgregarAutor, startAgregarLibro } from '../.
 import 'react-quill/dist/quill.snow.css'
 import { customStyles } from '../../../helpers/customStyles.js'
 import { onLoadingTrue } from '../../../store/biblioteca/autorSlice'
+import { formateoDewey } from "../../../helpers/formateoDewey"
+import { formateoMayusculas } from "../../../helpers/formateoMayusculas"
 
 export const LibrosModal = () => {
 
@@ -159,7 +161,7 @@ export const LibrosModal = () => {
                         }}
                         render={({ field: { onChange, value, ref } }) => (
                             <Form.Control 
-                                onChange={onChange} 
+                                onChange={e => onChange(formateoMayusculas(e.target.value))} 
                                 value={value} 
                                 ref={ref}  
                                 type="text" 
@@ -218,7 +220,7 @@ export const LibrosModal = () => {
                         }}
                         render={({ field: {onChange, value, ref } }) => (
                             <Form.Control
-                                onChange={onChange} 
+                                onChange={e => onChange(formateoDewey(e.target.value))}
                                 value={value}
                                 ref={ref}  
                                 type="text"

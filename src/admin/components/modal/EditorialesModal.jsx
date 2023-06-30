@@ -4,6 +4,7 @@ import { onCloseModal } from '../../../store/ui/uiSlice'
 import { Modal, Button, Form } from 'react-bootstrap'
 import { startActualizarEditorial, startAgregarEditorial } from '../../../store/biblioteca/thunk'
 import { onClearEditoriales } from '../../../store/biblioteca/editorialSlice'
+import { formateoMayusculas } from "../../../helpers/formateoMayusculas"
 
 export const EditorialesModal = () => {
 
@@ -74,7 +75,7 @@ export const EditorialesModal = () => {
                             }}
                             render={({ field: { onChange, value, ref } }) => (
                                 <Form.Control 
-                                    onChange={onChange} 
+                                    onChange={e => onChange(formateoMayusculas(e.target.value))} 
                                     value={value} 
                                     ref={ref}  
                                     type="text" 

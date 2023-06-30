@@ -6,6 +6,7 @@ import { validaRut } from "../../helpers/validarRut"
 import { onAgregarUser } from "../../store/auth/userSlice"
 import { formateoRut } from "../../helpers/formateoRut"
 import { CCard, CCardBody, CCardGroup, CProgress, CProgressBar } from "@coreui/react"
+import { formateoMayusculas } from '../../helpers/formateoMayusculas'
 
 export const PersonalRegisterForm = ({goNextPage}) => {
 
@@ -83,7 +84,7 @@ export const PersonalRegisterForm = ({goNextPage}) => {
                                     }}
                                     render={({ field: { onChange, value, ref } }) => (
                                         <Form.Control
-                                            onChange={onChange} 
+                                            onChange={e => onChange(formateoMayusculas(e.target.value))}  
                                             value={value} 
                                             ref={ref}  
                                             type="text" 
@@ -111,7 +112,7 @@ export const PersonalRegisterForm = ({goNextPage}) => {
                                     }}
                                     render={({ field: { onChange, value, ref } }) => (
                                         <Form.Control
-                                            onChange={onChange} 
+                                            onChange={e => onChange(formateoMayusculas(e.target.value))}  
                                             value={value} 
                                             ref={ref}  
                                             type="text" 
@@ -137,7 +138,7 @@ export const PersonalRegisterForm = ({goNextPage}) => {
                                     }}
                                     render={({ field: { onChange, value, ref } }) => (
                                         <Form.Control
-                                            onChange={onChange} 
+                                            onChange={e => onChange(formateoMayusculas(e.target.value))}  
                                             value={value} 
                                             ref={ref}  
                                             type="text" 
@@ -223,7 +224,7 @@ export const PersonalRegisterForm = ({goNextPage}) => {
                                     }}
                                     render={({ field: { onChange, value, ref } }) => (
                                         <Form.Control
-                                            onChange={onChange} 
+                                            onChange={e => onChange(formateoMayusculas(e.target.value))}  
                                             value={value} 
                                             ref={ref}  
                                             type="text"  

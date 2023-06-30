@@ -10,6 +10,7 @@ import { onClearUser } from "../../../store/auth/userSlice"
 import bibliotecaApi from "../../../api/bibliotecaApi"
 import { formateoRut } from "../../../helpers/formateoRut"
 import { customStyles } from '../../../helpers/customStyles.js'
+import { formateoMayusculas } from "../../../helpers/formateoMayusculas"
 
 export const UsuariosModal = () => {
 
@@ -196,7 +197,7 @@ export const UsuariosModal = () => {
                         }}
                         render={({ field: { onChange, value, ref } }) => (
                             <Form.Control
-                                onChange={onChange} 
+                                onChange={e => onChange(formateoMayusculas(e.target.value))}  
                                 value={value} 
                                 ref={ref}  
                                 type="text" 
@@ -222,7 +223,7 @@ export const UsuariosModal = () => {
                         }}
                         render={({ field: { onChange, value, ref } }) => (
                             <Form.Control
-                                onChange={onChange} 
+                                onChange={e => onChange(formateoMayusculas(e.target.value))} 
                                 value={value} 
                                 ref={ref}  
                                 type="text" 
@@ -248,7 +249,7 @@ export const UsuariosModal = () => {
                         }}
                         render={({ field: { onChange, value, ref } }) => (
                             <Form.Control
-                                onChange={onChange} 
+                                onChange={e => onChange(formateoMayusculas(e.target.value))}  
                                 value={value} 
                                 ref={ref}  
                                 type="text" 
@@ -357,7 +358,7 @@ export const UsuariosModal = () => {
                         }}
                         render={({ field: { onChange, value, ref } }) => (
                             <Form.Control
-                                onChange={onChange} 
+                                onChange={e => onChange(formateoMayusculas(e.target.value))}  
                                 value={value} 
                                 ref={ref}  
                                 type="text"  
