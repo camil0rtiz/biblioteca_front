@@ -26,8 +26,7 @@ export const reservaSlice = createSlice({
 
         onIdsReserva: (state, {payload}) => {
 
-            state.libroId = payload.id_libro
-            state.usuarioId = payload.id_usuario
+            state.usuarioId = payload
             
         },
 

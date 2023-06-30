@@ -4,21 +4,17 @@ import { CCard, CCardHeader, CCol, CContainer, CRow, CCardBody, CButton } from '
 import DataTable from 'react-data-table-component'
 import { startEliminarReserva, startListarReservas } from '../../store/prestamos/thunk'
 import { FiltroComponent } from '../components/FiltroComponent'
-import { ReservasModal } from '../components/modal/ReservasModal'
-import { onOpenModal } from '../../store/ui/uiSlice'
-import { onIdsReserva } from '../../store/prestamos/reservaSlice'
 import Swal from 'sweetalert2'
 import { CarritoButton } from '../components/CarritoButton'
 import { CarritoReserva } from '../components/CarritoReserva'
 import { paginacionOpciones } from "../../helpers/paginacionOpciones"
+import { ExpandedReservas } from '../components/ExpandedReservas'
 
 export const ReservasPages = () => {
 
     const [ filterText, setFilterText ] = useState('')
 
     const { reservas, reservaSave } = useSelector(state => state.reserva)
-
-    const { modalOpen } = useSelector(state => state.ui)
 
     const dispatch = useDispatch()
 
@@ -52,13 +48,6 @@ export const ReservasPages = () => {
             }
         })
 
-    }
-
-    const handleShow = ({id_libro,id_usuario}) => {
-
-        dispatch(onOpenModal())
-        dispatch(onIdsReserva({id_libro, id_usuario}))
-        
     }
 
     const columns = [
@@ -97,11 +86,6 @@ export const ReservasPages = () => {
             name: 'Acciones',
             button: true,
             cell: (data) => <div className='d-flex justify-content-between'>
-                                <div className="mx-2">
-                                    <CButton color="primary" onClick={() => handleShow(data)}>
-                                        Prestar
-                                    </CButton>
-                                </div>
                                 <div>
                                     <CButton color="danger" onClick={() => handleEliminarReserva(data)}>
                                         Cancelar
@@ -134,6 +118,8 @@ export const ReservasPages = () => {
                                 fixedHeaderScrollHeight="600px"
                                 persistTableHead
                                 striped
+                                expandableRows
+                                expandableRowsComponent={ExpandedReservas}
                                 subHeader
                                 subHeaderComponent={<FiltroComponent onFilter={e => setFilterText(e.target.value)} filterText={filterText} onPlaceholder={'Filtra por nombre'} />}
                                 actions={ <CarritoButton onExport={reservas} onNombreBoton={'Carrito'} />}
@@ -142,9 +128,6 @@ export const ReservasPages = () => {
                     </CCard>
                 </CCol>
             </CRow>
-            {
-                (modalOpen) && <ReservasModal/>
-            }
             <CarritoReserva/>
         </CContainer>
     )
