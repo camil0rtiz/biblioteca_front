@@ -13,6 +13,7 @@ import { onAgregarEjemplar } from "../../store/biblioteca/ejemplarSlice"
 import { FiltroComponent } from "../components/FiltroComponent"
 import { AccionesTable } from "../components/AccionesTable"
 import { paginacionOpciones } from "../../helpers/paginacionOpciones"
+import { PrestamosModal } from "../components/modal/PrestamosModal";
 
 export const LibrosPages = () => {
 
@@ -24,7 +25,7 @@ export const LibrosPages = () => {
 
     const { libros, cantidadPaginas, libroSave } = useSelector(state => state.libro)
 
-    const { modalOpen, modalOpenEjemplar } = useSelector(state => state.ui)
+    const { modalOpen, modalOpenEjemplar, modalOpenPrestamos } = useSelector(state => state.ui)
     
     const dispatch = useDispatch()
 
@@ -205,6 +206,12 @@ export const LibrosPages = () => {
                         {
 
                             (modalOpen) && <LibrosModal/>
+
+                        }
+
+                        {
+
+                            (modalOpenPrestamos) && <PrestamosModal/>
 
                         }
                     </CCol>

@@ -5,6 +5,7 @@ export const uiSlice = createSlice({
     initialState:{
         modalOpen: false,
         modalOpenEjemplar: false,
+        modalOpenPrestamos: false,
         carritoOpen: false,
         carritoAdminOpen: false,
         filtrosOpen: false,
@@ -32,6 +33,10 @@ export const uiSlice = createSlice({
             state.modalOpenEjemplar = true
         },
 
+        onOpenModalPrestamos: (state) => {
+            state.modalOpenPrestamos = true
+        },
+
         onCloseCarrito: (state) => {
             state.carritoOpen = false
         },
@@ -52,6 +57,10 @@ export const uiSlice = createSlice({
             state.modalOpenEjemplar = false
         },
 
+        onCloseModalPrestamos: (state) => {
+            state.modalOpenPrestamos = false
+        },
+
         onCloseSidebar: (state) => {
 
             (state.sidebarAdmin == true) ? state.sidebarAdmin = false : state.sidebarAdmin = true 
@@ -62,15 +71,17 @@ export const uiSlice = createSlice({
 })
 
 export const {
+    onOpenModal, 
     onOpenCarrito,
     onOpenCarritoAdmin, 
-    onCloseCarrito,
-    onCloseCarritoAdmin, 
-    onOpenModal, 
-    onCloseModal, 
     onOpenModalEjemplar, 
-    onCloseModalEjemplar, 
+    onOpenModalPrestamos,
     onOpenFiltros,
+    onCloseCarrito,
+    onCloseCarritoAdmin,
+    onCloseModalPrestamos, 
+    onCloseModal, 
+    onCloseModalEjemplar, 
     onCloseFiltros,
     onCloseSidebar
 } = uiSlice.actions

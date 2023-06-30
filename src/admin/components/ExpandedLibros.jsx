@@ -1,8 +1,16 @@
 import DataTable from 'react-data-table-component'
 import { paginacionOpciones } from '../../helpers/paginacionOpciones'
 import { CButton } from '@coreui/react'
+import { useDispatch } from 'react-redux';
+import { onOpenModalPrestamos } from '../../store/ui/uiSlice';
 
 export const ExpandedLibros = ({ data }) => {
+
+    const dispatch = useDispatch()
+
+    const handleShow = () => {
+        dispatch(onOpenModalPrestamos())
+    }
 
     const columns = [
         
@@ -26,7 +34,7 @@ export const ExpandedLibros = ({ data }) => {
             button: true,
             cell: (data) => <div className='d-flex justify-content-between'>
                                 <div>
-                                    <CButton color="primary">
+                                    <CButton color="primary" onClick={() => handleShow()}>
                                         Agregar
                                     </CButton>
                                 </div>
