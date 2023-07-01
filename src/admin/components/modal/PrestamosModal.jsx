@@ -7,10 +7,13 @@ import { onCloseModalPrestamos } from '../../../store/ui/uiSlice'
 import { onEliminarPrestamoCarrito } from '../../../store/prestamos/carritoSlice'
 import { customStyles } from '../../../helpers/customStyles'
 import bibliotecaApi from '../../../api/bibliotecaApi'
+import { startPrestarLibro } from '../../../store/prestamos/thunk'
 
 export const PrestamosModal = () => {
 
     const [ usuarios, setUsuarios ] = useState([])
+
+    const { user } = useSelector(state => state.auth)
 
     const { modalPrestamos } = useSelector(state => state.carrito)
 
@@ -31,8 +34,6 @@ export const PrestamosModal = () => {
         try {
             
             const { data } = await bibliotecaApi.get('usuarios/listarHabilitados')
-
-            console.log(data);
 
             let arreglado = data.data.map( item => { 
                 return { value: item.id , label : `${item.rut_usuario} - ${item.nombre_usuario}  ${item.apellido_pate_usuario}`}; 
@@ -63,9 +64,19 @@ export const PrestamosModal = () => {
 
     const onSubmit = ({idVecino}) => {
         
-        let idVecino = idVecino.value
+        let usuarioId = idVecino.value
+        
+        let estadoPrestamo = 1
 
-        dispatch()
+        let idBibliotecario = user.id
+
+        let ejemplaresPrestados = []
+
+        modalPrestamos.map((cart)=> {
+            ejemplaresPrestados.push(cart.id)
+        })
+
+        dispatch(startPrestarLibro(ejemplaresPrestados, usuarioId, estadoPrestamo, idBibliotecario))
 
     }
 
