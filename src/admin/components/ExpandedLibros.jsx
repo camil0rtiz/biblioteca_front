@@ -1,15 +1,26 @@
 import DataTable from 'react-data-table-component'
 import { paginacionOpciones } from '../../helpers/paginacionOpciones'
 import { CButton } from '@coreui/react'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { onOpenModalPrestamos } from '../../store/ui/uiSlice';
+import { onAgregarPrestamoCarrito } from '../../store/prestamos/carritoSlice';
 
 export const ExpandedLibros = ({ data }) => {
 
+    const { modalPrestamos } = useSelector(state => state.carrito)
+
     const dispatch = useDispatch()
 
-    const handleShow = () => {
+    const handleShow = (data) => {
+
+        if(modalPrestamos.length < 2){
+            
+            dispatch(onAgregarPrestamoCarrito(data))
+
+        }
+
         dispatch(onOpenModalPrestamos())
+
     }
 
     const columns = [
@@ -34,7 +45,7 @@ export const ExpandedLibros = ({ data }) => {
             button: true,
             cell: (data) => <div className='d-flex justify-content-between'>
                                 <div>
-                                    <CButton color="primary" onClick={() => handleShow()}>
+                                    <CButton color="primary" onClick={() => handleShow(data)}>
                                         Agregar
                                     </CButton>
                                 </div>

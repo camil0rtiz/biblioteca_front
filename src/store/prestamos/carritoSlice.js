@@ -7,6 +7,7 @@ export const carritoSlice = createSlice({
 
         carrito: [],
         carritoReserva: [],
+        modalPrestamos: []
 
     },
         
@@ -52,6 +53,25 @@ export const carritoSlice = createSlice({
             }
 
         },
+
+        onAgregarPrestamoCarrito: (state, { payload }) => {
+
+            if(state.modalPrestamos.length != 0){
+
+                state.modalPrestamos.forEach((ejemplar) => {
+                    
+                    if(ejemplar.id != payload.id){
+                        state.modalPrestamos.push(payload)
+                    }
+            
+                })
+            }else{
+
+                state.modalPrestamos.push(payload)
+            
+            }
+
+        },
         
         onEliminarLibroCarrito: ( state, { payload } ) => {
 
@@ -78,4 +98,4 @@ export const carritoSlice = createSlice({
 
 }) 
 
-export const { onAgregarLibroCarrito, onAgregarEjemplarCarrito, onEliminarLibroCarrito, onEliminarEjemplarCarrito, onClearCarrito } = carritoSlice.actions
+export const { onAgregarLibroCarrito, onAgregarEjemplarCarrito, onAgregarPrestamoCarrito, onEliminarLibroCarrito, onEliminarEjemplarCarrito, onClearCarrito } = carritoSlice.actions
