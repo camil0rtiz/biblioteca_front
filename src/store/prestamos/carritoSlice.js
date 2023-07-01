@@ -89,6 +89,14 @@ export const carritoSlice = createSlice({
 
         },
 
+        onEliminarPrestamoCarrito: (state, { payload }) => {
+
+            const index = state.modalPrestamos.findIndex( ejemplar => ejemplar.id === payload );
+
+            state.modalPrestamos.splice( index, 1 )
+
+        },
+
         onClearCarrito: ( state ) => {
 
             state.carrito = []
@@ -98,4 +106,4 @@ export const carritoSlice = createSlice({
 
 }) 
 
-export const { onAgregarLibroCarrito, onAgregarEjemplarCarrito, onAgregarPrestamoCarrito, onEliminarLibroCarrito, onEliminarEjemplarCarrito, onClearCarrito } = carritoSlice.actions
+export const { onAgregarLibroCarrito, onAgregarEjemplarCarrito, onAgregarPrestamoCarrito, onEliminarLibroCarrito, onEliminarEjemplarCarrito, onEliminarPrestamoCarrito, onClearCarrito } = carritoSlice.actions
