@@ -8,7 +8,7 @@ export const ComprobantesModal = () => {
 
     const { modalOpen } = useSelector(state => state.ui)
 
-    const { userIdComprobante } = useSelector(state => state.user)
+    const { idsComprobantes } = useSelector(state => state.user)
 
     const dispatch = useDispatch()
 
@@ -19,7 +19,13 @@ export const ComprobantesModal = () => {
     
     }
 
-    const handleDescargarComprobante = (id) => {
+    const handleComproTransferencia = ({id}) => {
+
+        dispatch(startDescargarComprobante(id))
+
+    }
+
+    const handleComproDomicilio = ({id}) => {
 
         dispatch(startDescargarComprobante(id))
 
@@ -33,12 +39,12 @@ export const ComprobantesModal = () => {
             </Modal.Header>
             <Modal.Body>
                 <div className="d-grid">
-                    <Button variant="primary" className="btn-block" onClick={() => handleDescargarComprobante(userIdComprobante)}>
+                    <Button variant="primary" className="btn-block" onClick={() => handleComproTransferencia(idsComprobantes[0])}>
                         Comprobante de pago
                     </Button>
                 </div>
                 <div className="d-grid mt-2">
-                    <Button variant="primary" className="btn-block">
+                    <Button variant="primary" className="btn-block" onClick={() => handleComproDomicilio(idsComprobantes[1])}>
                         Comprobante de domicilio
                     </Button>
                 </div>

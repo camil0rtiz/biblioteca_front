@@ -236,8 +236,6 @@ export const startHabilitarUsuario = (
 
 export const startDescargarComprobante = (id) => {
 
-    console.log(id);
-
     return async( dispatch ) => {
 
         try {
@@ -246,7 +244,7 @@ export const startDescargarComprobante = (id) => {
                 responseType: 'blob',
             })
 
-              // Crear una URL de objeto para el archivo descargado
+             // Crear una URL de objeto para el archivo descargado
             const url = window.URL.createObjectURL(new Blob([response.data]));
 
             // Crear un enlace para descargar el archivo
@@ -254,12 +252,12 @@ export const startDescargarComprobante = (id) => {
             link.href = url;
             link.setAttribute('download', 'nombre-archivo.pdf'); // Establece el nombre de archivo deseado
 
-            // Agregar el enlace al documento y hacer clic en él para iniciar la descarga
+            // Agregar el enlace al documento
             document.body.appendChild(link);
+
             link.click();
 
-            // Limpiar la URL de objeto y eliminar el enlace
-            window.URL.revokeObjectURL(url);
+            // Eliminar el enlace del documento
             document.body.removeChild(link);
 
         } catch (error) {

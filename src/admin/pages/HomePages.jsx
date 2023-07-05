@@ -52,10 +52,10 @@ export const HomePages = () => {
 
     }
 
-    const handleShow = (id) => {
+    const handleShow = (data) => {
 
         dispatch(onOpenModal())
-        dispatch(onIdUserComprobante(id))
+        dispatch(onIdUserComprobante(data.archivos))
 
     }
 
@@ -87,7 +87,7 @@ export const HomePages = () => {
             cell: (data) => 
                             <div className='d-flex justify-content-between'>
                                 <div className="mx-1">
-                                    <CButton onClick={() => handleShow(data.id)} color="info">
+                                    <CButton onClick={() => handleShow(data)} color="info">
                                         Comprobantes
                                     </CButton>
                                 </div>

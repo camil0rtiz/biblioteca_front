@@ -20,7 +20,7 @@ export const userSlice = createSlice({
             idMembresia: '',
             registroTipoRol: []
         },
-        userIdComprobante: null,
+        idsComprobantes: [],
         usersPendientes: [],
         usersHabilitados: [],
         userSave: false,
@@ -65,13 +65,13 @@ export const userSlice = createSlice({
 
         onIdUserComprobante: (state, {payload}) => {
 
-            state.userIdComprobante = payload
+            state.idsComprobantes = payload
 
         },
 
         onClearIdUserComprobante: (state) => {
 
-            state.userIdComprobante = null
+            state.idsComprobantes = []
 
         },
 
