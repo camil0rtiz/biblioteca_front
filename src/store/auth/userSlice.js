@@ -24,6 +24,7 @@ export const userSlice = createSlice({
         usersPendientes: [],
         usersHabilitados: [],
         userSave: false,
+        userExists: false
     
     },
         
@@ -41,6 +42,7 @@ export const userSlice = createSlice({
                 registroApellidoPaterno: '',
                 registroApellidoMaterno: '',
                 registroCorreo: '',
+                registroConfirCorreo: '',
                 registroNumeroCelular: '',
                 registroDireccion: '',
                 registroNumCasa: '',
@@ -75,6 +77,12 @@ export const userSlice = createSlice({
 
         },
 
+        onUserExists: (state,{payload}) => {
+
+            state.userExists = payload
+
+        },
+
         onSave: (state) => {
 
             (state.userSave == true) ? state.userSave = false : state.userSave = true 
@@ -85,4 +93,4 @@ export const userSlice = createSlice({
 
 }) 
 
-export const {onAgregarUser, onClearUser, onListarUsersHabilitados, onListarUsersPendientes, onIdUserComprobante, onClearIdUserComprobante, onSave} = userSlice.actions
+export const {onAgregarUser, onClearUser, onListarUsersHabilitados, onListarUsersPendientes, onIdUserComprobante, onClearIdUserComprobante, onUserExists, onSave} = userSlice.actions

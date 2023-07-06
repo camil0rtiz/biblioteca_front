@@ -3,14 +3,15 @@ import { useNavigate } from "react-router-dom"
 import { useForm, Controller } from "react-hook-form"
 import { Button, Form, Row, Col, InputGroup, ProgressBar } from 'react-bootstrap'
 import { validaRut } from "../../helpers/validarRut"
-import { onAgregarUser } from "../../store/auth/userSlice"
+import { onAgregarUser, onUserExists } from "../../store/auth/userSlice"
 import { formateoRut } from "../../helpers/formateoRut"
-import { CCard, CCardBody, CCardGroup, CProgress, CProgressBar } from "@coreui/react"
+import { CAlert, CCard, CCardBody, CCardGroup, CProgress, CProgressBar } from "@coreui/react"
 import { formateoMayusculas } from '../../helpers/formateoMayusculas'
+import bibliotecaApi from "../../api/bibliotecaApi"
 
 export const PersonalRegisterForm = ({goNextPage}) => {
 
-    const { initialUsuario } = useSelector(state => state.user)
+    const { initialUsuario, userExists } = useSelector(state => state.user)
 
     const dispatch =  useDispatch()
 
@@ -18,12 +19,34 @@ export const PersonalRegisterForm = ({goNextPage}) => {
 
     const { formState: { errors }, handleSubmit, setValue, control, watch } = useForm({ defaultValues: initialUsuario })
 
-    const onSubmit = ({ registroRut,registroNombre,registroApellidoPaterno,registroApellidoMaterno,registroFechaNacimiento,registroCorreo, registroNumeroCelular,registroDireccion,registroNumCasa,registroPassword,registroConfirPassword }) => {
+    const onSubmit = async({ registroRut,registroNombre,registroApellidoPaterno,registroApellidoMaterno,registroFechaNacimiento,registroCorreo, registroConfirCorreo,registroNumeroCelular,registroDireccion,registroNumCasa,registroPassword,registroConfirPassword }) => {
         
-        dispatch(onAgregarUser({registroRut,registroNombre,registroApellidoPaterno,registroApellidoMaterno,registroFechaNacimiento,registroCorreo,registroNumeroCelular,registroDireccion,registroNumCasa,registroPassword,registroConfirPassword}));
-        
-        goNextPage()
+        const {data} = await bibliotecaApi.get(`usuarios/verificar/${registroRut}`)
+        console.log(data);
+        if (data.data == true) {
+            dispatch(onUserExists(true));
+        } else if (data.data == false) {
 
+            console.log(data);
+            dispatch(
+                onAgregarUser({
+                    registroRut,
+                    registroNombre,
+                    registroApellidoPaterno,
+                    registroApellidoMaterno,
+                    registroFechaNacimiento,
+                    registroCorreo,
+                    registroConfirCorreo,
+                    registroNumeroCelular,
+                    registroDireccion,
+                    registroNumCasa,
+                    registroPassword,
+                    registroConfirPassword,
+                })
+            );
+            dispatch(onUserExists(false));
+            goNextPage();
+        }
     };
 
     const handleHome = () => {
@@ -37,6 +60,11 @@ export const PersonalRegisterForm = ({goNextPage}) => {
         <CCardGroup>
             <CCard className="p-4">
                 <CCardBody>
+                    {userExists &&  
+                        <CAlert color="danger">
+                            Usuario ya se encuentra registrado
+                        </CAlert>
+                    }
                     <ProgressBar className="mb-3" animated variant="primary" now={33.3} label={'Paso 1'} />
                     <h3>Datos Personales</h3>
                     <Form onSubmit={handleSubmit(onSubmit)}>
