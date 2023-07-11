@@ -6,15 +6,15 @@ import { onListarEjemplares, onLoadingFalseE, onSaveEjemplar } from "./ejemplarS
 import { onListarEventos, onListarEventosHome, onSaveEvento } from "./eventoSlice";
 import { onCantidadPaginado, onCantidadPaginas, onClearLibros, onListarLibros, onSaveLibro } from "./libroSlice";
 
-export const startAgregarLibro = ({tituloLibro, isbnLibro, deweyLibro, categoriaLibro, numPagLibro, anioPublicacionLibro, resenaLibro, estadoLibro, idAutor, portada }) => {
+export const startAgregarLibro = ({tituloLibro, deweyLibro, anioPublicacionLibro, resenaLibro, estadoLibro, idAutor, portada }) => {
+
+
+    console.log({tituloLibro, deweyLibro, anioPublicacionLibro, resenaLibro, estadoLibro, idAutor, portada });
 
     const formData = new FormData()
     formData.append('titulo_libro', tituloLibro)
-    formData.append('isbn_libro', isbnLibro)
     formData.append('dewey_libro', deweyLibro)
     formData.append('resena_libro', resenaLibro)
-    formData.append('numero_pagi_libro', numPagLibro)
-    formData.append('categoria_libro', categoriaLibro)
     formData.append('anio_publi_libro', anioPublicacionLibro)
     formData.append('estado_libro', estadoLibro)
     formData.append('id_autor', idAutor)
@@ -64,7 +64,7 @@ export const startListarLibros = (page, perPage, filterText) => {
     }
 }
 
-export const startActualizarLibro = ({id, tituloLibro, isbnLibro, deweyLibro, categoriaLibro, numPagLibro, fechaPublicacionLibro, resenaLibro, idAutor}) => {
+export const startActualizarLibro = ({id, tituloLibro, deweyLibro, fechaPublicacionLibro, resenaLibro, idAutor}) => {
 
     return async( dispatch ) => {
 
@@ -72,11 +72,8 @@ export const startActualizarLibro = ({id, tituloLibro, isbnLibro, deweyLibro, ca
 
             const {data} = await bibliotecaApi.put(`libros/actualizar/${id}`, {
                 'titulo_libro': tituloLibro,
-                'isbn_libro': isbnLibro,
                 'dewey_libro': deweyLibro,
                 'resena_libro': resenaLibro,
-                'numero_pagi_libro': numPagLibro,
-                'categoria_libro': categoriaLibro,
                 'fecha_publi_libro': fechaPublicacionLibro,
                 'id_autor': idAutor
             });

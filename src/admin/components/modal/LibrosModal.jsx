@@ -56,9 +56,7 @@ export const LibrosModal = () => {
 
     });
 
-    const onSubmit = ({id,tituloLibro,isbnLibro,deweyLibro,numPagLibro,anioPublicacionLibro,resenaLibro,autorLibro,portadaLibro}) => {
-
-        console.log({id,tituloLibro,isbnLibro,deweyLibro,numPagLibro,anioPublicacionLibro,resenaLibro,autorLibro,portadaLibro});
+    const onSubmit = ({id,tituloLibro,deweyLibro,anioPublicacionLibro,resenaLibro,autorLibro,portadaLibro}) => {
 
         let portada = portadaLibro
 
@@ -68,12 +66,12 @@ export const LibrosModal = () => {
 
         if(id){
         
-            dispatch(startActualizarLibro({id, tituloLibro, isbnLibro, deweyLibro, numPagLibro, anioPublicacionLibro, resenaLibro, idAutor}))  
+            dispatch(startActualizarLibro({id, tituloLibro, deweyLibro, anioPublicacionLibro, resenaLibro, idAutor}))  
 
             return          
         }
 
-        dispatch(startAgregarLibro({tituloLibro, isbnLibro, deweyLibro, numPagLibro, anioPublicacionLibro, resenaLibro, estadoLibro, idAutor, portada}))
+        dispatch(startAgregarLibro({tituloLibro, deweyLibro, anioPublicacionLibro, resenaLibro, estadoLibro, idAutor, portada}))
 
     }
     
@@ -176,37 +174,6 @@ export const LibrosModal = () => {
                     } 
                 </Form.Group>
                 <Form.Group className="mb-3">
-                    <Form.Label>ISBN</Form.Label>
-                    <Controller 
-                        control={control} 
-                        name="isbnLibro" 
-                        defaultValue=""
-                        rules={{
-                            required:{
-                                value: true,
-                                message: 'ISBN es obligatorio'
-                            },
-                            // validate:{
-                            //     valido: v => validaIsbn(v) || 'ISBN no es válido'
-                            // } 
-                        }}
-                        render={({ field: {onChange, value, ref } }) => (
-                            <Form.Control
-                                onChange={onChange} 
-                                value={value}
-                                ref={ref}  
-                                type="text"
-                                placeholder="ingrese ISBN" 
-                            />
-                        )}
-                    />
-                    {errors.isbnLibro && 
-                        <Form.Text className="text-danger" variant='danger'>
-                            {errors.isbnLibro.message}
-                        </Form.Text> 
-                    } 
-                </Form.Group>
-                <Form.Group className="mb-3">
                     <Form.Label>Dewey</Form.Label>
                     <Controller 
                         control={control} 
@@ -231,37 +198,6 @@ export const LibrosModal = () => {
                     {errors.deweyLibro && 
                         <Form.Text className="text-danger" variant='danger'>
                             {errors.deweyLibro.message}
-                        </Form.Text> 
-                    } 
-                </Form.Group>
-                <Form.Group className="mb-3">
-                    <Form.Label>Número de páginas libro</Form.Label>
-                    <Controller 
-                        control={control} 
-                        name="numPagLibro" 
-                        defaultValue=""
-                        rules={{
-                            required:{
-                                value: true,
-                                message: 'Número de páginas es obligatorio'
-                            },
-                        }}
-                        render={({ field: {onChange, value, ref } }) => (
-                            <Form.Control
-                                onChange={onChange} 
-                                value={value}
-                                ref={ref}  
-                                type="Number"
-                                min="1" 
-                                max="5000" 
-                                step="1"
-                                placeholder="ingrese número paginas del libro" 
-                            />
-                        )}
-                    />
-                    {errors.numPagLibro && 
-                        <Form.Text className="text-danger" variant='danger'>
-                            {errors.numPagLibro.message}
                         </Form.Text> 
                     } 
                 </Form.Group>
@@ -356,11 +292,11 @@ export const LibrosModal = () => {
                     } 
                 </Form.Group>
                 <Form.Group className="mb-3" >
-                    <Form.Label>Descripcion evento</Form.Label>
+                    <Form.Label>Reseña libro</Form.Label>
                     <ReactQuill
                         value={resena.field.value}
                         onChange={resena.field.onChange}
-                        placeholder='ingrese una reseña'
+                        placeholder='Ingrese reseña del libro'
                     />
                     {errors.resenaLibro && 
                         <Form.Text className="text-danger" variant='danger'>

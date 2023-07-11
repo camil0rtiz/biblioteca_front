@@ -35,7 +35,7 @@ export const LibrosPages = () => {
         
     }, [libroSave, page, perPage, filterText])
 
-    const handleShow = ({id, titulo_libro, isbn_libro, dewey_libro, categoria_libro, numero_pagi_libro, anio_publi_libro, resena_libro, autor}) => {
+    const handleShow = ({id, titulo_libro, dewey_libro, anio_publi_libro, resena_libro, autor}) => {
 
         dispatch(onOpenModal())
 
@@ -53,8 +53,7 @@ export const LibrosPages = () => {
 
             autor.value == '' && (autorLibro = []),
             
-            dispatch(onAgregarLibro({id, tituloLibro: titulo_libro, isbnLibro: isbn_libro, deweyLibro: dewey_libro, categoriaLibro: categoria_libro, 
-                                    numPagLibro: numero_pagi_libro, anioPublicacionLibro: anio_publi_libro, resenaLibro: resena_libro, autorLibro}))
+            dispatch(onAgregarLibro({id, tituloLibro: titulo_libro, deweyLibro: dewey_libro, anioPublicacionLibro: anio_publi_libro, resenaLibro: resena_libro, autorLibro}))
 
         }
     }
@@ -64,11 +63,6 @@ export const LibrosPages = () => {
         {
             name: 'Título libro',
             selector: row => row.titulo_libro,
-            sortable: true,
-        },
-        {
-            name: 'ISBN',
-            selector: row => row.isbn_libro,
             sortable: true,
         },
         {

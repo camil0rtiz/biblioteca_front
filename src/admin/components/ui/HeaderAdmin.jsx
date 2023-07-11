@@ -59,7 +59,7 @@ export const HeaderAdmin = () => {
                         <CNavLink to="home" component={NavLink}>Inicio</CNavLink>
                     </CNavItem>
                     {
-                        ((user.tipo_rol == 'Bibliotecario') || (user.tipo_rol == 'SuperAdmin')) && (
+                        ((user.tipo_rol == 'Bibliotecario') || (user.tipo_rol == 'Administrador')) && (
                             <>
                                 <CNavItem>
                                     <CNavLink to="usuarios" component={NavLink}>Usuarios</CNavLink>

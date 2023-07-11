@@ -126,6 +126,68 @@ export const EjemplaresModal = () => {
                         </Form.Text> 
                     } 
                 </Form.Group>
+                <Form.Group className="mb-3">
+                    <Form.Label>ISBN</Form.Label>
+                    <Controller 
+                        control={control} 
+                        name="isbnLibro" 
+                        defaultValue=""
+                        rules={{
+                            required:{
+                                value: true,
+                                message: 'ISBN es obligatorio'
+                            },
+                            // validate:{
+                            //     valido: v => validaIsbn(v) || 'ISBN no es válido'
+                            // } 
+                        }}
+                        render={({ field: {onChange, value, ref } }) => (
+                            <Form.Control
+                                onChange={onChange} 
+                                value={value}
+                                ref={ref}  
+                                type="text"
+                                placeholder="ingrese ISBN" 
+                            />
+                        )}
+                    />
+                    {errors.isbnLibro && 
+                        <Form.Text className="text-danger" variant='danger'>
+                            {errors.isbnLibro.message}
+                        </Form.Text> 
+                    } 
+                </Form.Group>
+                <Form.Group className="mb-3">
+                    <Form.Label>Número de páginas libro</Form.Label>
+                    <Controller 
+                        control={control} 
+                        name="numPagLibro" 
+                        defaultValue=""
+                        rules={{
+                            required:{
+                                value: true,
+                                message: 'Número de páginas es obligatorio'
+                            },
+                        }}
+                        render={({ field: {onChange, value, ref } }) => (
+                            <Form.Control
+                                onChange={onChange} 
+                                value={value}
+                                ref={ref}  
+                                type="Number"
+                                min="1" 
+                                max="5000" 
+                                step="1"
+                                placeholder="ingrese número paginas del libro" 
+                            />
+                        )}
+                    />
+                    {errors.numPagLibro && 
+                        <Form.Text className="text-danger" variant='danger'>
+                            {errors.numPagLibro.message}
+                        </Form.Text> 
+                    } 
+                </Form.Group>
                 <Form.Group className="mb-3" >
                     <Form.Label>Seleccione editorial</Form.Label>
                     <Controller

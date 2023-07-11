@@ -7,10 +7,7 @@ export const libroSlice = createSlice({
         initialLibro:  {
             id: '',
             tituloLibro: '',
-            isbnLibro: '',
             deweyLibro: '',
-            categoriaLibro: '',
-            numPagLibro: '',
             anioPublicacionLibro: '',
             resenaLibro: '',
             autorLibro: []
@@ -37,10 +34,7 @@ export const libroSlice = createSlice({
             state.initialLibro = {
                 id: '',
                 tituloLibro: '',
-                isbnLibro: '',
                 deweyLibro: '',
-                categoriaLibro: '',
-                numPagLibro: '',
                 anioPublicacionLibro: '',
                 resenaLibro: '',
                 autorLibro: []
