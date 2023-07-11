@@ -358,7 +358,7 @@ export const startListarEjemplares = (id) => {
     }
 }
 
-export const startAgregarEjemplar = ({id_editorial, id_libro, anioEdiEjemplar, numResgisEjemplar, deweyEjemplar ,estado_ejemplar}) => {
+export const startAgregarEjemplar = ({id_editorial, id_libro, anioEdiEjemplar, deweyEjemplar, isbnEjemplar, numPagEjemplar, estado_ejemplar}) => {
 
     return async( dispatch ) => {
 
@@ -367,8 +367,9 @@ export const startAgregarEjemplar = ({id_editorial, id_libro, anioEdiEjemplar, n
             const { data } = await bibliotecaApi.post('ejemplares/agregar', {
                 id_libro,
                 id_editorial,
-                'numero_regis_ejemplar': numResgisEjemplar,
                 'anio_edi_ejemplar': anioEdiEjemplar,
+                'isbn_ejemplar': isbnEjemplar,
+                'numero_pagi_ejemplar': numPagEjemplar,
                 'dewey_unic_ejemplar': deweyEjemplar,
                 'estado_ejemplar': estado_ejemplar
             })

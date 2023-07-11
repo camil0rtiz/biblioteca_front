@@ -27,14 +27,14 @@ export const EjemplaresModal = () => {
 
     }, [ejemplarSave])
 
-    const onSubmit = ({id, ejemplarEditorial, anioEdiEjemplar, numResgisEjemplar}) => {
+    const onSubmit = ({id, ejemplarEditorial, anioEdiEjemplar, isbnEjemplar, numPagEjemplar}) => {
 
         const estado_ejemplar = 1 
         let id_editorial = ejemplarEditorial.value
         let id_libro = id
         let deweyEjemplar = initialEjemplar.deweyLibro + ' ' + anioEdiEjemplar
 
-        dispatch(startAgregarEjemplar({id_editorial, id_libro, anioEdiEjemplar, numResgisEjemplar, deweyEjemplar, estado_ejemplar}))
+        dispatch(startAgregarEjemplar({id_editorial, id_libro, anioEdiEjemplar, deweyEjemplar, isbnEjemplar, numPagEjemplar, estado_ejemplar}))
 
     }
     
@@ -85,7 +85,7 @@ export const EjemplaresModal = () => {
             </Modal.Header>
             <Form onSubmit={handleSubmit(onSubmit)}>
             <Modal.Body>
-                <Form.Group className="mb-3" >
+                <Form.Group>
                     <Controller 
                         control={control} 
                         name="id" 
@@ -99,38 +99,12 @@ export const EjemplaresModal = () => {
                             />
                         )}
                     />
-                    <Form.Label>Número resgistro</Form.Label> 
-                    <Controller 
-                        control={control} 
-                        name="numResgisEjemplar" 
-                        defaultValue=""
-                        rules={{
-                            required:{
-                                value: true,
-                                message: "Numero resgistro ejemplar es obligatorio"
-                            }, 
-                        }}
-                        render={({ field: { onChange, value, ref } }) => (
-                            <Form.Control 
-                                onChange={onChange} 
-                                value={value} 
-                                ref={ref}  
-                                type="number" 
-                                placeholder="Ingresa nombre editorial" 
-                            />
-                        )}
-                    />
-                    {errors.numResgisEjemplar && 
-                        <Form.Text className="text-danger" variant='danger'>
-                            {errors.numResgisEjemplar.message}
-                        </Form.Text> 
-                    } 
                 </Form.Group>
                 <Form.Group className="mb-3">
                     <Form.Label>ISBN</Form.Label>
                     <Controller 
                         control={control} 
-                        name="isbnLibro" 
+                        name="isbnEjemplar" 
                         defaultValue=""
                         rules={{
                             required:{
@@ -151,17 +125,17 @@ export const EjemplaresModal = () => {
                             />
                         )}
                     />
-                    {errors.isbnLibro && 
+                    {errors.isbnEjemplar && 
                         <Form.Text className="text-danger" variant='danger'>
-                            {errors.isbnLibro.message}
+                            {errors.isbnEjemplar.message}
                         </Form.Text> 
                     } 
                 </Form.Group>
                 <Form.Group className="mb-3">
-                    <Form.Label>Número de páginas libro</Form.Label>
+                    <Form.Label>Número de páginas ejemplar</Form.Label>
                     <Controller 
                         control={control} 
-                        name="numPagLibro" 
+                        name="numPagEjemplar" 
                         defaultValue=""
                         rules={{
                             required:{
@@ -178,13 +152,44 @@ export const EjemplaresModal = () => {
                                 min="1" 
                                 max="5000" 
                                 step="1"
-                                placeholder="ingrese número paginas del libro" 
+                                placeholder="ingrese número paginas del ejemplar" 
                             />
                         )}
                     />
-                    {errors.numPagLibro && 
+                    {errors.numPagEjemplar && 
                         <Form.Text className="text-danger" variant='danger'>
-                            {errors.numPagLibro.message}
+                            {errors.numPagEjemplar.message}
+                        </Form.Text> 
+                    } 
+                </Form.Group>
+                <Form.Group className="mb-3" >
+                    <Form.Label>Año edición</Form.Label> 
+                    <Controller 
+                        control={control} 
+                        name="anioEdiEjemplar" 
+                        defaultValue=""
+                        rules={{
+                            required:{
+                                value: true,
+                                message: "Año edición editorial es obligatorio"
+                            },
+                        }}
+                        render={({ field: { onChange, value, ref } }) => (
+                            <Form.Control 
+                                onChange={onChange} 
+                                value={value} 
+                                ref={ref}  
+                                type="number"
+                                min="1900" 
+                                max="2099" 
+                                step="1"
+                                placeholder="Ingresa año edición ejemplar" 
+                            />
+                        )}
+                    />
+                    {errors.anioEdiEjemplar && 
+                        <Form.Text className="text-danger" variant='danger'>
+                            {errors.anioEdiEjemplar.message}
                         </Form.Text> 
                     } 
                 </Form.Group>
@@ -218,37 +223,6 @@ export const EjemplaresModal = () => {
                             {errors.ejemplarEditorial.message}
                         </Form.Text> 
                     }     
-                </Form.Group>
-                <Form.Group className="mb-3" >
-                    <Form.Label>Año edición</Form.Label> 
-                    <Controller 
-                        control={control} 
-                        name="anioEdiEjemplar" 
-                        defaultValue=""
-                        rules={{
-                            required:{
-                                value: true,
-                                message: "Año edición editorial es obligatorio"
-                            },
-                        }}
-                        render={({ field: { onChange, value, ref } }) => (
-                            <Form.Control 
-                                onChange={onChange} 
-                                value={value} 
-                                ref={ref}  
-                                type="number"
-                                min="1900" 
-                                max="2099" 
-                                step="1"
-                                placeholder="Ingresa año edición ejemplar" 
-                            />
-                        )}
-                    />
-                    {errors.anioEdiEjemplar && 
-                        <Form.Text className="text-danger" variant='danger'>
-                            {errors.anioEdiEjemplar.message}
-                        </Form.Text> 
-                    } 
                 </Form.Group>
             </Modal.Body>
             <Modal.Footer>
