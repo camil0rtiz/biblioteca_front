@@ -4,6 +4,7 @@ import { CButton } from '@coreui/react'
 import { useDispatch, useSelector } from 'react-redux';
 import { onOpenModalPrestamos } from '../../store/ui/uiSlice';
 import { onAgregarPrestamoCarrito } from '../../store/prestamos/carritoSlice';
+import { startEliminarEjemplar } from '../../store/biblioteca/thunk';
 
 export const ExpandedLibros = ({ data }) => {
 
@@ -20,6 +21,14 @@ export const ExpandedLibros = ({ data }) => {
         }
 
         dispatch(onOpenModalPrestamos())
+
+    }
+
+    const handleEliminarEjemplar = ({id}) => {
+
+        let estadoEjemplar = 3
+
+        dispatch(startEliminarEjemplar(id, estadoEjemplar))
 
     }
 
@@ -50,12 +59,12 @@ export const ExpandedLibros = ({ data }) => {
             button: true,
             cell: (data) => <div className='d-flex justify-content-between'>
                                 <div>
-                                    <CButton color="primary" className='mx-2' onClick={() => handleShow(data)}>
+                                    <CButton color="primary" className='mx-2' disabled={(data.estado_ejemplar == 2 ? true : false)} onClick={() => handleShow(data)}>
                                         Prestar
                                     </CButton>
                                 </div>
                                 <div>
-                                    <CButton color="danger">
+                                    <CButton color="danger" disabled={(data.estado_ejemplar == 2 ? true : false)} onClick={() => handleEliminarEjemplar(data)}>
                                         Eliminar
                                     </CButton>
                                 </div>

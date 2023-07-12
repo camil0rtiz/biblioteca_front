@@ -8,9 +8,6 @@ import { onCantidadPaginado, onCantidadPaginas, onClearLibros, onListarLibros, o
 
 export const startAgregarLibro = ({tituloLibro, deweyLibro, anioPublicacionLibro, resenaLibro, estadoLibro, idAutor, portada }) => {
 
-
-    console.log({tituloLibro, deweyLibro, anioPublicacionLibro, resenaLibro, estadoLibro, idAutor, portada });
-
     const formData = new FormData()
     formData.append('titulo_libro', tituloLibro)
     formData.append('dewey_libro', deweyLibro)
@@ -379,6 +376,28 @@ export const startAgregarEjemplar = ({id_editorial, id_libro, anioEdiEjemplar, d
             dispatch(onSaveLibro())
             dispatch(onSaveEjemplar())
             
+        } catch (error) {
+        
+            console.error(error)
+            
+        }
+
+    }
+}
+
+export const startEliminarEjemplar = (id, estadoEjemplar) => {
+
+    return async( dispatch ) => {
+
+        try {
+    
+            const { data } = await bibliotecaApi.put(`ejemplares/eliminar/${id}`, {
+                'estado_ejemplar': estadoEjemplar,
+            })
+
+            dispatch(onSaveLibro())
+            dispatch(onSaveEjemplar())
+
         } catch (error) {
         
             console.error(error)
