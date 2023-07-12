@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { CBreadcrumb, CBreadcrumbItem, CHeaderDivider, CContainer, CRow, CCard, CCardImage, CCardBody, CCardTitle, CCardSubtitle, CCarousel, CCarouselItem, CImage} from '@coreui/react'
 import { Swiper, SwiperSlide } from 'swiper/react'
@@ -9,29 +10,17 @@ import 'swiper/css/pagination'
 import 'swiper/css/scrollbar'
 import '../../assets/css/home.css'
 import Biblio from '../../assets/img/libros.jpg'
-import bibliotecaApi from '../../api/bibliotecaApi'
+import { startListarUltimosAgregados } from '../../store/biblioteca/thunk';
 
 export const HomePages = () => {
     
-    const [ libros, setLibros ] = useState([])
+    const { ultimosAgregados } = useSelector(state => state.libro)
+
+    const dispatch = useDispatch()
 
     useEffect(() => {
-        listarLibros()
+        dispatch(startListarUltimosAgregados())
     }, [])
-
-    const listarLibros = async() => {
-        try {
-
-            const {data} = await bibliotecaApi.get('libros/listar')
-
-            setLibros(data.data)
-                    
-        } catch (error) {
-        
-            console.error(error)
-            
-        }
-    }
 
     return (
         <>
@@ -85,7 +74,7 @@ export const HomePages = () => {
                             clickable: true,
                         }}
                         >
-                        {libros.map((libro) => (
+                        {ultimosAgregados.map((libro) => (
                             <SwiperSlide key={libro.id}>
                                 <CCard border="light">
                                     <CCardImage style={{height: 360}} variant="top" src={` http://localhost/biblioteca_vn_backend/storage/app/public/${libro.url}`} />
@@ -136,7 +125,7 @@ export const HomePages = () => {
                             clickable: true,
                         }}
                         >
-                        {libros.map((libro) => (
+                        {ultimosAgregados.map((libro) => (
                             <SwiperSlide key={libro.id}>
                                 <CCard border="light">
                                     <CCardImage style={{height: 360}} variant="top" src={` http://localhost/biblioteca_vn_backend/storage/app/public/${libro.url}`} />
