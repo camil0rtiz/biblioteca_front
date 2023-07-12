@@ -68,6 +68,8 @@ export const PrestamosModal = () => {
         
         let estadoPrestamo = 1
 
+        let descontarStock = 1
+
         let idBibliotecario = user.id
 
         let ejemplaresPrestados = []
@@ -76,7 +78,7 @@ export const PrestamosModal = () => {
             ejemplaresPrestados.push(cart.id)
         })
 
-        dispatch(startPrestarLibro(ejemplaresPrestados, usuarioId, estadoPrestamo, idBibliotecario))
+        dispatch(startPrestarLibro(ejemplaresPrestados, usuarioId, estadoPrestamo, idBibliotecario, descontarStock))
 
     }
 

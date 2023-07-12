@@ -26,13 +26,18 @@ export const ExpandedLibros = ({ data }) => {
     const columns = [
         
         {
-            name: 'N° Registro',
-            selector: row => row.numero_regis_ejemplar,
+            name: 'Dewey Ejemplar',
+            selector: row => row.dewey_unic_ejemplar,
             sortable: true,
         },
         {
-            name: 'Dewey',
-            selector: row => row.dewey_unic_ejemplar,
+            name: 'ISBN',
+            selector: row => row.isbn_ejemplar,
+            sortable: true,
+        },
+        {
+            name: 'Número de páginas',
+            selector: row => row.numero_pagi_ejemplar,
             sortable: true,
         },
         {
@@ -45,8 +50,13 @@ export const ExpandedLibros = ({ data }) => {
             button: true,
             cell: (data) => <div className='d-flex justify-content-between'>
                                 <div>
-                                    <CButton color="primary" onClick={() => handleShow(data)}>
-                                        Agregar
+                                    <CButton color="primary" className='mx-2' onClick={() => handleShow(data)}>
+                                        Prestar
+                                    </CButton>
+                                </div>
+                                <div>
+                                    <CButton color="danger">
+                                        Eliminar
                                     </CButton>
                                 </div>
                             </div>,

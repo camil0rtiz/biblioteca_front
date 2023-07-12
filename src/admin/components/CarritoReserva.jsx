@@ -26,6 +26,8 @@ export const CarritoReserva = () => {
 
         let estadoPrestamo = 1
 
+        let descontarStock = 2
+
         let idBibliotecario = user.id
 
         let ejemplaresPrestados = []
@@ -34,7 +36,7 @@ export const CarritoReserva = () => {
             ejemplaresPrestados.push(cart.id)
         })
 
-        dispatch(startPrestarLibro(ejemplaresPrestados, usuarioId, estadoPrestamo, idBibliotecario))
+        dispatch(startPrestarLibro(ejemplaresPrestados, usuarioId, estadoPrestamo, idBibliotecario, descontarStock))
 
     }
 
