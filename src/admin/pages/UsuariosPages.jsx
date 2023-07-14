@@ -78,19 +78,20 @@ export const UsuariosPages = () => {
                                         Editar
                                     </CButton>
                                 </div>
-                                <div>
+                                <div >
                                     <CButton color="danger" disabled={(data.id_rol == 1 ? true : false)} onClick={() => handleEliminarUsuario(data)}>
                                         Eliminar
                                     </CButton>  
                                 </div>
-
-                                <div>
-                                    <CButton color="success">
-                                        Renovar 
-                                    </CButton>  
-                                </div>
+                                {data.estado_usuario === 3 && (
+                                    <div className="mx-2">
+                                        <CButton color="success">
+                                            Renovar 
+                                        </CButton>  
+                                    </div>
+                                )}
                             </div>,
-            width: "250px"  
+            width: "300px"  
         }, 
     ];
 
