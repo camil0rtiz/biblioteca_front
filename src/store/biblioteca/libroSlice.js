@@ -13,6 +13,7 @@ export const libroSlice = createSlice({
             autorLibro: []
         },
         libros: [],
+        masReservados: [],//aqui los libros mas reservados por lo usuarios
         ultimosAgregados: [], //aqui se muestran los último libros que se agregaron
         cantidadPaginas: 0,
         cantidadPaginado: 0,
@@ -29,6 +30,12 @@ export const libroSlice = createSlice({
 
         onListarLibros: (state, {payload}) => {
             state.libros = payload
+        },
+
+        onListarMasReservados: (state, {payload}) => {
+
+            state.masReservados = payload
+            
         },
 
         onListarUltimosAgregados: (state, {payload}) => {
@@ -71,4 +78,4 @@ export const libroSlice = createSlice({
 
 })
 
-export const {onAgregarLibro, onListarLibros, onListarUltimosAgregados, onClearLibros, onCantidadPaginas, onCantidadPaginado, onSaveLibro } = libroSlice.actions
+export const {onAgregarLibro, onListarLibros, onListarMasReservados, onListarUltimosAgregados, onClearLibros, onCantidadPaginas, onCantidadPaginado, onSaveLibro } = libroSlice.actions

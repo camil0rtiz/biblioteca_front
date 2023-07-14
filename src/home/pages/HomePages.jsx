@@ -10,13 +10,17 @@ import 'swiper/css/pagination'
 import 'swiper/css/scrollbar'
 import '../../assets/css/home.css'
 import Biblio from '../../assets/img/libros.jpg'
-import { startListarUltimosAgregados } from '../../store/biblioteca/thunk';
+import { startListarMasReservados, startListarUltimosAgregados } from '../../store/biblioteca/thunk';
 
 export const HomePages = () => {
     
-    const { ultimosAgregados } = useSelector(state => state.libro)
+    const { ultimosAgregados, masReservados } = useSelector(state => state.libro)
 
     const dispatch = useDispatch()
+
+    useEffect(() => {
+        dispatch(startListarMasReservados())
+    }, [])
 
     useEffect(() => {
         dispatch(startListarUltimosAgregados())
@@ -125,7 +129,7 @@ export const HomePages = () => {
                             clickable: true,
                         }}
                         >
-                        {ultimosAgregados.map((libro) => (
+                        {masReservados.map((libro) => (
                             <SwiperSlide key={libro.id}>
                                 <CCard border="light">
                                     <CCardImage style={{height: 360}} variant="top" src={` http://localhost/biblioteca_vn_backend/storage/app/public/${libro.url}`} />

@@ -15,8 +15,6 @@ export const LibrosPages = () => {
 
     const { libros, cantidadPaginado } = useSelector(state => state.libro)
 
-    console.log(libros);
-
     const { carrito } = useSelector(state => state.carrito)
 
     const dispatch = useDispatch()
