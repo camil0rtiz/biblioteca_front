@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { CBreadcrumb, CBreadcrumbItem, CHeaderDivider, CContainer, CRow, CCard, CCardImage, CCardBody, CCardTitle, CCardSubtitle, CCarousel, CCarouselItem, CImage} from '@coreui/react'
+import { CContainer, CRow, CCard, CCardImage, CCardBody, CCardTitle, CCardSubtitle, CCarousel, CCarouselItem, CImage} from '@coreui/react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Navigation, Pagination, Autoplay } from "swiper"
 import 'swiper/css'

@@ -37,7 +37,7 @@ export const SidebarAdmin = () => {
                     ((user.tipo_rol == 'Bibliotecario') || (user.tipo_rol == 'Administrador')) && (
                         <>             
                             <CNavGroup toggler={<><CIcon customClassName="nav-icon" icon={cilUser} /> Usuarios</>}>
-                                <NavLink className="nav-link" to="usuarios"><CIcon customClassName="nav-icon" icon={cilPuzzle} />Usuarios Habilitados </NavLink>
+                                <NavLink className="nav-link" to="usuarios"><CIcon customClassName="nav-icon" icon={cilPuzzle} />Usuarios</NavLink>
                             </CNavGroup>
                             <CNavGroup toggler={<><CIcon customClassName="nav-icon" icon={cilBook} /> Libros</>}>
                                 <NavLink className="nav-link" to="libros"><CIcon customClassName="nav-icon" icon={cilPuzzle} />Libros</NavLink>

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import DataTable from "react-data-table-component"
-import { startHabilitarUsuario, startListarUsuariosPendientes } from "../../store/auth/thunk"
+import { startHabilitarUsuario, startListarUsuariosPendientes, startRechazarComprobante } from "../../store/auth/thunk"
 import { CButton, CCard, CCardBody, CCardHeader, CCol, CContainer, CRow, CWidgetStatsF } from '@coreui/react'
 import { FiltroComponent } from "../components/FiltroComponent"
 import CIcon from "@coreui/icons-react"
@@ -52,6 +52,14 @@ export const HomePages = () => {
 
     }
 
+    const handleRechazar = (id) => {
+
+        let estadoUsuario = 3
+
+        dispatch(startRechazarComprobante(id, estadoUsuario))
+
+    }
+
     const handleShow = (data) => {
 
         dispatch(onOpenModal())
@@ -97,7 +105,7 @@ export const HomePages = () => {
                                     </CButton>
                                 </div>
                                 <div className="mx-1">
-                                    <CButton onClick={() => handleHabilitar(data.id)} color="danger">
+                                    <CButton onClick={() => handleRechazar(data.id)} color="danger">
                                         Rechazar
                                     </CButton>
                                 </div>

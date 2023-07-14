@@ -5,7 +5,7 @@ import DataTable from 'react-data-table-component'
 import Swal from 'sweetalert2'
 import { UsuariosModal } from '../components/modal/UsuariosModal'
 import { onOpenModal  } from '../../store/ui/uiSlice'
-import { startListarUsuariosHabilitados } from '../../store/auth/thunk'
+import { startEliminarUsuario, startListarUsuariosHabilitados } from '../../store/auth/thunk'
 import { onAgregarUser } from '../../store/auth/userSlice'
 import { FiltroComponent } from "../components/FiltroComponent"
 import { AccionesTable } from '../components/AccionesTable'
@@ -59,6 +59,17 @@ export const UsuariosPages = () => {
             sortable: true,
         },
         {
+            name: 'Estado usuario',
+            selector: row => (
+                <span className="text-primary">
+                    {
+                        row.estado_usuario 
+                    }
+                </span>
+            ),
+            sortable: true,
+        },
+        {
             name: 'Acciones',
             button: true,
             cell: (data) => <div className='d-flex justify-content-between'>
@@ -70,6 +81,12 @@ export const UsuariosPages = () => {
                                 <div>
                                     <CButton color="danger" disabled={(data.id_rol == 1 ? true : false)} onClick={() => handleEliminarUsuario(data)}>
                                         Eliminar
+                                    </CButton>  
+                                </div>
+
+                                <div>
+                                    <CButton color="success">
+                                        Renovar 
                                     </CButton>  
                                 </div>
                             </div>,
@@ -119,6 +136,10 @@ export const UsuariosPages = () => {
 
     const handleEliminarUsuario = ({id}) => {
 
+        let estadoUsuario = 4
+
+        console.log(id);
+
         Swal.fire({
             title: '¿Estás seguro de querer habilitar a usuario?',
             text: "¡Asegurate de haber revisado los comprobantes!",
@@ -130,6 +151,7 @@ export const UsuariosPages = () => {
             cancelButtonText: 'Cancelar'
         }).then((result) => {
             if (result.isConfirmed) {
+                dispatch(startEliminarUsuario(id, estadoUsuario))
                 Swal.fire(
                     'Habilitado!',
                     'El usuario ha sido habilitado correctamente correctamente.',

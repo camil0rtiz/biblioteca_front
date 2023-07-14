@@ -234,6 +234,27 @@ export const startHabilitarUsuario = (
     }
 }
 
+export const startRechazarComprobante = (id, estadoUsuario) => {
+
+    return async( dispatch ) => {
+
+        try {
+
+            const {data} = await bibliotecaApi.put(`usuarios/rechazar/${id}`, {
+                'estado_usuario': estadoUsuario
+            })
+
+            dispatch(onSave())
+
+        } catch (error) {
+
+            console.log(error.response)
+
+        }
+
+    }
+}
+
 export const startDescargarComprobante = (id) => {
 
     return async( dispatch ) => {
@@ -269,13 +290,15 @@ export const startDescargarComprobante = (id) => {
     }
 } 
 
-export const startEliminarUsuario = ({ id }) => {
+export const startEliminarUsuario = (id, estadoUsuario) => {
 
     return async( dispatch ) => {
         
         try {
             
-            await bibliotecaApi.delete(`usuarios/eliminar/${id}`)
+            const {data} = await bibliotecaApi.put(`usuarios/eliminar/${id}`, {
+                'estado_usuario': estadoUsuario,
+            });
 
             dispatch(onSave())
 
