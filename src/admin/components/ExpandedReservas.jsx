@@ -31,7 +31,7 @@ export const ExpandedReservas = ({data}) => {
         
         {
             name: 'N° Registro',
-            selector: row => row.numero_regis_ejemplar,
+            selector: row => row.id,
             sortable: true,
         },
         {

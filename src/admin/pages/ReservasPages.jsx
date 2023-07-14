@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { CCard, CCardHeader, CCol, CContainer, CRow, CCardBody, CButton } from '@coreui/react'
 import DataTable from 'react-data-table-component'
 import { startEliminarReserva, startListarReservas } from '../../store/prestamos/thunk'
-import { FiltroComponent } from '../components/FiltroComponent'
+import { BuscadorComponent } from '../components/BuscadorComponent'
 import Swal from 'sweetalert2'
 import { CarritoButton } from '../components/CarritoButton'
 import { CarritoReserva } from '../components/CarritoReserva'
@@ -12,7 +12,7 @@ import { ExpandedReservas } from '../components/ExpandedReservas'
 
 export const ReservasPages = () => {
 
-    const [ filterText, setFilterText ] = useState('')
+    const [searchRut, setSearchRut] = useState('');
 
     const { reservas, reservaSave } = useSelector(state => state.reserva)
 
@@ -20,13 +20,15 @@ export const ReservasPages = () => {
 
     useEffect(() => {
 
-        dispatch(startListarReservas(filterText))
+        if (reservaSave || searchRut) {
+            dispatch(startListarReservas(searchRut));
+        }
         
-    }, [reservaSave, filterText])
+    }, [reservaSave, searchRut])
 
     const handleEliminarReserva = ({id}) => {
 
-        let estadoReserva = 4
+        let estadoReserva = 3
 
         Swal.fire({
             title: '¿Estás seguro que deseas cancelar la reserva?',
@@ -121,7 +123,7 @@ export const ReservasPages = () => {
                                 expandableRows
                                 expandableRowsComponent={ExpandedReservas}
                                 subHeader
-                                subHeaderComponent={<FiltroComponent onFilter={e => setFilterText(e.target.value)} filterText={filterText} onPlaceholder={'Filtra por nombre'} />}
+                                subHeaderComponent={<BuscadorComponent onFilter={setSearchRut} onPlaceholder={'Buscar usuario por rut'} />}
                                 actions={ <CarritoButton onExport={reservas} onNombreBoton={'Carrito'} />}
                             />
                         </CCardBody>

@@ -30,13 +30,13 @@ export const startReservarLibro = (librosReservados, idVecino, estadoReserva) =>
 
 } 
 
-export const startListarReservas = (nombre) => {
+export const startListarReservas = (rut) => {
 
     return async( dispatch ) => {
 
         try {
 
-            const {data} = await bibliotecaApi.get(`reservas/listar?nombre=${nombre}`)
+            const {data} = await bibliotecaApi.get(`reservas/listar?rut=${rut}`)
             
             dispatch(onListarReservas(data.data))
                     

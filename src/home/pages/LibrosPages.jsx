@@ -15,6 +15,8 @@ export const LibrosPages = () => {
 
     const { libros, cantidadPaginado } = useSelector(state => state.libro)
 
+    console.log(libros);
+
     const { carrito } = useSelector(state => state.carrito)
 
     const dispatch = useDispatch()
@@ -77,7 +79,7 @@ export const LibrosPages = () => {
                                     <CCardSubtitle className="text-muted text-center">{libro.autor.label[0]}</CCardSubtitle>
                                 </CCardBody>
                                 <CListGroup className="list-group-flush">
-                                    <CListGroupItem className="text-center"><CButton color="dark" className="text-center" onClick={() => handleOpenCarrito(libro)} disabled={(libro.cantidad_ejemplares == 0) ? false : true}>Agregar</CButton></CListGroupItem>
+                                    <CListGroupItem className="text-center"><CButton color="dark" className="text-center" onClick={() => handleOpenCarrito(libro)} disabled={(libro.stock_libro == 0) ? true : false}>Agregar</CButton></CListGroupItem>
                                 </CListGroup>     
                                 <CCardFooter className="text-center">
                                     <small className="text-muted">
