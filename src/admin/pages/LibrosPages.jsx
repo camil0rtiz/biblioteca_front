@@ -64,7 +64,53 @@ export const LibrosPages = () => {
         dispatch(onOpenModalPortada())
         dispatch(onAgregarLibro({id, url}))
 
-    } 
+    }
+
+    const handleShowEjemplar = ({id, dewey_libro}) => {
+
+        dispatch(onOpenModalEjemplar())
+
+        dispatch(onAgregarEjemplar({id,'deweyLibro':dewey_libro}))
+        
+    }
+
+    const handleEliminarLibro = ({id}) => {
+
+        let estado_libro = 2
+
+        Swal.fire({
+            title: '¿Estás seguro de querer eliminar un libro?',
+            text: "¡No podrás revertir esto!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Si, deseo eliminar',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                dispatch(startEliminarLibro({id, estado_libro}))
+                Swal.fire(
+                    '¡Eliminado!',
+                    'El libro ha sido eliminado correctamente.',
+                    'success'
+                )
+            }
+        })
+
+    }
+
+    const handlePageChange = (page) => {
+
+		setPage(page)
+
+	}
+
+    const handlePerRowsChange = (newPerPage) => {
+
+        setPerPage(newPerPage)
+
+	}
 
     const columns = [
 
@@ -120,52 +166,6 @@ export const LibrosPages = () => {
             width: "500px"  
         }, 
     ];
-
-    const handleShowEjemplar = ({id, dewey_libro}) => {
-
-        dispatch(onOpenModalEjemplar())
-
-        dispatch(onAgregarEjemplar({id,'deweyLibro':dewey_libro}))
-        
-    }
-
-    const handleEliminarLibro = ({id}) => {
-
-        let estado_libro = 2
-
-        Swal.fire({
-            title: '¿Estás seguro de querer eliminar un libro?',
-            text: "¡No podrás revertir esto!",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Si, deseo eliminar',
-            cancelButtonText: 'Cancelar'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                dispatch(startEliminarLibro({id, estado_libro}))
-                Swal.fire(
-                    '¡Eliminado!',
-                    'El libro ha sido eliminado correctamente.',
-                    'success'
-                )
-            }
-        })
-
-    }
-
-    const handlePageChange = (page) => {
-
-		setPage(page)
-
-	}
-
-    const handlePerRowsChange = (newPerPage) => {
-
-        setPerPage(newPerPage)
-
-	}
 
     return (
         <>

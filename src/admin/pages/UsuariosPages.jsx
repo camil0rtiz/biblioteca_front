@@ -61,9 +61,17 @@ export const UsuariosPages = () => {
         {
             name: 'Estado usuario',
             selector: row => (
-                <span className="text-primary">
+                <span>
                     {
-                        row.estado_usuario 
+                        row.estado_usuario == "1" ? (
+                            'Habilitado'
+                        ) : row.estado_usuario == "3" ? (
+                            'Vencido'
+                        ) : row.estado_usuario == "4" ? (
+                            'Eliminado'
+                        ) : (
+                            null
+                        )
                     }
                 </span>
             ),
@@ -138,8 +146,6 @@ export const UsuariosPages = () => {
     const handleEliminarUsuario = ({id}) => {
 
         let estadoUsuario = 4
-
-        console.log(id);
 
         Swal.fire({
             title: '¿Estás seguro de querer habilitar a usuario?',

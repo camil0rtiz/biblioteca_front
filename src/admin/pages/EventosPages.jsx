@@ -4,19 +4,20 @@ import { CButton, CCard, CCardBody, CCardHeader, CCol, CContainer, CRow } from '
 import DataTable from 'react-data-table-component'
 import Swal from 'sweetalert2'
 import { EventosModal } from '../components/modal/EventosModal'
-import { onOpenModal } from '../../store/ui/uiSlice'
+import { onOpenModal, onOpenModalPortadaEvento } from '../../store/ui/uiSlice'
 import { AccionesTable } from '../components/AccionesTable'
 import { FiltroComponent } from '../components/FiltroComponent'
 import { startEliminarEvento, startListarEventos } from '../../store/biblioteca/thunk'
 import { onAgregarEvento } from '../../store/biblioteca/eventoSlice'
 import { ExpandedEventos } from '../components/ExpandedEventos'
 import { paginacionOpciones } from "../../helpers/paginacionOpciones"
+import { PortadaEventoModal } from '../components/modal/PortadaEventoModal'
 
 export const EventosPages = () => {
 
     const [ filterText, setFilterText ] = useState('')
 
-    const { modalOpen } = useSelector(state => state.ui)
+    const { modalOpen, modalOpenPortadaEvento } = useSelector(state => state.ui)
 
     const { eventos, eventoSave } = useSelector(state => state.evento)
 
@@ -28,35 +29,6 @@ export const EventosPages = () => {
         
     }, [eventoSave, filterText])
 
-    const columns = [
-        {
-            name: 'Título',
-            selector: row => row.titulo_evento,
-            sortable: true,
-        },
-        {
-            name: 'Tipo',
-            selector: row => row.tipo_categoria,
-            sortable: true,
-        },
-        {
-            name: 'Acciones',
-            button: true,
-            cell: (data) => <div className='d-flex justify-content-between'>
-                                <div className='mx-2'>
-                                    <CButton color="warning" onClick={() => handleShow(data)}>
-                                        Editar
-                                    </CButton>
-                                </div>
-                                <div>
-                                    <CButton color="danger" onClick={() => handleEliminarEvento(data)}>
-                                        Eliminar
-                                    </CButton> 
-                                </div>
-                            </div>,
-            width: "250px"  
-        }, 
-    ];
 
     const handleShow = ({id, titulo_evento, descripcion_evento, id_categoria, tipo_categoria}) => {
 
@@ -103,6 +75,48 @@ export const EventosPages = () => {
         
     }
 
+    const handleShowPortada = ({id, archivos}) => {
+
+        dispatch(onOpenModalPortadaEvento())
+        dispatch(onAgregarEvento({id, url: archivos}))
+
+    }
+
+    const columns = [
+        {
+            name: 'Título',
+            selector: row => row.titulo_evento,
+            sortable: true,
+        },
+        {
+            name: 'Tipo',
+            selector: row => row.tipo_categoria,
+            sortable: true,
+        },
+        {
+            name: 'Acciones',
+            button: true,
+            cell: (data) => <div className='d-flex justify-content-between'>
+                                <div>
+                                    <CButton color="success" onClick={() => handleShowPortada(data)}>
+                                        Cambiar portada
+                                    </CButton>
+                                </div>
+                                <div className='mx-2'>
+                                    <CButton color="warning" onClick={() => handleShow(data)}>
+                                        Editar
+                                    </CButton>
+                                </div>
+                                <div>
+                                    <CButton color="danger" onClick={() => handleEliminarEvento(data)}>
+                                        Eliminar
+                                    </CButton> 
+                                </div>
+                            </div>,
+            width: "350px"  
+        }, 
+    ];
+
     const data = eventos.data
 
     return (
@@ -137,6 +151,9 @@ export const EventosPages = () => {
                     </CCard>
                     {
                         (modalOpen) && <EventosModal/>
+                    }
+                    {
+                        (modalOpenPortadaEvento) && <PortadaEventoModal/>
                     }
                 </CCol>
             </CRow>

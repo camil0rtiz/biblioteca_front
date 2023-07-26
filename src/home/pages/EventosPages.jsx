@@ -61,7 +61,8 @@ export const EventosPages = () => {
                                         >
                                             {evento.archivos.map((archivo) => (
                                                 <SwiperSlide key={archivo.id}>
-                                                    <CCardImage className='imagen-evento' src={`http://134.122.124.97/storage/${archivo.url}`} alt={`Imagen ${archivo.id}`} />
+                                                    <CCardImage className='imagen-evento' src={`http://localhost/biblioteca_vn_backend/storage/app/public/${archivo.url}`} alt={`Imagen ${archivo.id}`} />
+                                                    {/* <CCardImage className='imagen-evento' src={`http://134.122.124.97/storage/${archivo.url}`} alt={`Imagen ${archivo.id}`} /> */}
                                                 </SwiperSlide>
                                             ))}
                                         </Swiper>

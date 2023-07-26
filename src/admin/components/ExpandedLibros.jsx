@@ -50,8 +50,20 @@ export const ExpandedLibros = ({ data }) => {
             sortable: true,
         },
         {
-            name: 'Estado',
-            selector: row => row.estado_ejemplar,
+            name: 'Estado ejemplar',
+            selector: row => (
+                <span>
+                    {
+                        row.estado_ejemplar == "1" ? (
+                            'Disponible'
+                        ) : row.estado_ejemplar == "2" ? (
+                            'Prestado'
+                        ) : (
+                            null
+                        )
+                    }
+                </span>
+            ),
             sortable: true,
         },
         {

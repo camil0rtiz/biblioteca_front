@@ -591,3 +591,24 @@ export const startEliminarEvento = ({id, estado_evento}) => {
     }
 }
 
+export const startCambiarPortadaEvento = (id, eventoImagen) => {
+
+    return async( dispatch ) => {
+
+        // try {
+
+        //     const {data} = await bibliotecaApi.put(`libros/eliminar/${id}`, {
+        //         'estado_libro': estado_libro,
+        //     });
+
+        //     dispatch(onSaveLibro())
+            
+        // } catch (error) {
+        
+        //     console.error(error)
+            
+        // }
+
+    }
+}
+
