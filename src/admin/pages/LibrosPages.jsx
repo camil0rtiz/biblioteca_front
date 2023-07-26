@@ -4,7 +4,7 @@ import DataTable from "react-data-table-component"
 import { CButton, CCard, CCardBody, CCardHeader, CCol, CContainer, CRow } from '@coreui/react'
 import Swal from "sweetalert2";
 import { startEliminarLibro, startListarLibros } from "../../store/biblioteca/thunk";
-import { onOpenModal, onOpenModalEjemplar } from "../../store/ui/uiSlice"
+import { onOpenModal, onOpenModalEjemplar, onOpenModalPortada } from "../../store/ui/uiSlice"
 import { LibrosModal } from '../components/modal/LibrosModal'
 import { ExpandedLibros } from '../components/ExpandedLibros'
 import { onAgregarLibro } from "../../store/biblioteca/libroSlice"
@@ -14,6 +14,7 @@ import { FiltroComponent } from "../components/FiltroComponent"
 import { AccionesTable } from "../components/AccionesTable"
 import { paginacionOpciones } from "../../helpers/paginacionOpciones"
 import { PrestamosModal } from "../components/modal/PrestamosModal";
+import { PortadaModal } from "../components/modal/PortadaModal";
 
 export const LibrosPages = () => {
 
@@ -25,7 +26,7 @@ export const LibrosPages = () => {
 
     const { libros, cantidadPaginas, libroSave } = useSelector(state => state.libro)
 
-    const { modalOpen, modalOpenEjemplar, modalOpenPrestamos } = useSelector(state => state.ui)
+    const { modalOpen, modalOpenEjemplar, modalOpenPrestamos, modalOpenPortada } = useSelector(state => state.ui)
     
     const dispatch = useDispatch()
 
@@ -57,6 +58,13 @@ export const LibrosPages = () => {
 
         }
     }
+
+    const handleShowPortada = ({id, url}) => {
+        
+        dispatch(onOpenModalPortada())
+        dispatch(onAgregarLibro({id, url}))
+
+    } 
 
     const columns = [
 
@@ -94,6 +102,11 @@ export const LibrosPages = () => {
                                     </CButton>
                                 </div>
                                 <div className="mx-1">
+                                    <CButton color="success" onClick={() => handleShowPortada(data)}>
+                                        Cambiar portada
+                                    </CButton>
+                                </div>
+                                <div className="mx-1">
                                     <CButton color="warning" onClick={() => handleShow(data)}>
                                         Editar
                                     </CButton>
@@ -104,7 +117,7 @@ export const LibrosPages = () => {
                                     </CButton>
                                 </div>
                             </div>,
-            width: "400px"  
+            width: "500px"  
         }, 
     ];
 
@@ -206,6 +219,12 @@ export const LibrosPages = () => {
                         {
 
                             (modalOpenPrestamos) && <PrestamosModal/>
+
+                        }
+
+                        {
+
+                            (modalOpenPortada) && <PortadaModal/>
 
                         }
                     </CCol>

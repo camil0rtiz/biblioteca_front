@@ -10,7 +10,8 @@ export const libroSlice = createSlice({
             deweyLibro: '',
             anioPublicacionLibro: '',
             resenaLibro: '',
-            autorLibro: []
+            autorLibro: [],
+            url: ''
         },
         libros: [],
         masReservados: [],//aqui los libros mas reservados por lo usuarios
@@ -51,7 +52,8 @@ export const libroSlice = createSlice({
                 deweyLibro: '',
                 anioPublicacionLibro: '',
                 resenaLibro: '',
-                autorLibro: []
+                autorLibro: [],
+                url: ''
             }
         },
 

@@ -147,6 +147,29 @@ export const startEliminarLibro = ({id, estado_libro}) => {
     }
 }
 
+export const startCambiarPortadaLibro = (id, portadaLibro) => {
+
+    console.log(id, portadaLibro);
+
+    return async( dispatch ) => {
+
+        // try {
+
+        //     const {data} = await bibliotecaApi.put(`libros/eliminar/${id}`, {
+        //         'estado_libro': estado_libro,
+        //     });
+
+        //     dispatch(onSaveLibro())
+            
+        // } catch (error) {
+        
+        //     console.error(error)
+            
+        // }
+
+    }
+}
+
 export const startAgregarAutor = ({autorNombre, agregarAutorSelect, estadoAutor}) => {
 
     return async( dispatch ) => {

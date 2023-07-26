@@ -165,7 +165,7 @@ export const HomePages = () => {
                 <CCol xs={12}>
                     <CCard className="mb-4">
                         <CCardHeader>
-                            <strong>Eventos</strong> 
+                            <strong>Vecinos pendientes</strong> 
                         </CCardHeader>
                         <CCardBody>
                             <DataTable

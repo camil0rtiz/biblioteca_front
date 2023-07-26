@@ -232,32 +232,36 @@ export const LibrosModal = () => {
                         </Form.Text> 
                     } 
                 </Form.Group>
-                <Form.Group className="mb-3">
-                    <Form.Label>Subir imagen de portada</Form.Label>
-                    <Controller 
-                        control={control} 
-                        name="portadaLibro" 
-                        defaultValue=""
-                        rules={{
-                            required:{
-                                value: true,
-                                message: "Imagen de portada es obligatoria"
-                            },
-                        }}
-                        render={({ field: {ref } }) => (
-                            <Form.Control 
-                                onChange={handleFileChange("portadaLibro")} 
-                                ref={ref}  
-                                type="file"
+                {
+                    (!initialLibro.id) && (
+                        <Form.Group className="mb-3">
+                            <Form.Label>Subir imagen de portada</Form.Label>
+                            <Controller 
+                                control={control} 
+                                name="portadaLibro" 
+                                defaultValue=""
+                                rules={{
+                                    required:{
+                                        value: true,
+                                        message: "Imagen de portada es obligatoria"
+                                    },
+                                }}
+                                render={({ field: {ref } }) => (
+                                    <Form.Control 
+                                        onChange={handleFileChange("portadaLibro")} 
+                                        ref={ref}  
+                                        type="file"
+                                    />
+                                )}
                             />
-                        )}
-                    />
-                    {errors.portadaLibro && 
-                        <Form.Text className="text-danger" variant='danger'>
-                            {errors.portadaLibro.message}
-                        </Form.Text> 
-                    } 
-                </Form.Group>
+                            {errors.portadaLibro && 
+                                <Form.Text className="text-danger" variant='danger'>
+                                    {errors.portadaLibro.message}
+                                </Form.Text> 
+                            } 
+                        </Form.Group>
+                    )
+                }
                 <Form.Group className="mb-3">
                     <Form.Label>Seleccione autor(es)</Form.Label>
                     <Controller
