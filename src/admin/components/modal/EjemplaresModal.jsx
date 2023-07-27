@@ -111,6 +111,10 @@ export const EjemplaresModal = () => {
                                 value: true,
                                 message: 'ISBN es obligatorio'
                             },
+                            pattern: {
+                                value: /^(?=(?:\D*\d){10}(?:(?:\D*\d){3})?$)[\d-]*$/,
+                                message: "ISBN no es válido",
+                            },
                             // validate:{
                             //     valido: v => validaIsbn(v) || 'ISBN no es válido'
                             // } 

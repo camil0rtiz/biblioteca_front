@@ -89,7 +89,6 @@ export const ExpandedLibros = ({ data }) => {
         
         <DataTable
             responsive
-            pagination
             columns={columns}
             data={data.ejemplares}
             highlightOnHover={true}

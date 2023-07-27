@@ -56,7 +56,6 @@ export const ExpandedReservas = ({data}) => {
     return (
         <DataTable
             responsive
-            pagination
             columns={columns}
             data={data.ejemplares}
             highlightOnHover={true}

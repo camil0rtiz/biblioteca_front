@@ -5,6 +5,7 @@ import { FiltroComponent } from '../components/FiltroComponent'
 import DataTable from 'react-data-table-component'
 import { startDevolucionPrestamo, startListarPrestamos } from '../../store/prestamos/thunk'
 import { paginacionOpciones } from "../../helpers/paginacionOpciones"
+import { ExpandedPrestamos } from '../components/ExpandedPrestamos'
 
 export const PrestamosPages = () => {
     
@@ -63,18 +64,18 @@ export const PrestamosPages = () => {
             selector: row => row.estado_prestamo,
             sortable: true,
         },
-        {
-            name: 'Acciones',
-            button: true,
-            cell: (data) => <div className='d-flex justify-content-between'>
-                                <div className="mx-2">
-                                    <CButton color="primary" onClick={() => handleDevolucionLibro(data)}>
-                                        Devolución
-                                    </CButton>
-                                </div>
-                            </div>,
-            width: "250px" 
-        }, 
+        // {
+        //     name: 'Acciones',
+        //     button: true,
+        //     cell: (data) => <div className='d-flex justify-content-between'>
+        //                         <div className="mx-2">
+        //                             <CButton color="primary" onClick={() => handleDevolucionLibro(data)}>
+        //                                 Devolución
+        //                             </CButton>
+        //                         </div>
+        //                     </div>,
+        //     width: "250px" 
+        // }, 
     ];
 
     return (
@@ -99,6 +100,8 @@ export const PrestamosPages = () => {
                                 fixedHeaderScrollHeight="600px"
                                 persistTableHead
                                 striped
+                                expandableRows
+                                expandableRowsComponent={ExpandedPrestamos}
                                 subHeader
                                 subHeaderComponent={<FiltroComponent onFilter={e => setFilterText(e.target.value)} filterText={filterText} onPlaceholder={'Filtra por nombre'} />}
                                 // actions={ <AccionesTable onExport={usersPendientes} onNombreBoton={'Agregar Autor'} />}
