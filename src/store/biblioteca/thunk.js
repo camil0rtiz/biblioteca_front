@@ -4,7 +4,7 @@ import { onClearAutores, onListarAutores, onSaveAutor, onLoadingFalse } from "./
 import { onClearEditoriales, onListarEditoriales, onSaveEditorial } from "./editorialSlice";
 import { onListarEjemplares, onLoadingFalseE, onSaveEjemplar } from "./ejemplarSlice";
 import { onListarEventos, onListarEventosHome, onSaveEvento } from "./eventoSlice";
-import { onCantidadPaginado, onCantidadPaginas, onClearLibros, onListarLibros, onListarUltimosAgregados, onListarMasReservados, onSaveLibro } from "./libroSlice";
+import { onCantidadPaginado, onCantidadPaginas, onClearLibros, onListarLibros, onListarUltimosAgregados, onListarMasReservados, onSaveLibro, onMessageError, onClearMessageError } from "./libroSlice";
 
 export const startAgregarLibro = ({tituloLibro, deweyLibro, anioPublicacionLibro, resenaLibro, estadoLibro, idAutor, portada }) => {
 
@@ -30,11 +30,16 @@ export const startAgregarLibro = ({tituloLibro, deweyLibro, anioPublicacionLibro
             dispatch(onClearLibros())
             dispatch(onCloseModal())
             dispatch(onSaveLibro())
+            dispatch(onClearMessageError())
         
         } catch (error) {
-        
-            console.error(error)
             
+            console.error()
+
+            dispatch(onMessageError(true))
+
+            // dispatch(onMessageError(error.response.data.message))
+        
         }
 
     }

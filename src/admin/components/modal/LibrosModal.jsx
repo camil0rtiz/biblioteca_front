@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useForm, Controller, useController } from 'react-hook-form'
-import { Modal, Button, Form } from 'react-bootstrap'
+import { Modal, Button, Form, Alert } from 'react-bootstrap'
 import CreatableSelect from 'react-select/creatable'
 import ReactQuill from 'react-quill'
 import bibliotecaApi from '../../../api/bibliotecaApi'
-import { onClearLibros } from '../../../store/biblioteca/libroSlice'
+import { onClearLibros, onClearMessageError } from '../../../store/biblioteca/libroSlice'
 import { onCloseModal } from '../../../store/ui/uiSlice'
 import { startActualizarLibro, startAgregarAutor, startAgregarLibro } from '../../../store/biblioteca/thunk'
 import 'react-quill/dist/quill.snow.css'
@@ -22,7 +22,7 @@ export const LibrosModal = () => {
 
     const { modalOpen } = useSelector(state => state.ui)
 
-    const { initialLibro } = useSelector(state => state.libro)
+    const { initialLibro, errorMessage } = useSelector(state => state.libro)
 
     const { autorSave } = useSelector(state => state.autor)
 
@@ -79,6 +79,7 @@ export const LibrosModal = () => {
 
         dispatch(onClearLibros())
         dispatch(onCloseModal())
+        dispatch(onClearMessageError())
     
     }
 
@@ -131,6 +132,13 @@ export const LibrosModal = () => {
             </Modal.Header>
             <Form onSubmit={handleSubmit(onSubmit)}>
             <Modal.Body>
+                {
+                    (errorMessage == true) && (
+                        <Alert variant='danger'>
+                            El código dewey libro ya se encuentra registrado
+                        </Alert>
+                    )
+                }
                 <Form.Group className="mb-3" >
                     <Controller 
                         control={control} 
