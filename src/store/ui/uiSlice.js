@@ -4,6 +4,7 @@ export const uiSlice = createSlice({
     name: 'ui',
     initialState:{
         modalOpen: false,
+        modalOpenRenovar: false,
         modalOpenEjemplar: false,
         modalOpenPrestamos: false,
         modalOpenPortada: false,
@@ -29,6 +30,10 @@ export const uiSlice = createSlice({
 
         onOpenModal: (state) => {
             state.modalOpen = true
+        },
+
+        onOpenModalRenovar: (state) => {
+            state.modalOpenRenovar = true
         },
 
         onOpenModalEjemplar: (state) => {
@@ -63,6 +68,10 @@ export const uiSlice = createSlice({
             state.modalOpen = false
         },
 
+        onCloseModalRenovar: (state) => {
+            state.modalOpenRenovar = false
+        },
+
         onCloseModalEjemplar: (state) => {
             state.modalOpenEjemplar = false
         },
@@ -90,6 +99,7 @@ export const uiSlice = createSlice({
 
 export const {
     onOpenModal, 
+    onOpenModalRenovar, 
     onOpenCarrito,
     onOpenCarritoAdmin, 
     onOpenModalEjemplar, 
@@ -102,7 +112,8 @@ export const {
     onCloseModalPrestamos,
     onCloseModalPortada,
     onCloseModalPortadaEvento,
-    onCloseModal, 
+    onCloseModal,
+    onCloseModalRenovar,
     onCloseModalEjemplar, 
     onCloseFiltros,
     onCloseSidebar

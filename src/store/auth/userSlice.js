@@ -29,11 +29,13 @@ export const userSlice = createSlice({
     },
         
     reducers:{
+
         onAgregarUser: (state, { payload }) => {
 
             state.initialUsuario = {...state.initialUsuario, ...payload};
             
         },
+
         onClearUser: (state) => {
             state.initialUsuario = {
                 id: '',
@@ -53,6 +55,7 @@ export const userSlice = createSlice({
                 registroTipoRol: []
             }
         },
+        
         onListarUsersHabilitados: (state, {payload}) => {
 
             state.usersHabilitados = payload

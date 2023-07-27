@@ -1,7 +1,7 @@
 import bibliotecaApi from "../../api/bibliotecaApi"
 import { login, logout, onErrorMessage, onNotAuthenticatedLogin } from "./authSlice"
 import { onClearUser, onListarUsersHabilitados, onListarUsersPendientes, onSave } from "./userSlice"
-import { onCloseModal } from "../ui/uiSlice"
+import { onCloseModal, onCloseModalRenovar } from "../ui/uiSlice"
 
 export const startLogin = (loginRut, loginPassword, reset) => {
 
@@ -245,6 +245,30 @@ export const startRechazarComprobante = (id, estadoUsuario) => {
             })
 
             dispatch(onSave())
+
+        } catch (error) {
+
+            console.log(error.response)
+
+        }
+
+    }
+}
+
+export const startRenovarMembresia = (id, idMembresia ,estadoUsuario) => {
+
+    return async( dispatch ) => {
+
+        try {
+
+            const {data} = await bibliotecaApi.put(`usuarios/renovar/${id}`, {
+                'id_membresia': idMembresia,
+                'estado_usuario': estadoUsuario
+            })
+
+            dispatch(onSave())
+            dispatch(onCloseModalRenovar())
+            dispatch(onClearUser())
 
         } catch (error) {
 

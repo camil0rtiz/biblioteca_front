@@ -4,12 +4,13 @@ import { CButton, CCard, CCardBody, CCardHeader, CCol, CContainer, CRow } from '
 import DataTable from 'react-data-table-component'
 import Swal from 'sweetalert2'
 import { UsuariosModal } from '../components/modal/UsuariosModal'
-import { onOpenModal  } from '../../store/ui/uiSlice'
+import { onOpenModal, onOpenModalRenovar  } from '../../store/ui/uiSlice'
 import { startEliminarUsuario, startListarUsuariosHabilitados } from '../../store/auth/thunk'
 import { onAgregarUser } from '../../store/auth/userSlice'
 import { FiltroComponent } from "../components/FiltroComponent"
 import { AccionesTable } from '../components/AccionesTable'
 import { paginacionOpciones } from "../../helpers/paginacionOpciones"
+import { RenovarModal } from '../components/modal/RenovarModal'
 
 export const UsuariosPages = () => {
     
@@ -17,91 +18,13 @@ export const UsuariosPages = () => {
 
     const { usersHabilitados, userSave } = useSelector(state => state.user)
 
-    const { modalOpen } = useSelector(state => state.ui)
+    const { modalOpen, modalOpenRenovar } = useSelector(state => state.ui)
 
     const dispatch = useDispatch()
 
     useEffect(() => {
         dispatch(startListarUsuariosHabilitados(filterText))
     }, [userSave,filterText])
-    
-    const columns = [
-
-        {
-            name: 'Rut',
-            selector: row => row.rut_usuario,
-            sortable: true,
-        },
-        {
-            name: 'Nombre',
-            selector: row => row.nombre_usuario,
-            sortable: true,
-        },
-        {
-            name: 'Apellido Paterno',
-            selector: row => row.apellido_pate_usuario,
-            sortable: true,
-        },
-        {
-            name: 'Correo',
-            selector: row => row.email,
-            sortable: true,
-        },
-        {
-            name: 'Rol',
-            selector: row => (
-                <span className="text-primary">
-                    {
-                        (row.tipo_rol) ? row.tipo_rol : 'Vecino'
-                    }
-                </span>
-            ),
-            sortable: true,
-        },
-        {
-            name: 'Estado usuario',
-            selector: row => (
-                <span>
-                    {
-                        row.estado_usuario == "1" ? (
-                            'Habilitado'
-                        ) : row.estado_usuario == "3" ? (
-                            'Vencido'
-                        ) : row.estado_usuario == "4" ? (
-                            'Eliminado'
-                        ) : (
-                            null
-                        )
-                    }
-                </span>
-            ),
-            sortable: true,
-        },
-        {
-            name: 'Acciones',
-            button: true,
-            cell: (data) => <div className='d-flex justify-content-between'>
-                                <div className="mx-2">
-                                    <CButton color="warning" onClick={() => handleShow(data)} disabled={(data.id_rol == 1 ? true : false)}>
-                                        Editar
-                                    </CButton>
-                                </div>
-                                <div >
-                                    <CButton color="danger" disabled={(data.id_rol == 1 ? true : false)} onClick={() => handleEliminarUsuario(data)}>
-                                        Eliminar
-                                    </CButton>  
-                                </div>
-                                {data.estado_usuario === 3 && (
-                                    <div className="mx-2">
-                                        <CButton color="success">
-                                            Renovar 
-                                        </CButton>  
-                                    </div>
-                                )}
-                            </div>,
-            width: "300px"  
-        }, 
-    ];
 
     const handleShow = ({id,rut_usuario, nombre_usuario, apellido_pate_usuario, apellido_mate_usuario, calle_usuario, numero_tele_usuario ,email, numero_casa_usuario,fecha_naci_usuario, id_rol,tipo_rol}) => {
 
@@ -169,6 +92,93 @@ export const UsuariosPages = () => {
 
     }
 
+    const handleShowRenovar = ({id}) => {
+
+        dispatch(onAgregarUser({id}))
+        dispatch(onOpenModalRenovar())
+
+    }
+    
+    const columns = [
+
+        {
+            name: 'Rut',
+            selector: row => row.rut_usuario,
+            sortable: true,
+        },
+        {
+            name: 'Nombre',
+            selector: row => row.nombre_usuario,
+            sortable: true,
+        },
+        {
+            name: 'Apellido Paterno',
+            selector: row => row.apellido_pate_usuario,
+            sortable: true,
+        },
+        {
+            name: 'Correo',
+            selector: row => row.email,
+            sortable: true,
+        },
+        {
+            name: 'Rol',
+            selector: row => (
+                <span className="text-primary">
+                    {
+                        (row.tipo_rol) ? row.tipo_rol : 'Vecino'
+                    }
+                </span>
+            ),
+            sortable: true,
+        },
+        {
+            name: 'Estado usuario',
+            selector: row => (
+                <span>
+                    {
+                        row.estado_usuario == "1" ? (
+                            'Habilitado'
+                        ) : row.estado_usuario == "3" ? (
+                            'Vencido'
+                        ) : row.estado_usuario == "4" ? (
+                            'Eliminado'
+                        ) : (
+                            null
+                        )
+                    }
+                </span>
+            ),
+            sortable: true,
+        },
+        {
+            name: 'Acciones',
+            button: true,
+            cell: (data) => <div className='d-flex justify-content-between'>
+                                {data.estado_usuario === 3 && (
+                                    <div className="mx-2">
+                                        <CButton color="success" onClick={()=>handleShowRenovar(data)}>
+                                            Renovar 
+                                        </CButton>  
+                                    </div>
+                                )}
+                                {(data.estado_usuario !== 3) && (
+                                    <div className="mx-2">
+                                        <CButton color="warning" onClick={() => handleShow(data)} disabled={(data.id_rol == 1 ? true : false)}>
+                                            Editar
+                                        </CButton>
+                                    </div>
+                                )}
+                                <div >
+                                    <CButton color="danger" disabled={(data.id_rol == 1 ? true : false)} onClick={() => handleEliminarUsuario(data)}>
+                                        Eliminar
+                                    </CButton>  
+                                </div>
+                            </div>,
+            width: "300px"  
+        }, 
+    ];
+
     const data = usersHabilitados.data
 
     return (
@@ -200,6 +210,10 @@ export const UsuariosPages = () => {
                     </CCard>
                     {
                         (modalOpen) && <UsuariosModal/>
+                    }
+
+                    {
+                        (modalOpenRenovar) && <RenovarModal/>
                     }
                 </CCol>
             </CRow>
