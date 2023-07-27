@@ -2,11 +2,11 @@ import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useForm, Controller } from 'react-hook-form'
 import ReactSelect from "react-select"
-import { Modal ,Button, Form, InputGroup } from 'react-bootstrap'
+import { Modal ,Button, Form, InputGroup, Alert } from 'react-bootstrap'
 import { onCloseModal } from "../../../store/ui/uiSlice"
 import { validaRut } from "../../../helpers/validarRut"
 import { startActualizarUsuario, startAgregarUsuario } from "../../../store/auth/thunk"
-import { onClearUser } from "../../../store/auth/userSlice"
+import { onClearMessageErrorUser, onClearUser } from "../../../store/auth/userSlice"
 import bibliotecaApi from "../../../api/bibliotecaApi"
 import { formateoRut } from "../../../helpers/formateoRut"
 import { customStyles } from '../../../helpers/customStyles.js'
@@ -20,7 +20,7 @@ export const UsuariosModal = () => {
 
     const { modalOpen } = useSelector(state => state.ui)
 
-    const { initialUsuario } = useSelector(state => state.user)
+    const { initialUsuario, errorMessage } = useSelector(state => state.user)
 
     const dispatch = useDispatch()
 
@@ -83,6 +83,7 @@ export const UsuariosModal = () => {
 
         dispatch(onClearUser())
         dispatch(onCloseModal())
+        dispatch(onClearMessageErrorUser())
 
     }
 
@@ -139,6 +140,13 @@ export const UsuariosModal = () => {
             </Modal.Header>
             <Form onSubmit={handleSubmit(onSubmit)}>
             <Modal.Body>
+                {
+                    (errorMessage == true) && (
+                        <Alert variant='danger'>
+                            El rut del usuario ya se encuentra registrado
+                        </Alert>
+                    )
+                }
                 <Controller 
                     control={control} 
                     name="id" 

@@ -24,7 +24,8 @@ export const userSlice = createSlice({
         usersPendientes: [],
         usersHabilitados: [],
         userSave: false,
-        userExists: false
+        userExists: false,
+        errorMessage: false
     
     },
         
@@ -90,10 +91,22 @@ export const userSlice = createSlice({
 
             (state.userSave == true) ? state.userSave = false : state.userSave = true 
 
+        },
+
+        onMessageErrorUser: (state) => {
+
+            state.errorMessage = true
+
+        },
+
+        onClearMessageErrorUser: (state) => {
+
+            state.errorMessage = false
+
         }
         
     }
 
 }) 
 
-export const {onAgregarUser, onClearUser, onListarUsersHabilitados, onListarUsersPendientes, onIdUserComprobante, onClearIdUserComprobante, onUserExists, onSave} = userSlice.actions
+export const {onAgregarUser, onClearUser, onListarUsersHabilitados, onListarUsersPendientes, onIdUserComprobante, onClearIdUserComprobante, onUserExists, onSave, onMessageErrorUser, onClearMessageErrorUser} = userSlice.actions

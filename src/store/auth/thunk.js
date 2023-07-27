@@ -1,6 +1,6 @@
 import bibliotecaApi from "../../api/bibliotecaApi"
 import { login, logout, onErrorMessage, onNotAuthenticatedLogin } from "./authSlice"
-import { onClearUser, onListarUsersHabilitados, onListarUsersPendientes, onSave } from "./userSlice"
+import { onClearUser, onListarUsersHabilitados, onListarUsersPendientes, onSave, onMessageErrorUser } from "./userSlice"
 import { onCloseModal, onCloseModalRenovar } from "../ui/uiSlice"
 
 export const startLogin = (loginRut, loginPassword, reset) => {
@@ -115,10 +115,12 @@ export const startAgregarUsuario = ({
             dispatch(onClearUser())
             dispatch(onCloseModal())
             dispatch(onSave())
+            dispatch(onClearMessageErrorUser())
 
             // dispatch( login( data.user ) )
         } catch (error) {
 
+            dispatch(onMessageErrorUser())
             console.log(error.response)
 
         }
