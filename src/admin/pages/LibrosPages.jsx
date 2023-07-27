@@ -59,10 +59,10 @@ export const LibrosPages = () => {
         }
     }
 
-    const handleShowPortada = ({id, url}) => {
-        
+    const handleShowPortada = ({id, id_portada ,url}) => {
+
         dispatch(onOpenModalPortada())
-        dispatch(onAgregarLibro({id, url}))
+        dispatch(onAgregarLibro({id, idPortada:id_portada, url}))
 
     }
 

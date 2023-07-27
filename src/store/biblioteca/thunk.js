@@ -1,5 +1,5 @@
 import bibliotecaApi from "../../api/bibliotecaApi";
-import { onCloseModal, onCloseModalEjemplar } from "../ui/uiSlice";
+import { onCloseModal, onCloseModalEjemplar, onCloseModalPortada } from "../ui/uiSlice";
 import { onClearAutores, onListarAutores, onSaveAutor, onLoadingFalse } from "./autorSlice";
 import { onClearEditoriales, onListarEditoriales, onSaveEditorial } from "./editorialSlice";
 import { onListarEjemplares, onLoadingFalseE, onSaveEjemplar } from "./ejemplarSlice";
@@ -147,25 +147,31 @@ export const startEliminarLibro = ({id, estado_libro}) => {
     }
 }
 
-export const startCambiarPortadaLibro = (id, portadaLibro) => {
+export const startCambiarPortadaLibro = (id, idPortada, portadaLibro) => {
 
-    console.log(id, portadaLibro);
+    const formData = new FormData();
+    formData.append('portada', portadaLibro);
+    formData.append('id_portada', idPortada);
+    formData.append('id_libro', id);
 
     return async( dispatch ) => {
 
-        // try {
+        try {
 
-        //     const {data} = await bibliotecaApi.put(`libros/eliminar/${id}`, {
-        //         'estado_libro': estado_libro,
-        //     });
+            const {data} = await bibliotecaApi.post(`libros/actualizarPortada`, formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data', 
+                },
+            })
 
-        //     dispatch(onSaveLibro())
+            dispatch(onSaveLibro())
+            dispatch(onCloseModalPortada())
             
-        // } catch (error) {
+        } catch (error) {
         
-        //     console.error(error)
+            console.error(error)
             
-        // }
+        }
 
     }
 }

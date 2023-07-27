@@ -15,9 +15,9 @@ export const PortadaModal = () => {
 
     const {formState: { errors }, handleSubmit, setValue , control} = useForm({defaultValues: initialLibro})
 
-    const onSubmit = ({id, portadaLibro}) => {
+    const onSubmit = ({id,idPortada,portadaLibro}) => {
 
-        dispatch(startCambiarPortadaLibro(id, portadaLibro))
+        dispatch(startCambiarPortadaLibro(id, idPortada, portadaLibro))
 
     }
 
@@ -47,6 +47,21 @@ export const PortadaModal = () => {
                         <Controller 
                             control={control} 
                             name="id" 
+                            defaultValue=""
+                            render={({ field: { onChange, value, ref } }) => (
+                                <Form.Control 
+                                    onChange={onChange} 
+                                    value={value} 
+                                    ref={ref}  
+                                    type="hidden" 
+                                />
+                            )}
+                        />
+                    </Form.Group>
+                    <Form.Group>
+                        <Controller 
+                            control={control} 
+                            name="idPortada" 
                             defaultValue=""
                             render={({ field: { onChange, value, ref } }) => (
                                 <Form.Control 
