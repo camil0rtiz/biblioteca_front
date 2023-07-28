@@ -125,7 +125,7 @@ export const LibrosPages = () => {
             sortable: true,
         },
         {
-            name: 'Cantidad',
+            name: 'Ejemplares disponibles',
             selector: row => row.stock_libro,
             sortable: true,
             width: "200px"  

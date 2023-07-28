@@ -1,6 +1,6 @@
 import bibliotecaApi from "../../api/bibliotecaApi";
 import { onClearCarrito } from "./carritoSlice";
-import { onListarPrestamos } from "./prestamoSlice";
+import { onListarPrestamos, onSavePrestamo } from "./prestamoSlice";
 import { onCloseModalPrestamos } from "../ui/uiSlice";
 import { onListarReservas, onSaveReserva } from "./reservaSlice";
 import { onSaveLibro } from "../biblioteca/libroSlice";
@@ -100,13 +100,13 @@ export const startPrestarLibro = (ejemplaresPrestados, idVecino, estadoPrestamo,
 
 }
 
-export const startListarPrestamos = () => {
+export const startListarPrestamos = (rut) => {
 
     return async( dispatch ) => {
 
         try {
 
-            const { data } = await bibliotecaApi.get(`prestamos/listar`)
+            const { data } = await bibliotecaApi.get(`prestamos/listar?rut=${rut}`)
 
             dispatch(onListarPrestamos(data.data))
 
@@ -131,6 +131,8 @@ export const startDevolucionPrestamo = ({id, id_ejemplar, id_libro}) => {
                 'id_libro': id_libro,
             });
 
+            dispatch(onSavePrestamo())
+
         } catch (error) {
 
             console.log(error);
@@ -139,5 +141,28 @@ export const startDevolucionPrestamo = ({id, id_ejemplar, id_libro}) => {
 
     }
 
-} 
+}
+
+export const startRenovarPrestamo = ({id}) => {
+
+    return async( dispatch ) => {
+
+        try {
+
+            const {data} = await bibliotecaApi.put(`prestamos/renovar/${id}`)
+
+            console.log(data);
+
+            dispatch(onSavePrestamo())
+
+        } catch (error) {
+
+            console.log(error);
+            
+        }
+
+    }
+
+}
+
 

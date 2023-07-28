@@ -6,6 +6,7 @@ export const prestamoSlice = createSlice({
     initialState:{
 
         prestamos: [],
+        prestamoSave: false 
 
     },
         
@@ -15,8 +16,12 @@ export const prestamoSlice = createSlice({
             state.prestamos = payload
         },
 
+        onSavePrestamo: (state) => {
+            (state.prestamoSave == true) ? state.prestamoSave = false : state.prestamoSave = true 
+        }
+
     }
 
 }) 
 
-export const { onListarPrestamos } = prestamoSlice.actions
+export const { onListarPrestamos, onSavePrestamo } = prestamoSlice.actions

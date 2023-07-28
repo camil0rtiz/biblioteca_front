@@ -1,7 +1,7 @@
 import DataTable from "react-data-table-component"
 import { paginacionOpciones } from "../../helpers/paginacionOpciones"
 
-export const ExpandedPrestamos = () => {
+export const ExpandedPrestamos = (data) => {
 
     const columns = [
         
