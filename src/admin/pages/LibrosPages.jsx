@@ -193,7 +193,7 @@ export const LibrosPages = () => {
                                     expandableRows
                                     expandableRowsComponent={ExpandedLibros}
                                     subHeader
-                                    subHeaderComponent={<FiltroComponent onFilter={e => setFilterText(e.target.value)} filterText={filterText} onPlaceholder={'Filtra por nombre, ISBN, dewey'} />}
+                                    subHeaderComponent={<FiltroComponent onFilter={e => setFilterText(e.target.value)} filterText={filterText} onPlaceholder={'Filtra por título del libro o código dewey'} />}
                                     actions={ <AccionesTable onExport={libros} onNombreBoton={'Agregar Libro'} />}
                                     pagination
                                     paginationServer

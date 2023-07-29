@@ -1,6 +1,7 @@
 import { Modal, Button, Form } from 'react-bootstrap'
 import { useForm, Controller } from 'react-hook-form'
 import { useDispatch, useSelector } from 'react-redux'
+import { validaImagenes } from '../../../helpers/validarImagenes'
 import { onClearLibros } from '../../../store/biblioteca/libroSlice'
 import { startCambiarPortadaLibro } from '../../../store/biblioteca/thunk'
 import { onCloseModalPortada } from '../../../store/ui/uiSlice'
@@ -87,6 +88,7 @@ export const PortadaModal = () => {
                                     value: true,
                                     message: "Imagen de portada es obligatoria"
                                 },
+                                validate: {positive: v => validaImagenes(v,1) == true || 'Formato de imagen no válido. Solo se permiten archivos PNG, JPG y JPEG.'} 
                             }}
                             render={({ field: {ref } }) => (
                                 <Form.Control 

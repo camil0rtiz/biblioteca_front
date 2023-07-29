@@ -5,6 +5,7 @@ import { Form, Button, ProgressBar, Alert } from 'react-bootstrap'
 import { startAgregarUsuario } from "../../store/auth/thunk"
 import { CCard, CCardBody, CCardGroup } from "@coreui/react"
 import Swal from 'sweetalert2'
+import { validaImagenes } from "../../helpers/validarImagenes"
 
 export const ComprobanteRegisterForm = ({ goBackPage }) => {
     
@@ -80,6 +81,7 @@ export const ComprobanteRegisterForm = ({ goBackPage }) => {
                                             value: true,
                                             message: "Comprobante de transferencia es obligatorio"
                                         },
+                                        validate: {positive: v => validaImagenes(v,2) == true || 'Formato de imagen no válido. Solo se permiten archivos PNG, JPG, JPEG y PDF.'} 
                                     }}
                                     render={({ field: { ref } }) => (
                                         <Form.Control 
@@ -106,6 +108,7 @@ export const ComprobanteRegisterForm = ({ goBackPage }) => {
                                             value: true,
                                             message: "Comprobante de domicilio es obligatorio"
                                         },
+                                        validate: {positive: v => validaImagenes(v,2) == true || 'Formato de imagen no válido. Solo se permiten archivos PNG, JPG, JPEG y PDF.'} 
                                     }}
                                     render={({ field: { ref } }) => (
                                         <Form.Control 

@@ -13,6 +13,7 @@ import { customStyles } from '../../../helpers/customStyles.js'
 import { onLoadingTrue } from '../../../store/biblioteca/autorSlice'
 import { formateoDewey } from "../../../helpers/formateoDewey"
 import { formateoMayusculas } from "../../../helpers/formateoMayusculas"
+import { validaImagenes } from '../../../helpers/validarImagenes'
 
 export const LibrosModal = () => {
 
@@ -253,6 +254,7 @@ export const LibrosModal = () => {
                                         value: true,
                                         message: "Imagen de portada es obligatoria"
                                     },
+                                    validate: {positive: v => validaImagenes(v,1) == true || 'Formato de imagen no válido. Solo se permiten archivos PNG, JPG y JPEG.'} 
                                 }}
                                 render={({ field: {ref } }) => (
                                     <Form.Control 
