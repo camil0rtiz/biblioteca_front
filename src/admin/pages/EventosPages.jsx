@@ -75,10 +75,11 @@ export const EventosPages = () => {
         
     }
 
-    const handleShowPortada = ({id, archivos}) => {
+    const handleShowPortada = ({id,archivo}) => {
 
         dispatch(onOpenModalPortadaEvento())
-        dispatch(onAgregarEvento({id, url: archivos}))
+
+        dispatch(onAgregarEvento({id, idPortada:archivo.id, url: archivo.url}))
 
     }
 

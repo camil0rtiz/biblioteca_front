@@ -1,5 +1,5 @@
 import bibliotecaApi from "../../api/bibliotecaApi";
-import { onCloseModal, onCloseModalEjemplar, onCloseModalPortada } from "../ui/uiSlice";
+import { onCloseModal, onCloseModalEjemplar, onCloseModalPortada, onCloseModalPortadaEvento } from "../ui/uiSlice";
 import { onClearAutores, onListarAutores, onSaveAutor, onLoadingFalse } from "./autorSlice";
 import { onClearEditoriales, onListarEditoriales, onSaveEditorial } from "./editorialSlice";
 import { onListarEjemplares, onLoadingFalseE, onSaveEjemplar } from "./ejemplarSlice";
@@ -524,16 +524,10 @@ export const startAgregarEvento = ({eventoTitulo,eventoImagen,eventoDescripcion,
     formData.append('id_categoria', id_categoria)
     formData.append('id_usuario', id_usuario)
     formData.append('titulo_evento', eventoTitulo)
+    formData.append('eventoImagen', eventoImagen)
     formData.append('descripcion_evento', eventoDescripcion)
     formData.append('estado_evento', estado_evento)
     
-     // Iterar sobre la matriz de imágenes y agregarlas al FormData
-    for (let i = 0; i < eventoImagen.length; i++) {
-
-        formData.append(`imagenesEvento[${i}]`, eventoImagen[i])
-
-    }
-
     return async( dispatch ) => {
 
         try {
@@ -556,15 +550,14 @@ export const startAgregarEvento = ({eventoTitulo,eventoImagen,eventoDescripcion,
     }
 }
 
-export const startActualizarEvento = ({id,eventoTitulo,eventoImagen,eventoDescripcion,id_categoria}) => {
+export const startActualizarEvento = ({id,eventoTitulo,eventoDescripcion,id_categoria}) => {
 
     return async(dispatch) => {
 
         try {
 
-            const { data } = await bibliotecaApi.put('eventos/actualizar', {
+            const { data } = await bibliotecaApi.put(`eventos/actualizar/${id}`, {
                 id_categoria,
-                id_usuario,
                 'titulo_evento': eventoTitulo,
                 'descripcion_evento': eventoDescripcion,
             })
@@ -602,23 +595,30 @@ export const startEliminarEvento = ({id, estado_evento}) => {
     }
 }
 
-export const startCambiarPortadaEvento = (id, eventoImagen) => {
+export const startCambiarPortadaEvento = (id, idPortada, eventoImagen) => {
+
+    const formData = new FormData();
+    formData.append('portada', eventoImagen);
+    formData.append('id_evento', id);
 
     return async( dispatch ) => {
 
-        // try {
+        try {
 
-        //     const {data} = await bibliotecaApi.put(`libros/eliminar/${id}`, {
-        //         'estado_libro': estado_libro,
-        //     });
+            const {data} = await bibliotecaApi.post(`eventos/actualizarPortada`, formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data', 
+                },
+            })
 
-        //     dispatch(onSaveLibro())
+            dispatch(onCloseModalPortadaEvento())
+            dispatch(onSaveEvento())
             
-        // } catch (error) {
+        } catch (error) {
         
-        //     console.error(error)
+            console.error(error)
             
-        // }
+        }
 
     }
 }

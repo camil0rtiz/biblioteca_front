@@ -16,15 +16,15 @@ export const PortadaEventoModal = () => {
 
     const handleFileChange = (name) => (e) => {
 
-        const files = Array.from(e.target.files)
+        const file = e.target.files[0]
+
+        setValue(name, file)
         
-        setValue(name, files)
-    
     }
 
-    const onSubmit = ({id, eventoImagen}) => {
+    const onSubmit = ({id, idPortada, eventoImagen}) => {
 
-        dispatch(startCambiarPortadaEvento(id, eventoImagen))
+        dispatch(startCambiarPortadaEvento(id, idPortada, eventoImagen))
 
     }
 
@@ -35,7 +35,7 @@ export const PortadaEventoModal = () => {
     }
 
     return (
-        <Modal size="xs" show={modalOpenPortadaEvento} onHide={handleClose} animation={false}>
+        <Modal size="xl" show={modalOpenPortadaEvento} onHide={handleClose} animation={false}>
         <Modal.Header closeButton>
             <Modal.Title>Cambiar portada</Modal.Title>
         </Modal.Header>
@@ -56,8 +56,23 @@ export const PortadaEventoModal = () => {
                             )}
                         />
                     </Form.Group>
+                    <Form.Group>
+                        <Controller 
+                            control={control} 
+                            name="idPortada" 
+                            defaultValue=""
+                            render={({ field: { onChange, value, ref } }) => (
+                                <Form.Control 
+                                    onChange={onChange} 
+                                    value={value} 
+                                    ref={ref}  
+                                    type="hidden" 
+                                />
+                            )}
+                        />
+                    </Form.Group>
                     <div className='d-flex justify-content-center align-items-center mb-3'>
-                        {/* <img src={`http://localhost/biblioteca_vn_backend/storage/app/public/${initialLibro.url}`} alt="Portada del libro" width="200" /> */}
+                        <img src={`http://localhost/biblioteca_vn_backend/storage/app/public/${initialEvento.url}`} alt="Portada del libro" width="500" />
                     </div>
                     <Form.Group controlId="formFile">
                         <Form.Label>Subir imagen</Form.Label>

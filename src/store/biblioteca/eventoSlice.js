@@ -10,7 +10,8 @@ export const eventoSlice = createSlice({
             eventoImagen: '',
             eventoTipo: [],
             eventoDescripcion: '',
-            url: []  
+            url: [],
+            idPortada: '' 
         },
         eventos: [],
         eventosHome: [],
@@ -56,7 +57,8 @@ export const eventoSlice = createSlice({
                 eventoImagen: '',
                 eventoTipo: [],
                 eventoDescripcion: '',
-                url: []  
+                url: [],
+                idPortada: '', 
             }
         },
 

@@ -64,10 +64,10 @@ export const EventosModal = () => {
 
     const handleFileChange = (name) => (e) => {
 
-        const files = Array.from(e.target.files)
+        const file = e.target.files[0]
+
+        setValue(name, file)
         
-        setValue(name, files)
-    
     }
 
     const handleClose = () => {
@@ -85,7 +85,7 @@ export const EventosModal = () => {
 
         if(id){
 
-            dispatch(startActualizarEvento({id,eventoTitulo,eventoImagen,eventoDescripcion,id_categoria}))
+            dispatch(startActualizarEvento({id,eventoTitulo,eventoDescripcion,id_categoria}))
 
             return
 
@@ -144,33 +144,37 @@ export const EventosModal = () => {
                             </Form.Text> 
                         } 
                     </Form.Group>
-                    <Form.Group controlId="formFile" className="mb-3">
-                        <Form.Label>Subir imagen</Form.Label>
-                        <Controller 
-                            control={control} 
-                            name="eventoImagen" 
-                            defaultValue=""
-                            rules={{
-                                required:{
-                                    value: true,
-                                    message: "Imagen es obligatoria"
-                                },
-                            }}
-                            render={({ field: {ref } }) => (
-                                <Form.Control 
-                                    onChange={handleFileChange("eventoImagen")} 
-                                    ref={ref}  
-                                    type="file"
-                                    multiple
+                    {
+                        (!initialEvento.id) && (
+                            
+                            <Form.Group controlId="formFile" className="mb-3">
+                                <Form.Label>Subir imagen</Form.Label>
+                                <Controller 
+                                    control={control} 
+                                    name="eventoImagen" 
+                                    defaultValue=""
+                                    rules={{
+                                        required:{
+                                            value: true,
+                                            message: "Imagen es obligatoria"
+                                        },
+                                    }}
+                                    render={({ field: {ref } }) => (
+                                        <Form.Control 
+                                            onChange={handleFileChange("eventoImagen")} 
+                                            ref={ref}  
+                                            type="file"
+                                        />
+                                    )}
                                 />
-                            )}
-                        />
-                        {errors.eventoImagen && 
-                            <Form.Text className="text-danger" variant='danger'>
-                                {errors.eventoImagen.message}
-                            </Form.Text> 
-                        } 
-                    </Form.Group>
+                                {errors.eventoImagen && 
+                                    <Form.Text className="text-danger" variant='danger'>
+                                        {errors.eventoImagen.message}
+                                    </Form.Text> 
+                                } 
+                            </Form.Group>
+                        )
+                    }
                     <Form.Group className="mb-3">
                         <Form.Label>Seleciona tipo de evento</Form.Label>
                         <Controller
