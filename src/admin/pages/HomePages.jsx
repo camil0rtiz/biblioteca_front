@@ -200,7 +200,7 @@ export const HomePages = () => {
                                 persistTableHead
                                 striped
                                 subHeader
-                                subHeaderComponent={<FiltroComponent onFilter={e => setFilterText(e.target.value)} filterText={filterText} onPlaceholder={'Filtra por nombre'} />}
+                                subHeaderComponent={<FiltroComponent onFilter={e => setFilterText(e.target.value)} filterText={filterText} onPlaceholder={'Filtra por rut o nombre'} />}
                                 // actions={ <AccionesTable onExport={usersPendientes} onNombreBoton={'Agregar Autor'} />}
                             />
                         </CCardBody>

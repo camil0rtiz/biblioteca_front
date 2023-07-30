@@ -203,7 +203,7 @@ export const UsuariosPages = () => {
                                 persistTableHead
                                 fixedHeaderScrollHeight="600px"
                                 subHeader
-                                subHeaderComponent={<FiltroComponent onFilter={e => setFilterText(e.target.value)} filterText={filterText} onPlaceholder={'Filtra por rut, nombre, rol'} />}
+                                subHeaderComponent={<FiltroComponent onFilter={e => setFilterText(e.target.value)} filterText={filterText} onPlaceholder={'Filtra por rut o nombre'} />}
                                 actions={ <AccionesTable onExport={usersHabilitados} onNombreBoton={'Agregar Usuario'} />}
                             />
                         </CCardBody>

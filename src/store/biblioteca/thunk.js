@@ -3,7 +3,7 @@ import { onCloseModal, onCloseModalEjemplar, onCloseModalPortada, onCloseModalPo
 import { onClearAutores, onListarAutores, onSaveAutor, onLoadingFalse } from "./autorSlice";
 import { onClearEditoriales, onListarEditoriales, onSaveEditorial } from "./editorialSlice";
 import { onListarEjemplares, onLoadingFalseE, onSaveEjemplar } from "./ejemplarSlice";
-import { onListarEventos, onListarEventosHome, onSaveEvento } from "./eventoSlice";
+import { onClearEventos, onListarEventos, onListarEventosHome, onSaveEvento } from "./eventoSlice";
 import { onCantidadPaginado, onCantidadPaginas, onClearLibros, onListarLibros, onListarUltimosAgregados, onListarMasReservados, onSaveLibro, onMessageError, onClearMessageError } from "./libroSlice";
 
 export const startAgregarLibro = ({tituloLibro, deweyLibro, anioPublicacionLibro, resenaLibro, estadoLibro, idAutor, portada }) => {
@@ -564,6 +564,7 @@ export const startActualizarEvento = ({id,eventoTitulo,eventoDescripcion,id_cate
             
             dispatch(onCloseModal())
             dispatch(onSaveEvento())
+            dispatch(onClearEventos())
             
         } catch (error) {
         
@@ -613,6 +614,7 @@ export const startCambiarPortadaEvento = (id, idPortada, eventoImagen) => {
 
             dispatch(onCloseModalPortadaEvento())
             dispatch(onSaveEvento())
+            dispatch(onClearEventos())
             
         } catch (error) {
         

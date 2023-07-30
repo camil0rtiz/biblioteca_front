@@ -33,7 +33,7 @@ export const EditorialesPages = () => {
             sortable: true,
         },
         {
-            name: 'Nombre Editorial',
+            name: 'Nombre editorial',
             selector: row => row.nombre_editorial,
             sortable: true,
         },

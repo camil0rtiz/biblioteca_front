@@ -98,7 +98,7 @@ export const EventosModal = () => {
     return (
         <Modal size="lg" show={modalOpen} onHide={handleClose} animation={false}>
             <Modal.Header closeButton>
-                <Modal.Title>Agregar Evento</Modal.Title>
+                <Modal.Title>{initialEvento.id ? 'Actualizar Evento' : 'Agregar Evento'}</Modal.Title>
             </Modal.Header>
             <Form onSubmit={handleSubmit(onSubmit)}>
                 <Modal.Body>

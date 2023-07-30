@@ -34,7 +34,7 @@ export const AutoresPages = () => {
             sortable: true,
         },
         {
-            name: 'Nombre Autor',
+            name: 'Nombre autor',
             selector: row => row.nombre_autor,
             sortable: true,
         },

@@ -1,5 +1,5 @@
 import bibliotecaApi from "../../api/bibliotecaApi";
-import { onClearCarrito } from "./carritoSlice";
+import { onClearCarrito, onClearCarritoPrestamo } from "./carritoSlice";
 import { onListarPrestamos, onSavePrestamo } from "./prestamoSlice";
 import { onCloseModalPrestamos } from "../ui/uiSlice";
 import { onListarReservas, onSaveReserva } from "./reservaSlice";
@@ -89,6 +89,7 @@ export const startPrestarLibro = (ejemplaresPrestados, idVecino, estadoPrestamo,
             dispatch(onCloseModalPrestamos())
             dispatch(onSaveLibro())
             dispatch(onSaveEjemplar())
+            dispatch(onClearCarritoPrestamo())
 
         } catch (error) {
 

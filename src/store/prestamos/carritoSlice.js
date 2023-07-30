@@ -101,9 +101,16 @@ export const carritoSlice = createSlice({
 
             state.carrito = []
 
+        },
+
+        onClearCarritoPrestamo: ( state ) => {
+
+            state.modalPrestamos = []
+
         }
+
     }
 
 }) 
 
-export const { onAgregarLibroCarrito, onAgregarEjemplarCarrito, onAgregarPrestamoCarrito, onEliminarLibroCarrito, onEliminarEjemplarCarrito, onEliminarPrestamoCarrito, onClearCarrito } = carritoSlice.actions
+export const { onAgregarLibroCarrito, onAgregarEjemplarCarrito, onAgregarPrestamoCarrito, onEliminarLibroCarrito, onEliminarEjemplarCarrito, onEliminarPrestamoCarrito, onClearCarrito, onClearCarritoPrestamo } = carritoSlice.actions

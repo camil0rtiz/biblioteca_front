@@ -145,7 +145,7 @@ export const EventosPages = () => {
                                 expandableRows
                                 expandableRowsComponent={ExpandedEventos}
                                 subHeader
-                                subHeaderComponent={ <FiltroComponent onFilter={e => setFilterText(e.target.value)} filterText={filterText} onPlaceholder={'Filtra por titulo'} />}
+                                subHeaderComponent={ <FiltroComponent onFilter={e => setFilterText(e.target.value)} filterText={filterText} onPlaceholder={'Filtra por título'} />}
                                 actions={<AccionesTable onExport={eventos} onNombreBoton={'Agregar Evento'}/>}
                             />
                         </CCardBody>
