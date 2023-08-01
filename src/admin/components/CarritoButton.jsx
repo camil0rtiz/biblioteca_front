@@ -22,7 +22,7 @@ export const CarritoButton = ({onExport, onNombreBoton}) => {
     return (
         
         <>
-            <CButton color='success' onClick={() => handleExcel('data.csv', onExport.data)}>Exportar</CButton>
+            {/* <CButton color='success' onClick={() => handleExcel('data.csv', onExport.data)}>Exportar</CButton> */}
             <CButton color="primary" onClick={handleShow}>{onNombreBoton}</CButton>
         </>
 

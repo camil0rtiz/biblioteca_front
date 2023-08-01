@@ -118,7 +118,7 @@ export const ReservasPages = () => {
                                 noDataComponent={<span className='mt-4'>No se encontro ningún elemento</span>}
                                 fixedHeader
                                 fixedHeaderScrollHeight="600px"
-                                persistTableHead
+                                // persistTableHead
                                 striped
                                 expandableRows
                                 expandableRowsComponent={ExpandedReservas}

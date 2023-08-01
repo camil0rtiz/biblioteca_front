@@ -21,6 +21,7 @@ export const PrestamosPages = () => {
         if (searchRut || prestamoSave) {
 
             dispatch(startListarPrestamos(searchRut))
+            
             return
 
         }
@@ -143,13 +144,12 @@ export const PrestamosPages = () => {
                                 noDataComponent={<span className='mt-4'>No se encontro ningún elemento</span>}
                                 fixedHeader
                                 fixedHeaderScrollHeight="600px"
-                                persistTableHead
+                                // persistTableHead
                                 striped
                                 expandableRows
                                 expandableRowsComponent={ExpandedPrestamos}
                                 subHeader
                                 subHeaderComponent={<BuscadorComponent onFilter={setSearchRut} onPlaceholder={'Buscar usuario por rut'} />}
-                                // actions={ <AccionesTable onExport={usersPendientes} onNombreBoton={'Agregar Autor'} />}
                             />
                         </CCardBody>
                     </CCard>

@@ -1,7 +1,9 @@
 import DataTable from "react-data-table-component"
 import { paginacionOpciones } from "../../helpers/paginacionOpciones"
 
-export const ExpandedPrestamos = (data) => {
+export const ExpandedPrestamos = ({data}) => {
+
+    console.log(data);
 
     const columns = [
         
@@ -15,23 +17,6 @@ export const ExpandedPrestamos = (data) => {
             selector: row => row.dewey_unic_ejemplar,
             sortable: true,
         },
-        {
-            name: 'Acciones',
-            button: true,
-            cell: (data) => <div className='d-flex justify-content-between'>
-                                <div>
-                                    <CButton color="primary">
-                                        Devolver
-                                    </CButton>
-                                </div>
-                                <div>
-                                    <CButton color="primary">
-                                        Renovar
-                                    </CButton>
-                                </div>
-                            </div>,
-            width: "250px" 
-        }, 
     ];
 
 
@@ -40,7 +25,7 @@ export const ExpandedPrestamos = (data) => {
             responsive
             pagination
             columns={columns}
-            // data={data.ejemplares}
+            data={data.ejemplares}
             highlightOnHover={true}
             paginationComponentOptions={paginacionOpciones}
             noDataComponent={<span className='mt-4'>No se encontro ningún elemento</span>}
