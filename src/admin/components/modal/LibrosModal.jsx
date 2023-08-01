@@ -14,6 +14,7 @@ import { onLoadingTrue } from '../../../store/biblioteca/autorSlice'
 import { formateoDewey } from "../../../helpers/formateoDewey"
 import { formateoMayusculas } from "../../../helpers/formateoMayusculas"
 import { validaImagenes } from '../../../helpers/validarImagenes'
+import { validarAnio } from '../../../helpers/validarAnio'
 
 export const LibrosModal = () => {
 
@@ -191,7 +192,7 @@ export const LibrosModal = () => {
                         rules={{
                             required:{
                                 value: true,
-                                message: 'Dewey libro es obligatorio'
+                                message: 'Dewey libro es obligatorio.'
                             },
                         }}
                         render={({ field: {onChange, value, ref } }) => (
@@ -200,7 +201,7 @@ export const LibrosModal = () => {
                                 value={value}
                                 ref={ref}  
                                 type="text"
-                                placeholder="ingrese dewey del libro" 
+                                placeholder="Ingrese dewey del libro" 
                             />
                         )}
                     />
@@ -219,8 +220,9 @@ export const LibrosModal = () => {
                         rules={{
                             required:{
                                 value: true,
-                                message: 'El año de publicación del libro es obligatoria'
+                                message: 'El año de publicación del libro es obligatoria.'
                             },
+                            validate: {positive: v => validarAnio(v) == true || 'El año no es válido. Ingrese un año entre 1800 y el año actual.'} 
                         }}
                         render={({ field: {onChange, value, ref } }) => (
                             <Form.Control
@@ -228,7 +230,7 @@ export const LibrosModal = () => {
                                 value={value}
                                 ref={ref}  
                                 type="Number"
-                                min="1900" 
+                                min="1000" 
                                 max="2099" 
                                 step="1"
                                 placeholder="ingrese año de publicación del libro"

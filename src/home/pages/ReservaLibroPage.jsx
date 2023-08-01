@@ -10,6 +10,10 @@ export const ReservaLibroPage = () => {
 
     const { user } = useSelector(state => state.auth)
 
+    const { errorReserva } = useSelector(state => state.reserva)
+
+    console.log(errorReserva);
+
     const { carrito } = useSelector(state => state.carrito)
 
     const dispatch = useDispatch()
@@ -38,7 +42,7 @@ export const ReservaLibroPage = () => {
         }).then((result) => {
             if (result.isConfirmed) {
                 dispatch(startReservarLibro(librosReservados, user.id, estadoReserva))
-                navigate('/')
+                // navigate('/')
                 Swal.fire(
                     '¡Felicidades!',
                     'Los libros han sido reservados correctamente.',
@@ -65,6 +69,17 @@ export const ReservaLibroPage = () => {
                 </CBreadcrumb>
             </CContainer>
             <CContainer>
+                <CRow>
+                    {
+                        (errorReserva.error) && (
+                            <CAlert color="danger">
+                                <p>
+                                    {errorReserva.errorMessage}
+                                </p>
+                            </CAlert>
+                        )
+                    }
+                </CRow>
                 <CRow>
                         {
                             (carrito.length == 0) ? (

@@ -8,6 +8,7 @@ import bibliotecaApi from '../../../api/bibliotecaApi'
 import { startAgregarEditorial, startAgregarEjemplar } from '../../../store/biblioteca/thunk'
 import { customStyles } from '../../../helpers/customStyles.js'
 import { onLoadingTrue } from '../../../store/biblioteca/ejemplarSlice'
+import { validarAnio } from '../../../helpers/validarAnio'
 
 export const EjemplaresModal = () => {
 
@@ -177,6 +178,7 @@ export const EjemplaresModal = () => {
                                 value: true,
                                 message: "Año edición editorial es obligatorio"
                             },
+                            validate: {positive: v => validarAnio(v) == true || 'El año no es válido. Ingrese un año entre 1800 y el año actual.'} 
                         }}
                         render={({ field: { onChange, value, ref } }) => (
                             <Form.Control 
@@ -184,7 +186,7 @@ export const EjemplaresModal = () => {
                                 value={value} 
                                 ref={ref}  
                                 type="number"
-                                min="1900" 
+                                min="1800" 
                                 max="2099" 
                                 step="1"
                                 placeholder="Ingresa año edición ejemplar" 
