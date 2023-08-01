@@ -117,7 +117,7 @@ export const LibrosModal = () => {
 
         const agregarAutorSelect = 1
 
-        const autorNombre = autor
+        const autorNombre = autor.replace(/(^|\n|\s)(\w)/g, (match) => match.toUpperCase())
 
         let estadoAutor = 1
 
