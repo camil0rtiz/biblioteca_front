@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { CContainer, CRow, CCard, CCardImage, CCardBody, CCardTitle, CCardSubtitle, CCarousel, CCarouselItem, CImage} from '@coreui/react'
+import { CContainer, CRow, CCard, CCardImage, CCardBody, CCardTitle, CCardSubtitle, CAlert, CCarousel, CCarouselItem, CImage} from '@coreui/react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Navigation, Pagination, Autoplay } from "swiper"
 import 'swiper/css'
@@ -9,10 +9,12 @@ import 'swiper/css/navigation'
 import 'swiper/css/pagination'
 import 'swiper/css/scrollbar'
 import '../../assets/css/home.css'
-import Biblio from '../../assets/img/libros.jpg'
+// import Biblio from '../../assets/img/libros.jpg'
 import { startListarMasReservados, startListarUltimosAgregados } from '../../store/biblioteca/thunk';
 
 export const HomePages = () => {
+
+    const { user } = useSelector(state => state.auth)
     
     const { ultimosAgregados, masReservados } = useSelector(state => state.libro)
 
@@ -28,7 +30,7 @@ export const HomePages = () => {
 
     return (
         <>
-            <div>
+            {/* <div>
                 <CCarousel controls indicators>
                     <CCarouselItem>
                         <CImage className="d-block w-100 carousel-image" src={Biblio} alt="slide 1" />
@@ -40,8 +42,17 @@ export const HomePages = () => {
                         <CImage className="d-block w-100 carousel-image" src={Biblio} alt="slide 3" />
                     </CCarouselItem>
                 </CCarousel>
-            </div>
+            </div> */}
             <CContainer>
+                <CRow>
+                {
+                    (user.estado_usuario == 3) && (
+                        <CAlert className='mt-3' color="danger">
+                            Estimado vecino, su membresía se encuentra vencida.
+                        </CAlert>
+                    )
+                }
+                </CRow>
                 <CRow>
                     <h3 className='mt-3'>Últimos agregados</h3>
                     <Swiper

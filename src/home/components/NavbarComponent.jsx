@@ -15,8 +15,6 @@ export const NavbarComponent = () => {
 
     const { status, user } = useSelector(state => state.auth)
 
-    // console.log(user);
-
     const { carrito } = useSelector(state => state.carrito)
 
     const dispatch = useDispatch()
@@ -106,7 +104,7 @@ export const NavbarComponent = () => {
                                             </NavLink> */}
                                             {
                                                 (user.estado_usuario == 3) && (
-                                                    <NavLink className="dropdown-item" to="#"><CIcon size='xl' customClassName="icon me-2" icon={cilShare} className="me-2" />
+                                                    <NavLink className="dropdown-item"  to="/renovar"><CIcon size='xl' customClassName="icon me-2" icon={cilShare} className="me-2" />
                                                         Renovar membresía
                                                     </NavLink>
                                                 )
