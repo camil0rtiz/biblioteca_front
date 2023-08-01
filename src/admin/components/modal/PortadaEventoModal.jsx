@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { Modal, Button, Form } from 'react-bootstrap'
 import { onCloseModalPortadaEvento } from "../../../store/ui/uiSlice"
 import { startCambiarPortadaEvento } from "../../../store/biblioteca/thunk"
+import { validaImagenes } from "../../../helpers/validarImagenes"
 
 export const PortadaEventoModal = () => {
 
@@ -85,6 +86,7 @@ export const PortadaEventoModal = () => {
                                     value: true,
                                     message: "Imagen es obligatoria"
                                 },
+                                validate: {positive: v => validaImagenes(v,1) == true || 'Formato de imagen no válido. Solo se permiten archivos PNG, JPG y JPEG.'} 
                             }}
                             render={({ field: {ref } }) => (
                                 <Form.Control 

@@ -93,6 +93,12 @@ export const RenovarModal = () => {
                         <Controller
                             name="registroTipoMembresia"
                             control={control}
+                            rules={{
+                                required:{
+                                    value: true,
+                                    message: "Seleccione un Membresía"
+                                },
+                            }}
                             render={({ field, fieldState: { invalid } }) => (
                                 <ReactSelect
                                     {...field}

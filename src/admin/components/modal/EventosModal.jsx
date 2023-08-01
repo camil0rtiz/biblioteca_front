@@ -12,6 +12,7 @@ import { onClearEventos } from '../../../store/biblioteca/eventoSlice'
 import '../../../assets/css/eventos.css'
 import { customStyles } from '../../../helpers/customStyles.js'
 import { formateoMayusculas } from '../../../helpers/formateoMayusculas'
+import { validaImagenes } from '../../../helpers/validarImagenes'
 
 export const EventosModal = () => {
 
@@ -158,6 +159,7 @@ export const EventosModal = () => {
                                             value: true,
                                             message: "Imagen es obligatoria"
                                         },
+                                        validate: {positive: v => validaImagenes(v,1) == true || 'Formato de imagen no válido. Solo se permiten archivos PNG, JPG y JPEG.'} 
                                     }}
                                     render={({ field: {ref } }) => (
                                         <Form.Control 
