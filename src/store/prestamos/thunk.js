@@ -18,6 +18,8 @@ export const startReservarLibro = (librosReservados, idVecino, estadoReserva) =>
                 estado_reserva: estadoReserva
             })
 
+            console.log(data);
+
             dispatch(onClearCarrito())
 
         } catch (error) {
