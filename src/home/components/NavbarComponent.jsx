@@ -15,7 +15,7 @@ export const NavbarComponent = () => {
 
     const { status, user } = useSelector(state => state.auth)
 
-    console.log(user);
+    // console.log(user);
 
     const { carrito } = useSelector(state => state.carrito)
 

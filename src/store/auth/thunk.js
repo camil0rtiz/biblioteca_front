@@ -53,14 +53,28 @@ export const startLogout = () => {
 
 export const startRefrech = () => {
 
-    const user = JSON.parse(localStorage.getItem('user'))
-
     return async( dispatch ) => {
 
-        if(!user) return dispatch(logout())
+        try {
 
-        dispatch(dispatch(login( user )))
+            const {data} = await bibliotecaApi.get(`usuarios/refresh`)
 
+            const user = data.user;
+
+            localStorage.setItem('user', JSON.stringify(user))
+            
+            if(!user) return dispatch(logout())
+
+            dispatch(dispatch(login( user )))
+
+        } catch (error) {
+
+            console.error('Error al actualizar los datos del usuario:', error);
+
+            dispatch(logout());
+            
+        }
+        
     }
 
 } 
