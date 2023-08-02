@@ -86,6 +86,8 @@ export const startPrestarLibro = (ejemplaresPrestados, idVecino, estadoPrestamo,
                 estado_prestamo: estadoPrestamo
             })
 
+            console.log(data);
+
             dispatch(onCloseModalPrestamos())
             dispatch(onSaveLibro())
             dispatch(onSaveEjemplar())

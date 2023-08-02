@@ -14,7 +14,7 @@ export const startAgregarLibro = ({tituloLibro, deweyLibro, anioPublicacionLibro
     formData.append('resena_libro', resenaLibro)
     formData.append('anio_publi_libro', anioPublicacionLibro)
     formData.append('estado_libro', estadoLibro)
-    formData.append('id_autor', idAutor)
+    formData.append('id_autor', [idAutor])
     formData.append('portada', portada)
     
     return async( dispatch ) => {

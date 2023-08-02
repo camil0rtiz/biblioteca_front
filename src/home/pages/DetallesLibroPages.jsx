@@ -75,7 +75,12 @@ export const DetallesLibroPages = () => {
                                 </CCol>
                                 <CCol md={6} lg={9}>
                                     <CRow>
-                                        <h1>{libro.titulo_libro} - {libro.autor.label[0]}</h1>
+                                        <h1>{libro.titulo_libro}</h1>
+                                    </CRow>
+                                    <CRow>
+                                        <h5>
+                                            {libro.autor.label.join(' - ')}
+                                        </h5>
                                     </CRow>
                                     <CRow>
                                         <h3 className='mt-3'>Reseña "{libro.titulo_libro}": </h3>

@@ -1,6 +1,6 @@
 import bibliotecaApi from "../../api/bibliotecaApi"
 import { login, logout, onErrorMessage, onNotAuthenticatedLogin } from "./authSlice"
-import { onClearUser, onListarUsersHabilitados, onListarUsersPendientes, onSave, onMessageErrorUser } from "./userSlice"
+import { onClearUser, onListarUsersHabilitados, onListarUsersPendientes, onSave, onMessageErrorUser, onAgregarEstadisticas } from "./userSlice"
 import { onCloseModal, onCloseModalRenovar } from "../ui/uiSlice"
 
 export const startLogin = (loginRut, loginPassword, reset) => {
@@ -392,6 +392,25 @@ export const startListarRoles = () => {
             const response = await bibliotecaApi.get('roles/listar')
 
             dispatch(onListarUsers(response.data))
+        
+        } catch (error) {
+        
+            console.log(error.response)
+            
+        }
+
+    }
+}
+
+export const startEstadisticas = () => {
+
+    return async( dispatch ) => {
+
+        try {
+
+            const response = await bibliotecaApi.get('usuarios/estadisticas')
+
+            dispatch(onAgregarEstadisticas(response.data))
         
         } catch (error) {
         

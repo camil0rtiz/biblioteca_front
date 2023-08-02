@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import DataTable from "react-data-table-component"
-import { startHabilitarUsuario, startListarUsuariosPendientes, startRechazarComprobante } from "../../store/auth/thunk"
+import { startEstadisticas, startHabilitarUsuario, startListarUsuariosPendientes, startRechazarComprobante } from "../../store/auth/thunk"
 import { CButton, CCard, CCardBody, CCardHeader, CCol, CContainer, CRow, CWidgetStatsF } from '@coreui/react'
 import { FiltroComponent } from "../components/FiltroComponent"
 import CIcon from "@coreui/icons-react"
@@ -18,13 +18,17 @@ export const HomePages = () => {
 
     const { modalOpen } = useSelector(state => state.ui)
 
-    const { usersPendientes, userSave } = useSelector(state => state.user)
+    const { usersPendientes, userSave, estaditicas } = useSelector(state => state.user)
 
     const dispatch = useDispatch()
 
     useEffect(() => {
         dispatch(startListarUsuariosPendientes(filterText))
     },[userSave, filterText])
+
+    useEffect(() => {
+        dispatch(startEstadisticas())
+    },[userSave])
 
     const handleHabilitar = (id) => {
 
@@ -144,7 +148,7 @@ export const HomePages = () => {
                     icon={<CIcon width={24} icon={cilSettings} size="xl" />}
                     padding={false}
                     title="Libros reservados"
-                    value="5"
+                    value={estaditicas.numero_libros_reservados}
                     color="primary"
                 />
                 </CCol>
@@ -153,8 +157,8 @@ export const HomePages = () => {
                     className="mb-3"
                     icon={<CIcon width={24} icon={cilUser} size="xl" />}
                     padding={false}
-                    title="Entregas vencidas"
-                    value="4"
+                    title="Prestamos vencidos"
+                    value={estaditicas.prestamos_vencidos}
                     color="info"
                 />
                 </CCol>
@@ -163,8 +167,8 @@ export const HomePages = () => {
                     className="mb-3"
                     icon={<CIcon width={24} icon={cilMoon} size="xl" />}
                     padding={false}
-                    title="Reservas pendientes"
-                    value="4"
+                    title="Usuarios Vencidos"
+                    value={estaditicas.cantidad_usuarios_vencidos}
                     color="warning"
                 />
                 </CCol>
@@ -174,7 +178,7 @@ export const HomePages = () => {
                     icon={<CIcon width={24} icon={cilBell} size="xl" />}
                     padding={false}
                     title="Usuarios pendientes"
-                    value="2"
+                    value={estaditicas.cantidad_usuarios_pendientes}
                     color="danger"
                 />
             </CCol>
