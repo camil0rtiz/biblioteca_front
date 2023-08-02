@@ -58,20 +58,17 @@ export const HeaderAdmin = () => {
                                 <CNavItem>
                                     <CNavLink to="usuarios" component={NavLink}>Usuarios</CNavLink>
                                 </CNavItem>
-                                <CNavItem>
-                                    <CNavLink to="reservas" component={NavLink}>Reservas</CNavLink>
-                                </CNavItem>
                             </>
                         )
                     }
-                </CHeaderNav>
-                <CHeaderNav>
-                    {/* <CNavItem>
-                        <CNavLink href="#"><CIcon icon={cilList} size="lg" /></CNavLink>
+                    <CNavItem>
+                        <CNavLink to="reservas" component={NavLink}>Reservas</CNavLink>
                     </CNavItem>
                     <CNavItem>
-                        <CNavLink href="#"><CIcon icon={cilEnvelopeOpen} size="lg" /></CNavLink>
-                    </CNavItem> */}
+                        <CNavLink to="prestamos" component={NavLink}>Prestamos</CNavLink>
+                    </CNavItem>
+                </CHeaderNav>
+                <CHeaderNav>
                 </CHeaderNav>
                 <CHeaderNav className="ms-3">
                     <CDropdown variant="nav-item">

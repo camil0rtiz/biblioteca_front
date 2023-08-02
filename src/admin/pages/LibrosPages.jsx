@@ -27,6 +27,10 @@ export const LibrosPages = () => {
     const { libros, cantidadPaginas, libroSave } = useSelector(state => state.libro)
 
     const { modalOpen, modalOpenEjemplar, modalOpenPrestamos, modalOpenPortada } = useSelector(state => state.ui)
+
+    const { user } = useSelector(state => state.auth)
+
+    const isVoluntario = user.tipo_rol === 'Voluntario'
     
     const dispatch = useDispatch()
 
@@ -143,22 +147,22 @@ export const LibrosPages = () => {
             button: true,
             cell: (data) => <div className='d-flex justify-content-between'>
                                 <div className="mx-1">
-                                    <CButton color="info" onClick={() => handleShowEjemplar(data)}>
+                                    <CButton color="info" onClick={() => handleShowEjemplar(data)} disabled={isVoluntario}>
                                         Agregar Ejemplar
                                     </CButton>
                                 </div>
                                 <div className="mx-1">
-                                    <CButton color="success" onClick={() => handleShowPortada(data)}>
+                                    <CButton color="success" onClick={() => handleShowPortada(data)} disabled={isVoluntario}>
                                         Cambiar portada
                                     </CButton>
                                 </div>
                                 <div className="mx-1">
-                                    <CButton color="warning" onClick={() => handleShow(data)}>
+                                    <CButton color="warning" onClick={() => handleShow(data)} disabled={isVoluntario}>
                                         Editar
                                     </CButton>
                                 </div>
                                 <div className="mx-1">
-                                    <CButton color="danger" onClick={() => handleEliminarLibro(data)}>
+                                    <CButton color="danger" onClick={() => handleEliminarLibro(data)} disabled={isVoluntario}>
                                         Eliminar
                                     </CButton>
                                 </div>

@@ -50,6 +50,15 @@ export const SidebarAdmin = () => {
                         </>
                     )
                 }
+                {
+                    (user.tipo_rol === 'Voluntario') && (
+                        <>             
+                            <CNavGroup toggler={<><CIcon customClassName="nav-icon" icon={cilBook} /> Libros</>}>
+                                <NavLink className="nav-link" to="libros"><CIcon customClassName="nav-icon" icon={cilPuzzle} />Libros</NavLink>
+                            </CNavGroup>
+                        </>
+                    )
+                }
                 <CNavGroup toggler={<><CIcon customClassName="nav-icon" icon={cilCart} /> Prestamos y Reservas</>}>
                     <NavLink className="nav-link" to="reservas"><CIcon customClassName="nav-icon" icon={cilPuzzle} />Reservas</NavLink>
                     <NavLink className="nav-link" to="prestamos"><CIcon customClassName="nav-icon" icon={cilPuzzle} />Prestamos</NavLink>

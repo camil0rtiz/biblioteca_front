@@ -23,7 +23,7 @@ export const AdminRoutes = () => {
                         <Routes>
                             <Route path='/eventos' element={<PrivateRouter><EventosPages/></PrivateRouter>}/>
                             <Route path='/usuarios' element={<PrivateRouter><UsuariosPages/></PrivateRouter>}/>
-                            <Route path='/libros' element={<PrivateRouter><LibrosPages/></PrivateRouter>}/>
+                            <Route path='/libros' element={<LibrosPages/>}/>
                             <Route path='/autores' element={<PrivateRouter><AutoresPages/></PrivateRouter>}/>
                             <Route path='/editoriales' element={<PrivateRouter><EditorialesPages/></PrivateRouter>}/>
                             <Route path='/home' element={<HomePages/>}/>

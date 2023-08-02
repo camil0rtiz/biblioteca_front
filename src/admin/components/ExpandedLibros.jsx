@@ -10,6 +10,10 @@ export const ExpandedLibros = ({ data }) => {
 
     const { modalPrestamos } = useSelector(state => state.carrito)
 
+    const { user } = useSelector(state => state.auth)
+
+    const isVoluntario = user.tipo_rol === 'Voluntario'
+
     const dispatch = useDispatch()
 
     const handleShow = (data) => {
@@ -76,7 +80,7 @@ export const ExpandedLibros = ({ data }) => {
                                     </CButton>
                                 </div>
                                 <div>
-                                    <CButton color="danger" disabled={(data.estado_ejemplar == 2 ? true : false)} onClick={() => handleEliminarEjemplar(data)}>
+                                    <CButton color="danger" disabled={((data.estado_ejemplar == 2 || isVoluntario)? true : false)} onClick={() => handleEliminarEjemplar(data)}>
                                         Eliminar
                                     </CButton>
                                 </div>
