@@ -295,6 +295,40 @@ export const startRenovarMembresia = (id, idMembresia ,estadoUsuario) => {
     }
 }
 
+export const startRenovarMembresiaHome = ({id, idMembresia, registroComproTransferencia, registroComproDomicilio, estadoUsuario}) => {
+
+    const formData = new FormData()
+    formData.append('id_usuario', id)
+    formData.append('id_membresia', idMembresia)
+    formData.append('comprobante1', registroComproTransferencia)
+    formData.append('comprobante2', registroComproDomicilio)
+    formData.append('estado_usuario', estadoUsuario)
+    
+    return async( dispatch ) => {
+
+        try {
+
+            const { data } = await bibliotecaApi.post('usuarios/renovarHome',formData,{
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            })
+
+            console.log(data);
+
+            // dispatch(onSave())
+            // dispatch(onCloseModalRenovar())
+            // dispatch(onClearUser())
+
+        } catch (error) {
+
+            console.log(error.response)
+
+        }
+
+    }
+}
+
 export const startDescargarComprobante = (id) => {
 
     return async( dispatch ) => {

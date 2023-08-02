@@ -71,7 +71,7 @@ export const EjemplaresModal = () => {
 
         let estadoEditorial = 1
 
-        let editorialNombre  = editorial.replace(/(^|\n|\s)(\w)/g, (match) => match.toUpperCase());
+        let editorialNombre  = editorial.replace(/(^|\n|\s)(\w)/g, (match) => match.toUpperCase())
 
         dispatch(onLoadingTrue())
 
