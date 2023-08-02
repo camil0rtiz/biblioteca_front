@@ -8,6 +8,7 @@ import { NavbarComponent } from '../components/NavbarComponent'
 import { FooterComponent } from '../components/FooterComponent'
 import { CarritoComponent } from '../components/CarritoComponent'
 import { RenovarMembresiaPage } from '../pages/RenovarMembresiaPage'
+import { RenovarRouter } from '../../router/RenovarRouter'
 
 export const HomeRoutes = () => {
     return (
@@ -20,7 +21,7 @@ export const HomeRoutes = () => {
                         <Route path='/eventos' element={<EventosPages/>}/>
                         <Route path='/libros' element={<LibrosPages/>}/>
                         <Route path='/reservas' element={<ReservaLibroPage/>}/>
-                        <Route path='/renovar' element={<RenovarMembresiaPage/>}/>
+                        <Route path='/renovar' element={<RenovarRouter><RenovarMembresiaPage/></RenovarRouter>}/>
                         <Route path='/libros/:id' element={<DetallesLibroPages/>}/>
                         <Route path="/*" element={<Navigate to='/'/>} />
                     </Routes>

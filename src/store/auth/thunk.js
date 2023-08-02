@@ -314,12 +314,6 @@ export const startRenovarMembresiaHome = ({id, idMembresia, registroComproTransf
                 }
             })
 
-            console.log(data);
-
-            // dispatch(onSave())
-            // dispatch(onCloseModalRenovar())
-            // dispatch(onClearUser())
-
         } catch (error) {
 
             console.log(error.response)
@@ -336,16 +330,20 @@ export const startDescargarComprobante = (id) => {
         try {
 
             const response = await bibliotecaApi.get(`usuarios/comprobante/${id}`, {
-                responseType: 'blob',
-            })
+                responseType: 'arraybuffer', // Cambia responseType a 'arraybuffer'
+            });
+            
+            const contentType = response.headers['content-type'];
+            const extMatch = contentType && contentType.match(/\/(.+)$/);
+            const extension = extMatch ? extMatch[1] : null;
 
-             // Crear una URL de objeto para el archivo descargado
-            const url = window.URL.createObjectURL(new Blob([response.data]));
+            // Crear una URL de objeto para el archivo descargado
+            const url = window.URL.createObjectURL(new Blob([response.data], { type: contentType }));
 
             // Crear un enlace para descargar el archivo
             const link = document.createElement('a');
             link.href = url;
-            link.setAttribute('download', 'nombre-archivo.pdf'); // Establece el nombre de archivo deseado
+            link.setAttribute('download', `nombre-archivo.${extension}`); // Establece el nombre de archivo deseado
 
             // Agregar el enlace al documento
             document.body.appendChild(link);
