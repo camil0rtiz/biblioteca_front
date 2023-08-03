@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
-import { CBadge, CBreadcrumb, CBreadcrumbItem, CButton, CCard, CCardBody, CCardFooter, CCardImage, CCardSubtitle, CCardTitle, CCol, CContainer, CFormInput, CHeaderDivider, CListGroup, CListGroupItem, CRow } from "@coreui/react"
+import { CAlert, CBadge, CBreadcrumb, CBreadcrumbItem, CButton, CCard, CCardBody, CCardFooter, CCardImage, CCardSubtitle, CCardTitle, CCol, CContainer, CFormInput, CHeaderDivider, CListGroup, CListGroupItem, CRow } from "@coreui/react"
 import { onOpenCarrito, onOpenFiltros } from "../../store/ui/uiSlice"
 import { FiltrosComponent } from "../components/FiltrosComponent"
 import { onAgregarLibroCarrito } from "../../store/prestamos/carritoSlice"
@@ -86,26 +86,38 @@ export const LibrosPages = () => {
                     </div>
                 </CRow>
                 <CRow xs={{ cols: 1 }} sm={{ cols: 2 } } md={{ cols: 4 } } lg={{ cols: 4 }} xl={{ cols: 5 }} className="mt-1 g-4">
-                    {libros.map((libro) => (
-                        <CCol key={libro.id}>
-                            <CCard border="light">
-                                <CCardImage style={{height: 360}} variant="top" src={`http://localhost/biblioteca_vn_backend/storage/app/public/${libro.url}`} />
-                                {/* <CCardImage style={{height: 360}} variant="top" src={`http://134.122.124.97/storage/${libro.url}`} /> */}
-                                <CCardBody>
-                                    <CCardTitle className="text-center"><Link to={`/libros/${libro.id}`}>{libro.titulo_libro}</Link></CCardTitle>
-                                    <CCardSubtitle className="text-muted text-center">{libro.autor.label[0]}</CCardSubtitle>
-                                </CCardBody>
-                                <CListGroup className="list-group-flush">
-                                    <CListGroupItem className="text-center"><CButton color="dark" className="text-center" onClick={() => handleOpenCarrito(libro)} disabled={(libro.stock_libro == 0) ? true : false}>Agregar</CButton></CListGroupItem>
-                                </CListGroup>     
-                                <CCardFooter className="text-center">
-                                    <small className="text-muted">
-                                        Disponibles: {libro.stock_libro}
-                                    </small>
-                                </CCardFooter>
-                            </CCard>
-                        </CCol>
-                    ))}
+                    {libros.length === 0 ? (
+
+                        <CAlert
+                            className="w-100 d-flex align-items-center justify-content-center"
+                            color="danger"
+                            >
+                            <p>No se encontraron libros.</p>
+                        </CAlert>
+
+                    ) : (
+                        
+                        libros.map((libro) => (
+                            <CCol key={libro.id}>
+                                <CCard border="light">
+                                    <CCardImage style={{height: 360}} variant="top" src={`http://localhost/biblioteca_vn_backend/storage/app/public/${libro.url}`} />
+                                    {/* <CCardImage style={{height: 360}} variant="top" src={`http://134.122.124.97/storage/${libro.url}`} /> */}
+                                    <CCardBody>
+                                        <CCardTitle className="text-center"><Link to={`/libros/${libro.id}`}>{libro.titulo_libro}</Link></CCardTitle>
+                                        <CCardSubtitle className="text-muted text-center">{libro.autor.label[0]}</CCardSubtitle>
+                                    </CCardBody>
+                                    <CListGroup className="list-group-flush">
+                                        <CListGroupItem className="text-center"><CButton color="dark" className="text-center" onClick={() => handleOpenCarrito(libro)} disabled={(libro.stock_libro == 0) ? true : false}>Agregar</CButton></CListGroupItem>
+                                    </CListGroup>     
+                                    <CCardFooter className="text-center">
+                                        <small className="text-muted">
+                                            Disponibles: {libro.stock_libro}
+                                        </small>
+                                    </CCardFooter>
+                                </CCard>
+                            </CCol>
+                        ))
+                    )}
                 </CRow>
                 <CRow>
                     <PaginadorComponent cantPaginas={cantidadPaginado} setNumPagina={setPage}/>
