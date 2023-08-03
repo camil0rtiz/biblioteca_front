@@ -26,7 +26,12 @@ export const userSlice = createSlice({
         estaditicas: [],
         userSave: false,
         userExists: false,
-        errorMessage: false
+        errorMessage: false,
+        errorRenovacion: {
+            error: false,
+            errorMessage: ''
+        },
+        succesRenovacion: false,
     
     },
         
@@ -110,10 +115,31 @@ export const userSlice = createSlice({
 
             state.estaditicas = payload
 
-        }
+        },
+
+        onErrorRenovacion: (state, {payload}) => {
+
+            state.errorRenovacion = {...state.errorRenovacion, ...payload};
+
+        },
+
+        onClearErrorRenovacion: (state) => {
+
+            state.errorRenovacion = {
+                error: false,
+                errorMessage: ''
+            }
+
+        },
+
+        onSuccesRenovacion: (state, {payload}) => {
+
+            state.succesRenovacion = payload
+
+        },
         
     }
 
 }) 
 
-export const {onAgregarUser, onClearUser, onListarUsersHabilitados, onListarUsersPendientes, onIdUserComprobante, onClearIdUserComprobante, onUserExists, onSave, onMessageErrorUser, onClearMessageErrorUser, onAgregarEstadisticas} = userSlice.actions
+export const {onAgregarUser, onClearUser, onListarUsersHabilitados, onListarUsersPendientes, onIdUserComprobante, onClearIdUserComprobante, onUserExists, onSave, onMessageErrorUser, onClearMessageErrorUser, onAgregarEstadisticas, onErrorRenovacion, onClearErrorRenovacion, onSuccesRenovacion} = userSlice.actions

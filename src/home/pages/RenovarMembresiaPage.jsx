@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react'
 import { useForm, Controller } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
-import { CCard, CCardBody, CCardGroup, CCol, CContainer, CRow } from '@coreui/react'
+import { CAlert, CCard, CCardBody, CCardGroup, CCol, CContainer, CRow } from '@coreui/react'
 import { Button, Form } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { validaImagenes } from '../../helpers/validarImagenes'
 import ReactSelect from 'react-select'
+import Swal from 'sweetalert2'
 import { customStyles } from '../../helpers/customStyles'
 import bibliotecaApi from '../../api/bibliotecaApi'
 import { startRenovarMembresiaHome } from '../../store/auth/thunk'
@@ -15,6 +16,8 @@ export const RenovarMembresiaPage = () => {
     const [membresia, setMembresia] = useState([])
 
     const { user } = useSelector(state => state.auth)
+
+    const { succesRenovacion, errorRenovacion } = useSelector(state => state.user)
 
     const dispatch = useDispatch()
 
@@ -42,7 +45,20 @@ export const RenovarMembresiaPage = () => {
 
         let idMembresia = registroTipoMembresia.value
 
-        dispatch(startRenovarMembresiaHome({id: user.id, idMembresia, registroComproTransferencia, registroComproDomicilio, estadoUsuario}))
+        Swal.fire({
+            title: '¿Estás seguro de querer renovar la membresía?',
+            text: "¡No podrás revertir esto!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Si, deseo renovar',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                dispatch(startRenovarMembresiaHome({id: user.id, idMembresia, registroComproTransferencia, registroComproDomicilio, estadoUsuario}))
+            }
+        })
 
     }
 
@@ -77,6 +93,27 @@ export const RenovarMembresiaPage = () => {
     return (
         <div className="bg-light mt-5">
             <CContainer>
+                <CRow>
+                    {
+                        (succesRenovacion) && (
+                            <CAlert color="success">
+                                <p>
+                                    La renovación de su membresía ha sido registrada con éxito.
+                                </p>
+                            </CAlert>
+                        )
+                    }
+
+                    {
+                        (errorRenovacion.error) && (
+                            <CAlert color="danger">
+                                <p>
+                                    {errorRenovacion.errorMessage}
+                                </p>
+                            </CAlert>
+                        )
+                    }
+                </CRow>
                 <CRow className="justify-content-center">
                     <CCol md={8}>
                         <CCardGroup>
@@ -84,7 +121,7 @@ export const RenovarMembresiaPage = () => {
                                 <CCardBody>
                                     <h3>Renovar Membresía</h3>
                                     <Form onSubmit={handleSubmit(onSubmit)}>
-                                        <Form.Group  className="mb-1">
+                                        <Form.Group  className="mb-3">
                                             <Form.Label>Tipo membresía</Form.Label>
                                             <Controller
                                                 name="registroTipoMembresia"
@@ -123,7 +160,7 @@ export const RenovarMembresiaPage = () => {
                                                         value: true,
                                                         message: "Comprobante de transferencia es obligatorio"
                                                     },
-                                                    validate: {positive: v => validaImagenes(v,1) == true || 'Formato de imagen no válido. Solo se permiten archivos PNG, JPG, JPEG y PDF.'} 
+                                                    validate: {positive: v => validaImagenes(v,1) == true || 'Formato de imagen no válido. Solo se permiten archivos PNG, JPG y JPEG.'} 
                                                 }}
                                                 render={({ field: { ref } }) => (
                                                     <Form.Control 
@@ -150,7 +187,7 @@ export const RenovarMembresiaPage = () => {
                                                         value: true,
                                                         message: "Comprobante de domicilio es obligatorio"
                                                     },
-                                                    validate: {positive: v => validaImagenes(v,1) == true || 'Formato de imagen no válido. Solo se permiten archivos PNG, JPG, JPEG y PDF.'} 
+                                                    validate: {positive: v => validaImagenes(v,1) == true || 'Formato de imagen no válido. Solo se permiten archivos PNG, JPG y JPEG.'} 
                                                 }}
                                                 render={({ field: { ref } }) => (
                                                     <Form.Control 

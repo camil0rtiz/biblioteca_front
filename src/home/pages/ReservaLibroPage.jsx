@@ -31,7 +31,7 @@ export const ReservaLibroPage = () => {
         })
 
         Swal.fire({
-            title: '¿Estás seguro de querer reservar los libros?',
+            title: '¿Estás seguro de querer reservar los el o los libro(s)?',
             text: "¡No podrás revertir esto!",
             icon: 'warning',
             showCancelButton: true,
@@ -42,12 +42,6 @@ export const ReservaLibroPage = () => {
         }).then((result) => {
             if (result.isConfirmed) {
                 dispatch(startReservarLibro(librosReservados, user.id, estadoReserva))
-                // navigate('/')
-                Swal.fire(
-                    '¡Felicidades!',
-                    'Los libros han sido reservados correctamente.',
-                    'success'
-                )
             }
         })
 

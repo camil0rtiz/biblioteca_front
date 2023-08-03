@@ -61,20 +61,20 @@ export const HomePages = () => {
         let estadoUsuario = 3
 
         Swal.fire({
-            title: '¿Estás seguro de querer habilitar a usuario?',
+            title: '¿Estás seguro de querer rechazar los comprobantes del usuario?',
             text: "¡Asegurate de haber revisado los comprobantes!",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            confirmButtonText: 'Si, deseo habilitar',
+            confirmButtonText: 'Si, deseo rechazar',
             cancelButtonText: 'Cancelar'
         }).then((result) => {
             if (result.isConfirmed) {
                 dispatch(startRechazarComprobante(id, estadoUsuario))
                 Swal.fire(
-                    'Habilitado!',
-                    'El usuario ha sido habilitado correctamente correctamente.',
+                    'Rechazado!',
+                    'El usuario ha sido rechazado.',
                     'success'
                 )
             }

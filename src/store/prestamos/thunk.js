@@ -2,7 +2,7 @@ import bibliotecaApi from "../../api/bibliotecaApi";
 import { onClearCarrito, onClearCarritoPrestamo } from "./carritoSlice";
 import { onListarPrestamos, onSavePrestamo } from "./prestamoSlice";
 import { onCloseModalPrestamos } from "../ui/uiSlice";
-import { onErrorReserva, onListarReservas, onSaveReserva } from "./reservaSlice";
+import { onClearErrorReserva, onErrorReserva, onListarReservas, onSaveReserva } from "./reservaSlice";
 import { onSaveLibro } from "../biblioteca/libroSlice";
 import { onSaveEjemplar } from "../biblioteca/ejemplarSlice";
 
@@ -19,6 +19,7 @@ export const startReservarLibro = (librosReservados, idVecino, estadoReserva) =>
             })
 
             dispatch(onClearCarrito())
+            dispatch(onClearErrorReserva())
 
         } catch (error) {
             

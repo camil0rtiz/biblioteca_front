@@ -1,6 +1,6 @@
 import bibliotecaApi from "../../api/bibliotecaApi"
 import { login, logout, onErrorMessage, onNotAuthenticatedLogin } from "./authSlice"
-import { onClearUser, onListarUsersHabilitados, onListarUsersPendientes, onSave, onMessageErrorUser, onAgregarEstadisticas } from "./userSlice"
+import { onClearUser, onListarUsersHabilitados, onListarUsersPendientes, onSave, onMessageErrorUser, onAgregarEstadisticas, onErrorRenovacion, onSuccesRenovacion } from "./userSlice"
 import { onCloseModal, onCloseModalRenovar } from "../ui/uiSlice"
 
 export const startLogin = (loginRut, loginPassword, reset) => {
@@ -312,8 +312,12 @@ export const startRenovarMembresiaHome = ({id, idMembresia, registroComproTransf
                 }
             })
 
+            dispatch(onSuccesRenovacion(true))
+
         } catch (error) {
 
+            dispatch(onSuccesRenovacion(false))
+            dispatch(onErrorRenovacion({error:true, errorMessage: error.response.data.message}))
             console.log(error.response)
 
         }
@@ -328,7 +332,7 @@ export const startDescargarComprobante = (id) => {
         try {
 
             const response = await bibliotecaApi.get(`usuarios/comprobante/${id}`, {
-                responseType: 'arraybuffer', // Cambia responseType a 'arraybuffer'
+                responseType: 'arraybuffer', 
             });
             
             const contentType = response.headers['content-type'];

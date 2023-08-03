@@ -24,13 +24,13 @@ export const FooterComponent = () => {
                     </CCol>
                     <CCol lg={3} className="text-center">
                         <h5>Síguenos</h5>
-                        <a href="https://www.instagram.com/miempresa/" target="_blank" rel="noopener noreferrer" className="text-white me-3">
+                        <a target="_blank" rel="noopener noreferrer" className="text-white me-3">
                             <CIcon icon={cibInstagram} size='xl' />
                         </a>
-                        <a href="https://www.facebook.com/miempresa" target="_blank" rel="noopener noreferrer" className="text-white me-3">
+                        <a target="_blank" rel="noopener noreferrer" className="text-white me-3">
                             <CIcon icon={cibFacebookF} size='xl' />
                         </a>
-                        <a href="https://wa.me/123456789" target="_blank" rel="noopener noreferrer" className="text-white">
+                        <a target="_blank" rel="noopener noreferrer" className="text-white">
                             <CIcon icon={cibWhatsapp} size='xl' />
                         </a>
                     </CCol>

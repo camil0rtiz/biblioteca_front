@@ -12,7 +12,8 @@ export const reservaSlice = createSlice({
         errorReserva: {
             error: false,
             errorMessage: ''
-        }
+        },
+        succesReserva: false,
 
     },
         
