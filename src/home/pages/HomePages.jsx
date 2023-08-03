@@ -111,7 +111,7 @@ export const HomePages = () => {
                     </Swiper>
                 </CRow>
                 <CRow className='d-flex justify-content-center mb-3'>
-                    <h3 className='mt-3'>Más Reservados</h3>
+                    <h3 className='mt-3'>Libros más Reservados</h3>
                     <Swiper
                         modules={[Navigation, Pagination, Autoplay]}
                         breakpoints={{
