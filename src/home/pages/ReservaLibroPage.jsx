@@ -10,15 +10,13 @@ export const ReservaLibroPage = () => {
 
     const { user } = useSelector(state => state.auth)
 
-    const { errorReserva } = useSelector(state => state.reserva)
+    const { errorReserva, succesReserva } = useSelector(state => state.reserva)
 
-    console.log(errorReserva);
+    console.log(succesReserva);
 
     const { carrito } = useSelector(state => state.carrito)
 
     const dispatch = useDispatch()
-
-    const navigate = useNavigate()
 
     const handleReserva = () => {
 
@@ -31,7 +29,7 @@ export const ReservaLibroPage = () => {
         })
 
         Swal.fire({
-            title: '¿Estás seguro de querer reservar los el o los libro(s)?',
+            title: '¿Estás seguro de querer reservar el o los libro(s)?',
             text: "¡No podrás revertir esto!",
             icon: 'warning',
             showCancelButton: true,
@@ -64,6 +62,15 @@ export const ReservaLibroPage = () => {
             </CContainer>
             <CContainer>
                 <CRow>
+                    {
+                        (succesReserva) && (
+                            <CAlert color="success">
+                                <p>
+                                    Su reserva ha sido registrada con éxito. Debe dirigirse a la biblioteca para buscar su libro.
+                                </p>
+                            </CAlert>
+                        )
+                    }
                     {
                         (errorReserva.error) && (
                             <CAlert color="danger">

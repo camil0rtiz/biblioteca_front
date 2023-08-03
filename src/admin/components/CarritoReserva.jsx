@@ -82,11 +82,15 @@ export const CarritoReserva = () => {
                     )
                 }
             </COffcanvasBody>
-            <div className="reservar-button border-top" >
-                <div className="d-grid p-3">
-                    <CButton color="dark" size="lg" shape="rounded-pill" onClick={() => handlePrestarLibro()}>Prestar libro</CButton>
-                </div>
-            </div> 
+            {
+                (carritoReserva.length > 0) && (
+                    <div className="reservar-button border-top" >
+                        <div className="d-grid p-3">
+                            <CButton color="dark" size="lg" shape="rounded-pill" onClick={() => handlePrestarLibro()}>Prestar libro</CButton>
+                        </div>
+                    </div> 
+                )
+            }
         </COffcanvas>
     )
 }

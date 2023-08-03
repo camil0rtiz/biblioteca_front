@@ -54,10 +54,16 @@ export const reservaSlice = createSlice({
                 errorMessage: ''
             }
 
-        }
+        },
+
+        onSuccesReserva: (state, {payload}) => {
+
+            state.succesReserva = payload
+
+        },
         
     }
 
 }) 
 
-export const { onListarReservas, onSaveReserva, onIdsReserva, onClearLibroReserva, onErrorReserva, onClearErrorReserva } = reservaSlice.actions
+export const { onListarReservas, onSaveReserva, onIdsReserva, onClearLibroReserva, onErrorReserva, onClearErrorReserva, onSuccesReserva } = reservaSlice.actions
