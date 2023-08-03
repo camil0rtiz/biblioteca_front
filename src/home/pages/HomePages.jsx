@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { CContainer, CRow, CCard, CCardImage, CCardBody, CCardTitle, CCardSubtitle, CAlert, CCarousel, CCarouselItem, CImage} from '@coreui/react'
+import { CContainer, CRow, CCard, CCardImage, CCardBody, CCardTitle, CCardSubtitle, CAlert, CCarousel, CCarouselItem, CImage, CHeaderDivider, CBreadcrumb, CBreadcrumbItem} from '@coreui/react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Navigation, Pagination, Autoplay } from "swiper"
 import 'swiper/css'
@@ -43,6 +43,12 @@ export const HomePages = () => {
                     </CCarouselItem>
                 </CCarousel>
             </div> */}
+            <CHeaderDivider/>
+            <CContainer fluid >
+                <CBreadcrumb className='"m-0 ms-2 mt-3'>
+                    <CBreadcrumbItem to='home'>Home</CBreadcrumbItem>
+                </CBreadcrumb>
+            </CContainer>
             <CContainer>
                 <CRow>
                 {

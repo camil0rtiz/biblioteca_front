@@ -22,8 +22,7 @@ export const FiltrosComponent = () => {
                 <CCloseButton className="text-reset" onClick={handleClose} />
             </COffcanvasHeader>
             <COffcanvasBody>
-                Content for the offcanvas goes here. You can place just about any Bootstrap component or
-                custom elements here.
+                
             </COffcanvasBody>
             <div className="reservar-button border-top" >
                 <div className="d-grid p-3">

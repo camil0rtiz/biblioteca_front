@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
-import { CBadge, CBreadcrumb, CBreadcrumbItem, CButton, CCard, CCardBody, CCardFooter, CCardImage, CCardSubtitle, CCardTitle, CCol, CContainer, CHeaderDivider, CListGroup, CListGroupItem, CRow } from "@coreui/react"
+import { CBadge, CBreadcrumb, CBreadcrumbItem, CButton, CCard, CCardBody, CCardFooter, CCardImage, CCardSubtitle, CCardTitle, CCol, CContainer, CFormInput, CHeaderDivider, CListGroup, CListGroupItem, CRow } from "@coreui/react"
 import { onOpenCarrito, onOpenFiltros } from "../../store/ui/uiSlice"
 import { FiltrosComponent } from "../components/FiltrosComponent"
 import { onAgregarLibroCarrito } from "../../store/prestamos/carritoSlice"
@@ -12,6 +12,8 @@ import { startListarLibros } from "../../store/biblioteca/thunk"
 export const LibrosPages = () => {
 
     const [ page, setPage ] = useState(0)
+
+    const [filterText, setFilterText] = useState('');
 
     const { libros, cantidadPaginado } = useSelector(state => state.libro)
 
@@ -23,9 +25,9 @@ export const LibrosPages = () => {
 
         let perPage = 10
 
-        dispatch(startListarLibros(page, perPage, ''))
+        dispatch(startListarLibros(page, perPage, filterText))
 
-    }, [page])
+    }, [page, filterText])
 
     const handleOpenCarrito = (libro) => {
 
@@ -46,6 +48,12 @@ export const LibrosPages = () => {
         
     }
 
+    const onFilter = (event) => {
+
+        setFilterText(event.target.value);
+
+    };
+
     return (
         <>
             <CHeaderDivider/>
@@ -61,9 +69,20 @@ export const LibrosPages = () => {
                         <div>
                             <h3>Libros</h3>
                         </div>
-                        <div>
+                        {/* <div>
                             <CButton color="warning" onClick={() => openFiltros()}>Filtros</CButton>
-                        </div>
+                        </div> */}
+                    </div>
+                </CRow>
+                <CRow>
+                    <div className="mt-1">
+                        <CFormInput
+                            type="text"
+                            className='form-control'
+                            value={filterText}
+                            onChange={onFilter}
+                            placeholder='Buscar por título de libro'
+                        />
                     </div>
                 </CRow>
                 <CRow xs={{ cols: 1 }} sm={{ cols: 2 } } md={{ cols: 4 } } lg={{ cols: 4 }} xl={{ cols: 5 }} className="mt-1 g-4">
