@@ -33,21 +33,10 @@ export const eventoSlice = createSlice({
 
         onListarEventosHome: (state, {payload}) => {
 
-            payload.forEach(evento => {
+            state.eventosHome = payload.eventos
 
-                if(evento.id_categoria == 1){
+            state.noticiasHome = payload.noticias
 
-                    state.eventosHome = payload
-
-                }
-                else{
-
-                    state.noticiasHome = payload
-
-                }
-
-            })
-            
         },
 
         onClearEventos: (state) => {
