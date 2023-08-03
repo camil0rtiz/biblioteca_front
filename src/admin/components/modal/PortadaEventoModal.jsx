@@ -73,8 +73,8 @@ export const PortadaEventoModal = () => {
                         />
                     </Form.Group>
                     <div className='d-flex justify-content-center align-items-center mb-3'>
-                        <img src={`http://localhost/biblioteca_vn_backend/storage/app/public/${initialEvento.url}`} alt="Portada del libro" width="500" />
-                        {/* <img src={`http://134.122.124.97/storage/${initialEvento.url}`} alt="Portada del libro" width="500" /> */}
+                        {/* <img src={`http://localhost/biblioteca_vn_backend/storage/app/public/${initialEvento.url}`} alt="Portada del libro" width="500" /> */}
+                        <img src={`http://134.122.124.97/storage/${initialEvento.url}`} alt="Portada del libro" width="500" />
                     </div>
                     <Form.Group controlId="formFile">
                         <Form.Label>Subir imagen</Form.Label>
