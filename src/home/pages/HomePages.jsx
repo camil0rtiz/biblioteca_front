@@ -60,7 +60,7 @@ export const HomePages = () => {
                 }
                 </CRow>
                 <CRow>
-                    <h3 className='mt-3'>Últimos agregados</h3>
+                    <h3 className='mt-3'>Últimos libros agregados</h3>
                     <Swiper
                         modules={[Navigation, Pagination, Autoplay]}
                         breakpoints={{
