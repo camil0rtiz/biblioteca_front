@@ -138,8 +138,8 @@ export const LibrosPages = () => {
             name: 'Portada',
             grow: 0,
             
-            cell: (data) => <img height="100px" width="80px" src={`http://localhost/biblioteca_vn_backend/storage/app/public/${data.url}`}/>,
-		    // cell: (data) => <img height="100px" width="80px" src={`http://134.122.124.97/storage/${data.url}`}/>,
+            // cell: (data) => <img height="100px" width="80px" src={`http://localhost/biblioteca_vn_backend/storage/app/public/${data.url}`}/>,
+		    cell: (data) => <img height="100px" width="80px" src={`http://134.122.124.97/storage/${data.url}`}/>,
             sortable: true,
         },
         {

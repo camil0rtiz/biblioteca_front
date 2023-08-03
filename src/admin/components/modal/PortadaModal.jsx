@@ -75,7 +75,8 @@ export const PortadaModal = () => {
                         />
                     </Form.Group>
                     <div className='d-flex justify-content-center align-items-center mb-3'>
-                        <img src={`http://localhost/biblioteca_vn_backend/storage/app/public/${initialLibro.url}`} alt="Portada del libro" width="200" />
+                        {/* <img src={`http://localhost/biblioteca_vn_backend/storage/app/public/${initialLibro.url}`} alt="Portada del libro" width="200" /> */}
+                        <img src={`http://134.122.124.97/storage/${initialLibro.url}`} alt="Portada del libro" width="200" />
                     </div>
                     <Form.Group>
                         <Form.Label>Subir imagen de portada</Form.Label>

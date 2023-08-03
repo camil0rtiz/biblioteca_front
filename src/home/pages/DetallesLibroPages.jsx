@@ -61,8 +61,8 @@ export const DetallesLibroPages = () => {
                             <>
                                 <CCol md={6} lg={3}>
                                     <CCard border="light">
-                                        <CCardImage variant="top" src={`http://localhost/biblioteca_vn_backend/storage/app/public/${libro.url}`} />
-                                        {/* <CCardImage variant="top" src={`http://134.122.124.97/storage/${libro.url}`} /> */}
+                                        {/* <CCardImage variant="top" src={`http://localhost/biblioteca_vn_backend/storage/app/public/${libro.url}`} /> */}
+                                        <CCardImage variant="top" src={`http://134.122.124.97/storage/${libro.url}`} />
                                         <CListGroup className="list-group-flush">
                                             <CListGroupItem className="text-center"><CButton color="dark" className="text-center"onClick={() => handleOpenCarrito(libro)} disabled={(libro.stock_libro == 0) ? true : false}>Agregar</CButton></CListGroupItem>
                                         </CListGroup>     

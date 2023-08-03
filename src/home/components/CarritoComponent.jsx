@@ -47,7 +47,8 @@ export const CarritoComponent = () => {
                         <CCard key={cart.id} className="mb-3">
                             <CRow className="g-0">
                                 <CCol xs={4} className="d-flex align-items-center justify-content-center">
-                                    <CCardImage src={`http://localhost/biblioteca_vn_backend/storage/app/public/${cart.url}`} />
+                                    {/* <CCardImage src={`http://localhost/biblioteca_vn_backend/storage/app/public/${cart.url}`} /> */}
+                                    <CCardImage src={`http://134.122.124.97/storage/${cart.url}`} />
                                 </CCol>
                                 <CCol xs={8}>
                                     <CCardBody className="d-flex flex-column align-items-center">
