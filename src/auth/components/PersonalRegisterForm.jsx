@@ -22,7 +22,7 @@ export const PersonalRegisterForm = ({goNextPage}) => {
     const onSubmit = async({ registroRut,registroNombre,registroApellidoPaterno,registroApellidoMaterno,registroFechaNacimiento,registroCorreo, registroConfirCorreo,registroNumeroCelular,registroDireccion,registroNumCasa,registroPassword,registroConfirPassword }) => {
         
         const {data} = await bibliotecaApi.get(`usuarios/verificar/${registroRut}`)
-        console.log(data);
+
         if (data.data == true) {
             dispatch(onUserExists(true));
         } else if (data.data == false) {

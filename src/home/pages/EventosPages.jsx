@@ -38,7 +38,7 @@ export const EventosPages = () => {
                             <CCard className="card-evento">
                                 <CCardBody>
                                         {/* <CCardImage className='imagen-evento' src={`http://localhost/biblioteca_vn_backend/storage/app/public/${evento.archivo.url}`} alt={`Imagen ${evento.archivo.id}`} /> */}
-                                        <CCardImage className='imagen-evento' src={`http://134.122.124.97/storage/${archivo.url}`} alt={`Imagen ${archivo.id}`} />
+                                        <CCardImage className='imagen-evento' src={`http://134.122.124.97/storage/${evento.archivo.url}`} alt={`Imagen ${evento.id}`} />
                                         <CCardTitle className='text-center'>{evento.titulo_evento}</CCardTitle>
                                         <CCardText dangerouslySetInnerHTML={{ __html: evento.descripcion_evento }}></CCardText>                              
                                 </CCardBody>
@@ -56,7 +56,7 @@ export const EventosPages = () => {
                         <CCol xl={6} key={evento.id}>
                             <CCard className="mb-4">
                                 <CCardBody>
-                                        <CCardImage className='imagen-evento' src={`http://134.122.124.97/storage/${archivo.url}`} alt={`Imagen ${archivo.id}`} />
+                                        <CCardImage className='imagen-evento' src={`http://134.122.124.97/storage/${evento.archivo.url}`} alt={`Imagen ${evento.id}`} />
                                         {/* <CCardImage className='imagen-evento' src={`http://localhost/biblioteca_vn_backend/storage/app/public/${evento.archivo.url}`} alt={`Imagen ${evento.archivo.id}`} /> */}
                                     <CCardTitle className='text-center'>{evento.titulo_evento}</CCardTitle>
                                     <CCardText dangerouslySetInnerHTML={{ __html: evento.descripcion_evento }}>

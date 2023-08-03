@@ -26,7 +26,7 @@ export const MembresiaRegisterForm = ({ goNextPage, goBackPage }) => {
                         <div className="col-md-12">
                             <ProgressBar className="mb-3" animated variant="primary" now={66.6} label={'Paso 2'} />
                             <div className="text-center">
-                                <h3>Datos Membresia</h3>
+                                <h3>Datos Membresía</h3>
                             </div>
                             <div className="row row-cols-1 row-cols-md-2 mb-3 text-center">
                                 <div className="col">

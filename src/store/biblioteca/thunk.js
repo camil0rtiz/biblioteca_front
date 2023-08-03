@@ -506,8 +506,6 @@ export const startListarEventosHome = () => {
     
             const response = await bibliotecaApi.get('eventos/listarEventosHome')
 
-            console.log(response.data.data);
-    
             dispatch(onListarEventosHome(response.data.data))
     
         } catch (error) {

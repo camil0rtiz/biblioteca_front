@@ -123,9 +123,7 @@ export const startAgregarUsuario = ({
                     'Content-Type': 'multipart/form-data'
                 }
             })
-
-            console.log(data);
-
+            
             dispatch(onClearUser())
             dispatch(onCloseModal())
             dispatch(onSave())

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useForm, Controller } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
-import { CAlert, CButton, CCard, CCardBody, CCardGroup, CCol, CContainer, CForm, CFormInput, CFormText, CInputGroup, CInputGroupText, CRow } from '@coreui/react'
+import { CCard, CCardBody, CCardGroup, CCol, CContainer, CRow } from '@coreui/react'
 import { Button, Form } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { validaImagenes } from '../../helpers/validarImagenes'
@@ -123,7 +123,7 @@ export const RenovarMembresiaPage = () => {
                                                         value: true,
                                                         message: "Comprobante de transferencia es obligatorio"
                                                     },
-                                                    validate: {positive: v => validaImagenes(v,2) == true || 'Formato de imagen no válido. Solo se permiten archivos PNG, JPG, JPEG y PDF.'} 
+                                                    validate: {positive: v => validaImagenes(v,1) == true || 'Formato de imagen no válido. Solo se permiten archivos PNG, JPG, JPEG y PDF.'} 
                                                 }}
                                                 render={({ field: { ref } }) => (
                                                     <Form.Control 
@@ -150,7 +150,7 @@ export const RenovarMembresiaPage = () => {
                                                         value: true,
                                                         message: "Comprobante de domicilio es obligatorio"
                                                     },
-                                                    validate: {positive: v => validaImagenes(v,2) == true || 'Formato de imagen no válido. Solo se permiten archivos PNG, JPG, JPEG y PDF.'} 
+                                                    validate: {positive: v => validaImagenes(v,1) == true || 'Formato de imagen no válido. Solo se permiten archivos PNG, JPG, JPEG y PDF.'} 
                                                 }}
                                                 render={({ field: { ref } }) => (
                                                     <Form.Control 
