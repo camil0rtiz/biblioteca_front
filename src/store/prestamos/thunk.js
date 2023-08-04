@@ -75,8 +75,8 @@ export const startEliminarReserva = ({id, estadoReserva}) => {
 
 }
 
-export const startPrestarLibro = (ejemplaresPrestados, idVecino, estadoPrestamo, idBibliotecario, descontarStock) => {
-
+export const startPrestarLibro = (ejemplaresPrestados, idVecino, estadoPrestamo, idBibliotecario, descontarStock, reservaId) => {
+    
     return async( dispatch ) => {
 
         try {
@@ -85,11 +85,10 @@ export const startPrestarLibro = (ejemplaresPrestados, idVecino, estadoPrestamo,
                 id_vecino: idVecino,
                 id_ejemplar: ejemplaresPrestados,
                 id_bibliotecario: idBibliotecario,
+                id_reserva: reservaId,
                 descontar_stock: descontarStock,
                 estado_prestamo: estadoPrestamo
             })
-
-            console.log(data);
 
             dispatch(onCloseModalPrestamos())
             dispatch(onSaveLibro())

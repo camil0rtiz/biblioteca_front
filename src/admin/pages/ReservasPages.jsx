@@ -21,7 +21,11 @@ export const ReservasPages = () => {
     useEffect(() => {
 
         if (reservaSave || searchRut) {
+
             dispatch(startListarReservas(searchRut));
+
+            return
+            
         }
 
         dispatch(startListarReservas());

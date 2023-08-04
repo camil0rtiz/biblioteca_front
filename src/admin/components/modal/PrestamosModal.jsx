@@ -8,6 +8,7 @@ import { onEliminarPrestamoCarrito } from '../../../store/prestamos/carritoSlice
 import { customStyles } from '../../../helpers/customStyles'
 import bibliotecaApi from '../../../api/bibliotecaApi'
 import { startPrestarLibro } from '../../../store/prestamos/thunk'
+import { CAlert } from '@coreui/react'
 
 export const PrestamosModal = () => {
 
@@ -78,7 +79,7 @@ export const PrestamosModal = () => {
             ejemplaresPrestados.push(cart.id)
         })
 
-        dispatch(startPrestarLibro(ejemplaresPrestados, usuarioId, estadoPrestamo, idBibliotecario, descontarStock))
+        dispatch(startPrestarLibro(ejemplaresPrestados, usuarioId, estadoPrestamo, idBibliotecario, descontarStock, ''))
 
     }
 
@@ -89,33 +90,37 @@ export const PrestamosModal = () => {
             </Modal.Header>
             <Form onSubmit={handleSubmit(onSubmit)}>
                 <Modal.Body>
-                    <Form.Group className="mb-3">
-                        <Form.Label>Selecione vecino lector</Form.Label>
-                        <Controller
-                            name="idVecino"
-                            control={control}
-                            rules={{
-                                required:{
-                                    value: true,
-                                    message: "Usuarios es obligatorio"
-                                },
-                            }}
-                            render={({ field, fieldState}) => (
-                                <ReactSelect
-                                    {...field}
-                                    styles={customStyles} 
-                                    options={usuarios}
-                                    placeholder='Seleccione un vecino lector'
-                                    noOptionsMessage={() => "No hay resultados"}
+                    {
+                        (modalPrestamos.length > 0) && (
+                            <Form.Group className="mb-3">
+                                <Form.Label>Selecione vecino lector</Form.Label>
+                                <Controller
+                                    name="idVecino"
+                                    control={control}
+                                    rules={{
+                                        required:{
+                                            value: true,
+                                            message: "Usuarios es obligatorio"
+                                        },
+                                    }}
+                                    render={({ field, fieldState}) => (
+                                        <ReactSelect
+                                            {...field}
+                                            styles={customStyles} 
+                                            options={usuarios}
+                                            placeholder='Seleccione un vecino lector'
+                                            noOptionsMessage={() => "No hay resultados"}
+                                        />
+                                    )}   
                                 />
-                            )}   
-                        />
-                        {errors.idVecino && 
-                            <Form.Text className="text-danger" variant='danger'>
-                                {errors.idVecino.message}
-                            </Form.Text> 
-                        } 
-                    </Form.Group>
+                                {errors.idVecino && 
+                                    <Form.Text className="text-danger" variant='danger'>
+                                        {errors.idVecino.message}
+                                    </Form.Text> 
+                                } 
+                            </Form.Group>
+                        )
+                    }
                     <ListGroup variant="light">
                         {modalPrestamos.map((cart) => (
                             <ListGroup.Item  key={cart.id} className='mb-2 d-flex justify-content-between align-items-center'>
@@ -132,10 +137,20 @@ export const PrestamosModal = () => {
                                 </div>
                             </ListGroup.Item>
                         ))}
+                        
+                        {
+                            (modalPrestamos.length == 0) && (
+                                <CAlert color="info">
+                                    <p>
+                                        Estimado, recuerde que puede reservar una cantidad máxima de 2 libros.
+                                    </p>
+                                </CAlert>
+                            )
+                        }
                     </ListGroup>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="primary" type='submit'>
+                    <Button variant="primary" type='submit' disabled={modalPrestamos.length === 0}>
                         Prestar
                     </Button>
                     <Button variant="secondary" onClick={handleClose}>

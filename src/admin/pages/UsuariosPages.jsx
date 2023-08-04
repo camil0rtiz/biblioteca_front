@@ -112,7 +112,7 @@ export const UsuariosPages = () => {
             sortable: true,
         },
         {
-            name: 'Apellido Paterno',
+            name: 'Apellido paterno',
             selector: row => row.apellido_pate_usuario,
             sortable: true,
         },

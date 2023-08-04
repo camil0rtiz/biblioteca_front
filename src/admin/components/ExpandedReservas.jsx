@@ -8,17 +8,21 @@ import { onIdsReserva } from "../../store/prestamos/reservaSlice";
 
 export const ExpandedReservas = ({data}) => {
 
+    let id_reserva = data.id
+
     const { carritoReserva } = useSelector(state => state.carrito)
 
     const dispatch = useDispatch()
 
     const id_usuario = data.id_usuario
 
-    const handleCarritoReserva = (data,id_usuario) => {
+    const handleCarritoReserva = (data, id_reserva, id_usuario) => {
+
+        const newData = { ...data, id_reserva };
 
         if(carritoReserva.length < 2){
             
-            dispatch(onAgregarEjemplarCarrito(data))
+            dispatch(onAgregarEjemplarCarrito(newData))
 
         }
 
@@ -49,7 +53,7 @@ export const ExpandedReservas = ({data}) => {
             button: true,
             cell: (data) => <div className='d-flex justify-content-between'>
                                 <div>
-                                    <CButton color="primary" onClick={() => handleCarritoReserva(data, id_usuario)}>
+                                    <CButton color="primary" onClick={() => handleCarritoReserva(data, id_reserva, id_usuario)}>
                                         Agregar
                                     </CButton>
                                 </div>

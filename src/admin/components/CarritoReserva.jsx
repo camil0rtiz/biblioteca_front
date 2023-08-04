@@ -33,8 +33,11 @@ export const CarritoReserva = () => {
 
         let ejemplaresPrestados = []
 
+        let reservaId = []
+
         carritoReserva.map((cart)=> {
             ejemplaresPrestados.push(cart.id)
+            reservaId.push(cart.id_reserva)
         })
 
         Swal.fire({
@@ -48,7 +51,7 @@ export const CarritoReserva = () => {
             cancelButtonText: 'Cancelar'
         }).then((result) => {
             if (result.isConfirmed) {
-                dispatch( dispatch(startPrestarLibro(ejemplaresPrestados, usuarioId, estadoPrestamo, idBibliotecario, descontarStock)))
+                dispatch(startPrestarLibro(ejemplaresPrestados, usuarioId, estadoPrestamo, idBibliotecario, descontarStock, reservaId))
             }
         })
 
@@ -90,7 +93,7 @@ export const CarritoReserva = () => {
                     (carritoReserva.length == 0) && (
                         <CAlert color="info">
                             <p>
-                                Estimado lector, recuerde que puede reservar una cantidad máxima de 2 libros.
+                                Estimado, recuerde que puede reservar una cantidad máxima de 2 libros.
                             </p>
                         </CAlert>
                     )

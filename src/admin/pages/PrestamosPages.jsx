@@ -33,20 +33,20 @@ export const PrestamosPages = () => {
     const handleDevolucionLibro = ({id, id_ejemplar, id_libro}) => {
 
         Swal.fire({
-            title: '¿Estás seguro de querer eliminar un libro?',
+            title: '¿Estás seguro de querer devolver el libro?',
             text: "¡No podrás revertir esto!",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            confirmButtonText: 'Si, deseo eliminar',
+            confirmButtonText: 'Si, deseo devolver',
             cancelButtonText: 'Cancelar'
         }).then((result) => {
             if (result.isConfirmed) {
                 dispatch(startDevolucionPrestamo({id, id_ejemplar, id_libro}))
                 Swal.fire(
                     '¡Eliminado!',
-                    'El libro ha sido eliminado correctamente.',
+                    'El libro ha sido devuelto correctamente.',
                     'success'
                 )
             }
@@ -57,20 +57,20 @@ export const PrestamosPages = () => {
     const handleRenovarPrestamo = ({id}) => {
 
         Swal.fire({
-            title: '¿Estás seguro de querer eliminar un libro?',
+            title: '¿Estás seguro de querer renovar el prestamo?',
             text: "¡No podrás revertir esto!",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            confirmButtonText: 'Si, deseo eliminar',
+            confirmButtonText: 'Si, deseo renovar',
             cancelButtonText: 'Cancelar'
         }).then((result) => {
             if (result.isConfirmed) {
                 dispatch(startRenovarPrestamo({id}))
                 Swal.fire(
                     '¡Eliminado!',
-                    'El libro ha sido eliminado correctamente.',
+                    'Prestamo ha sido renovado correctamente.',
                     'success'
                 )
             }
@@ -92,12 +92,12 @@ export const PrestamosPages = () => {
         },
         {
             name: 'Fecha prestamo',
-            selector: row =>  new Date(row.fecha_prestamo,).toLocaleDateString(undefined, { day: '2-digit', month: '2-digit', year: 'numeric' }),
+            selector: row =>  new Date(row.fecha_prestamo).toLocaleDateString(undefined, { day: '2-digit', month: '2-digit', year: 'numeric' }),
             sortable: true,
         },
         {
             name: 'Fecha fin prestamo',
-            selector: row =>  new Date(row.fecha_entre_prestamo,).toLocaleDateString(undefined, { day: '2-digit', month: '2-digit', year: 'numeric' }),
+            selector: row =>  new Date(row.fecha_entre_prestamo).toLocaleDateString(undefined, { day: '2-digit', month: '2-digit', year: 'numeric' }),
             sortable: true,
         },
         {
