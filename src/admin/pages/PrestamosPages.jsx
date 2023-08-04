@@ -86,23 +86,37 @@ export const PrestamosPages = () => {
             sortable: true,
         },
         {
-            name: 'Nombre usuario',
+            name: 'Nombre',
             selector: row => row.nombre_usuario,
             sortable: true,
         },
         {
             name: 'Fecha prestamo',
-            selector: row => row.fecha_prestamo,
+            selector: row =>  new Date(row.fecha_prestamo,).toLocaleDateString(undefined, { day: '2-digit', month: '2-digit', year: 'numeric' }),
             sortable: true,
         },
         {
-            name: 'Fecha devolución',
-            selector: row => row.fecha_entre_prestamo,
+            name: 'Fecha fin prestamo',
+            selector: row =>  new Date(row.fecha_entre_prestamo,).toLocaleDateString(undefined, { day: '2-digit', month: '2-digit', year: 'numeric' }),
             sortable: true,
         },
         {
             name: 'Estado prestamo',
-            selector: row => row.estado_prestamo,
+            selector: row =>  (
+                <span>
+                    {
+                        row.estado_prestamo == "1" ? (
+                            'Prestado'
+                        ) :  row.estado_prestamo == "2" ? (
+                            'Vencido'
+                        ) :  row.estado_prestamo == "3" ? (
+                            'Entregado'
+                        ) : (
+                            null
+                        )
+                    }
+                </span>
+            ), 
             sortable: true,
         },
         {

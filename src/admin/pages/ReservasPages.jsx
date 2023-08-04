@@ -23,6 +23,8 @@ export const ReservasPages = () => {
         if (reservaSave || searchRut) {
             dispatch(startListarReservas(searchRut));
         }
+
+        dispatch(startListarReservas());
         
     }, [reservaSave, searchRut])
 
@@ -76,12 +78,24 @@ export const ReservasPages = () => {
         },
         {
             name: 'Fecha reserva',
-            selector: row => row.fecha_reserva,
+            selector: row => new Date(row.fecha_reserva).toLocaleDateString(undefined, { day: '2-digit', month: '2-digit', year: 'numeric' }),
             sortable: true,
         },
         {
             name: 'Estado reserva',
-            selector: row => row.estado_reserva,
+            selector: row => (
+                <span>
+                    {
+                        row.estado_reserva == "1" ? (
+                            'Pendiente'
+                        ) : row.estado_reserva == "2" ? (
+                            'Reservado'
+                        ) : (
+                            null
+                        )
+                    }
+                </span>
+            ),
             sortable: true,
         },
         {
@@ -108,7 +122,7 @@ export const ReservasPages = () => {
                         </CCardHeader>
                         <CCardBody>
                             <DataTable
-                                title="Tabla libros reservados"
+                                title="Tabla usuarios con reserva de libros"
                                 responsive
                                 pagination
                                 columns={columns}

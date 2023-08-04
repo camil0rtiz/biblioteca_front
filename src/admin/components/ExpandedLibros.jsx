@@ -92,6 +92,7 @@ export const ExpandedLibros = ({ data }) => {
     return (
         
         <DataTable
+            title="Reservas 3"
             responsive
             columns={columns}
             data={data.ejemplares}

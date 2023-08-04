@@ -13,6 +13,11 @@ export const ExpandedPrestamos = ({data}) => {
             sortable: true,
         },
         {
+            name: 'N° Registro',
+            selector: row => row. isbn_ejemplar,
+            sortable: true,
+        },
+        {
             name: 'Dewey',
             selector: row => row.dewey_unic_ejemplar,
             sortable: true,
@@ -23,11 +28,9 @@ export const ExpandedPrestamos = ({data}) => {
     return (
         <DataTable
             responsive
-            pagination
             columns={columns}
             data={data.ejemplares}
             highlightOnHover={true}
-            paginationComponentOptions={paginacionOpciones}
             noDataComponent={<span className='mt-4'>No se encontro ningún elemento</span>}
             fixedHeader
             fixedHeaderScrollHeight="600px"

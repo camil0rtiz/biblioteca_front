@@ -3,6 +3,7 @@ import { CAlert, CButton, CCloseButton, CListGroup, CListGroupItem, COffcanvas, 
 import { onCloseCarritoAdmin } from '../../store/ui/uiSlice'
 import { startPrestarLibro } from '../../store/prestamos/thunk'
 import { onEliminarEjemplarCarrito } from '../../store/prestamos/carritoSlice'
+import Swal from 'sweetalert2'
 
 export const CarritoReserva = () => {
 
@@ -36,7 +37,20 @@ export const CarritoReserva = () => {
             ejemplaresPrestados.push(cart.id)
         })
 
-        dispatch(startPrestarLibro(ejemplaresPrestados, usuarioId, estadoPrestamo, idBibliotecario, descontarStock))
+        Swal.fire({
+            title: '¿Estás seguro de querer prestar el o los libro(s)?',
+            text: "¡No podrás revertir esto!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Si, deseo prestar',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                dispatch( dispatch(startPrestarLibro(ejemplaresPrestados, usuarioId, estadoPrestamo, idBibliotecario, descontarStock)))
+            }
+        })
 
     }
 
@@ -49,7 +63,7 @@ export const CarritoReserva = () => {
     return (
         <COffcanvas className='bg-light' placement="end" visible={carritoAdminOpen} onHide={handleClose}>
             <COffcanvasHeader>
-                <COffcanvasTitle>Carrito</COffcanvasTitle>
+                <COffcanvasTitle>Carrito prestamos</COffcanvasTitle>
                 <CCloseButton className="text-reset" onClick={handleClose} />
             </COffcanvasHeader>
             <COffcanvasBody>

@@ -35,6 +35,11 @@ export const ExpandedReservas = ({data}) => {
             sortable: true,
         },
         {
+            name: 'ISBN',
+            selector: row => row.isbn_ejemplar,
+            sortable: true,
+        },
+        {
             name: 'Dewey',
             selector: row => row.dewey_unic_ejemplar,
             sortable: true,
@@ -60,7 +65,7 @@ export const ExpandedReservas = ({data}) => {
             data={data.ejemplares}
             highlightOnHover={true}
             paginationComponentOptions={paginacionOpciones}
-            noDataComponent={<span className='mt-4'>No se encontro ningún elemento</span>}
+            noDataComponent={<span className='mt-4'>No se encontro ningún ejemplar disponible</span>}
             fixedHeader
             fixedHeaderScrollHeight="600px"
             persistTableHead
