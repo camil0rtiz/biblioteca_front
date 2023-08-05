@@ -107,10 +107,16 @@ export const carritoSlice = createSlice({
 
             state.modalPrestamos = []
 
-        }
+        },
+
+        onClearCarritoReserva: ( state ) => {//carrito que esta en reserva en panel de administrador
+
+            state.carritoReserva = []
+
+        },
 
     }
 
 }) 
 
-export const { onAgregarLibroCarrito, onAgregarEjemplarCarrito, onAgregarPrestamoCarrito, onEliminarLibroCarrito, onEliminarEjemplarCarrito, onEliminarPrestamoCarrito, onClearCarrito, onClearCarritoPrestamo } = carritoSlice.actions
+export const { onAgregarLibroCarrito, onAgregarEjemplarCarrito, onAgregarPrestamoCarrito, onEliminarLibroCarrito, onEliminarEjemplarCarrito, onEliminarPrestamoCarrito, onClearCarrito, onClearCarritoPrestamo, onClearCarritoReserva } = carritoSlice.actions

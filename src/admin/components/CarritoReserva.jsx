@@ -3,6 +3,7 @@ import { CAlert, CButton, CCloseButton, CListGroup, CListGroupItem, COffcanvas, 
 import { onCloseCarritoAdmin } from '../../store/ui/uiSlice'
 import { startPrestarLibro } from '../../store/prestamos/thunk'
 import { onEliminarEjemplarCarrito } from '../../store/prestamos/carritoSlice'
+import { onClearErrorPrestamo } from '../../store/prestamos/prestamoSlice'
 import Swal from 'sweetalert2'
 
 export const CarritoReserva = () => {
@@ -15,11 +16,14 @@ export const CarritoReserva = () => {
 
     const { usuarioId } = useSelector(state => state.reserva)
 
+    const { errorPrestamo } = useSelector(state => state.prestamo)
+
     const dispatch = useDispatch()
 
     const handleClose = () => {
 
         dispatch(onCloseCarritoAdmin())
+        dispatch(onClearErrorPrestamo())
 
     }
 
@@ -70,6 +74,13 @@ export const CarritoReserva = () => {
                 <CCloseButton className="text-reset" onClick={handleClose} />
             </COffcanvasHeader>
             <COffcanvasBody>
+                {errorPrestamo.error && (
+                    <CAlert color="danger">
+                        <p>
+                            {errorPrestamo.errorMessage}
+                        </p>
+                    </CAlert>
+                )}
                 <CListGroup>
                     {carritoReserva.map((cart) => (
                         

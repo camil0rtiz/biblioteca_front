@@ -9,6 +9,8 @@ import { customStyles } from '../../../helpers/customStyles'
 import bibliotecaApi from '../../../api/bibliotecaApi'
 import { startPrestarLibro } from '../../../store/prestamos/thunk'
 import { CAlert } from '@coreui/react'
+import Swal from 'sweetalert2'
+import { onClearErrorPrestamo } from '../../../store/prestamos/prestamoSlice'
 
 export const PrestamosModal = () => {
 
@@ -19,6 +21,8 @@ export const PrestamosModal = () => {
     const { modalPrestamos } = useSelector(state => state.carrito)
 
     const { modalOpenPrestamos } = useSelector(state => state.ui)
+
+    const { errorPrestamo } = useSelector(state => state.prestamo)
 
     const dispatch = useDispatch()
 
@@ -54,6 +58,7 @@ export const PrestamosModal = () => {
     const handleClose = () => {
 
         dispatch(onCloseModalPrestamos())
+        dispatch(onClearErrorPrestamo())
 
     }
 
@@ -79,7 +84,20 @@ export const PrestamosModal = () => {
             ejemplaresPrestados.push(cart.id)
         })
 
-        dispatch(startPrestarLibro(ejemplaresPrestados, usuarioId, estadoPrestamo, idBibliotecario, descontarStock, ''))
+        Swal.fire({
+            title: '¿Estás seguro de querer prestar el o los libro(s)?',
+            text: "¡No podrás revertir esto!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Si, deseo prestar',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                dispatch(startPrestarLibro(ejemplaresPrestados, usuarioId, estadoPrestamo, idBibliotecario, descontarStock, ''))
+            }
+        })
 
     }
 
@@ -90,6 +108,13 @@ export const PrestamosModal = () => {
             </Modal.Header>
             <Form onSubmit={handleSubmit(onSubmit)}>
                 <Modal.Body>
+                    {errorPrestamo.error && (
+                        <CAlert color="danger">
+                            <p>
+                                {errorPrestamo.errorMessage}
+                            </p>
+                        </CAlert>
+                    )}
                     {
                         (modalPrestamos.length > 0) && (
                             <Form.Group className="mb-3">

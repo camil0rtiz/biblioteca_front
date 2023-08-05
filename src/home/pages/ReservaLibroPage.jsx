@@ -12,8 +12,6 @@ export const ReservaLibroPage = () => {
 
     const { errorReserva, succesReserva } = useSelector(state => state.reserva)
 
-    console.log(succesReserva);
-
     const { carrito } = useSelector(state => state.carrito)
 
     const dispatch = useDispatch()

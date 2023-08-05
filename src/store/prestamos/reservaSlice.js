@@ -14,7 +14,7 @@ export const reservaSlice = createSlice({
             errorMessage: ''
         },
         succesReserva: false,
-
+        
     },
         
     reducers:{
@@ -61,7 +61,7 @@ export const reservaSlice = createSlice({
             state.succesReserva = payload
 
         },
-        
+    
     }
 
 }) 

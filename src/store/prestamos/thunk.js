@@ -1,7 +1,7 @@
 import bibliotecaApi from "../../api/bibliotecaApi";
-import { onClearCarrito, onClearCarritoPrestamo } from "./carritoSlice";
-import { onListarPrestamos, onSavePrestamo } from "./prestamoSlice";
-import { onCloseModalPrestamos } from "../ui/uiSlice";
+import { onClearCarrito, onClearCarritoPrestamo, onClearCarritoReserva } from "./carritoSlice";
+import { onErrorPrestamo, onListarPrestamos, onSavePrestamo } from "./prestamoSlice";
+import { onCloseCarritoAdmin, onCloseModalPrestamos } from "../ui/uiSlice";
 import { onClearErrorReserva, onErrorReserva, onListarReservas, onSaveReserva, onSuccesReserva } from "./reservaSlice";
 import { onSaveLibro } from "../biblioteca/libroSlice";
 import { onSaveEjemplar } from "../biblioteca/ejemplarSlice";
@@ -91,14 +91,17 @@ export const startPrestarLibro = (ejemplaresPrestados, idVecino, estadoPrestamo,
             })
 
             dispatch(onCloseModalPrestamos())
+            dispatch(onClearCarritoPrestamo())
             dispatch(onSaveLibro())
             dispatch(onSaveEjemplar())
-            dispatch(onClearCarritoPrestamo())
+            dispatch(onCloseCarritoAdmin())
+            dispatch(onClearCarritoReserva())
+            dispatch(onSaveReserva())
 
         } catch (error) {
 
-            console.log(error);
-            
+            dispatch(onErrorPrestamo({error:true, errorMessage: error.response.data.message}))
+        
         }
 
     }

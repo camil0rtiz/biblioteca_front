@@ -39,7 +39,7 @@ export const ExpandedLibros = ({ data }) => {
     const columns = [
         
         {
-            name: 'Dewey Ejemplar',
+            name: 'Dewey ejemplar',
             selector: row => row.dewey_unic_ejemplar,
             sortable: true,
         },

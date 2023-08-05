@@ -6,7 +6,11 @@ export const prestamoSlice = createSlice({
     initialState:{
 
         prestamos: [],
-        prestamoSave: false 
+        prestamoSave: false,
+        errorPrestamo: {
+            error: false,
+            errorMessage: ''
+        }, 
 
     },
         
@@ -18,10 +22,25 @@ export const prestamoSlice = createSlice({
 
         onSavePrestamo: (state) => {
             (state.prestamoSave == true) ? state.prestamoSave = false : state.prestamoSave = true 
-        }
+        },
+
+        onErrorPrestamo: (state, {payload}) => {
+
+            state.errorPrestamo = {...state.errorPrestamo, ...payload};
+
+        },
+
+        onClearErrorPrestamo: (state) => {
+
+            state.errorPrestamo = {
+                error: false,
+                errorMessage: ''
+            }
+
+        },
 
     }
 
 }) 
 
-export const { onListarPrestamos, onSavePrestamo } = prestamoSlice.actions
+export const { onListarPrestamos, onSavePrestamo, onErrorPrestamo, onClearErrorPrestamo } = prestamoSlice.actions
