@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { CCard, CCardHeader, CCol, CContainer, CRow, CCardBody, CButton } from '@coreui/react'
+import { CCard, CCardHeader, CCol, CContainer, CRow, CCardBody, CButton, CAlert } from '@coreui/react'
 import DataTable from 'react-data-table-component'
 import { startDevolucionPrestamo, startListarPrestamos, startRenovarPrestamo } from '../../store/prestamos/thunk'
 import { paginacionOpciones } from "../../helpers/paginacionOpciones"
@@ -12,7 +12,7 @@ export const PrestamosPages = () => {
     
     const [searchRut, setSearchRut] = useState('');
 
-    const { prestamos, prestamoSave } = useSelector(state => state.prestamo)
+    const { prestamos, prestamoSave, errorListarPrestamo } = useSelector(state => state.prestamo)
 
     const dispatch = useDispatch()
 
@@ -26,7 +26,7 @@ export const PrestamosPages = () => {
 
         }
 
-        dispatch(startListarPrestamos())
+        dispatch(startListarPrestamos(''))
         
     }, [searchRut, prestamoSave])
 
@@ -141,6 +141,13 @@ export const PrestamosPages = () => {
     return (
         <CContainer lg>
             <CRow>
+                {errorListarPrestamo.error && (
+                    <CAlert color="danger">
+                        <p>
+                            {errorListarPrestamo.errorMessage}
+                        </p>
+                    </CAlert>
+                )}
                 <CCol xs={12}>
                     <CCard className="mb-4">
                         <CCardHeader>

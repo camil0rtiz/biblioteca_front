@@ -8,6 +8,7 @@ import { FiltrosComponent } from "../components/FiltrosComponent"
 import { onAgregarLibroCarrito } from "../../store/prestamos/carritoSlice"
 import { PaginadorComponent } from "../components/PaginadorComponent"
 import { startListarLibros } from "../../store/biblioteca/thunk"
+import '../../assets/css/libros.css'
 
 export const LibrosPages = () => {
 
@@ -101,8 +102,8 @@ export const LibrosPages = () => {
                             <CCol key={libro.id}>
                                 <CCard border="light">
                                     {/* <CCardImage style={{height: 360}} variant="top" src={`http://localhost/biblioteca_vn_backend/storage/app/public/${libro.url}`} /> */}
-                                    <CCardImage style={{height: 360}} variant="top" src={`http://134.122.124.97/storage/${libro.url}`} />
-                                    <CCardBody>
+                                    <CCardImage style={{height: 360}} className="custom-card-image" variant="top" src={`http://134.122.124.97/storage/${libro.url}`} />
+                                    <CCardBody className="custom-card-body">
                                         <CCardTitle className="text-center"><Link to={`/libros/${libro.id}`}>{libro.titulo_libro}</Link></CCardTitle>
                                         <CCardSubtitle className="text-muted text-center">{libro.autor.label[0]}</CCardSubtitle>
                                     </CCardBody>

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { CCard, CCardHeader, CCol, CContainer, CRow, CCardBody, CButton } from '@coreui/react'
+import { CCard, CCardHeader, CCol, CContainer, CRow, CCardBody, CButton, CAlert } from '@coreui/react'
 import DataTable from 'react-data-table-component'
 import { startEliminarReserva, startListarReservas } from '../../store/prestamos/thunk'
 import { BuscadorComponent } from '../components/BuscadorComponent'
@@ -14,7 +14,7 @@ export const ReservasPages = () => {
 
     const [searchRut, setSearchRut] = useState('');
 
-    const { reservas, reservaSave } = useSelector(state => state.reserva)
+    const { reservas, reservaSave, errorListarReserva } = useSelector(state => state.reserva)
 
     const dispatch = useDispatch()
 
@@ -28,7 +28,7 @@ export const ReservasPages = () => {
             
         }
 
-        dispatch(startListarReservas());
+        dispatch(startListarReservas(''));
         
     }, [reservaSave, searchRut])
 
@@ -119,6 +119,13 @@ export const ReservasPages = () => {
     return (
         <CContainer lg>
             <CRow>
+                {errorListarReserva.error && (
+                    <CAlert color="danger">
+                        <p>
+                            {errorListarReserva.errorMessage}
+                        </p>
+                    </CAlert>
+                )}
                 <CCol xs={12}>
                     <CCard className="mb-4">
                         <CCardHeader>

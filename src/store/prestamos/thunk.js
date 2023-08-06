@@ -1,8 +1,8 @@
 import bibliotecaApi from "../../api/bibliotecaApi";
 import { onClearCarrito, onClearCarritoPrestamo, onClearCarritoReserva } from "./carritoSlice";
-import { onErrorPrestamo, onListarPrestamos, onSavePrestamo } from "./prestamoSlice";
+import { onErrorListarPrestamo, onErrorPrestamo, onListarPrestamos, onSavePrestamo } from "./prestamoSlice";
 import { onCloseCarritoAdmin, onCloseModalPrestamos } from "../ui/uiSlice";
-import { onClearErrorReserva, onErrorReserva, onListarReservas, onSaveReserva, onSuccesReserva } from "./reservaSlice";
+import { onClearErrorReserva, onErrorListarReserva, onErrorReserva, onListarReservas, onSaveReserva, onSuccesReserva } from "./reservaSlice";
 import { onSaveLibro } from "../biblioteca/libroSlice";
 import { onSaveEjemplar } from "../biblioteca/ejemplarSlice";
 
@@ -45,7 +45,7 @@ export const startListarReservas = (rut) => {
                     
         } catch (error) {
         
-            console.error(error)
+            dispatch(onErrorListarReserva({error:true, errorMessage: error.response.data.message}))
             
         }
 
@@ -120,7 +120,7 @@ export const startListarPrestamos = (rut) => {
 
         } catch (error) {
 
-            console.log(error);
+            dispatch(onErrorListarPrestamo({error:true, errorMessage: error.response.data.message}))
             
         }
 

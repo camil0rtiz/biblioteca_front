@@ -11,6 +11,10 @@ export const prestamoSlice = createSlice({
             error: false,
             errorMessage: ''
         }, 
+        errorListarPrestamo: {
+            error: false,
+            errorMessage: ''
+        }
 
     },
         
@@ -39,8 +43,23 @@ export const prestamoSlice = createSlice({
 
         },
 
+        onErrorListarPrestamo: (state, {payload}) => {
+
+            state.errorListarPrestamo = {...state.errorListarPrestamo, ...payload};
+
+        },
+
+        onClearErrorListarPrestamo: (state) => {
+
+            state.errorListarPrestamo = {
+                error: false,
+                errorMessage: ''
+            }
+
+        },
+
     }
 
 }) 
 
-export const { onListarPrestamos, onSavePrestamo, onErrorPrestamo, onClearErrorPrestamo } = prestamoSlice.actions
+export const { onListarPrestamos, onSavePrestamo, onErrorPrestamo, onClearErrorPrestamo, onErrorListarPrestamo, onClearErrorListarPrestamo } = prestamoSlice.actions
