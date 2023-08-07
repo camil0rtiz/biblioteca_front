@@ -10,7 +10,7 @@ import { onClearMessageErrorUser, onClearUser } from "../../../store/auth/userSl
 import bibliotecaApi from "../../../api/bibliotecaApi"
 import { formateoRut } from "../../../helpers/formateoRut"
 import { customStyles } from '../../../helpers/customStyles.js'
-import { formateoMayusculas } from "../../../helpers/formateoMayusculas"
+import { formateoMayusculas, formateoMinusculas } from "../../../helpers/formateoMayusculas"
 
 export const UsuariosModal = () => {
 

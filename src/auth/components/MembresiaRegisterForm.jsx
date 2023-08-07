@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form"
 import { useDispatch, useSelector } from "react-redux"
-import { Form, Button, Alert, ProgressBar, Card } from "react-bootstrap"
+import { Form, Button, Alert, ProgressBar, Card, Container, Row } from "react-bootstrap"
 import { onAgregarUser } from "../../store/auth/userSlice"
 import { CCard, CCardBody, CCardGroup } from "@coreui/react"
 
@@ -9,6 +9,8 @@ export const MembresiaRegisterForm = ({ goNextPage, goBackPage }) => {
     const { initialUsuario } = useSelector(state => state.user)
     const dispatch = useDispatch()
     const { formState: { errors }, handleSubmit, setValue, clearErrors, getValues } = useForm({ defaultValues: initialUsuario })
+
+    const idMembresiaValue = getValues('idMembresia');
 
     function onSubmit({ idMembresia }) {
         
@@ -57,8 +59,8 @@ export const MembresiaRegisterForm = ({ goNextPage, goBackPage }) => {
                                             <h4 className="my-0 fw-normal">Anual</h4>
                                         </Card.Header>
                                         <Card.Body>
-                                            <h1 className="card-title pricing-card-title">$4.000<small className="text-muted fw-light">/al año</small></h1>
-                                            <p>Pide libros durante 1 año pagando solo una vez</p>
+                                            <h1 className="card-title pricing-card-title">$4.000<small className="text-muted fw-light">/12 meses</small></h1>
+                                            <p>Pide libros durante 12 meses pagando solo una vez</p>
                                             <Button
                                                 variant="outline-danger"
                                                 className={`btn ${errors.idMembresia ? 'is-invalid' : ''}`}
@@ -83,7 +85,7 @@ export const MembresiaRegisterForm = ({ goNextPage, goBackPage }) => {
                                 <Button variant="danger" onClick={goBackPage}>
                                     Atrás
                                 </Button>
-                                <Button variant="dark" type="submit">
+                                <Button variant="dark" type="submit" disabled={idMembresiaValue == ''|| idMembresiaValue === null}>
                                     Siguiente
                                 </Button>
                             </div>

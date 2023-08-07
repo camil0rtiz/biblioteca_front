@@ -133,7 +133,7 @@ export const ReservasPages = () => {
                         </CCardHeader>
                         <CCardBody>
                             <DataTable
-                                title="Tabla usuarios con reserva de libros"
+                                title="Tabla libros reservados"
                                 responsive
                                 pagination
                                 columns={columns}

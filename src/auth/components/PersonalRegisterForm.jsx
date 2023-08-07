@@ -411,7 +411,7 @@ export const PersonalRegisterForm = ({goNextPage}) => {
                                 } 
                             </Form.Group>
                         </Row>
-                        <div className="d-flex justify-content-between mt-xs-5">
+                        <div className="d-flex justify-content-between mt-4">
                             <Button variant="primary" onClick={() => handleHome()}>Volver a inicio</Button>
                             <Button variant="dark" type="submit">Siguiente</Button>
                         </div>

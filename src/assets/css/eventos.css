@@ -16,7 +16,6 @@
     overflow-y: auto;
 }
 
-  /* Estilos para pantallas xs (y más pequeñas) */
 @media (min-width: 576px) {
     .card-evento .card-text-container {
         height: 250px;
@@ -24,15 +23,15 @@
 }
 
 .card-text-container::-webkit-scrollbar {
-    width: 8px; /* Ancho de la barra de desplazamiento */
+    width: 8px; 
 }
 
 .card-text-container::-webkit-scrollbar-thumb {
-    background-color: #888; /* Color del fondo de la barra de desplazamiento */
-    border-radius: 4px; /* Radio de los bordes de la barra de desplazamiento */
+    background-color: #888; 
+    border-radius: 4px; 
 }
 
 .card-text-container::-webkit-scrollbar-thumb:hover {
-    background-color: #555; /* Color del fondo de la barra de desplazamiento al pasar el cursor por encima */
+    background-color: #555; 
 }
 
