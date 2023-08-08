@@ -174,6 +174,7 @@ export const LibrosModal = () => {
                                 ref={ref}  
                                 type="text" 
                                 placeholder="ingrese título del libro"
+                                maxLength={50}  
                             />
                         )}
                     />
@@ -201,7 +202,8 @@ export const LibrosModal = () => {
                                 value={value}
                                 ref={ref}  
                                 type="text"
-                                placeholder="Ingrese dewey del libro" 
+                                placeholder="Ingrese dewey del libro"
+                                maxLength={50}  
                             />
                         )}
                     />

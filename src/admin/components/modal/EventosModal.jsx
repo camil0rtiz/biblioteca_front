@@ -135,7 +135,8 @@ export const EventosModal = () => {
                                     value={value} 
                                     ref={ref}  
                                     type="text" 
-                                    placeholder="Ingresa título evento" 
+                                    placeholder="Ingresa título evento"
+                                    maxLength={50}  
                                 />
                             )}
                         />

@@ -77,6 +77,7 @@ export const AutoresModal = () => {
                                 ref={ref}  
                                 type="text" 
                                 placeholder="ingrese nombre autor"
+                                maxLength={50} 
                             />
                         )}
                     />

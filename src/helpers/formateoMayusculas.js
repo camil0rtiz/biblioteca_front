@@ -7,6 +7,6 @@ export const formateoMayusculas = (input) => {
 
 export const formateoMinusculas = (input) => {
 
-    return input.replace(/(^|\n|\s)(\w)/g, (match) => match.toLowerCase())
+    return input.toLowerCase();
 
 };

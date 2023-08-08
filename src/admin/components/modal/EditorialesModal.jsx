@@ -79,7 +79,8 @@ export const EditorialesModal = () => {
                                     value={value} 
                                     ref={ref}  
                                     type="text" 
-                                    placeholder="Ingresa nombre editorial" 
+                                    placeholder="Ingresa nombre editorial"
+                                    maxLength={50}  
                                 />
                             )}
                         />

@@ -11,6 +11,7 @@ import bibliotecaApi from "../../../api/bibliotecaApi"
 import { formateoRut } from "../../../helpers/formateoRut"
 import { customStyles } from '../../../helpers/customStyles.js'
 import { formateoMayusculas, formateoMinusculas } from "../../../helpers/formateoMayusculas"
+import { validarFecha } from "../../../helpers/validarFecha"
 
 export const UsuariosModal = () => {
 
@@ -162,7 +163,7 @@ export const UsuariosModal = () => {
                     )}
                 />
                 <Form.Group className="mb-1">
-                    <Form.Label>Rut*</Form.Label>
+                    <Form.Label>Rut</Form.Label>
                     <Controller 
                         control={control} 
                         name="registroRut" 
@@ -173,7 +174,7 @@ export const UsuariosModal = () => {
                                     value: true,
                                     message: "Rut es obligatorio"
                                 },
-                                minLength: { value: 2, message: 'El rut tiene que ser mas largo' },
+                                minLength: { value: 2, message: 'El rut tiene que ser más largo' },
                                 validate: {positive: v => validaRut(v) == true || 'Rut tiene que ser válido'} 
                         }}
                         render={({ field: { onChange, value, ref } }) => (
@@ -194,14 +195,14 @@ export const UsuariosModal = () => {
                     }                                            
                 </Form.Group>
                 <Form.Group className="mb-1">
-                    <Form.Label>Nombre*</Form.Label>
+                    <Form.Label>Nombre</Form.Label>
                     <Controller 
                         control={control} 
                         name="registroNombre"
                         defaultValue=""  
                         rules={{
                             required: {value: true, message: 'Nombre es obligatorio'},
-                            minLength: { value: 2, message: 'El nombre tiene que ser mas largo' },
+                            minLength: { value: 2, message: 'El nombre tiene que ser más largo' },
                         }}
                         render={({ field: { onChange, value, ref } }) => (
                             <Form.Control
@@ -209,7 +210,8 @@ export const UsuariosModal = () => {
                                 value={value} 
                                 ref={ref}  
                                 type="text" 
-                                placeholder="Ingresa tu nombre" 
+                                placeholder="Ingresa tu nombre"
+                                maxLength={50}  
                             />
                         )}
                     />
@@ -220,14 +222,14 @@ export const UsuariosModal = () => {
                     } 
                 </Form.Group>
                 <Form.Group className="mb-1">
-                    <Form.Label>Apellido Paterno*</Form.Label>
+                    <Form.Label>Apellido paterno</Form.Label>
                     <Controller 
                         control={control} 
                         name="registroApellidoPaterno"
                         defaultValue=""  
                         rules={{
                             required: {value: true, message: 'Apellido paterno es obligatorio'},
-                            minLength: { value: 2, message: 'El apellido paterno tiene que ser mas largo' },
+                            minLength: { value: 2, message: 'El apellido paterno tiene que ser más largo' },
                         }}
                         render={({ field: { onChange, value, ref } }) => (
                             <Form.Control
@@ -235,7 +237,8 @@ export const UsuariosModal = () => {
                                 value={value} 
                                 ref={ref}  
                                 type="text" 
-                                placeholder="Ingresa tu apellido paterno" 
+                                placeholder="Ingresa tu apellido paterno"
+                                maxLength={50}  
                             />
                         )}
                     />
@@ -246,14 +249,14 @@ export const UsuariosModal = () => {
                     } 
                 </Form.Group>
                 <Form.Group className="mb-1">
-                    <Form.Label>Apellido Materno*</Form.Label>
+                    <Form.Label>Apellido materno</Form.Label>
                     <Controller 
                         control={control} 
                         name="registroApellidoMaterno"
                         defaultValue=""  
                         rules={{
-                            required: {value: true, message: 'Nombre es obligatorio'},
-                            minLength: { value: 2, message: 'El pellido materno tiene que ser mas largo' },
+                            required: {value: true, message: 'Apellido paterno es obligatorio'},
+                            minLength: { value: 2, message: 'El apellido materno tiene que ser más largo' },
                         }}
                         render={({ field: { onChange, value, ref } }) => (
                             <Form.Control
@@ -261,7 +264,8 @@ export const UsuariosModal = () => {
                                 value={value} 
                                 ref={ref}  
                                 type="text" 
-                                placeholder="Ingresa tu apellido materno" 
+                                placeholder="Ingresa tu apellido materno"
+                                maxLength={50}  
                             />
                         )}
                     />
@@ -291,7 +295,8 @@ export const UsuariosModal = () => {
                                     onChange={onChange} 
                                     value={value} 
                                     ref={ref}  
-                                    placeholder="Ingresa tu número de célular"
+                                    placeholder="Ingresa tu número de celular"
+                                    maxLength={9} 
                                 />
                             </InputGroup>
                         )}
@@ -303,7 +308,7 @@ export const UsuariosModal = () => {
                     } 
                 </Form.Group>
                 <Form.Group className="mb-1">
-                    <Form.Label>Correo*</Form.Label>
+                    <Form.Label>Correo</Form.Label>
                     <Controller 
                         control={control} 
                         name="registroCorreo"
@@ -311,15 +316,16 @@ export const UsuariosModal = () => {
                         rules={{
                             required: {value: true, message: 'Correo es obligatorio'},
                             pattern: '^\S+@\S+$',
-                            minLength: { value: 2, message: 'El correo tiene que ser mas largo' },
+                            minLength: { value: 2, message: 'El correo tiene que ser más largo' },
                         }}
                         render={({ field: { onChange, value, ref } }) => (
                             <Form.Control
-                                onChange={onChange} 
+                                onChange={e => onChange(formateoMinusculas(e.target.value))} 
                                 value={value} 
                                 ref={ref}  
                                 type="email" 
-                                placeholder="Ingresa tu correo electronico" 
+                                placeholder="Ingresa tu correo electrónico"
+                                maxLength={50}  
                             />
                         )}
                     />
@@ -330,13 +336,14 @@ export const UsuariosModal = () => {
                     } 
                 </Form.Group>
                 <Form.Group className="mb-1">
-                    <Form.Label>Fecha de nacimiento*</Form.Label>
+                    <Form.Label>Fecha de nacimiento</Form.Label>
                     <Controller 
                         control={control} 
                         name="registroFechaNacimiento"
                         defaultValue=""  
                         rules={{
                             required: {value: true, message: 'Fecha de nacimiento es obligatoria'},
+                            validate: {positive: v => validarFecha(v) == true || 'Fecha de nacimiento con rango inválido'} 
                         }}
                         render={({ field: { onChange, value, ref } }) => (
                             <Form.Control
@@ -362,7 +369,7 @@ export const UsuariosModal = () => {
                         defaultValue=""  
                         rules={{
                             required: {value: true, message: 'La dirección de domicilio es obligatorio'},
-                            minLength: { value: 2, message: 'La direccion tiene que ser mas larga' }
+                            minLength: { value: 2, message: 'La dirección tiene que ser más larga' }
                         }}
                         render={({ field: { onChange, value, ref } }) => (
                             <Form.Control
@@ -370,7 +377,8 @@ export const UsuariosModal = () => {
                                 value={value} 
                                 ref={ref}  
                                 type="text"  
-                                placeholder="Ingresa tu dirección de domicilio" 
+                                placeholder="Ingresa tu dirección de domicilio"
+                                maxLength={50}  
                             />
                         )}
                     />
@@ -388,15 +396,18 @@ export const UsuariosModal = () => {
                         defaultValue=""  
                         rules={{
                             required: {value: true, message: 'Número de domicilio es obligatorio'},
-                            minLength: { value: 2, message: 'El número tiene que ser mas largo' },
+                            minLength: { value: 2, message: 'El número de domicilio tiene que ser más largo' },
                         }}
                         render={({ field: { onChange, value, ref } }) => (
                             <Form.Control
                                 onChange={onChange} 
                                 value={value} 
                                 ref={ref}  
-                                type="text" 
+                                type="number" 
                                 placeholder="Ingresa tu número de domicilio"
+                                min="1" 
+                                max="10000" 
+                                step="1"
                             />
                         )}
                     />
@@ -410,7 +421,7 @@ export const UsuariosModal = () => {
                         (!initialUsuario.id) && (
                             <>  
                                 <Form.Group  className="mb-1">
-                                    <Form.Label>Contraseña*</Form.Label>
+                                    <Form.Label>Contraseña</Form.Label>
                                     <Controller 
                                         control={control} 
                                         name="registroPassword"
@@ -424,7 +435,8 @@ export const UsuariosModal = () => {
                                                 value={value} 
                                                 ref={ref}  
                                                 type="password"  
-                                                placeholder="Ingresacontraseña" 
+                                                placeholder="Ingresacontraseña"
+                                                maxLength={50}  
                                             />
                                         )}
                                     />
@@ -435,7 +447,7 @@ export const UsuariosModal = () => {
                                     } 
                                 </Form.Group>
                                 <Form.Group  className="mb-1">
-                                <Form.Label>Membresia</Form.Label>
+                                <Form.Label>Membresía</Form.Label>
                                     <Controller
                                         name="registroTipoMembresia"
                                         control={control}
@@ -446,7 +458,7 @@ export const UsuariosModal = () => {
                                                 options={membresia}
                                                 noOptionsMessage={() => "No hay resultados"}
                                                 isClearable
-                                                placeholder='Seleccione una membresia'
+                                                placeholder='Seleccione una membresía'
                                             />
                                         )} 
                                     />

@@ -118,14 +118,14 @@ export const PrestamosModal = () => {
                     {
                         (modalPrestamos.length > 0) && (
                             <Form.Group className="mb-3">
-                                <Form.Label>Selecione vecino lector</Form.Label>
+                                <Form.Label>Seleccione usuario</Form.Label>
                                 <Controller
                                     name="idVecino"
                                     control={control}
                                     rules={{
                                         required:{
                                             value: true,
-                                            message: "Usuarios es obligatorio"
+                                            message: "Usuario es obligatorio"
                                         },
                                     }}
                                     render={({ field, fieldState}) => (
@@ -133,7 +133,7 @@ export const PrestamosModal = () => {
                                             {...field}
                                             styles={customStyles} 
                                             options={usuarios}
-                                            placeholder='Seleccione un vecino lector'
+                                            placeholder='Seleccione un usuario'
                                             noOptionsMessage={() => "No hay resultados"}
                                         />
                                     )}   

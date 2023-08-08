@@ -6,7 +6,7 @@ import { validaRut } from "../../helpers/validarRut"
 import { onAgregarUser, onUserExists } from "../../store/auth/userSlice"
 import { formateoRut } from "../../helpers/formateoRut"
 import { CAlert, CCard, CCardBody, CCardGroup, CProgress, CProgressBar } from "@coreui/react"
-import { formateoMayusculas } from '../../helpers/formateoMayusculas'
+import { formateoMayusculas, formateoMinusculas } from '../../helpers/formateoMayusculas'
 import bibliotecaApi from "../../api/bibliotecaApi"
 
 export const PersonalRegisterForm = ({goNextPage}) => {
@@ -70,7 +70,7 @@ export const PersonalRegisterForm = ({goNextPage}) => {
                     <Form onSubmit={handleSubmit(onSubmit)}>
                         <Row className="mb-md-3">
                             <Form.Group as={Col} md={6}>
-                                <Form.Label>Rut*</Form.Label>
+                                <Form.Label>Rut</Form.Label>
                                 <Controller 
                                     control={control} 
                                     name="registroRut" 
@@ -81,7 +81,7 @@ export const PersonalRegisterForm = ({goNextPage}) => {
                                             value: true,
                                             message: "Rut es obligatorio"
                                         },
-                                        minLength: { value: 2, message: 'El rut tiene que ser mas largo' },
+                                        minLength: { value: 2, message: 'El rut tiene que ser más largo' },
                                         validate: {positive: v => validaRut(v) == true || 'Rut tiene que ser válido'} 
                                     }}
                                     render={({ field: { onChange, value, ref } }) => (
@@ -102,7 +102,7 @@ export const PersonalRegisterForm = ({goNextPage}) => {
                                 }                                            
                             </Form.Group>
                             <Form.Group as={Col} md={6}>
-                                <Form.Label>Nombre*</Form.Label>
+                                <Form.Label>Nombre</Form.Label>
                                 <Controller 
                                     control={control} 
                                     name="registroNombre"
@@ -116,7 +116,8 @@ export const PersonalRegisterForm = ({goNextPage}) => {
                                             value={value} 
                                             ref={ref}  
                                             type="text" 
-                                            placeholder="Ingresa tu nombre" 
+                                            placeholder="Ingresa tu nombre"
+                                            maxLength={50}  
                                         />
                                     )}
                                 />
@@ -129,14 +130,14 @@ export const PersonalRegisterForm = ({goNextPage}) => {
                         </Row>
                         <Row className="mb-md-3">
                             <Form.Group as={Col} md={6}>
-                                <Form.Label>Apellido Paterno*</Form.Label>
+                                <Form.Label>Apellido Paterno</Form.Label>
                                 <Controller 
                                     control={control} 
                                     name="registroApellidoPaterno"
                                     defaultValue=""  
                                     rules={{
                                         required: {value: true, message: 'Apellido paterno es obligatorio'},
-                                        minLength: { value: 2, message: 'El apellido paterno tiene que ser mas largo' },
+                                        minLength: { value: 2, message: 'El apellido paterno tiene que ser más largo' },
                                     }}
                                     render={({ field: { onChange, value, ref } }) => (
                                         <Form.Control
@@ -144,7 +145,8 @@ export const PersonalRegisterForm = ({goNextPage}) => {
                                             value={value} 
                                             ref={ref}  
                                             type="text" 
-                                            placeholder="Ingresa tu apellido paterno" 
+                                            placeholder="Ingresa tu apellido paterno"
+                                            maxLength={50}  
                                         />
                                     )}
                                 />
@@ -155,14 +157,14 @@ export const PersonalRegisterForm = ({goNextPage}) => {
                                 } 
                             </Form.Group>
                             <Form.Group as={Col} md={6}>
-                                <Form.Label>Apellido Materno*</Form.Label>
+                                <Form.Label>Apellido Materno</Form.Label>
                                 <Controller 
                                     control={control} 
                                     name="registroApellidoMaterno"
                                     defaultValue=""  
                                     rules={{
-                                        required: {value: true, message: 'Nombre es obligatorio'},
-                                        minLength: { value: 2, message: 'El pellido materno tiene que ser mas largo' },
+                                        required: {value: true, message: 'Apellido materno es obligatorio'},
+                                        minLength: { value: 2, message: 'El apellido materno tiene que ser más largo' },
                                     }}
                                     render={({ field: { onChange, value, ref } }) => (
                                         <Form.Control
@@ -170,7 +172,8 @@ export const PersonalRegisterForm = ({goNextPage}) => {
                                             value={value} 
                                             ref={ref}  
                                             type="text" 
-                                            placeholder="Ingresa tu apellido materno" 
+                                            placeholder="Ingresa tu apellido materno"
+                                            maxLength={50}   
                                         />
                                     )}
                                 />
@@ -183,13 +186,14 @@ export const PersonalRegisterForm = ({goNextPage}) => {
                         </Row>
                         <Row className="mb-md-3">
                             <Form.Group as={Col} md={6}>
-                                <Form.Label>Fecha de nacimiento*</Form.Label>
+                                <Form.Label>Fecha de nacimiento</Form.Label>
                                 <Controller 
                                     control={control} 
                                     name="registroFechaNacimiento"
                                     defaultValue=""  
                                     rules={{
                                         required: {value: true, message: 'Fecha de nacimiento es obligatoria'},
+                                        validate: {positive: v => validarFecha(v) == true || 'Fecha de nacimiento con rango inválido'} 
                                     }}
                                     render={({ field: { onChange, value, ref } }) => (
                                         <Form.Control
@@ -228,6 +232,7 @@ export const PersonalRegisterForm = ({goNextPage}) => {
                                                 value={value} 
                                                 ref={ref}  
                                                 placeholder="Ingresa tu número de célular"
+                                                maxLength={9}  
                                             />
                                         </InputGroup>
                                     )}
@@ -248,7 +253,7 @@ export const PersonalRegisterForm = ({goNextPage}) => {
                                     defaultValue=""  
                                     rules={{
                                         required: {value: true, message: 'La dirección de domicilio es obligatorio'},
-                                        minLength: { value: 2, message: 'La direccion tiene que ser mas larga' }
+                                        minLength: { value: 2, message: 'La dirección tiene que ser más larga' }
                                     }}
                                     render={({ field: { onChange, value, ref } }) => (
                                         <Form.Control
@@ -256,7 +261,8 @@ export const PersonalRegisterForm = ({goNextPage}) => {
                                             value={value} 
                                             ref={ref}  
                                             type="text"  
-                                            placeholder="Ingresa tu dirección de domicilio" 
+                                            placeholder="Ingresa tu dirección de domicilio"
+                                            maxLength={50}  
                                         />
                                     )}
                                 />
@@ -274,15 +280,18 @@ export const PersonalRegisterForm = ({goNextPage}) => {
                                     defaultValue=""  
                                     rules={{
                                         required: {value: true, message: 'Número de domicilio es obligatorio'},
-                                        minLength: { value: 2, message: 'El número tiene que ser mas largo' },
+                                        minLength: { value: 2, message: 'El número tiene que ser más largo' },
                                     }}
                                     render={({ field: { onChange, value, ref } }) => (
                                         <Form.Control
                                             onChange={onChange} 
                                             value={value} 
                                             ref={ref}  
-                                            type="text" 
+                                            type="number" 
                                             placeholder="Ingresa tu número de domicilio"
+                                            min="1" 
+                                            max="10000" 
+                                            step="1"
                                         />
                                     )}
                                 />
@@ -295,7 +304,7 @@ export const PersonalRegisterForm = ({goNextPage}) => {
                         </Row>
                         <Row className="mb-md-3">
                             <Form.Group as={Col} md={6}>
-                                <Form.Label>Correo*</Form.Label>
+                                <Form.Label>Correo</Form.Label>
                                 <Controller 
                                     control={control} 
                                     name="registroCorreo"
@@ -303,15 +312,16 @@ export const PersonalRegisterForm = ({goNextPage}) => {
                                     rules={{
                                         required: {value: true, message: 'Correo es obligatorio'},
                                         pattern: '^\S+@\S+$',
-                                        minLength: { value: 2, message: 'El correo tiene que ser mas largo' },
+                                        minLength: { value: 2, message: 'El correo tiene que ser más largo' },
                                     }}
                                     render={({ field: { onChange, value, ref } }) => (
                                         <Form.Control
-                                            onChange={onChange} 
+                                            onChange={e => onChange(formateoMinusculas(e.target.value))}   
                                             value={value} 
                                             ref={ref}  
                                             type="email" 
-                                            placeholder="Ingresa tu correo electronico" 
+                                            placeholder="Ingresa tu correo electrónico"
+                                            maxLength={50}  
                                         />
                                     )}
                                 />
@@ -322,7 +332,7 @@ export const PersonalRegisterForm = ({goNextPage}) => {
                                 } 
                             </Form.Group>
                             <Form.Group as={Col} md={6}>
-                                <Form.Label>Confirmar correo*</Form.Label>
+                                <Form.Label>Confirmar correo</Form.Label>
                                 <Controller 
                                     control={control} 
                                     name="registroConfirCorreo"
@@ -330,7 +340,7 @@ export const PersonalRegisterForm = ({goNextPage}) => {
                                     rules={{
                                         required: {value: true, message: 'Correo es obligatorio'},
                                         pattern: '^\S+@\S+$',
-                                        minLength: { value: 2, message: 'El correo tiene que ser mas largo' },
+                                        minLength: { value: 2, message: 'El correo tiene que ser más largo' },
                                         validate: (val) => {
                                             if (watch('registroCorreo') != val) {
                                                 return "Los correos no coinciden";
@@ -339,11 +349,12 @@ export const PersonalRegisterForm = ({goNextPage}) => {
                                     }}
                                     render={({ field: { onChange, value, ref } }) => (
                                         <Form.Control
-                                            onChange={onChange} 
+                                            onChange={e => onChange(formateoMinusculas(e.target.value))}  
                                             value={value} 
                                             ref={ref}  
                                             type="email" 
-                                            placeholder="Ingresa tu correo electronico" 
+                                            placeholder="Ingresa tu correo electrónico"
+                                            maxLength={50}   
                                         />
                                     )}
                                 />
@@ -356,7 +367,7 @@ export const PersonalRegisterForm = ({goNextPage}) => {
                         </Row>
                         <Row className="mb-md-3">
                             <Form.Group  as={Col} md={6}>
-                                <Form.Label>Contraseña*</Form.Label>
+                                <Form.Label>Contraseña</Form.Label>
                                 <Controller 
                                     control={control} 
                                     name="registroPassword"
@@ -370,7 +381,8 @@ export const PersonalRegisterForm = ({goNextPage}) => {
                                             value={value} 
                                             ref={ref}  
                                             type="password"  
-                                            placeholder="Ingresa tu contraseña" 
+                                            placeholder="Ingresa tu contraseña"
+                                            maxLength={50}   
                                         />
                                     )}
                                 />
@@ -381,13 +393,13 @@ export const PersonalRegisterForm = ({goNextPage}) => {
                                 } 
                             </Form.Group>
                             <Form.Group as={Col} md={6}>
-                                <Form.Label>Confirmar contraseña*</Form.Label>
+                                <Form.Label>Confirmar contraseña</Form.Label>
                                 <Controller 
                                     control={control} 
                                     name="registroConfirPassword"
                                     defaultValue=""  
                                     rules={{
-                                        required: {value: true, message: 'Confirmación de Contraseña es obligatoria'},
+                                        required: {value: true, message: 'Confirmación de contraseña es obligatoria'},
                                         validate: (val) => {
                                             if (watch('registroPassword') != val) {
                                                 return "Las contraseñas no coinciden";
@@ -400,7 +412,8 @@ export const PersonalRegisterForm = ({goNextPage}) => {
                                             value={value} 
                                             ref={ref}  
                                             type="password" 
-                                            placeholder="Confirma tu contraseña" 
+                                            placeholder="Confirma tu contraseña"
+                                            maxLength={50}   
                                         />
                                     )}
                                 />

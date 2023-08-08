@@ -157,7 +157,7 @@ export const EjemplaresModal = () => {
                                 min="1" 
                                 max="5000" 
                                 step="1"
-                                placeholder="ingrese número paginas del ejemplar" 
+                                placeholder="Ingrese número páginas del ejemplar" 
                             />
                         )}
                     />

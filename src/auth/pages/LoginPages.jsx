@@ -78,7 +78,7 @@ export const LoginPages = () => {
                                                         value: true,
                                                         message: "Rut es obligatorio"
                                                     },
-                                                    minLength: { value: 2, message: 'El rut tiene que ser mas largo' },
+                                                    minLength: { value: 2, message: 'El rut tiene que ser más largo' },
                                                     validate: {positive: v => validaRut(v) == true || 'Rut tiene que ser válido'} 
                                                 }}
                                                 render={({ field: { onChange, value, ref } }) => (
@@ -113,6 +113,7 @@ export const LoginPages = () => {
                                                         type="password"
                                                         placeholder="Contraseña"
                                                         feedbackInvalid="Please enter a message in the textarea."
+                                                        maxLength={50} 
                                                     />
                                                 )}
                                             />
@@ -144,13 +145,13 @@ export const LoginPages = () => {
                             <CCard className="text-white bg-dark py-5">
                                 <CCardBody className="text-center">
                                     <div>
-                                        <h2>Registrate Ahora</h2>
+                                        <h2>Regístrate Ahora</h2>
                                         <p>
-                                            Si no estas subcrito aun, pulsa el botón resgitrate ahora
+                                            Si aún no estás suscrito, pulsa el botón "¡Regístrate ahora!"
                                         </p>
                                         <Link to="/auth/registro">
                                         <CButton color="primary" className="mt-3" active tabIndex={-1}>
-                                            Registrate ahora
+                                            ¡Regístrate ahora!
                                         </CButton>
                                         </Link>
                                     </div>

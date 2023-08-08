@@ -81,7 +81,7 @@ export const ComprobanteRegisterForm = ({ goBackPage }) => {
                                             value: true,
                                             message: "Comprobante de transferencia es obligatorio"
                                         },
-                                        validate: {positive: v => validaImagenes(v,1) == true || 'Formato de imagen no válido. Solo se permiten archivos PNG, JPG, JPEG y PDF.'} 
+                                        validate: {positive: v => validaImagenes(v,1) == true || 'Formato de imagen no válido. Solo se permiten archivos PNG, JPG y JPEG.'} 
                                     }}
                                     render={({ field: { ref } }) => (
                                         <Form.Control 
@@ -108,7 +108,7 @@ export const ComprobanteRegisterForm = ({ goBackPage }) => {
                                             value: true,
                                             message: "Comprobante de domicilio es obligatorio"
                                         },
-                                        validate: {positive: v => validaImagenes(v,1) == true || 'Formato de imagen no válido. Solo se permiten archivos PNG, JPG, JPEG y PDF.'} 
+                                        validate: {positive: v => validaImagenes(v,1) == true || 'Formato de imagen no válido. Solo se permiten archivos PNG, JPG y JPEG.'} 
                                     }}
                                     render={({ field: { ref } }) => (
                                         <Form.Control 
