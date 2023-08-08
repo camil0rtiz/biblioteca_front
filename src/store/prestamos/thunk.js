@@ -1,8 +1,8 @@
 import bibliotecaApi from "../../api/bibliotecaApi";
 import { onClearCarrito, onClearCarritoPrestamo, onClearCarritoReserva } from "./carritoSlice";
-import { onErrorListarPrestamo, onErrorPrestamo, onListarPrestamos, onSavePrestamo } from "./prestamoSlice";
+import { onClearErrorListarPrestamo, onErrorListarPrestamo, onErrorPrestamo, onListarPrestamos, onSavePrestamo } from "./prestamoSlice";
 import { onCloseCarritoAdmin, onCloseModalPrestamos } from "../ui/uiSlice";
-import { onClearErrorReserva, onErrorListarReserva, onErrorReserva, onListarReservas, onSaveReserva, onSuccesReserva } from "./reservaSlice";
+import { onClearErrorReserva, onClearListarErrorReserva, onErrorListarReserva, onErrorReserva, onListarReservas, onSaveReserva, onSuccesReserva } from "./reservaSlice";
 import { onSaveLibro } from "../biblioteca/libroSlice";
 import { onSaveEjemplar } from "../biblioteca/ejemplarSlice";
 
@@ -42,6 +42,7 @@ export const startListarReservas = (rut) => {
             const { data } = await bibliotecaApi.get(`reservas/listar?rut=${rut}`)
 
             dispatch(onListarReservas(data.data))
+            dispatch(onClearListarErrorReserva())
 
         } catch (error) {
             
@@ -117,6 +118,7 @@ export const startListarPrestamos = (rut) => {
             const { data } = await bibliotecaApi.get(`prestamos/listar?rut=${rut}`)
 
             dispatch(onListarPrestamos(data.data))
+            dispatch(onClearErrorListarPrestamo())
 
         } catch (error) {
 

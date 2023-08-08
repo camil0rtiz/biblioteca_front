@@ -9,6 +9,7 @@ import { CAlert, CCard, CCardBody, CCardGroup, CProgress, CProgressBar } from "@
 import { formateoMayusculas, formateoMinusculas } from '../../helpers/formateoMayusculas'
 import bibliotecaApi from "../../api/bibliotecaApi"
 import { validarNumeroEnRango } from "../../helpers/validarNumeroEnRango"
+import { validarFecha } from "../../helpers/validarFecha"
 
 export const PersonalRegisterForm = ({goNextPage}) => {
 
@@ -28,7 +29,6 @@ export const PersonalRegisterForm = ({goNextPage}) => {
             dispatch(onUserExists(true));
         } else if (data.data == false) {
 
-            console.log(data);
             dispatch(
                 onAgregarUser({
                     registroRut,
