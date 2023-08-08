@@ -35,25 +35,24 @@ export const startReservarLibro = (librosReservados, idVecino, estadoReserva) =>
 
 export const startListarReservas = (rut) => {
 
-    return async( dispatch ) => {
+    return async (dispatch) => {
 
         try {
 
-            const {data} = await bibliotecaApi.get(`reservas/listar?rut=${rut}`)
-            
-            dispatch(onListarReservas(data.data))
-                    
-        } catch (error) {
-        
-            dispatch(onErrorListarReserva({error:true, errorMessage: error.response.data.message}))
-            
-        }
+            const { data } = await bibliotecaApi.get(`reservas/listar?rut=${rut}`)
 
+            dispatch(onListarReservas(data.data))
+
+        } catch (error) {
+            
+            dispatch(onErrorListarReserva({ error: true, errorMessage: error.response.data.message }))
+
+        }
     }
 
 }
 
-export const startEliminarReserva = ({id, estadoReserva}) => {
+export const startEliminarReserva = ({id, estadoReserva, setSearchRut}) => {
 
     return async( dispatch ) => {
 
@@ -63,8 +62,9 @@ export const startEliminarReserva = ({id, estadoReserva}) => {
                 'estado_reserva': estadoReserva,
             })
             
+            setSearchRut('')
             dispatch(onSaveReserva())
-                    
+
         } catch (error) {
         
             console.error(error)
@@ -90,13 +90,13 @@ export const startPrestarLibro = (ejemplaresPrestados, idVecino, estadoPrestamo,
                 estado_prestamo: estadoPrestamo
             })
 
+            dispatch(onSaveReserva())
             dispatch(onCloseModalPrestamos())
             dispatch(onClearCarritoPrestamo())
             dispatch(onSaveLibro())
             dispatch(onSaveEjemplar())
             dispatch(onCloseCarritoAdmin())
             dispatch(onClearCarritoReserva())
-            dispatch(onSaveReserva())
 
         } catch (error) {
 
@@ -128,7 +128,7 @@ export const startListarPrestamos = (rut) => {
 
 } 
 
-export const startDevolucionPrestamo = ({id, id_ejemplar, id_libro}) => {
+export const startDevolucionPrestamo = ({id, id_ejemplar, id_libro, setSearchRut}) => {
 
     return async( dispatch ) => {
 
@@ -139,6 +139,7 @@ export const startDevolucionPrestamo = ({id, id_ejemplar, id_libro}) => {
                 'id_libro': id_libro,
             });
 
+            setSearchRut('')
             dispatch(onSavePrestamo())
 
         } catch (error) {
@@ -158,8 +159,6 @@ export const startRenovarPrestamo = ({id}) => {
         try {
 
             const {data} = await bibliotecaApi.put(`prestamos/renovar/${id}`)
-
-            console.log(data);
 
             dispatch(onSavePrestamo())
 

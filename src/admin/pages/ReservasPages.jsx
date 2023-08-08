@@ -47,7 +47,7 @@ export const ReservasPages = () => {
             cancelButtonText: 'Cancelar'
         }).then((result) => {
             if (result.isConfirmed) {
-                dispatch(startEliminarReserva({id, estadoReserva}))
+                dispatch(startEliminarReserva({id, estadoReserva, setSearchRut}))
                 Swal.fire(
                     '¡Felicidades!',
                     'La reserva ha sido cancelada',

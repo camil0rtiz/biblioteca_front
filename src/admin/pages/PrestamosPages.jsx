@@ -43,7 +43,7 @@ export const PrestamosPages = () => {
             cancelButtonText: 'Cancelar'
         }).then((result) => {
             if (result.isConfirmed) {
-                dispatch(startDevolucionPrestamo({id, id_ejemplar, id_libro}))
+                dispatch(startDevolucionPrestamo({id, id_ejemplar, id_libro, setSearchRut}))
                 Swal.fire(
                     '¡Eliminado!',
                     'El libro ha sido devuelto correctamente.',
