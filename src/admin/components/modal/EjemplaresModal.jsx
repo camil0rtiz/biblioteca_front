@@ -9,6 +9,7 @@ import { startAgregarEditorial, startAgregarEjemplar } from '../../../store/bibl
 import { customStyles } from '../../../helpers/customStyles.js'
 import { onLoadingTrue } from '../../../store/biblioteca/ejemplarSlice'
 import { validarAnio } from '../../../helpers/validarAnio'
+import { validarNumeroEnRango } from '../../../helpers/validarNumeroEnRango'
 
 export const EjemplaresModal = () => {
 
@@ -145,7 +146,8 @@ export const EjemplaresModal = () => {
                         rules={{
                             required:{
                                 value: true,
-                                message: 'Número de páginas es obligatorio'
+                                message: 'Número de páginas es obligatorio',
+                                validate: {positive: v => validarNumeroEnRango(v) == true || 'Número de páginas debe estar entre 1 a 10000'}
                             },
                         }}
                         render={({ field: {onChange, value, ref } }) => (
@@ -155,7 +157,7 @@ export const EjemplaresModal = () => {
                                 ref={ref}  
                                 type="Number"
                                 min="1" 
-                                max="5000" 
+                                max="10000" 
                                 step="1"
                                 placeholder="Ingrese número páginas del ejemplar" 
                             />

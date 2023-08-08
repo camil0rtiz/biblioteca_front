@@ -155,7 +155,7 @@ export const LibrosModal = () => {
                             />
                         )}
                     />
-                    <Form.Label>Titulo libro</Form.Label> 
+                    <Form.Label>Título libro</Form.Label> 
                     <Controller 
                         control={control} 
                         name="tituloLibro" 
@@ -165,7 +165,7 @@ export const LibrosModal = () => {
                                 value: true,
                                 message: 'Título libro es obligatorio'
                             },
-                            minLength: { value: 2, message: 'El titulo tiene que ser mas largo' }, 
+                            minLength: { value: 2, message: 'El título tiene que ser más largo' }, 
                         }}
                         render={({ field: { onChange, value, ref } }) => (
                             <Form.Control 

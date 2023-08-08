@@ -12,6 +12,7 @@ import { formateoRut } from "../../../helpers/formateoRut"
 import { customStyles } from '../../../helpers/customStyles.js'
 import { formateoMayusculas, formateoMinusculas } from "../../../helpers/formateoMayusculas"
 import { validarFecha } from "../../../helpers/validarFecha"
+import { validarNumeroEnRango } from "../../../helpers/validarNumeroEnRango"
 
 export const UsuariosModal = () => {
 
@@ -396,7 +397,8 @@ export const UsuariosModal = () => {
                         defaultValue=""  
                         rules={{
                             required: {value: true, message: 'Número de domicilio es obligatorio'},
-                            minLength: { value: 2, message: 'El número de domicilio tiene que ser más largo' },
+                            minLength: { value: 2, message: 'El número de domicilio tiene que ser más largo'},
+                            validate: {positive: v => validarNumeroEnRango(v) == true || 'Número de casa debe estar entre 1 a 10000'} 
                         }}
                         render={({ field: { onChange, value, ref } }) => (
                             <Form.Control
@@ -435,7 +437,7 @@ export const UsuariosModal = () => {
                                                 value={value} 
                                                 ref={ref}  
                                                 type="password"  
-                                                placeholder="Ingresacontraseña"
+                                                placeholder="Ingresa contraseña"
                                                 maxLength={50}  
                                             />
                                         )}

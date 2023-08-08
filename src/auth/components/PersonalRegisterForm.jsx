@@ -8,6 +8,7 @@ import { formateoRut } from "../../helpers/formateoRut"
 import { CAlert, CCard, CCardBody, CCardGroup, CProgress, CProgressBar } from "@coreui/react"
 import { formateoMayusculas, formateoMinusculas } from '../../helpers/formateoMayusculas'
 import bibliotecaApi from "../../api/bibliotecaApi"
+import { validarNumeroEnRango } from "../../helpers/validarNumeroEnRango"
 
 export const PersonalRegisterForm = ({goNextPage}) => {
 
@@ -281,6 +282,7 @@ export const PersonalRegisterForm = ({goNextPage}) => {
                                     rules={{
                                         required: {value: true, message: 'Número de domicilio es obligatorio'},
                                         minLength: { value: 2, message: 'El número tiene que ser más largo' },
+                                        validate: {positive: v => validarNumeroEnRango(v) == true || 'Número de casa debe estar entre 1 a 10000'}
                                     }}
                                     render={({ field: { onChange, value, ref } }) => (
                                         <Form.Control
