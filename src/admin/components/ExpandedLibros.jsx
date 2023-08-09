@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { onOpenModalPrestamos } from '../../store/ui/uiSlice';
 import { onAgregarPrestamoCarrito } from '../../store/prestamos/carritoSlice';
 import { startEliminarEjemplar } from '../../store/biblioteca/thunk';
+import Swal from 'sweetalert2';
 
 export const ExpandedLibros = ({ data }) => {
 
@@ -32,7 +33,25 @@ export const ExpandedLibros = ({ data }) => {
 
         let estadoEjemplar = 3
 
-        dispatch(startEliminarEjemplar(id, estadoEjemplar))
+        Swal.fire({
+            title: '¿Estás seguro de querer eliminar un ejemplar?',
+            text: "¡No podrás revertir esto!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Si, deseo eliminar',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                dispatch(startEliminarEjemplar(id, estadoEjemplar))
+                Swal.fire(
+                    '¡Eliminado!',
+                    'El ejemplar ha sido eliminado correctamente.',
+                    'success'
+                )
+            }
+        })
 
     }
 

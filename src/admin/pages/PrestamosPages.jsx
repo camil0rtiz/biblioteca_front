@@ -108,9 +108,9 @@ export const PrestamosPages = () => {
                         row.estado_prestamo == "1" ? (
                             'Prestado'
                         ) :  row.estado_prestamo == "2" ? (
-                            'Vencido'
-                        ) :  row.estado_prestamo == "3" ? (
                             'Entregado'
+                        ) :  row.estado_prestamo == "3" ? (
+                            'Vencido'
                         ) : (
                             null
                         )
